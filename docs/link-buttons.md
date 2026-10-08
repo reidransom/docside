@@ -9,7 +9,7 @@ Link buttons are visually prominent anchors for navigation. They do not represen
 
 {% include components/link-button.html text="Primary action" href="/getting-started/" %}
 {% include components/link-button.html text="Secondary action" href="/deployment/" variant="secondary" %}
-{% include components/link-button.html text="Minimal action" href="#destinations" variant="minimal" %}
+{% include components/link-button.html text="Minimal action" href="#destinations-and-new-windows" variant="minimal" %}
 
 `variant` accepts `primary`, `secondary`, or `minimal` and defaults to `primary`:
 
@@ -39,7 +39,7 @@ Invalid variants fall back to `primary`, and invalid icon positions fall back to
 
 Root-relative internal paths pass through `relative_url`. Fragments, email, telephone, and absolute HTTP or HTTPS destinations remain unchanged. Other relative paths and schemes are unsupported and omitted.
 
-{% include components/link-button.html text="Nested local destination" href="/guides/nested/example/" variant="secondary" %}
+{% include components/link-button.html text="Local destination" href="/navigation/" variant="secondary" %}
 {% include components/link-button.html text="Page fragment" href="#variants" variant="minimal" %}
 {% include components/link-button.html text="Email documentation" href="mailto:docs@example.com" variant="minimal" %}
 {% include components/link-button.html text="Telephone support" href="tel:+15550100" variant="minimal" %}

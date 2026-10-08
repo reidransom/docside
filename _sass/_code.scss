@@ -39,16 +39,17 @@
 
   #article pre:has(.code-line) {
     padding-inline: 0;
-    --marker-neutral-bg: rgb(255 255 255 / 9%);
-    --marker-neutral-gutter: color-mix(in srgb, white 9%, var(--code-bg));
+    // Keep solid and striped phases readable with the unchanged syntax palette.
+    --marker-neutral-bg: rgb(255 255 255 / 6%);
+    --marker-neutral-gutter: color-mix(in srgb, white 6%, var(--code-bg));
     --marker-neutral-edge: var(--sl-color-gray-3);
-    --marker-insert-bg: rgb(30 87 21 / 60%);
-    --marker-insert-gutter: color-mix(in srgb, rgb(30 87 21) 60%, var(--code-bg));
+    --marker-insert-bg: rgb(30 87 21 / 22%);
+    --marker-insert-gutter: color-mix(in srgb, rgb(30 87 21) 22%, var(--code-bg));
     --marker-insert-edge: #58a64b;
-    --marker-delete-bg: rgb(134 45 39 / 60%);
-    --marker-delete-gutter: color-mix(in srgb, rgb(134 45 39) 60%, var(--code-bg));
+    --marker-delete-bg: rgb(134 45 39 / 26%);
+    --marker-delete-gutter: color-mix(in srgb, rgb(134 45 39) 26%, var(--code-bg));
     --marker-delete-edge: #f85149;
-    --marker-pattern: rgb(255 255 255 / 6%);
+    --marker-pattern: rgb(255 255 255 / 3%);
   }
 
   #article .code-line {
@@ -161,14 +162,14 @@
   }
 
   [data-theme='light'] #article pre:has(.code-line) {
-    --marker-neutral-bg: rgb(0 0 0 / 10%);
-    --marker-neutral-gutter: color-mix(in srgb, black 10%, var(--code-bg));
+    --marker-neutral-bg: rgb(0 0 0 / 8%);
+    --marker-neutral-gutter: color-mix(in srgb, black 8%, var(--code-bg));
     --marker-neutral-edge: var(--sl-color-gray-3);
-    --marker-insert-bg: rgb(142 199 125 / 60%);
-    --marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 60%, var(--code-bg));
+    --marker-insert-bg: rgb(142 199 125 / 34%);
+    --marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 34%, var(--code-bg));
     --marker-insert-edge: #2da043;
-    --marker-delete-bg: rgb(255 156 142 / 60%);
-    --marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 60%, var(--code-bg));
+    --marker-delete-bg: rgb(255 156 142 / 31%);
+    --marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 31%, var(--code-bg));
     --marker-delete-edge: #cf222e;
     --marker-pattern: rgb(255 255 255 / 10%);
   }

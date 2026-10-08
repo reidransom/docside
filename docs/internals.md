@@ -41,6 +41,8 @@ sass --no-source-map _sass/docifly.scss assets/docifly.css
 
 Run this from the theme repository root, not the documentation consumer. A standalone Dart Sass executable can supply this maintainer command without Node.js. Merely editing Markdown does not require compilation, and consumers do not need a Sass installation.
 
+When changing code-marker styles, check whole-line and inline marks in Light and Dark, including both stripe phases. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source.
+
 Headings (`h1`–`h6`), including hero titles and the desktop table-of-contents title, and the header's `.site-title` use self-hosted Urbanist ExtraBold (800) with `-0.02em` letter spacing. Body and other interface text retain the system font stack. The Latin and extended-Latin WOFF2 subsets live in `assets/fonts/`, alongside the SIL Open Font License; `font-display: swap` keeps text visible while they load. Font URLs are relative to the stylesheet, so deployment prefixes apply without a runtime request to Google Fonts. Scripts not covered by Urbanist use the existing system fallback.
 
 The principal responsive transitions are 50rem for sidebar/menu placement and 72rem for the TOC rail/disclosure. At the default 16px browser font setting these are 800 and 1152 CSS pixels. They are font-relative layout decisions, not promises about named devices.

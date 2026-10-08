@@ -554,6 +554,14 @@
     color: var(--sl-color-white);
   }
 
+  [data-theme='dark'] :is(
+    .file-tree .comment,
+    .file-tree .omission,
+    .sl-link-card:hover .link-card-description
+  ) {
+    color: color-mix(in srgb, var(--sl-color-gray-3) 99%, var(--sl-color-white));
+  }
+
   .tabs {
     min-width: 0;
   }
