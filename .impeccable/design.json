@@ -1,0 +1,438 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-08T22:36:05.541Z",
+  "title": "Design System: Docifly",
+  "extensions": {
+    "colorMeta": {
+      "reference-blue-light": {
+        "role": "primary",
+        "displayName": "reference blue light",
+        "tonalRamp": [
+          "oklch(15% 0.24338 270.23)",
+          "oklch(25% 0.24338 270.23)",
+          "oklch(35% 0.24338 270.23)",
+          "oklch(45% 0.24338 270.23)",
+          "oklch(60% 0.24338 270.23)",
+          "oklch(75% 0.24338 270.23)",
+          "oklch(85% 0.24338 270.23)",
+          "oklch(95% 0.24338 270.23)"
+        ]
+      },
+      "reference-blue-dark": {
+        "role": "primary",
+        "displayName": "reference blue dark",
+        "tonalRamp": [
+          "oklch(15% 0.22989 264.74)",
+          "oklch(25% 0.22989 264.74)",
+          "oklch(35% 0.22989 264.74)",
+          "oklch(45% 0.22989 264.74)",
+          "oklch(60% 0.22989 264.74)",
+          "oklch(75% 0.22989 264.74)",
+          "oklch(85% 0.22989 264.74)",
+          "oklch(95% 0.22989 264.74)"
+        ]
+      },
+      "reference-blue-dark-text": {
+        "role": "primary",
+        "displayName": "reference blue dark text",
+        "tonalRamp": [
+          "oklch(15% 0.08217 269.05)",
+          "oklch(25% 0.08217 269.05)",
+          "oklch(35% 0.08217 269.05)",
+          "oklch(45% 0.08217 269.05)",
+          "oklch(60% 0.08217 269.05)",
+          "oklch(75% 0.08217 269.05)",
+          "oklch(85% 0.08217 269.05)",
+          "oklch(95% 0.08217 269.05)"
+        ]
+      },
+      "reference-blue-light-deep": {
+        "role": "primary",
+        "displayName": "reference blue light deep",
+        "tonalRamp": [
+          "oklch(15% 0.17653 267.24)",
+          "oklch(25% 0.17653 267.24)",
+          "oklch(35% 0.17653 267.24)",
+          "oklch(45% 0.17653 267.24)",
+          "oklch(60% 0.17653 267.24)",
+          "oklch(75% 0.17653 267.24)",
+          "oklch(85% 0.17653 267.24)",
+          "oklch(95% 0.17653 267.24)"
+        ]
+      },
+      "reference-blue-light-tint": {
+        "role": "primary",
+        "displayName": "reference blue light tint",
+        "tonalRamp": [
+          "oklch(15% 0.05588 280.19)",
+          "oklch(25% 0.05588 280.19)",
+          "oklch(35% 0.05588 280.19)",
+          "oklch(45% 0.05588 280.19)",
+          "oklch(60% 0.05588 280.19)",
+          "oklch(75% 0.05588 280.19)",
+          "oklch(85% 0.05588 280.19)",
+          "oklch(95% 0.05588 280.19)"
+        ]
+      },
+      "reference-blue-dark-shade": {
+        "role": "primary",
+        "displayName": "reference blue dark shade",
+        "tonalRamp": [
+          "oklch(15% 0.07673 266.49)",
+          "oklch(25% 0.07673 266.49)",
+          "oklch(35% 0.07673 266.49)",
+          "oklch(45% 0.07673 266.49)",
+          "oklch(60% 0.07673 266.49)",
+          "oklch(75% 0.07673 266.49)",
+          "oklch(85% 0.07673 266.49)",
+          "oklch(95% 0.07673 266.49)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "paper",
+        "tonalRamp": [
+          "oklch(15% 0.00000 89.88)",
+          "oklch(25% 0.00000 89.88)",
+          "oklch(35% 0.00000 89.88)",
+          "oklch(45% 0.00000 89.88)",
+          "oklch(60% 0.00000 89.88)",
+          "oklch(75% 0.00000 89.88)",
+          "oklch(85% 0.00000 89.88)",
+          "oklch(95% 0.00000 89.88)"
+        ]
+      },
+      "paper-nav": {
+        "role": "neutral",
+        "displayName": "paper nav",
+        "tonalRamp": [
+          "oklch(15% 0.00295 270.10)",
+          "oklch(25% 0.00295 270.10)",
+          "oklch(35% 0.00295 270.10)",
+          "oklch(45% 0.00295 270.10)",
+          "oklch(60% 0.00295 270.10)",
+          "oklch(75% 0.00295 270.10)",
+          "oklch(85% 0.00295 270.10)",
+          "oklch(95% 0.00295 270.10)"
+        ]
+      },
+      "cool-gray-1": {
+        "role": "neutral",
+        "displayName": "cool gray 1",
+        "tonalRamp": [
+          "oklch(15% 0.00626 270.07)",
+          "oklch(25% 0.00626 270.07)",
+          "oklch(35% 0.00626 270.07)",
+          "oklch(45% 0.00626 270.07)",
+          "oklch(60% 0.00626 270.07)",
+          "oklch(75% 0.00626 270.07)",
+          "oklch(85% 0.00626 270.07)",
+          "oklch(95% 0.00626 270.07)"
+        ]
+      },
+      "cool-gray-2": {
+        "role": "neutral",
+        "displayName": "cool gray 2",
+        "tonalRamp": [
+          "oklch(15% 0.00749 270.04)",
+          "oklch(25% 0.00749 270.04)",
+          "oklch(35% 0.00749 270.04)",
+          "oklch(45% 0.00749 270.04)",
+          "oklch(60% 0.00749 270.04)",
+          "oklch(75% 0.00749 270.04)",
+          "oklch(85% 0.00749 270.04)",
+          "oklch(95% 0.00749 270.04)"
+        ]
+      },
+      "cool-gray-3": {
+        "role": "neutral",
+        "displayName": "cool gray 3",
+        "tonalRamp": [
+          "oklch(15% 0.01529 269.91)",
+          "oklch(25% 0.01529 269.91)",
+          "oklch(35% 0.01529 269.91)",
+          "oklch(45% 0.01529 269.91)",
+          "oklch(60% 0.01529 269.91)",
+          "oklch(75% 0.01529 269.91)",
+          "oklch(85% 0.01529 269.91)",
+          "oklch(95% 0.01529 269.91)"
+        ]
+      },
+      "cool-gray-4": {
+        "role": "neutral",
+        "displayName": "cool gray 4",
+        "tonalRamp": [
+          "oklch(15% 0.01585 269.81)",
+          "oklch(25% 0.01585 269.81)",
+          "oklch(35% 0.01585 269.81)",
+          "oklch(45% 0.01585 269.81)",
+          "oklch(60% 0.01585 269.81)",
+          "oklch(75% 0.01585 269.81)",
+          "oklch(85% 0.01585 269.81)",
+          "oklch(95% 0.01585 269.81)"
+        ]
+      },
+      "cool-gray-5": {
+        "role": "neutral",
+        "displayName": "cool gray 5",
+        "tonalRamp": [
+          "oklch(15% 0.01566 269.69)",
+          "oklch(25% 0.01566 269.69)",
+          "oklch(35% 0.01566 269.69)",
+          "oklch(45% 0.01566 269.69)",
+          "oklch(60% 0.01566 269.69)",
+          "oklch(75% 0.01566 269.69)",
+          "oklch(85% 0.01566 269.69)",
+          "oklch(95% 0.01566 269.69)"
+        ]
+      },
+      "cool-gray-6": {
+        "role": "neutral",
+        "displayName": "cool gray 6",
+        "tonalRamp": [
+          "oklch(15% 0.01621 269.53)",
+          "oklch(25% 0.01621 269.53)",
+          "oklch(35% 0.01621 269.53)",
+          "oklch(45% 0.01621 269.53)",
+          "oklch(60% 0.01621 269.53)",
+          "oklch(75% 0.01621 269.53)",
+          "oklch(85% 0.01621 269.53)",
+          "oklch(95% 0.01621 269.53)"
+        ]
+      },
+      "cool-ink": {
+        "role": "neutral",
+        "displayName": "cool ink",
+        "tonalRamp": [
+          "oklch(15% 0.00766 269.79)",
+          "oklch(25% 0.00766 269.79)",
+          "oklch(35% 0.00766 269.79)",
+          "oklch(45% 0.00766 269.79)",
+          "oklch(60% 0.00766 269.79)",
+          "oklch(75% 0.00766 269.79)",
+          "oklch(85% 0.00766 269.79)",
+          "oklch(95% 0.00766 269.79)"
+        ]
+      },
+      "code-light-bg": {
+        "role": "neutral",
+        "displayName": "code light bg",
+        "tonalRamp": [
+          "oklch(15% 0.00287 264.54)",
+          "oklch(25% 0.00287 264.54)",
+          "oklch(35% 0.00287 264.54)",
+          "oklch(45% 0.00287 264.54)",
+          "oklch(60% 0.00287 264.54)",
+          "oklch(75% 0.00287 264.54)",
+          "oklch(85% 0.00287 264.54)",
+          "oklch(95% 0.00287 264.54)"
+        ]
+      },
+      "code-light-text": {
+        "role": "neutral",
+        "displayName": "code light text",
+        "tonalRamp": [
+          "oklch(15% 0.03395 286.94)",
+          "oklch(25% 0.03395 286.94)",
+          "oklch(35% 0.03395 286.94)",
+          "oklch(45% 0.03395 286.94)",
+          "oklch(60% 0.03395 286.94)",
+          "oklch(75% 0.03395 286.94)",
+          "oklch(85% 0.03395 286.94)",
+          "oklch(95% 0.03395 286.94)"
+        ]
+      },
+      "code-dark-bg": {
+        "role": "neutral",
+        "displayName": "code dark bg",
+        "tonalRamp": [
+          "oklch(15% 0.01731 270.70)",
+          "oklch(25% 0.01731 270.70)",
+          "oklch(35% 0.01731 270.70)",
+          "oklch(45% 0.01731 270.70)",
+          "oklch(60% 0.01731 270.70)",
+          "oklch(75% 0.01731 270.70)",
+          "oklch(85% 0.01731 270.70)",
+          "oklch(95% 0.01731 270.70)"
+        ]
+      },
+      "code-dark-text": {
+        "role": "neutral",
+        "displayName": "code dark text",
+        "tonalRamp": [
+          "oklch(15% 0.01979 260.17)",
+          "oklch(25% 0.01979 260.17)",
+          "oklch(35% 0.01979 260.17)",
+          "oklch(45% 0.01979 260.17)",
+          "oklch(60% 0.01979 260.17)",
+          "oklch(75% 0.01979 260.17)",
+          "oklch(85% 0.01979 260.17)",
+          "oklch(95% 0.01979 260.17)"
+        ]
+      }
+    },
+    "shadows": [
+      {
+        "name": "dark-sm",
+        "value": "0px 1px 1px hsla(0, 0%, 0%, 0.12), 0px 2px 1px hsla(0, 0%, 0%, 0.24)",
+        "purpose": "Link cards."
+      },
+      {
+        "name": "dark-md",
+        "value": "0px 8px 4px hsla(0, 0%, 0%, 0.08), 0px 5px 2px hsla(0, 0%, 0%, 0.08), 0px 3px 2px hsla(0, 0%, 0%, 0.12), 0px 1px 1px hsla(0, 0%, 0%, 0.15)",
+        "purpose": "Mobile menu button."
+      },
+      {
+        "name": "dark-lg",
+        "value": "0px 25px 7px hsla(0, 0%, 0%, 0.03), 0px 16px 6px hsla(0, 0%, 0%, 0.1), 0px 9px 5px hsla(223, 13%, 10%, 0.33), 0px 4px 4px hsla(0, 0%, 0%, 0.75), 0px 4px 2px hsla(0, 0%, 0%, 0.25)",
+        "purpose": "Search dialog and focused skip link."
+      },
+      {
+        "name": "light-sm",
+        "value": "0px 1px 1px hsla(0, 0%, 0%, 0.06), 0px 2px 1px hsla(0, 0%, 0%, 0.06)",
+        "purpose": "Link cards."
+      },
+      {
+        "name": "light-md",
+        "value": "0px 8px 4px hsla(0, 0%, 0%, 0.03), 0px 5px 2px hsla(0, 0%, 0%, 0.03), 0px 3px 2px hsla(0, 0%, 0%, 0.06), 0px 1px 1px hsla(0, 0%, 0%, 0.06)",
+        "purpose": "Mobile menu button."
+      },
+      {
+        "name": "light-lg",
+        "value": "0px 25px 7px rgba(0, 0, 0, 0.01), 0px 16px 6px hsla(0, 0%, 0%, 0.03), 0px 9px 5px hsla(223, 13%, 10%, 0.08), 0px 4px 4px hsla(0, 0%, 0%, 0.16), 0px 4px 2px hsla(0, 0%, 0%, 0.04)",
+        "purpose": "Search dialog and focused skip link."
+      }
+    ],
+    "motion": [
+      {
+        "name": "version-caret",
+        "value": "transform 0.2s ease",
+        "purpose": "Version-picker caret rotation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "navigation-and-hero",
+        "value": "50rem"
+      },
+      {
+        "name": "heading-scale",
+        "value": "50em"
+      },
+      {
+        "name": "desktop-toc",
+        "value": "72rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary-light",
+      "description": "Incumbent primary action treatment; theme-bound CSS properties inherit from the host.",
+      "html": "<a class=\"ds-action ds-primary\" href=\"#\">Get started</a>",
+      "css": ".ds-action{display:inline-flex;align-items:center;gap:.5em;padding:.4375rem 1.125rem;font: .875rem/1.1875 var(--__sl-font);text-decoration:none;border:1px solid transparent;border-radius:999rem;color:var(--sl-color-white)}.ds-action:focus-visible{outline:revert;outline-offset:.25rem}@media(min-width:50rem){.ds-action{padding:.9375rem 1.25rem;font-size:1rem}}.ds-primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.ds-primary:hover{color:var(--sl-color-black)}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary-light",
+      "description": "Incumbent secondary action treatment; theme-bound CSS properties inherit from the host.",
+      "html": "<a class=\"ds-action ds-secondary\" href=\"#\">Explore layouts</a>",
+      "css": ".ds-action{display:inline-flex;align-items:center;gap:.5em;padding:.4375rem 1.125rem;font: .875rem/1.1875 var(--__sl-font);text-decoration:none;border:1px solid transparent;border-radius:999rem;color:var(--sl-color-white)}.ds-action:focus-visible{outline:revert;outline-offset:.25rem}@media(min-width:50rem){.ds-action{padding:.9375rem 1.25rem;font-size:1rem}}.ds-secondary{border-color:currentColor}.ds-secondary:hover{color:var(--sl-color-white)}"
+    },
+    {
+      "name": "Minimal action",
+      "kind": "button",
+      "refersTo": "button-minimal-light",
+      "description": "Incumbent minimal action treatment; theme-bound CSS properties inherit from the host.",
+      "html": "<a class=\"ds-action ds-minimal\" href=\"#\">Explore layouts</a>",
+      "css": ".ds-action{display:inline-flex;align-items:center;gap:.5em;padding:.4375rem 1.125rem;font: .875rem/1.1875 var(--__sl-font);text-decoration:none;border:1px solid transparent;border-radius:999rem;color:var(--sl-color-white)}.ds-action:focus-visible{outline:revert;outline-offset:.25rem}@media(min-width:50rem){.ds-action{padding:.9375rem 1.25rem;font-size:1rem}}.ds-minimal{padding-inline:0}.ds-minimal:hover{color:var(--sl-color-white)}"
+    },
+    {
+      "name": "Search input",
+      "kind": "input",
+      "refersTo": "search-input-light",
+      "description": "Incumbent search input treatment; theme-bound CSS properties inherit from the host.",
+      "html": "<input class=\"ds-search\" type=\"search\" aria-label=\"Search documentation\" placeholder=\"Search documentation\">",
+      "css": ".ds-search{border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:.75rem 1rem;background:var(--sl-color-black);color:var(--sl-color-white);font:1rem/1.75 var(--__sl-font)}.ds-search:focus-visible{border-color:var(--sl-color-accent);outline:2px solid var(--sl-color-text-accent);outline-offset:2px}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Incumbent navigation treatment; theme-bound CSS properties inherit from the host.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Documentation\"><a href=\"#\" aria-current=\"page\">Getting started</a><a href=\"#\">Navigation</a></nav>",
+      "css": ".ds-nav a{display:block;border-radius:.25rem;padding:.3em .5rem;color:var(--sl-color-gray-2);text-decoration:none;font:.875rem/1.4 var(--__sl-font)}.ds-nav a:hover,.ds-nav a:focus{color:var(--sl-color-white)}.ds-nav a[aria-current=page]{font-weight:600;color:var(--sl-color-text-invert);background:var(--sl-color-text-accent)}.ds-nav a:focus-visible{outline:2px solid var(--sl-color-text-accent);outline-offset:2px}"
+    },
+    {
+      "name": "Default badge",
+      "kind": "chip",
+      "description": "Incumbent default badge treatment; theme-bound CSS properties inherit from the host.",
+      "html": "<span class=\"ds-badge\">New</span>",
+      "css": ".ds-badge{display:inline-flex;align-items:baseline;padding:.175rem .35rem;border:1px solid var(--sl-badge-default-border);border-radius:.25rem;background:var(--sl-badge-default-bg);color:var(--sl-badge-default-text);font:.875rem/normal var(--sl-font-system-mono)}"
+    },
+    {
+      "name": "Content card",
+      "kind": "card",
+      "description": "Incumbent content card treatment; theme-bound CSS properties inherit from the host.",
+      "html": "<section class=\"ds-card\"><strong>Documentation</strong><p>Organize guides and reference material.</p></section>",
+      "css": ".ds-card{display:flex;flex-direction:column;gap:clamp(.5rem,calc(.125rem + 1vw),1rem);padding:clamp(1rem,calc(.125rem + 3vw),2.5rem);background:var(--sl-color-black);border:1px solid var(--sl-color-gray-5);color:var(--sl-color-text);font:1rem/1.75 var(--__sl-font)}.ds-card strong{color:var(--sl-color-white);font-size:var(--sl-text-h4);font-weight:600;line-height:1.2}.ds-card p{margin:0}"
+    },
+    {
+      "name": "Link card",
+      "kind": "card",
+      "description": "Incumbent link card treatment; theme-bound CSS properties inherit from the host.",
+      "html": "<a class=\"ds-link-card\" href=\"#\"><strong>Getting started</strong><span>Install and configure the theme.</span></a>",
+      "css": ".ds-link-card{display:flex;flex-direction:column;gap:.5rem;padding:1rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;box-shadow:var(--sl-shadow-sm);color:var(--sl-color-gray-3);text-decoration:none;font:1rem/1.5 var(--__sl-font)}.ds-link-card strong{font-size:1.125rem;font-weight:600;line-height:1.2;color:var(--sl-color-white)}.ds-link-card:hover{background:var(--sl-color-gray-7,var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.ds-link-card:focus-visible{outline:2px solid var(--sl-color-text-accent);outline-offset:2px}"
+    },
+    {
+      "name": "Note callout",
+      "kind": "custom",
+      "description": "Incumbent note callout treatment; theme-bound CSS properties inherit from the host.",
+      "html": "<aside class=\"ds-note\"><strong>Note</strong><p>Read the feature guide for supported behavior.</p></aside>",
+      "css": ".ds-note{padding:1rem;background:var(--sl-color-blue-low);border-inline-start:.25rem solid var(--sl-color-blue);color:var(--sl-color-white);font:1rem/1.75 var(--__sl-font)}.ds-note strong{color:var(--sl-color-blue-high)}.ds-note p{margin:1rem 0 0}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clear Reference Desk",
+    "overview": "A clear, calm, technical system that puts documentation ahead of interface decoration. Strong Urbanist headings establish signposts; system-font prose and compact supporting controls keep sustained reading familiar. The purple folded-D artwork carries identity without replacing the blue interaction palette.\n\nComponents are precise and restrained. The workspace is flat, while selected utilities are lifted: borders and cool neutral layers organize persistent regions; small shadows distinguish link cards and larger shadows separate overlays. Light and dark are complete semantic themes, not simple color inversion.",
+    "keyCharacteristics": [
+      "Heavy geometric headings with familiar system-font prose.",
+      "Blue interaction accents and cool neutral surfaces in both themes.",
+      "Persistent desktop wayfinding that collapses for smaller screens.",
+      "Flat content regions, restrained borders, and selectively lifted utilities.",
+      "Existing folded-D identity artwork, not a generalized gradient treatment."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Theme Rule",
+        "body": "Use the active theme's semantic CSS properties for text, backgrounds, borders, and accents; token names such as “white” and “black” describe roles that change with the theme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Heading/Prose Rule",
+        "body": "Preserve Urbanist for headings and the site title; use the system stack for body text and ordinary controls. Card titles have their own weight-600 treatment and should not be mistaken for document headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The Utility Lift Rule",
+        "body": "Keep reading surfaces flat. Reuse the implemented small, medium, and large shadow roles for the utilities that already need separation rather than adding ambient shadows to every container.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** resolve semantic color properties for the active light or dark theme.",
+      "**Do** preserve the Urbanist heading/system-prose distinction.",
+      "**Do** keep reading content bounded and preserve mobile navigation and horizontal code overflow.",
+      "**Do** retain visible keyboard focus and current-page or selected-state semantics.",
+      "**Do** use existing folded-D artwork for identity and semantic colors for contextual signals."
+    ],
+    "donts": [
+      "**Don't** equate the purple logo artwork with the blue interaction accent.",
+      "**Don't** give every content region a shadow or the same corner radius.",
+      "**Don't** invent hover motion, form states, or additional palette roles absent from the implementation.",
+      "**Don't** describe this extracted design record or historical screenshots as proof of complete Starlight parity."
+    ]
+  }
+}
