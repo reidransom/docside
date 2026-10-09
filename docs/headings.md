@@ -61,6 +61,8 @@ This H4 demonstrates a deeper heading. It can receive a heading anchor, but it d
 
 Scroll through the article and watch the current section in **On this page**. The top entry, **Overview**, returns to the main reading area. Heading links should place the target below the fixed header rather than hide it behind navigation.
 
+With JavaScript enabled, **On this page** links scroll smoothly to their targets while updating the URL fragment and moving keyboard focus. Readers who prefer reduced motion get an immediate scroll instead.
+
 At widths below 72rem—1152 CSS pixels with the default font setting—the outline becomes a disclosure near the top instead of a right-hand rail. Open it and select a section. Selecting a link closes the disclosure and moves focus to the target. Escape or an outside click can also close the disclosure.
 
 ## Read without enhancement

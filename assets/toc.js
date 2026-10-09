@@ -60,11 +60,18 @@
   layoutObserver.observe(summary);
   nav.addEventListener('click', (event) => {
     if (!(event.target instanceof HTMLAnchorElement)) return;
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+      return;
     if (!desktop.matches) details.open = false;
     const target = document.getElementById(event.target.dataset.tocTarget);
     if (target) {
+      event.preventDefault();
+      if (location.hash !== event.target.hash) history.pushState(null, '', event.target.hash);
       target.tabIndex = -1;
       target.focus({ preventScroll: true });
+      target.scrollIntoView({
+        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      });
     }
   });
   document.addEventListener('click', (event) => {
