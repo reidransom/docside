@@ -53,7 +53,7 @@ For language-picker changes, preview a consumer of `fixtures/localization/site/`
 
 ## Browser enhancement ownership
 
-The layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, global controls, prose, TOC, MiniSearch, search, tabs, then code. No client renderer or hydration framework is involved.
+The documentation layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, global controls, prose, TOC, tabs, code, MiniSearch, then search. The splash layout omits navigation, global controls, and TOC; the not-found layout defers only MiniSearch and search. Tabs and code initialize before the optional CDN script, so a slow MiniSearch response does not delay those independent enhancements. MiniSearch still executes before search initialization. No client renderer or hydration framework is involved.
 
 ### Color mode
 
