@@ -67,6 +67,10 @@
     box-shadow: var(--sl-shadow-lg);
   }
 
+  .site-header #language-picker > ul {
+    inset-block-start: calc((100% + var(--sl-nav-height)) / 2 + 0.25rem);
+  }
+
   #language-picker li {
     margin: 0;
   }
@@ -100,23 +104,41 @@
     min-height: 3rem;
   }
 
+  #site-nav #language-picker > ul {
+    inset-inline-start: 0;
+    inset-inline-end: auto;
+    min-width: min(12rem, calc(100vw - 2 * var(--sl-sidebar-pad-x) - 1rem));
+    max-width: min(22rem, calc(100vw - 2 * var(--sl-sidebar-pad-x) - 1rem));
+  }
+
   @media (max-width: 49.999rem) {
-    #language-picker > summary {
-      width: 3rem;
+    .site-header #language-picker {
+      position: static;
     }
 
-    .language-picker-control {
+    .site-header #language-picker > summary {
+      width: 3.5rem;
+    }
+
+    .site-header #language-picker > ul {
+      inset-block-start: calc(100% + 0.25rem);
+      inset-inline-end: var(--sl-nav-pad-x);
+      min-width: min(12rem, calc(100% - 2 * var(--sl-nav-pad-x)));
+      max-width: min(22rem, calc(100% - 2 * var(--sl-nav-pad-x)));
+    }
+
+    .site-header .language-picker-control {
       grid-template-columns: 0.875rem 1.25rem;
       justify-content: center;
     }
 
-    .language-current {
+    .site-header .language-current {
       display: none;
     }
   }
 
   @media (min-width: 50rem) {
-    #language-picker > summary {
+    :root:not([data-compact-sidebar]) #language-picker > summary {
       font-size: var(--sl-text-sm);
     }
   }

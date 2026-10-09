@@ -49,6 +49,8 @@ The principal responsive transitions are 50rem for sidebar/menu placement and 72
 
 For responsive changes, inspect `/internals/#search` and `/icons/` at 320–390 CSS pixels: inline prose code must wrap without widening the page, while tables, fenced code, and file trees scroll locally. At 1280×900, set the root font size to 200%, then restore it with focus in navigation or the TOC; check compact-shell transitions and focus retention. Exercise Menu/Search outside their visible shapes, navigation/TOC rows, and search-result sections, snippets, and padding with touch and keyboard.
 
+For language-picker changes, preview a consumer of `fixtures/localization/site/` with English, French, and Arabic editions. Check Light/Dark and 320px, 390px, and desktop widths: the popup must stay within the viewport below the fixed header, preserve the current-edition highlight, and keep long labels readable. With JavaScript disabled, verify that the native disclosure and edition links still work from the header.
+
 ## Browser enhancement ownership
 
 The layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, global controls, prose, TOC, MiniSearch, search, tabs, then code. No client renderer or hydration framework is involved.

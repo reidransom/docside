@@ -14,7 +14,7 @@ docifly:
     empty: "Saisissez des mots à rechercher dans cette documentation."
     loading: "Chargement de la recherche…"
     error: "La recherche n’a pas pu être chargée. Vérifiez votre connexion et réessayez."
-    no_results: "Aucun résultat. Essayez un autre terme."
+    no_results: "Aucun résultat. Vérifiez l’orthographe ou essayez moins de mots."
     one_result: "{count} résultat"
     results: "{count} résultats"
   color_mode:

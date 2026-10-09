@@ -108,7 +108,7 @@ docifly:
     empty: "Enter words to search this documentation."
     loading: "Loading search…"
     error: "Search could not load. Check your connection and retry."
-    no_results: "No results found. Try another term."
+    no_results: "No results found. Check spelling or try fewer words."
     one_result: "{count} result"
     results: "{count} results"
   color_mode:
