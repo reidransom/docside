@@ -17,24 +17,30 @@ navigation:
         link: /localization/
       - label: Page layouts and heroes
         link: /pages/
-      - label: Cards and grids
-        link: /cards/
-      - label: Tabs
-        link: /tabs/
-      - label: Badges
-        link: /badges/
-      - label: Steps
-        link: /steps/
-      - label: File trees
-        link: /file-trees/
-      - label: Icons
-        link: /icons/
-      - label: Callouts
-        link: /callouts/
-      - label: Link buttons
-        link: /link-buttons/
       - label: Headings and table of contents
         link: /headings/
+      - label: Deployment
+        link: /deployment/
+      - label: Versioned documentation
+        link: /versioning/
+      - label: Component examples
+        items:
+          - label: Cards and grids
+            link: /cards/
+          - label: Tabs
+            link: /tabs/
+          - label: Badges
+            link: /badges/
+          - label: Steps
+            link: /steps/
+          - label: File trees
+            link: /file-trees/
+          - label: Icons
+            link: /icons/
+          - label: Callouts
+            link: /callouts/
+          - label: Link buttons
+            link: /link-buttons/
       - label: Reference
         items:
           - label: Markdown
@@ -43,10 +49,6 @@ navigation:
             link: /code/
           - label: Color modes and fallback behavior
             link: /color-modes/
-      - label: Deployment
-        link: /deployment/
-      - label: Versioned documentation
-        link: /versioning/
   - label: Maintainers
     items:
       - label: Developing Docifly

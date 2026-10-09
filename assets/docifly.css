@@ -1625,8 +1625,11 @@ how we do it.
     padding-top: var(--sl-nav-height);
   }
   .splash-pane .content-container {
-    max-width: 80rem;
+    max-width: var(--sl-content-width);
     margin-inline: auto;
+  }
+  .splash-pane .content-container:has(> .hero) {
+    max-width: 80rem;
   }
   .hero {
     display: grid;

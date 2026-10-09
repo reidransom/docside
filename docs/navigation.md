@@ -3,7 +3,7 @@ title: Navigation
 permalink: /navigation/
 ---
 
-The sidebar is an ordered list owned by the consumer. This site's **Guides → Reference** group demonstrates nested navigation, and the long manual-inspection label demonstrates wrapping without a separate fixture page.
+The sidebar is an ordered list owned by the consumer. This site's **Guides** group keeps the authoring guides before **Component examples** and **Reference** subgroups. Both subgroups demonstrate nested navigation, and the long manual-inspection label demonstrates wrapping without a separate fixture page.
 
 ## Define links and groups
 

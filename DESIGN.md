@@ -153,7 +153,7 @@ Documentation uses a fixed header, left navigation, bounded reading column, and 
 
 At (50rem), navigation becomes a persistent sidebar, the mobile menu control disappears, heading sizes increase, and hero layouts switch from a centered single column to a (7:4) text/image split. The heading-token media query uses (50em); other shell rules use (50rem). At (72rem), the table of contents becomes a right-hand rail and its mobile bar no longer reserves vertical space. Below that threshold, heading navigation uses a mobile bar. Use logical inline directions so the structure can mirror for RTL.
 
-Splash content has a separate width cap of (80rem). Hero copy is bounded to (50ch); identity artwork scales independently and is not a background decoration. Actions wrap instead of squeezing labels.
+Splash heroes have a separate width cap of (80rem); article content is centered at the ordinary (45rem) cap, as is the page title when no hero is present. Hero copy is bounded to (50ch); identity artwork scales independently and is not a background decoration. Actions wrap instead of squeezing labels.
 
 Prose blocks typically separate by the base spacing token; headings following non-headings have (1.5em) top separation. Code and tab strips preserve horizontal scrolling rather than clipping useful content. Component padding is contextual; the frontmatter spacing entries record recurring distances, not an enforced universal spacing scale.
 

@@ -15,7 +15,7 @@ hero:
       variant: secondary
 ---
 
-Choose the shell with Jigyll's `layout` front matter. `default` keeps the navigation and heading table of contents. `splash` omits both sidebars and gives the article a wider content region. Either layout can render an optional hero.
+Choose the shell with Jigyll's `layout` front matter. `default` keeps the navigation and heading table of contents. `splash` omits both sidebars, centers article content at the same 45rem width cap, and gives heroes a separate 80rem cap. Either layout can render an optional hero.
 
 ## Set the site favicon
 
