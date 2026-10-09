@@ -31,13 +31,12 @@ Text labels and titles are escaped. A navigation badge contributes to its link n
 
 ## Styles and shipped output
 
-`_sass/docifly.scss` is the entry point. It loads focused partials for reset, properties/tokens, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, and content components, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional. `_sass/reading.scss` is a separate entry point loaded only by the documentation layout, so splash and recovery pages do not opt into reading transitions.
+`_sass/docifly.scss` is the entry point. It loads focused partials for reset, properties/tokens, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, and content components, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional.
 
-Consumers load `assets/docifly.css` and, on documentation pages, `assets/reading.css`. Maintainers changing Sass compile the shipped artifacts with a Sass CLI:
+Consumers load `assets/docifly.css`. Maintainers changing Sass compile the shipped artifact with a Sass CLI:
 
 ```sh
 sass --no-source-map _sass/docifly.scss assets/docifly.css
-sass --no-source-map _sass/reading.scss assets/reading.css
 ```
 
 Run this from the theme repository root, not the documentation consumer. A standalone Dart Sass executable can supply this maintainer command without Node.js. Merely editing Markdown does not require compilation, and consumers do not need a Sass installation.
@@ -54,7 +53,7 @@ For language-picker changes, preview a consumer of `fixtures/localization/site/`
 
 ## Browser enhancement ownership
 
-All layouts load `assets/color-mode.js` synchronously in the head before CSS. The documentation layout also registers `assets/reading.js` synchronously so it can handle the browser's early page-reveal event. Its other enhancement assets are deferred in this order: navigation, global controls, optional hero depth, prose, TOC, tabs, code, MiniSearch, then search. The splash layout omits navigation, global controls, reading transitions, and TOC; it loads optional hero depth before prose. The not-found layout defers only MiniSearch and search. Tabs and code initialize before the optional CDN script, so a slow MiniSearch response does not delay those independent enhancements. MiniSearch still executes before search initialization. No client renderer or hydration framework is involved.
+All layouts load `assets/color-mode.js` synchronously in the head before CSS. The documentation layout's enhancement assets are deferred in this order: navigation, global controls, optional hero depth, prose, TOC, tabs, code, MiniSearch, then search. The splash layout omits navigation, global controls, and TOC; it loads optional hero depth before prose. The not-found layout defers only MiniSearch and search. Tabs and code initialize before the optional CDN script, so a slow MiniSearch response does not delay those independent enhancements. MiniSearch still executes before search initialization. No client renderer or hydration framework is involved.
 
 ### Color mode
 
@@ -68,11 +67,9 @@ The navigation enhancement compares the viewport with the current root font at t
 
 Session persistence stores group state and scroll position under a base-URL-specific key. A signature of navigation labels and links prevents stale state being applied after the consumer changes its navigation. Native controls still work when storage access fails.
 
-### Continuous reading
+### Page navigation
 
-The documentation layout opts into same-origin cross-document View Transitions through `assets/reading.css`. Supporting browsers keep the header and navigation shell stationary while the reading pane makes a short vertical handoff. The canvas, transition overlay, and article snapshots use the active theme's opaque background; the outgoing snapshot remains behind the incoming article, which moves without fading through blank space. On desktop, the active navigation link moves to its new position; `assets/reading.js` selects one visible current-page link even when the consumer repeats a route. The heading outline updates in place rather than sliding with the article.
-
-This remains ordinary document navigation: URLs, history, fragments, and full page loads are not intercepted. Both documents must opt in, so navigation to or from splash and not-found layouts is unchanged. Reduced-motion preferences disable the transition styles. Browsers without cross-document transition support retain ordinary page navigation; JavaScript is needed only to identify the moving current-page link.
+Navigation uses ordinary document loads without page transition effects. URLs, history, fragments, and full page loads are not intercepted. The current-page navigation highlight updates on the destination page.
 
 ### Hero depth
 

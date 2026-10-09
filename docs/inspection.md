@@ -25,7 +25,7 @@ At a narrow width, open Menu. Use Tab and Shift-Tab, open and close a group, the
 
 The Guides → Reference group and the deliberately long label for this page are live navigation examples. Collapse a group and follow another page to inspect session persistence without inventing another fixture.
 
-In a browser supporting cross-document View Transitions, follow **Getting started** → **Navigation** on desktop. The shell should stay still while the active link moves and the article hands off. Use Back and a heading fragment too: these are ordinary page loads, not client-side routing. Turn on the operating system's reduced-motion preference and repeat; navigation should become immediate.
+Follow **Getting started** → **Navigation** on desktop. The destination page and current-page highlight should appear without transition animation. Use Back and a heading fragment too: these are ordinary page loads, not client-side routing.
 
 ## Follow headings
 
