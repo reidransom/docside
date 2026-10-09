@@ -11,7 +11,11 @@
     (heading) => heading.id && heading.textContent.trim() && !heading.closest('pre, code'),
   );
   const entries = links.map((link) => link.textContent.trim());
-  const desktop = matchMedia('(min-width: 72rem)');
+  const desktop = {
+    get matches() {
+      return getComputedStyle(summary).display === 'none';
+    },
+  };
   let lastFocus = null;
   details.addEventListener('focusin', (event) => {
     lastFocus = event.target;
@@ -50,8 +54,10 @@
     resize();
   };
   resize();
-  desktop.addEventListener('change', updateBreakpoint);
-  new ResizeObserver(updateBreakpoint).observe(document.documentElement);
+  addEventListener('resize', updateBreakpoint);
+  const layoutObserver = new ResizeObserver(updateBreakpoint);
+  layoutObserver.observe(document.documentElement);
+  layoutObserver.observe(summary);
   nav.addEventListener('click', (event) => {
     if (!(event.target instanceof HTMLAnchorElement)) return;
     if (!desktop.matches) details.open = false;

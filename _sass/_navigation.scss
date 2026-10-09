@@ -92,6 +92,12 @@
     box-shadow: var(--sl-shadow-md);
     cursor: pointer;
   }
+  #menu-toggle::after {
+    content: '';
+    position: absolute;
+    border-radius: inherit;
+    inset: min(0px, calc((2rem - 44px) / 2));
+  }
   [data-theme='light'] #menu-toggle {
     background: var(--sl-color-black);
     color: var(--sl-color-white);
@@ -120,29 +126,48 @@
       --menu-space: 3rem;
     }
   }
+  :root[data-compact-sidebar] {
+    --menu-space: 3rem;
+  }
   @media (min-width: 50rem) {
-    #menu-toggle {
+    :root:not([data-compact-sidebar]) #menu-toggle {
       display: none;
     }
-    #site-nav {
+    :root:not([data-compact-sidebar]) #site-nav {
       display: block;
       width: var(--sl-sidebar-width);
       inset-inline-end: auto;
       border-inline-end: 1px solid var(--sl-color-hairline-shade);
       background: var(--sl-color-bg-sidebar);
     }
-    #site-nav > ul > li + li {
+    :root:not([data-compact-sidebar]) #site-nav > ul > li + li {
       margin-top: 0.5rem;
     }
-    #site-nav a {
+    :root:not([data-compact-sidebar]) #site-nav a {
       font-size: var(--sl-text-sm);
     }
-    #site-nav > ul > li > a,
-    #site-nav summary > span {
+    :root:not([data-compact-sidebar]) #site-nav > ul > li > a,
+    :root:not([data-compact-sidebar]) #site-nav summary > span {
       font-size: var(--sl-text-base);
     }
-    body:has(#site-nav:popover-open) {
+    :root:not([data-compact-sidebar]) body:has(#site-nav:popover-open) {
       overflow: auto;
+    }
+  }
+  @media (max-width: 49.999rem), (any-pointer: coarse) {
+    #site-nav li {
+      padding-block: 8px;
+    }
+    #site-nav :is(a, summary) {
+      position: relative;
+    }
+    #site-nav :is(a, summary)::after {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      top: 50%;
+      height: max(100%, 44px);
+      transform: translateY(-50%);
     }
   }
 }

@@ -87,14 +87,22 @@
   #toc a[aria-current='true'] {
     color: var(--sl-color-white);
   }
+  :root[data-compact-toc] #toc a[aria-current='true']::after {
+    content: '✓';
+    color: var(--sl-color-text-accent);
+  }
   @media (max-width: 71.999rem) {
+    #toc a {
+      min-height: 44px;
+      align-items: center;
+    }
     #toc a[aria-current='true']::after {
       content: '✓';
       color: var(--sl-color-text-accent);
     }
   }
   @media (min-width: 72rem) {
-    #toc {
+    :root:not([data-compact-toc]) #toc {
       inset-inline: auto;
       top: 0;
       width: 100%;
@@ -106,8 +114,8 @@
       overflow-y: auto;
       scrollbar-width: none;
     }
-    #toc > h2,
-    #toc > details {
+    :root:not([data-compact-toc]) #toc > h2,
+    :root:not([data-compact-toc]) #toc > details {
       width: min(
         calc(var(--sl-sidebar-width) - 2 * var(--sl-sidebar-pad-x)),
         calc(
@@ -118,24 +126,24 @@
         )
       );
     }
-    #toc h2 {
+    :root:not([data-compact-toc]) #toc h2 {
       display: block;
       color: var(--sl-color-white);
       font-size: var(--sl-text-h5);
       line-height: var(--sl-line-height-headings);
       margin-bottom: 0.5rem;
     }
-    #toc summary {
+    :root:not([data-compact-toc]) #toc summary {
       display: none;
     }
-    #toc ul {
+    :root:not([data-compact-toc]) #toc ul {
       margin: 0;
       border: 0;
       max-height: none;
       overflow: visible;
       box-shadow: none;
     }
-    #toc a {
+    :root:not([data-compact-toc]) #toc a {
       display: block;
       border: 0;
       border-radius: 0.25rem;
@@ -144,10 +152,10 @@
       color: var(--sl-color-gray-3);
       font-size: var(--sl-text-xs);
     }
-    #toc a:hover {
+    :root:not([data-compact-toc]) #toc a:hover {
       color: var(--sl-color-white);
     }
-    #toc a[aria-current='true'] {
+    :root:not([data-compact-toc]) #toc a[aria-current='true'] {
       color: var(--sl-color-text-accent);
     }
   }

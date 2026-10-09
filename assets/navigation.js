@@ -2,7 +2,19 @@
   const nav = document.getElementById('site-nav');
   const toggle = document.getElementById('menu-toggle');
   if (!nav || !toggle) return;
-  const desktop = matchMedia('(min-width: 50rem)');
+  const root = document.documentElement;
+  // Media-query rems use the initial font; these guards follow the reader's root font.
+  const updateLayout = () => {
+    const fontSize = parseFloat(getComputedStyle(root).fontSize);
+    root.toggleAttribute('data-compact-sidebar', innerWidth < 50 * fontSize);
+    root.toggleAttribute('data-compact-toc', innerWidth < 72 * fontSize);
+  };
+  updateLayout();
+  const desktop = {
+    get matches() {
+      return getComputedStyle(toggle).display === 'none';
+    },
+  };
   const covered = [
     document.querySelector('header'),
     document.getElementById('main-content'),
@@ -99,8 +111,13 @@
         if (desktop.matches === expectedDesktop) focusTarget.focus();
       });
   };
-  desktop.addEventListener('change', updateBreakpoint);
-  new ResizeObserver(updateBreakpoint).observe(document.documentElement);
+  const resize = () => {
+    updateLayout();
+    updateBreakpoint();
+  };
+  addEventListener('resize', resize);
+  const layoutObserver = new ResizeObserver(resize);
+  [root, nav, toggle].forEach((element) => layoutObserver.observe(element));
   document.addEventListener('keydown', (event) => {
     if (!nav.matches(':popover-open') || desktop.matches) return;
     if (event.key === 'Escape') {

@@ -47,6 +47,8 @@ Headings (`h1`–`h6`), including hero titles and the desktop table-of-contents 
 
 The principal responsive transitions are 50rem for sidebar/menu placement and 72rem for the TOC rail/disclosure. At the default 16px browser font setting these are 800 and 1152 CSS pixels. They are font-relative layout decisions, not promises about named devices.
 
+For responsive changes, inspect `/internals/#search` and `/icons/` at 320–390 CSS pixels: inline prose code must wrap without widening the page, while tables, fenced code, and file trees scroll locally. At 1280×900, set the root font size to 200%, then restore it with focus in navigation or the TOC; check compact-shell transitions and focus retention. Exercise Menu/Search outside their visible shapes, navigation/TOC rows, and search-result sections, snippets, and padding with touch and keyboard.
+
 ## Browser enhancement ownership
 
 The layout loads `assets/color-mode.js` synchronously in the head before CSS. The other enhancement assets are deferred in this order: navigation, global controls, prose, TOC, MiniSearch, search, tabs, then code. No client renderer or hydration framework is involved.
@@ -58,6 +60,8 @@ The layout loads `assets/color-mode.js` synchronously in the head before CSS. Th
 ### Navigation
 
 `assets/navigation.js` enhances the native navigation popover and disclosures. It makes covered content inert while the mobile menu is open, handles keyboard focus and Escape, closes the menu after link selection, and cleans up at the responsive transition.
+
+The navigation enhancement compares the viewport with the current root font at the existing 50rem and 72rem thresholds. Its compact-shell guards let font-size overrides fall back from wide columns; navigation, TOC, and shared controls follow the rendered control state rather than viewport media queries alone.
 
 Session persistence stores group state and scroll position under a base-URL-specific key. A signature of navigation labels and links prevents stale state being applied after the consumer changes its navigation. Native controls still work when storage access fails.
 

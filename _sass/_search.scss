@@ -1,4 +1,27 @@
 /*! Search control geometry adapted from stock Starlight; result behavior is Docifly-native. */
+@mixin compact-search {
+  #site-search {
+    flex: 0 0 auto;
+  }
+  #search-toggle {
+    border: 0;
+    border-radius: 0;
+    padding: 0 0.5rem;
+    width: auto;
+    height: 2.5rem;
+    background: transparent;
+    color: var(--sl-color-gray-1);
+    font-size: var(--sl-text-xl);
+  }
+  #search-toggle::after {
+    inset-inline: min(0px, calc((1rem + 16px - 44px) / 2));
+  }
+  #search-toggle > span,
+  #search-toggle > kbd {
+    display: none;
+  }
+}
+
 @layer docifly {
   #site-search {
     min-width: 0;
@@ -6,6 +29,7 @@
     max-width: 22rem;
   }
   #search-toggle {
+    position: relative;
     align-items: center;
     gap: 0.5rem;
     border: 1px solid var(--sl-color-gray-5);
@@ -20,6 +44,12 @@
     display: flex;
     font: inherit;
     font-size: var(--sl-text-sm);
+  }
+  #search-toggle::after {
+    content: '';
+    position: absolute;
+    inset-block: min(0px, calc((2.5rem - 44px) / 2));
+    inset-inline: 0;
   }
   #search-toggle:hover:not(:disabled) {
     border-color: var(--sl-color-gray-2);
@@ -102,13 +132,18 @@
   #search-results li + li {
     margin-top: 0.75rem;
   }
-  #search-results li {
+  #search-results a {
+    display: block;
     border-radius: 0.3125rem;
     padding: 0.9375rem 1.25rem;
     background: var(--sl-color-black);
+    color: var(--sl-color-text);
+    text-decoration: none;
   }
-  #search-results a {
+  .search-title {
+    color: var(--sl-color-text-accent);
     font-weight: 600;
+    text-decoration: underline;
   }
   #search-results p {
     margin: 0.5rem 0 0;
@@ -121,26 +156,13 @@
     overflow: hidden;
   }
   @media (max-width: 49.999rem) {
-    #site-search {
-      flex: 0 0 auto;
-    }
-    #search-toggle {
-      border: 0;
-      border-radius: 0;
-      padding: 0 0.5rem;
-      width: auto;
-      height: 2.5rem;
-      background: transparent;
-      color: var(--sl-color-gray-1);
-      font-size: var(--sl-text-xl);
-    }
-    #search-toggle > span,
-    #search-toggle > kbd {
-      display: none;
-    }
+    @include compact-search;
   }
   @media (min-width: 50rem) {
-    #search-dialog {
+    :root[data-compact-sidebar] {
+      @include compact-search;
+    }
+    :root:not([data-compact-sidebar]) #search-dialog {
       margin: 4rem auto auto;
       border-radius: 0.5rem;
       width: 90%;
@@ -149,7 +171,7 @@
       min-height: 15rem;
       max-height: calc(100% - 8rem);
     }
-    .search-dialog-frame {
+    :root:not([data-compact-sidebar]) .search-dialog-frame {
       padding: 1.5rem;
     }
   }

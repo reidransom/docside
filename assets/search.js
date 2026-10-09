@@ -129,17 +129,25 @@
       const item = document.createElement('li');
       const link = document.createElement('a');
       link.href = safeURL(record.url + (heading?.id ? '#' + encodeURIComponent(heading.id) : ''));
-      link.textContent = record.title || record.url;
-      item.append(link);
+      const resultId = `search-result-${list.childElementCount}`;
+      const title = document.createElement('span');
+      title.className = 'search-title';
+      title.id = `${resultId}-title`;
+      title.textContent = record.title || record.url;
+      link.setAttribute('aria-labelledby', title.id);
+      link.append(title);
       if (heading?.id) {
         const section = document.createElement('span');
         section.className = 'search-section';
+        section.id = `${resultId}-section`;
         section.textContent = ` — ${heading.text}`;
-        item.append(section);
+        link.append(section);
+        link.setAttribute('aria-labelledby', `${title.id} ${section.id}`);
       }
       const context = document.createElement('p');
       context.textContent = excerpt(record.body, terms);
-      item.append(context);
+      link.append(context);
+      item.append(link);
       list.append(item);
     }
     results.append(list);

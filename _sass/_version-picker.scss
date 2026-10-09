@@ -85,7 +85,7 @@
     min-height: 3rem;
   }
   @media (min-width: 50rem) {
-    #version-picker > summary {
+    :root:not([data-compact-sidebar]) #version-picker > summary {
       font-size: var(--sl-text-sm);
     }
   }
