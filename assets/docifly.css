@@ -1653,6 +1653,35 @@ how we do it.
   [data-theme=light] .hero-image-light {
     display: block;
   }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    [data-theme=dark] .hero-image[data-hero-depth] {
+      --hero-depth-shadow: var(--sl-color-black);
+    }
+    .hero-image[data-hero-depth].is-depth-ready {
+      transform: perspective(1000px) rotateX(var(--hero-depth-x, -2deg)) rotateY(var(--hero-depth-y, -4deg)) scale(0.97);
+      transform-origin: 50% 50%;
+      filter: drop-shadow(0.6rem 1rem 1.25rem color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 28%, transparent));
+      transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-image[data-hero-depth].is-depth-tracking {
+      transition-duration: 120ms;
+      will-change: transform;
+    }
+    .hero-image[data-hero-depth].is-depth-entering {
+      animation: hero-depth-enter 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      will-change: transform, filter;
+    }
+    @keyframes hero-depth-enter {
+      from {
+        transform: perspective(1000px) translateY(0.6rem) rotateX(3deg) rotateY(-7deg) scale(0.94);
+        filter: drop-shadow(0.2rem 0.3rem 0.4rem color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 8%, transparent));
+      }
+      to {
+        transform: perspective(1000px) rotateX(var(--hero-depth-x, -2deg)) rotateY(var(--hero-depth-y, -4deg)) scale(0.97);
+        filter: drop-shadow(0.6rem 1rem 1.25rem color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 28%, transparent));
+      }
+    }
+  }
   .hero-stack,
   .hero-copy {
     display: flex;

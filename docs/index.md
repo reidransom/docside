@@ -9,6 +9,7 @@ hero:
     alt: Docifly purple folded D logo
     width: 505
     height: 509
+    depth: true
   actions:
     - text: Get started
       link: /getting-started/

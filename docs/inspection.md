@@ -25,6 +25,8 @@ At a narrow width, open Menu. Use Tab and Shift-Tab, open and close a group, the
 
 The Guides → Reference group and the deliberately long label for this page are live navigation examples. Collapse a group and follow another page to inspect session persistence without inventing another fixture.
 
+In a browser supporting cross-document View Transitions, follow **Getting started** → **Navigation** on desktop. The shell should stay still while the active link moves and the article hands off. Use Back and a heading fragment too: these are ordinary page loads, not client-side routing. Turn on the operating system's reduced-motion preference and repeat; navigation should become immediate.
+
 ## Follow headings
 
 Open [Headings and table of contents](../headings/). It has repeated Review headings, an explicit HTML heading ID, and a deeper heading outside the H2/H3 outline.
@@ -52,6 +54,8 @@ Temporarily block `assets/search-data.json` in developer tools to see the visibl
 Use the selector to choose Light, then navigate to another page. Try Dark and Auto too. With Auto selected, change the system color preference or use browser developer tools to emulate it; the effective palette should follow the system rather than retain an explicit choice.
 
 Inspect text, code, focus indicators, and native controls in both palettes. The example image owns its colors and does not recolor merely because the page palette changes.
+
+On the [overview](../), move a mouse across the folded-D artwork, then away. Its perspective should respond and settle without moving the copy. Try a touch viewport or reduced motion: the artwork stays static. Scroll it out of view and return to check that it is not continuously animating.
 
 Check that the theme selector’s caret is a symmetric downward chevron in both palettes.
 
