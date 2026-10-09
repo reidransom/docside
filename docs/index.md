@@ -18,9 +18,7 @@ hero:
       variant: minimal
 ---
 
-Docifly is a documentation theme for Jigyll. It uses stock Starlight as the reference for its appearance and responsive behavior.
-
-This documentation site runs Docifly. You can try its sidebar, heading links, table of contents, code blocks, and color selector right here.
+This documentation site runs Docifly. Open [Getting started](./getting-started/) to try its sidebar, heading links, table of contents, code blocks, and color selector on a documentation-layout page.
 
 ## Start with a working site
 
@@ -45,4 +43,4 @@ Docifly has documentation and splash layouts with optional heroes. It supports r
 
 Visual parity means matching appearances under a defined set of conditions. Interaction parity means matching observable control behavior. Trying this site by hand does not prove that it fully matches stock Starlight in either respect.
 
-The repository's `docs/poc.md` and `evidence/poc/` contain historical proof-of-concept results. The tools that captured those results have been retired, so they are not a current measurement of this documentation site.
+Historical proof-of-concept captures and result files remain in the theme repository's `evidence/poc/`, outside this published documentation site. The tools that captured those results have been retired, so they are not a current measurement of this site.

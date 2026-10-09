@@ -5,18 +5,18 @@ permalink: /getting-started/
 
 Install Docifly as a Git theme, then write ordinary Markdown in your own Jigyll site. The theme supplies the presentation; your site owns its configuration and content.
 
-## Install a consumer
+## Install Docifly in your site
 
-Install Git and Jigyll 1.13.0 or later first. You do not need Node.js, Astro, a Jigyll plugin, or a Sass compiler to use the shipped theme.
+Install [Git](https://git-scm.com/install/) and [Jigyll](https://jigyll.r2ware.app/docs/installation/#mise-macos--linux--windows) 1.13.0 or later first. You do not need Node.js, Astro, a Jigyll plugin, or a Sass compiler to use the shipped theme.
 
-Create a new site from any working directory:
+Create a new site from any working directory. The target directory `my-docs` must not already exist:
 
 ```sh
 jigyll new my-docs --theme https://github.com/reidransom/docifly.git
 cd my-docs
 ```
 
-The target must be new. Jigyll clones Docifly into `_theme/docifly/` and sets `theme: docifly` in your site's configuration. Theme maintainers working from a local checkout should follow [Developing Docifly](../development/) instead.
+Jigyll clones Docifly into `_theme/docifly/` and sets `theme: docifly` in your site's configuration. Theme maintainers working from a local checkout should follow [Developing Docifly](../development/) instead.
 
 ## Configure your site
 
@@ -93,3 +93,5 @@ Open <http://127.0.0.1:4322/>. The site output is `_site/`; the installed theme 
 A consumer can supply its own layouts, includes, or assets with the same names to override the installed theme. Ordinary documentation should not need those overrides. In particular, this documentation site supplies none: its real layout, styles, and browser enhancements come from Docifly, linked locally for development or installed for consumer verification.
 
 Read [Theme internals](../internals/) before changing shared presentation. Do not turn an example that needs only Markdown into a consumer-specific theme fork.
+
+Next, organize your pages with the [navigation guide](../navigation/), then [build and publish your site](../deployment/) at your chosen host.

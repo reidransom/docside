@@ -136,7 +136,7 @@ When changing theme behavior, update the explanation and its real example togeth
 
 ## Attribution and historical scope
 
-Stock Starlight and Expressive Code attribution remains in the shipped license assets. The frozen 130-name public icon paths are covered by `assets/starlight-LICENSE`; the separate Seti file-icon inventory used by file trees retains its notice in `assets/file-tree-icons-LICENSE`. The frozen stock Starlight POC revision was `39d4e71f23b3fb6fde0e77eb983fcd38629b70b9`; historical findings and code-token limitations are recorded in the repository's `docs/poc.md` and `evidence/poc/`.
+Stock Starlight and Expressive Code attribution remains in the shipped license assets. The frozen 130-name public icon paths are covered by `assets/starlight-LICENSE`; the separate Seti file-icon inventory used by file trees retains its notice in `assets/file-tree-icons-LICENSE`. The frozen stock Starlight POC revision was `39d4e71f23b3fb6fde0e77eb983fcd38629b70b9`; its historical captures, code-token records, and verification results remain in the repository's `evidence/poc/`.
 
 The legacy Node.js POC tooling was removed. The maintainer gate above is the
 current acceptance evidence; it does not prove complete visual parity,

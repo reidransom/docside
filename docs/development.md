@@ -55,4 +55,4 @@ Start at the overview, then follow the guides for configuration, navigation, hea
 
 The documentation is a separate consumer: running `jigyll build` at the repository root is not the documentation build. The former root welcome scaffold has been replaced by the documentation overview.
 
-The historical POC notes remain in `docs/poc.md`. Their evidence is retained as history, not as a claim that the current site has complete visual parity or interaction parity with stock Starlight.
+Historical POC captures and result files remain in the repository's `evidence/poc/`. They are retained as history, not as a claim that the current site has complete visual parity or interaction parity with stock Starlight.

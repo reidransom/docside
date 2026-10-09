@@ -24,7 +24,7 @@ project_tree:
         comment: Application entry point
       - name: tree-only-search-needle.xyz
         type: file
-        comment: This illustrative text must not enter the article search corpus
+        comment: Illustrative search-exclusion check; not a project file
   - name: empty-open
     type: directory
     open: true
@@ -55,7 +55,7 @@ project_tree:
   - name: "punctuation <safe> & long-file-name-that-needs-local-horizontal-space.YML"
     type: file
     highlight: true
-    comment: "A deliberately long comment with punctuation: alpha, beta, gamma, and a second phrase that wraps at the reference comment breakpoint."
+    comment: "Stress example: a deliberately long comment with punctuation—alpha, beta, gamma—and a second phrase that demonstrates wrapping in a narrow file tree."
 deep_tree:
   - name: level-1
     type: directory
@@ -104,6 +104,8 @@ invalid_tree:
 File trees render explicit structured front matter as native directory disclosures and static file rows. File-tree text is illustrative UI and is excluded from Docifly's article search corpus.
 
 ## Project structure
+
+This illustrative tree is not Docifly's directory layout. Empty folders, unknown extensions, omission rows, and the long name and comment exercise display edge cases. The `.xyz` entry checks that tree labels stay out of the article search corpus; it is not a file to create.
 
 {% include components/file-tree.html items=page.project_tree %}
 

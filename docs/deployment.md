@@ -14,13 +14,13 @@ url: https://docs.example.com
 baseurl: ""
 ```
 
-`docs.example.com` is an illustrative deployment origin, not a Docifly service. Replace it with your own host. From this project's repository root, the installed documentation consumer builds with:
+`docs.example.com` is an illustrative deployment origin, not a Docifly service. From the `my-docs` directory created in [Getting started](../getting-started/), build your site:
 
 ```sh
-jigyll build --source .poc/living-docs
+jigyll build
 ```
 
-Serve it locally with the command in [Developing Docifly](../development/). A local HTTP preview is preferable to opening generated HTML with a `file:` URL: absolute asset paths and Clipboard API availability depend on an appropriate origin.
+Publish the contents of `my-docs/_site/` at your domain root. To preview locally, use [Build and preview](../getting-started/#build-and-preview). A local HTTP preview is preferable to opening generated HTML with a `file:` URL: absolute asset paths and Clipboard API availability depend on an appropriate origin.
 
 ## Host under a prefix
 
@@ -35,24 +35,21 @@ The prefix starts with a slash and has no trailing slash. Page permalinks and na
 
 The theme's URL filter adds the prefix to its asset and navigation URLs. The generated output must actually be served under `/docs/`; setting `baseurl` does not make a static host mount that directory automatically.
 
-### Build a separate prefixed output
+### Build and publish the prefixed site
 
-From the repository root, after creating the documentation consumer, you can inspect prefix output without changing the tracked configuration:
+After setting `baseurl: /docs` in your site's `_config.yml`, build from the same `my-docs` directory:
 
 ```sh
-jigyll build --source .poc/living-docs --baseurl /docs --destination "$PWD/.poc/prefix-preview/docs"
-python -m http.server 4323 --bind 127.0.0.1 --directory .poc/prefix-preview
+jigyll build
 ```
 
-Open <http://127.0.0.1:4323/docs/>. Python's static server is an optional local preview tool for this example, not a consumer build dependency. Stop it with Control-C. Any static server that can mount the output at the prefix can serve the same unchanged files.
-
-The destination is absolute because Jigyll resolves relative destinations from the consumer source directory, not the shell's working directory.
+Publish the contents of `my-docs/_site/` at `/docs/` on your host, not at its root. The host must serve the generated files at that prefix; no changes to the generated HTML are needed.
 
 ### Distinguish preview from deployment
 
-Jigyll 1.10.1's preview server does not strip `baseurl` from incoming request paths. Building correct prefixed URLs and serving those files at their intended prefix are separate concerns. The static-server example above addresses the preview limitation without rewriting generated HTML or changing theme links.
+A successful root preview does not show that prefix mounting is configured correctly. Check the generated files at their intended `/docs/` URL, including article links and assets.
 
-Do not treat a failed prefixed request to that preview server as proof that the generated static output is wrong. Conversely, a successful root preview does not by itself show that prefix mounting is configured correctly on your host.
+Theme maintainers can use the [separate prefixed-output example](#build-a-separate-prefixed-output) below to inspect an installed documentation consumer with an optional static server.
 
 ## Author portable article links
 
@@ -103,8 +100,29 @@ For a user or organization site at `/`, publish the generated `/404.html` at the
 
 GitHub Pages setup is concrete host behavior, not a portable static-host guarantee. On another host, configure missing routes to serve the generated `404.html` while preserving HTTP 404. A local static server commonly returns 200 for a direct `/404.html` request and therefore cannot prove production fallback status.
 
+## Maintainer verification from this repository
+
+These examples are for theme maintainers in a Docifly checkout, not for a site created as `my-docs`. First create the installed documentation consumer using [Developing Docifly](../development/#preview-an-installed-consumer). Then, from the Docifly repository root, build its root-hosted output:
+
+```sh
+jigyll build --source .poc/living-docs
+```
+
+### Build a separate prefixed output
+
+To inspect the same consumer at `/docs/` without changing its configuration:
+
+```sh
+jigyll build --source .poc/living-docs --baseurl /docs --destination "$PWD/.poc/prefix-preview/docs"
+python -m http.server 4323 --bind 127.0.0.1 --directory .poc/prefix-preview
+```
+
+Open <http://127.0.0.1:4323/docs/>. Python's static server is an optional maintainer preview tool, not a consumer build dependency. Stop it with Control-C. Any static server that mounts the output at the prefix can serve the same unchanged files.
+
+The destination is absolute because Jigyll resolves relative destinations from the consumer source directory, not the shell's working directory.
+
 ## Inspect what you publish
 
 Use the navigation, follow an article link, load the image, and switch color modes on your chosen preview origin. These are useful manual observations, not an automated deployment gate or a claim about a production service.
 
-Keep source files, installed themes, and historical evidence out of the deployed output by building the separate documentation consumer rather than the repository root. Review your hosting configuration separately; hosting-provider setup and production monitoring are outside this documentation workflow.
+Keep source files and installed themes out of the deployed output: build from your consumer directory and publish only `_site/`. For this repository's maintainer examples, build the separate documentation consumer rather than the theme repository root so historical evidence stays out of the published site. Review your hosting configuration separately; hosting-provider setup and production monitoring are outside this documentation workflow.

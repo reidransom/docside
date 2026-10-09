@@ -45,6 +45,8 @@ Labels are required escaped plain text. `icon` optionally accepts a frozen publi
 
 Groups with the same nonempty `sync` key synchronize by exact label. A group missing the selected label keeps its current panel. `persist=true` stores the synchronized label under a versioned Docifly key; it defaults to false and has no effect without `sync`.
 
+The npm, pnpm, and Yarn panels below are illustrative stress examples for synchronization and different panel heights, not instructions for installing Docifly. Docifly does not require any of these package managers.
+
 {% capture npm_panel %}
 Install with npm.
 {% endcapture %}

@@ -29,7 +29,7 @@ An in-memory choice is not a promise of persistence after navigation or reload. 
 
 ## Read without JavaScript
 
-JavaScript-disabled reading uses the default **dark** palette. There is no mode selector, generated table of contents, added heading-anchor control, or copy button. These controls are absent instead of being presented as nonfunctional widgets.
+JavaScript-disabled reading uses the default **dark** palette. The server-rendered table of contents and ordinary fragment links remain. JavaScript adds active-section feedback and responsive disclosure behavior; it also adds the mode selector, heading-anchor controls, and copy buttons.
 
 The article, links, images, server-highlighted code, and native navigation disclosures remain. The mobile menu relies on native popover support; JavaScript adds focus handling and persistence to that native behavior.
 

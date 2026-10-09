@@ -57,7 +57,7 @@ Check that the theme selector’s caret is a symmetric downward chevron in both 
 
 ## Inspect the fallback when useful
 
-Disable JavaScript in the browser and reload. Read the article, follow links, and use native navigation disclosures. The palette is dark; generated TOC, heading-anchor controls, copying, and mode selection are absent. Re-enable JavaScript afterward.
+Disable JavaScript in the browser and reload. Read the article, follow links, and use native navigation disclosures. The palette is dark; the server-rendered outline and ordinary fragment links remain. Active-section feedback, responsive TOC disclosure behavior, heading-anchor controls, copying, and mode selection require JavaScript. Re-enable it afterward.
 
 If storage is unavailable, reading should still work. A selector choice made in memory need not survive navigation. You do not need to reproduce every storage or permission condition for every documentation edit.
 
