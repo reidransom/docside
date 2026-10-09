@@ -38,7 +38,7 @@ Capture one ordered list whose authored markers begin at `1.`, then pass it to t
 {% include components/steps.html content=instructions %}{% endraw %}
 ```
 
-Rich items may contain paragraphs, headings, links, ordinary nested lists, and fenced code. A nested ordered or unordered list keeps its native list semantics and does not become another Steps component. Nested Steps components are unsupported.
+Rich items may contain paragraphs, headings, links, ordinary nested lists, and fenced code. Headings and prose inside steps use the article's Markdown typography, including without JavaScript. A nested ordered or unordered list keeps its native list semantics and does not become another Steps component. Nested Steps components are unsupported.
 
 ## Start at eight
 

@@ -5,6 +5,8 @@ permalink: /tabs-restoration/
 
 This page verifies that a persistent synchronized selection restores on another page. Choose a package manager on the [main tabs fixture](../tabs/), then follow its Yarn-panel link here or navigate here directly.
 
+## Restored selection
+
 {% capture npm_restore %}
 The restored npm panel.
 {% endcapture %}
