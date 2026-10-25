@@ -4,30 +4,6 @@
 }
 
 @media print {
-  :root {
-    color-scheme: light;
-    --sl-color-white: hsl(224, 10%, 10%);
-    --sl-color-gray-1: hsl(224, 14%, 16%);
-    --sl-color-gray-2: hsl(224, 10%, 23%);
-    --sl-color-gray-3: hsl(224, 7%, 36%);
-    --sl-color-gray-4: hsl(224, 6%, 56%);
-    --sl-color-gray-5: hsl(224, 6%, 77%);
-    --sl-color-gray-6: hsl(224, 20%, 94%);
-    --sl-color-gray-7: hsl(224, 19%, 97%);
-    --sl-color-black: #fff;
-    --sl-color-text: var(--sl-color-gray-2);
-    --sl-color-text-accent: hsl(234, 80%, 30%);
-    --sl-color-text-invert: #fff;
-    --sl-color-bg: #fff;
-    --sl-color-bg-nav: #fff;
-    --sl-color-bg-sidebar: #fff;
-    --sl-color-bg-inline-code: var(--sl-color-gray-6);
-    --sl-color-hairline-light: var(--sl-color-gray-6);
-    --sl-color-hairline-shade: var(--sl-color-gray-5);
-    --sl-shadow-sm: none;
-    --sl-shadow-md: none;
-    --sl-shadow-lg: none;
-  }
 
   html {
     scroll-padding: 0;
@@ -35,7 +11,7 @@
 
   body {
     color: var(--sl-color-text);
-    background: #fff;
+    background: var(--sl-color-bg);
     font-size: 11pt;
   }
 
@@ -154,7 +130,7 @@
 
   #article pre,
   #article pre * {
-    color: #111 !important;
+    color: var(--code-print-text) !important;
   }
 
   #article pre {

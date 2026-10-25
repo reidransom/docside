@@ -5,6 +5,8 @@ permalink: /color-modes/
 
 The **Select theme** control offers Dark, Light, and Auto. On a wide screen it is in the header; on a narrow screen it moves into Menu. It is the same control in both places, not two independently stored preferences.
 
+The palette is defined in `_sass/_theme.scss`: purple primary accents, pink secondary accents, and warm paper surfaces with body, strong, and muted text colors in Light. Dark uses mixed surface and lighter accent/text equivalents for readability. The same file owns semantic colors, code highlighting and markers, badge colors, shadows, and print colors. After editing it, run `python tools/styles/build.py` to compile `assets/docifly.css`. The build dependencies and workflow are described in [Theme internals](../internals/#styles-and-shipped-output).
+
 ## Choose a preference
 
 | Preference | Effective palette | Persistence |

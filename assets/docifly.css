@@ -62,67 +62,6 @@
 @layer starlight.base {
   :root,
   ::backdrop {
-    /* Colors (dark mode) */
-    --sl-color-white: hsl(0, 0%, 100%); /* “white” */
-    --sl-color-gray-1: hsl(224, 20%, 94%);
-    --sl-color-gray-2: hsl(224, 6%, 77%);
-    --sl-color-gray-3: hsl(224, 6%, 56%);
-    --sl-color-gray-4: hsl(224, 7%, 36%);
-    --sl-color-gray-5: hsl(224, 10%, 23%);
-    --sl-color-gray-6: hsl(224, 14%, 16%);
-    --sl-color-black: hsl(224, 10%, 10%);
-    --code-bg: #23262f;
-    --code-text: #d6deeb;
-    --code-border: rgb(53 56 65 / 75%);
-    --code-success: #158744;
-    --code-comment: #919f9f;
-    --code-keyword: #c792ea;
-    --code-string: #ecc48d;
-    --code-number: #f78c6c;
-    --code-name: #82aaff;
-    --code-property: #7fdbca;
-    --sl-hue-orange: 41;
-    --sl-color-orange-low: hsl(var(--sl-hue-orange), 39%, 22%);
-    --sl-color-orange: hsl(var(--sl-hue-orange), 82%, 63%);
-    --sl-color-orange-high: hsl(var(--sl-hue-orange), 82%, 87%);
-    --sl-hue-green: 101;
-    --sl-color-green-low: hsl(var(--sl-hue-green), 39%, 22%);
-    --sl-color-green: hsl(var(--sl-hue-green), 82%, 63%);
-    --sl-color-green-high: hsl(var(--sl-hue-green), 82%, 80%);
-    --sl-hue-blue: 234;
-    --sl-color-blue-low: hsl(var(--sl-hue-blue), 54%, 20%);
-    --sl-color-blue: hsl(var(--sl-hue-blue), 100%, 60%);
-    --sl-color-blue-high: hsl(var(--sl-hue-blue), 100%, 87%);
-    --sl-hue-purple: 281;
-    --sl-color-purple-low: hsl(var(--sl-hue-purple), 39%, 22%);
-    --sl-color-purple: hsl(var(--sl-hue-purple), 82%, 63%);
-    --sl-color-purple-high: hsl(var(--sl-hue-purple), 82%, 89%);
-    --sl-hue-red: 339;
-    --sl-color-red-low: hsl(var(--sl-hue-red), 39%, 22%);
-    --sl-color-red: hsl(var(--sl-hue-red), 82%, 63%);
-    --sl-color-red-high: hsl(var(--sl-hue-red), 82%, 87%);
-    --sl-color-accent-low: hsl(224, 54%, 20%);
-    --sl-color-accent: hsl(224, 100%, 60%);
-    --sl-color-accent-high: hsl(224, 100%, 85%);
-    --sl-color-text: var(--sl-color-gray-2);
-    --sl-color-text-accent: var(--sl-color-accent-high);
-    --sl-color-text-invert: var(--sl-color-accent-low);
-    --sl-color-bg: var(--sl-color-black);
-    --sl-color-bg-nav: var(--sl-color-gray-6);
-    --sl-color-bg-sidebar: var(--sl-color-gray-6);
-    --sl-color-bg-inline-code: var(--sl-color-gray-5);
-    --sl-color-bg-accent: var(--sl-color-accent-high);
-    --sl-color-hairline-light: var(--sl-color-gray-5);
-    --sl-color-hairline: var(--sl-color-gray-6);
-    --sl-color-hairline-shade: var(--sl-color-black);
-    --sl-color-backdrop-overlay: hsla(223, 13%, 10%, 0.66);
-    /* Shadows (dark mode) */
-    --sl-shadow-sm: 0px 1px 1px hsla(0, 0%, 0%, 0.12), 0px 2px 1px hsla(0, 0%, 0%, 0.24);
-    --sl-shadow-md: 0px 8px 4px hsla(0, 0%, 0%, 0.08), 0px 5px 2px hsla(0, 0%, 0%, 0.08),
-      0px 3px 2px hsla(0, 0%, 0%, 0.12), 0px 1px 1px hsla(0, 0%, 0%, 0.15);
-    --sl-shadow-lg: 0px 25px 7px hsla(0, 0%, 0%, 0.03), 0px 16px 6px hsla(0, 0%, 0%, 0.1),
-      0px 9px 5px hsla(223, 13%, 10%, 0.33), 0px 4px 4px hsla(0, 0%, 0%, 0.75),
-      0px 4px 2px hsla(0, 0%, 0%, 0.25);
     /* Text size and line height */
     --sl-text-2xs: 0.75rem; /* 12px */
     --sl-text-xs: 0.8125rem; /* 13px */
@@ -179,18 +118,106 @@
     --sl-z-index-navbar: 10;
     --sl-z-index-skiplink: 20;
   }
+  @media (min-width: 50em) {
+    :root:not([data-compact-sidebar]) {
+      --sl-nav-height: 4rem;
+      --sl-nav-pad-x: 1.5rem;
+      --sl-text-h1: var(--sl-text-5xl);
+      --sl-text-h2: var(--sl-text-4xl);
+      --sl-text-h3: var(--sl-text-3xl);
+      --sl-text-h4: var(--sl-text-2xl);
+    }
+  }
+  @media (min-width: 72rem) {
+    :root:not([data-compact-toc]) {
+      --sl-content-pad-x: 1.5rem;
+      --sl-mobile-toc-height: 0rem;
+    }
+  }
+}
+/*! Adapted from stock Starlight 39d4e71; MIT, Astro contributors. See assets/starlight-LICENSE. */
+@layer starlight.base {
+  :root,
+  ::backdrop {
+    /* Shared brand tokens; variants are derived here. */
+    --brand-primary: #3525CC;
+    --brand-primary-alt: #4F3EDD;
+    --brand-secondary: #CE30AE;
+    --brand-secondary-alt: #F170E9;
+    /* Colors (dark mode) */
+    --sl-color-white: hsl(0, 0%, 100%); /* “white” */
+    --sl-color-gray-1: #F4F2EC;
+    --sl-color-gray-2: rgb(81.2156862745%, 81.0980392157%, 83.0980392157%);
+    --sl-color-gray-3: rgb(64.3921568627%, 64.1568627451%, 69.3333333333%);
+    --sl-color-gray-4: #6B6A82;
+    --sl-color-gray-5: rgb(21.3137254902%, 19.9019607843%, 30.0784313725%);
+    --sl-color-gray-6: rgb(14.9607843137%, 13.2352941176%, 23.6470588235%);
+    --sl-color-black: #1A1530;
+    --code-bg: #23262f;
+    --code-text: #d6deeb;
+    --code-border: rgb(53 56 65 / 75%);
+    --code-success: #158744;
+    --code-comment: #919f9f;
+    --code-keyword: #c792ea;
+    --code-string: #ecc48d;
+    --code-number: #f78c6c;
+    --code-name: #82aaff;
+    --code-property: #7fdbca;
+    --sl-hue-orange: 41;
+    --sl-color-orange-low: hsl(var(--sl-hue-orange), 39%, 22%);
+    --sl-color-orange: hsl(var(--sl-hue-orange), 82%, 63%);
+    --sl-color-orange-high: hsl(var(--sl-hue-orange), 82%, 87%);
+    --sl-hue-green: 101;
+    --sl-color-green-low: hsl(var(--sl-hue-green), 39%, 22%);
+    --sl-color-green: hsl(var(--sl-hue-green), 82%, 63%);
+    --sl-color-green-high: hsl(var(--sl-hue-green), 82%, 80%);
+    --sl-hue-blue: 234;
+    --sl-color-blue-low: hsl(var(--sl-hue-blue), 54%, 20%);
+    --sl-color-blue: hsl(var(--sl-hue-blue), 100%, 60%);
+    --sl-color-blue-high: hsl(var(--sl-hue-blue), 100%, 87%);
+    --sl-hue-purple: 312.1518987342deg;
+    --sl-color-purple-low: rgb(27.8431372549%, 10.8823529412%, 31.1764705882%);
+    --sl-color-purple: var(--brand-secondary);
+    --sl-color-purple-high: var(--brand-secondary-alt);
+    --sl-hue-red: 339;
+    --sl-color-red-low: hsl(var(--sl-hue-red), 39%, 22%);
+    --sl-color-red: hsl(var(--sl-hue-red), 82%, 63%);
+    --sl-color-red-high: hsl(var(--sl-hue-red), 82%, 87%);
+    --sl-color-accent-low: rgb(13.9019607843%, 10.431372549%, 40.2352941176%);
+    --sl-color-accent: var(--brand-primary-alt);
+    --sl-color-accent-high: rgb(78.7254901961%, 77.1568627451%, 92.6470588235%);
+    --sl-color-text: var(--sl-color-gray-2);
+    --sl-color-text-accent: var(--sl-color-accent-high);
+    --sl-color-text-invert: var(--sl-color-accent-low);
+    --sl-color-bg: var(--sl-color-black);
+    --sl-color-bg-nav: var(--sl-color-gray-6);
+    --sl-color-bg-sidebar: var(--sl-color-gray-6);
+    --sl-color-bg-inline-code: var(--sl-color-gray-5);
+    --sl-color-bg-accent: var(--sl-color-accent-high);
+    --sl-color-hairline-light: var(--sl-color-gray-5);
+    --sl-color-hairline: var(--sl-color-gray-6);
+    --sl-color-hairline-shade: var(--sl-color-black);
+    --sl-color-backdrop-overlay: hsla(223, 13%, 10%, 0.66);
+    /* Shadows (dark mode) */
+    --sl-shadow-sm: 0px 1px 1px hsla(0, 0%, 0%, 0.12), 0px 2px 1px hsla(0, 0%, 0%, 0.24);
+    --sl-shadow-md: 0px 8px 4px hsla(0, 0%, 0%, 0.08), 0px 5px 2px hsla(0, 0%, 0%, 0.08),
+      0px 3px 2px hsla(0, 0%, 0%, 0.12), 0px 1px 1px hsla(0, 0%, 0%, 0.15);
+    --sl-shadow-lg: 0px 25px 7px hsla(0, 0%, 0%, 0.03), 0px 16px 6px hsla(0, 0%, 0%, 0.1),
+      0px 9px 5px hsla(223, 13%, 10%, 0.33), 0px 4px 4px hsla(0, 0%, 0%, 0.75),
+      0px 4px 2px hsla(0, 0%, 0%, 0.25);
+  }
   :root[data-theme=light],
   [data-theme=light] ::backdrop {
     /* Colours (light mode) */
-    --sl-color-white: hsl(224, 10%, 10%);
-    --sl-color-gray-1: hsl(224, 14%, 16%);
-    --sl-color-gray-2: hsl(224, 10%, 23%);
-    --sl-color-gray-3: hsl(224, 7%, 36%);
-    --sl-color-gray-4: hsl(224, 6%, 56%);
-    --sl-color-gray-5: hsl(224, 6%, 77%);
-    --sl-color-gray-6: hsl(224, 20%, 94%);
-    --sl-color-gray-7: hsl(224, 19%, 97%);
-    --sl-color-black: hsl(0, 0%, 100%);
+    --sl-color-white: #1A1530;
+    --sl-color-gray-1: #1A1530;
+    --sl-color-gray-2: #495057;
+    --sl-color-gray-3: #6B6A82;
+    --sl-color-gray-4: rgb(58.7843137255%, 58.5098039216%, 64.7450980392%);
+    --sl-color-gray-5: rgb(78.4117647059%, 78.2745098039%, 80.8039215686%);
+    --sl-color-gray-6: rgb(90.3137254902%, 89.568627451%, 88.3921568627%);
+    --sl-color-gray-7: #F4F2EC;
+    --sl-color-black: #FAFAF7;
     --code-bg: #f6f7f9;
     --code-text: #403f53;
     --code-border: rgb(193 195 200 / 75%);
@@ -210,15 +237,15 @@
     --sl-color-blue-high: hsl(var(--sl-hue-blue), 80%, 30%);
     --sl-color-blue: hsl(var(--sl-hue-blue), 90%, 60%);
     --sl-color-blue-low: hsl(var(--sl-hue-blue), 88%, 90%);
-    --sl-color-purple-high: hsl(var(--sl-hue-purple), 90%, 30%);
-    --sl-color-purple: hsl(var(--sl-hue-purple), 90%, 60%);
-    --sl-color-purple-low: hsl(var(--sl-hue-purple), 80%, 90%);
+    --sl-color-purple-high: rgb(52.5490196078%, 14.5882352941%, 48.4705882353%);
+    --sl-color-purple: var(--brand-secondary);
+    --sl-color-purple-low: rgb(96.3137254902%, 90.1176470588%, 94%);
     --sl-color-red-high: hsl(var(--sl-hue-red), 80%, 30%);
     --sl-color-red: hsl(var(--sl-hue-red), 90%, 60%);
     --sl-color-red-low: hsl(var(--sl-hue-red), 80%, 90%);
-    --sl-color-accent-high: hsl(234, 80%, 30%);
-    --sl-color-accent: hsl(234, 90%, 60%);
-    --sl-color-accent-low: hsl(234, 88%, 90%);
+    --sl-color-accent-high: var(--brand-primary);
+    --sl-color-accent: var(--brand-primary);
+    --sl-color-accent-low: rgb(90.3137254902%, 89.6862745098%, 95.1764705882%);
     --sl-color-text-accent: var(--sl-color-accent);
     --sl-color-text-invert: var(--sl-color-black);
     --sl-color-bg-nav: var(--sl-color-gray-7);
@@ -236,21 +263,103 @@
       0px 9px 5px hsla(223, 13%, 10%, 0.08), 0px 4px 4px hsla(0, 0%, 0%, 0.16),
       0px 4px 2px hsla(0, 0%, 0%, 0.04);
   }
-  @media (min-width: 50em) {
-    :root:not([data-compact-sidebar]) {
-      --sl-nav-height: 4rem;
-      --sl-nav-pad-x: 1.5rem;
-      --sl-text-h1: var(--sl-text-5xl);
-      --sl-text-h2: var(--sl-text-4xl);
-      --sl-text-h3: var(--sl-text-3xl);
-      --sl-text-h4: var(--sl-text-2xl);
+}
+@layer docifly {
+  :root {
+    --sl-badge-default-border: var(--sl-color-accent);
+    --sl-badge-default-bg: var(--sl-color-accent-low);
+    --sl-badge-default-text: #fff;
+    --sl-badge-note-border: var(--sl-color-blue);
+    --sl-badge-note-bg: var(--sl-color-blue-low);
+    --sl-badge-note-text: #fff;
+    --sl-badge-danger-border: var(--sl-color-red);
+    --sl-badge-danger-bg: var(--sl-color-red-low);
+    --sl-badge-danger-text: #fff;
+    --sl-badge-success-border: var(--sl-color-green);
+    --sl-badge-success-bg: var(--sl-color-green-low);
+    --sl-badge-success-text: #fff;
+    --sl-badge-caution-border: var(--sl-color-orange);
+    --sl-badge-caution-bg: var(--sl-color-orange-low);
+    --sl-badge-caution-text: #fff;
+    --sl-badge-tip-border: var(--sl-color-purple);
+    --sl-badge-tip-bg: var(--sl-color-purple-low);
+    --sl-badge-tip-text: #fff;
+  }
+  [data-theme=light]:root {
+    --sl-badge-default-bg: var(--sl-color-accent-high);
+    --sl-badge-note-bg: var(--sl-color-blue-high);
+    --sl-badge-danger-bg: var(--sl-color-red-high);
+    --sl-badge-success-bg: var(--sl-color-green-high);
+    --sl-badge-caution-bg: var(--sl-color-orange-high);
+    --sl-badge-tip-bg: var(--sl-color-purple-high);
+  }
+  #article pre:has(.code-line) {
+    --marker-neutral-bg: rgb(255 255 255 / 6%);
+    --marker-neutral-gutter: color-mix(in srgb, white 6%, var(--code-bg));
+    --marker-neutral-edge: var(--sl-color-gray-3);
+    --marker-insert-bg: rgb(30 87 21 / 22%);
+    --marker-insert-gutter: color-mix(in srgb, rgb(30 87 21) 22%, var(--code-bg));
+    --marker-insert-edge: #58a64b;
+    --marker-delete-bg: rgb(134 45 39 / 26%);
+    --marker-delete-gutter: color-mix(in srgb, rgb(134 45 39) 26%, var(--code-bg));
+    --marker-delete-edge: #f85149;
+    --marker-pattern: rgb(255 255 255 / 3%);
+  }
+  [data-theme=light] #article pre:has(.code-line) {
+    --marker-neutral-bg: rgb(0 0 0 / 8%);
+    --marker-neutral-gutter: color-mix(in srgb, black 8%, var(--code-bg));
+    --marker-neutral-edge: var(--sl-color-gray-3);
+    --marker-insert-bg: rgb(142 199 125 / 34%);
+    --marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 34%, var(--code-bg));
+    --marker-insert-edge: #2da043;
+    --marker-delete-bg: rgb(255 156 142 / 31%);
+    --marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 31%, var(--code-bg));
+    --marker-delete-edge: #cf222e;
+    --marker-pattern: rgb(255 255 255 / 10%);
+  }
+  #article .copy-button {
+    --code-copy-hover-bg: color-mix(in srgb, var(--sl-color-text) 20%, var(--code-bg));
+  }
+  [data-theme=dark] :is(.file-tree .comment,
+  .file-tree .omission,
+  .sl-link-card:hover .link-card-description) {
+    color: color-mix(in srgb, var(--sl-color-gray-3) 99%, var(--sl-color-white));
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .hero-image[data-hero-depth] {
+      --hero-depth-shadow-color: color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 28%, transparent);
+      --hero-depth-shadow-color-enter: color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 8%, transparent);
+    }
+    [data-theme=dark] .hero-image[data-hero-depth] {
+      --hero-depth-shadow: var(--sl-color-black);
     }
   }
-  @media (min-width: 72rem) {
-    :root:not([data-compact-toc]) {
-      --sl-content-pad-x: 1.5rem;
-      --sl-mobile-toc-height: 0rem;
-    }
+}
+@media print {
+  :root {
+    color-scheme: light;
+    --sl-color-white: hsl(224, 10%, 10%);
+    --sl-color-gray-1: hsl(224, 14%, 16%);
+    --sl-color-gray-2: hsl(224, 10%, 23%);
+    --sl-color-gray-3: hsl(224, 7%, 36%);
+    --sl-color-gray-4: hsl(224, 6%, 56%);
+    --sl-color-gray-5: hsl(224, 6%, 77%);
+    --sl-color-gray-6: hsl(224, 20%, 94%);
+    --sl-color-gray-7: hsl(224, 19%, 97%);
+    --code-print-text: #111;
+    --sl-color-black: #fff;
+    --sl-color-text: var(--sl-color-gray-2);
+    --sl-color-text-accent: hsl(234, 80%, 30%);
+    --sl-color-text-invert: #fff;
+    --sl-color-bg: #fff;
+    --sl-color-bg-nav: #fff;
+    --sl-color-bg-sidebar: #fff;
+    --sl-color-bg-inline-code: var(--sl-color-gray-6);
+    --sl-color-hairline-light: var(--sl-color-gray-6);
+    --sl-color-hairline-shade: var(--sl-color-gray-5);
+    --sl-shadow-sm: none;
+    --sl-shadow-md: none;
+    --sl-shadow-lg: none;
   }
 }
 /*! Adapted from stock Starlight sidebar and mobile menu; MIT, Astro contributors. */
@@ -885,16 +994,6 @@ how we do it.
   }
   #article pre:has(.code-line) {
     padding-inline: 0;
-    --marker-neutral-bg: rgb(255 255 255 / 6%);
-    --marker-neutral-gutter: color-mix(in srgb, white 6%, var(--code-bg));
-    --marker-neutral-edge: var(--sl-color-gray-3);
-    --marker-insert-bg: rgb(30 87 21 / 22%);
-    --marker-insert-gutter: color-mix(in srgb, rgb(30 87 21) 22%, var(--code-bg));
-    --marker-insert-edge: #58a64b;
-    --marker-delete-bg: rgb(134 45 39 / 26%);
-    --marker-delete-gutter: color-mix(in srgb, rgb(134 45 39) 26%, var(--code-bg));
-    --marker-delete-edge: #f85149;
-    --marker-pattern: rgb(255 255 255 / 3%);
   }
   #article .code-line {
     display: block;
@@ -975,18 +1074,6 @@ how we do it.
     border-radius: 0.125rem;
     color: inherit;
     box-shadow: inset 0 -1px currentcolor;
-  }
-  [data-theme=light] #article pre:has(.code-line) {
-    --marker-neutral-bg: rgb(0 0 0 / 8%);
-    --marker-neutral-gutter: color-mix(in srgb, black 8%, var(--code-bg));
-    --marker-neutral-edge: var(--sl-color-gray-3);
-    --marker-insert-bg: rgb(142 199 125 / 34%);
-    --marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 34%, var(--code-bg));
-    --marker-insert-edge: #2da043;
-    --marker-delete-bg: rgb(255 156 142 / 31%);
-    --marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 31%, var(--code-bg));
-    --marker-delete-edge: #cf222e;
-    --marker-pattern: rgb(255 255 255 / 10%);
   }
   #article .code-frame {
     position: relative;
@@ -1098,7 +1185,7 @@ how we do it.
   }
   #article .copy-button:hover,
   #article .copy-button:focus-visible {
-    background: color-mix(in srgb, var(--sl-color-text) 20%, var(--code-bg));
+    background: var(--code-copy-hover-bg);
     opacity: 1;
   }
   #article .copy-feedback {
@@ -1654,13 +1741,10 @@ how we do it.
     display: block;
   }
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    [data-theme=dark] .hero-image[data-hero-depth] {
-      --hero-depth-shadow: var(--sl-color-black);
-    }
     .hero-image[data-hero-depth].is-depth-ready {
       transform: perspective(1000px) rotateX(var(--hero-depth-x, -2deg)) rotateY(var(--hero-depth-y, -4deg)) scale(0.97);
       transform-origin: 50% 50%;
-      filter: drop-shadow(0.6rem 1rem 1.25rem color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 28%, transparent));
+      filter: drop-shadow(0.6rem 1rem 1.25rem var(--hero-depth-shadow-color));
       transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hero-image[data-hero-depth].is-depth-tracking {
@@ -1674,11 +1758,11 @@ how we do it.
     @keyframes hero-depth-enter {
       from {
         transform: perspective(1000px) translateY(0.6rem) rotateX(3deg) rotateY(-7deg) scale(0.94);
-        filter: drop-shadow(0.2rem 0.3rem 0.4rem color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 8%, transparent));
+        filter: drop-shadow(0.2rem 0.3rem 0.4rem var(--hero-depth-shadow-color-enter));
       }
       to {
         transform: perspective(1000px) rotateX(var(--hero-depth-x, -2deg)) rotateY(var(--hero-depth-y, -4deg)) scale(0.97);
-        filter: drop-shadow(0.6rem 1rem 1.25rem color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 28%, transparent));
+        filter: drop-shadow(0.6rem 1rem 1.25rem var(--hero-depth-shadow-color));
       }
     }
   }
@@ -1736,34 +1820,6 @@ how we do it.
 }
 /*! Content component geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors. */
 @layer docifly {
-  :root {
-    --sl-badge-default-border: var(--sl-color-accent);
-    --sl-badge-default-bg: var(--sl-color-accent-low);
-    --sl-badge-default-text: #fff;
-    --sl-badge-note-border: var(--sl-color-blue);
-    --sl-badge-note-bg: var(--sl-color-blue-low);
-    --sl-badge-note-text: #fff;
-    --sl-badge-danger-border: var(--sl-color-red);
-    --sl-badge-danger-bg: var(--sl-color-red-low);
-    --sl-badge-danger-text: #fff;
-    --sl-badge-success-border: var(--sl-color-green);
-    --sl-badge-success-bg: var(--sl-color-green-low);
-    --sl-badge-success-text: #fff;
-    --sl-badge-caution-border: var(--sl-color-orange);
-    --sl-badge-caution-bg: var(--sl-color-orange-low);
-    --sl-badge-caution-text: #fff;
-    --sl-badge-tip-border: var(--sl-color-purple);
-    --sl-badge-tip-bg: var(--sl-color-purple-low);
-    --sl-badge-tip-text: #fff;
-  }
-  [data-theme=light]:root {
-    --sl-badge-default-bg: var(--sl-color-accent-high);
-    --sl-badge-note-bg: var(--sl-color-blue-high);
-    --sl-badge-danger-bg: var(--sl-color-red-high);
-    --sl-badge-success-bg: var(--sl-color-green-high);
-    --sl-badge-caution-bg: var(--sl-color-orange-high);
-    --sl-badge-tip-bg: var(--sl-color-purple-high);
-  }
   .sl-icon {
     display: inline-block;
     flex: none;
@@ -2199,11 +2255,6 @@ how we do it.
   .sl-link-card:hover .link-card-icon {
     color: var(--sl-color-white);
   }
-  [data-theme=dark] :is(.file-tree .comment,
-  .file-tree .omission,
-  .sl-link-card:hover .link-card-description) {
-    color: color-mix(in srgb, var(--sl-color-gray-3) 99%, var(--sl-color-white));
-  }
   .tabs {
     min-width: 0;
   }
@@ -2394,36 +2445,12 @@ how we do it.
 }
 
 @media print {
-  :root {
-    color-scheme: light;
-    --sl-color-white: hsl(224, 10%, 10%);
-    --sl-color-gray-1: hsl(224, 14%, 16%);
-    --sl-color-gray-2: hsl(224, 10%, 23%);
-    --sl-color-gray-3: hsl(224, 7%, 36%);
-    --sl-color-gray-4: hsl(224, 6%, 56%);
-    --sl-color-gray-5: hsl(224, 6%, 77%);
-    --sl-color-gray-6: hsl(224, 20%, 94%);
-    --sl-color-gray-7: hsl(224, 19%, 97%);
-    --sl-color-black: #fff;
-    --sl-color-text: var(--sl-color-gray-2);
-    --sl-color-text-accent: hsl(234, 80%, 30%);
-    --sl-color-text-invert: #fff;
-    --sl-color-bg: #fff;
-    --sl-color-bg-nav: #fff;
-    --sl-color-bg-sidebar: #fff;
-    --sl-color-bg-inline-code: var(--sl-color-gray-6);
-    --sl-color-hairline-light: var(--sl-color-gray-6);
-    --sl-color-hairline-shade: var(--sl-color-gray-5);
-    --sl-shadow-sm: none;
-    --sl-shadow-md: none;
-    --sl-shadow-lg: none;
-  }
   html {
     scroll-padding: 0;
   }
   body {
     color: var(--sl-color-text);
-    background: #fff;
+    background: var(--sl-color-bg);
     font-size: 11pt;
   }
   *,
@@ -2526,7 +2553,7 @@ how we do it.
   }
   #article pre,
   #article pre * {
-    color: #111 !important;
+    color: var(--code-print-text) !important;
   }
   #article pre {
     max-width: 100%;

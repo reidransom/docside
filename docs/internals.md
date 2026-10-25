@@ -31,15 +31,17 @@ Text labels and titles are escaped. A navigation badge contributes to its link n
 
 ## Styles and shipped output
 
-`_sass/docifly.scss` is the entry point. It loads focused partials for reset, properties/tokens, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, and content components, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional.
+`_sass/docifly.scss` is the entry point. It loads focused partials for reset, non-color properties/tokens, the theme palette, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, and content components, then defines the shell geometry. Reset loading precedes the base layer; layer order is intentional.
 
-Consumers load `assets/docifly.css`. Maintainers changing Sass compile the shipped artifact with a Sass CLI:
+Consumers load `assets/docifly.css`. Maintainers changing Sass rebuild the shipped artifact with Python 3 and Dart Sass 1.79.0 or later available as `sass`:
 
 ```sh
-sass --no-source-map _sass/docifly.scss assets/docifly.css
+python tools/styles/build.py
 ```
 
-Run this from the theme repository root, not the documentation consumer. A standalone Dart Sass executable can supply this maintainer command without Node.js. Merely editing Markdown does not require compilation, and consumers do not need a Sass installation.
+Run this from the theme repository root, not the documentation consumer. The builder compiles `_sass/docifly.scss` into `assets/docifly.css`. `_sass/_theme.scss` is the single source for the nine base brand colors, derived light/dark palettes, semantic colors, code highlighting and markers, badge colors, shadows, hero shadow colors, and print colors. Component partials consume these definitions; `_sass/_props.scss` owns non-color tokens such as typography and layout. `brand.yml` contains brand metadata, not palette inputs. Commit the rebuilt CSS with palette or Sass changes.
+
+A standalone Dart Sass executable supplies the compiler without Node.js. Merely editing Markdown does not require compilation, and consumers loading the shipped CSS need neither Python nor Sass. `jigyll build` consumes the compiled asset; it does not run this maintainer build step.
 
 When changing code-marker styles, check whole-line and inline marks in Light and Dark, including both stripe phases. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source.
 
@@ -103,8 +105,8 @@ Highlighting and fenced-code metadata parsing are server-side Jigyll/Chroma beha
 
 ### Print
 
-`_sass/_print.scss` removes fixed and interactive chrome, forces the light
-print palette, expands tab and disclosure content, wraps code and table cells,
+`_sass/_print.scss` removes fixed and interactive chrome; `_sass/_theme.scss` defines the light
+print palette. Print presentation expands tab and disclosure content, wraps code and table cells,
 and appends destinations only to HTTP(S) article links. Layouts render one
 screen-hidden canonical URL that the print stylesheet reveals after the
 article. Browser paper size, 12 mm margins, scale, headers/footers, and

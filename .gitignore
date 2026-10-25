@@ -6,3 +6,6 @@ __pycache__/
 tools/browser/node_modules/
 tools/browser/.artifacts/
 __*
+.agents/
+.impeccable/
+.codex/
