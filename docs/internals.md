@@ -39,7 +39,7 @@ Consumers load `assets/docifly.css`. Maintainers changing Sass rebuild the shipp
 python tools/styles/build.py
 ```
 
-Run this from the theme repository root, not the documentation consumer. The builder compiles `_sass/docifly.scss` into `assets/docifly.css`. `_sass/_theme.scss` is the single source for the nine base brand colors, derived light/dark palettes, semantic colors, code highlighting and markers, badge colors, shadows, hero shadow colors, and print colors. Component partials consume these definitions; `_sass/_props.scss` owns non-color tokens such as typography and layout. `brand.yml` contains brand metadata, not palette inputs. Commit the rebuilt CSS with palette or Sass changes.
+Run this from the theme repository root, not the documentation consumer. The builder compiles `_sass/docifly.scss` into `assets/docifly.css`. `_sass/_theme.scss` defines the default light base colors, shared runtime palette derivation, component colors, shadows, and print colors; it contains no dark palette or mode-specific color rules. `assets/themes/dark.json` supplies only the nine base colors for Dark. Its keys are `primary`, `primary-alt`, `secondary`, `secondary-alt`, `body-text`, `strong-text`, `muted-text`, `bg`, and `bg-alt`, with six-digit hex values. It ships as a static asset and needs no Sass compilation. Component partials consume the derived definitions; `_sass/_props.scss` owns typography and layout. `brand.yml` contains brand metadata, not palette inputs. Commit rebuilt CSS with Sass changes.
 
 A standalone Dart Sass executable supplies the compiler without Node.js. Merely editing Markdown does not require compilation, and consumers loading the shipped CSS need neither Python nor Sass. `jigyll build` consumes the compiled asset; it does not run this maintainer build step.
 
@@ -59,7 +59,7 @@ All layouts load `assets/color-mode.js` synchronously in the head before CSS. Th
 
 ### Color mode
 
-`assets/color-mode.js` distinguishes the stored preference from the effective palette. It reads `starlight-theme`, applies the root `data-theme` value, responds to system changes, and initializes the one selector after DOM readiness. Storage errors do not prevent in-memory selection. `assets/global-controls.js` owns responsive placement of the language and color controls: it moves their shared container between the header and Menu at the 50rem navigation transition without duplicating either control.
+`assets/color-mode.js` distinguishes the stored preference from the effective palette. It reads `starlight-theme`, responds to system changes, and initializes the one selector after DOM readiness. Light is the server-rendered default. When Dark is requested, the controller fetches `themes/dark.json` relative to its own script URL, preserving deployment prefixes. It validates the nine base colors and applies them to the root and backdrops through a screen-only stylesheet. The request is cached for the page; stale completions cannot override a later mode choice. Until loading succeeds, or if it fails, Light remains active; failures are logged without discarding the preference. Print is unaffected. Storage errors do not prevent in-memory selection. `assets/global-controls.js` moves the controls between the header and Menu at the 50rem navigation transition without duplicating them.
 
 ### Navigation
 
@@ -140,7 +140,7 @@ physical devices, and accessibility certification remain outside this gate.
 
 ## Fallback and change discipline
 
-Without JavaScript, the default dark palette, content, links, images, native navigation, server-rendered TOC, server-highlighted code, and every tab panel remain readable. Anchor controls, active-section feedback, responsive TOC disclosure behavior, code copying, tab selection/synchronization, and mode selection are enhancements. Browser support for native popovers is still relevant to the mobile fallback.
+Without JavaScript, the default light palette, content, links, images, native navigation, server-rendered TOC, server-highlighted code, and every tab panel remain readable. Anchor controls, active-section feedback, responsive TOC disclosure behavior, code copying, tab selection/synchronization, and mode selection are enhancements. Browser support for native popovers is still relevant to the mobile fallback.
 
 When changing theme behavior, update the explanation and its real example together. Inspect the installed consumer rather than adding a second demo implementation. The [manual-inspection guide](../inspection/) gives starting points without imposing automated testing or a screenshot baseline.
 

@@ -5,13 +5,13 @@ permalink: /color-modes/
 
 The **Select theme** control offers Dark, Light, and Auto. On a wide screen it is in the header; on a narrow screen it moves into Menu. It is the same control in both places, not two independently stored preferences.
 
-The palette is defined in `_sass/_theme.scss`: purple primary accents, pink secondary accents, and warm paper surfaces with body, strong, and muted text colors in Light. Dark uses mixed surface and lighter accent/text equivalents for readability. The same file owns semantic colors, code highlighting and markers, badge colors, shadows, and print colors. After editing it, run `python tools/styles/build.py` to compile `assets/docifly.css`. The build dependencies and workflow are described in [Theme internals](../internals/#styles-and-shipped-output).
+Light is the default palette in `_sass/_theme.scss`: purple primary accents, pink secondary accents, and warm paper surfaces. One shared set of runtime CSS rules derives surfaces, text, accents, semantic shades, code colors, and badges from the active base colors. Dark is loaded separately from `assets/themes/dark.json`, which contains only nine base hex colors: `primary`, `primary-alt`, `secondary`, `secondary-alt`, `body-text`, `strong-text`, `muted-text`, `bg`, and `bg-alt`. Editing the JSON does not require Sass compilation; publish the updated asset with the site. After editing Sass, run `python tools/styles/build.py` to compile `assets/docifly.css`. See [Theme internals](../internals/#styles-and-shipped-output) for build dependencies.
 
 ## Choose a preference
 
 | Preference | Effective palette | Persistence |
 | --- | --- | --- |
-| Dark | Dark regardless of the system setting | Saved locally when storage is available |
+| Dark | Loads the dark base palette regardless of the system setting | Saved locally when storage is available |
 | Light | Light regardless of the system setting | Saved locally when storage is available |
 | Auto | Follows the system color preference | Clears the explicit stored choice |
 
@@ -31,7 +31,7 @@ An in-memory choice is not a promise of persistence after navigation or reload. 
 
 ## Read without JavaScript
 
-JavaScript-disabled reading uses the default **dark** palette. The server-rendered table of contents and ordinary fragment links remain. JavaScript adds active-section feedback and responsive disclosure behavior; it also adds the mode selector, heading-anchor controls, and copy buttons.
+JavaScript-disabled reading uses the default **light** palette. The server-rendered table of contents and ordinary fragment links remain. JavaScript adds active-section feedback and responsive disclosure behavior; it also adds the mode selector, heading-anchor controls, and copy buttons.
 
 The article, links, images, server-highlighted code, and native navigation disclosures remain. The mobile menu relies on native popover support; JavaScript adds focus handling and persistence to that native behavior.
 
@@ -39,7 +39,7 @@ You can disable JavaScript in browser settings and reload to inspect this fallba
 
 ## Initialization and responsiveness
 
-The color-mode asset executes in the document head before styles and body content, so the effective palette can be set early. Once the DOM is ready, it initializes the selector and places it in the header or menu at the 50rem navigation transition.
+The color-mode asset executes in the document head before styles and body content. It requests the dark JSON only when Dark is needed and reuses that request for subsequent switches on the page. The default light colors remain visible until the request completes, so a cold dark-mode visit can briefly show Light. If the request fails or the palette is invalid, the page remains light and logs the error; the stored preference is preserved. Switching to Light while a request is pending prevents its eventual response from reactivating Dark. Print output always uses the light print palette. Once the DOM is ready, the selector initializes; global controls place it in the header or menu at the 50rem navigation transition.
 
 Palette changes affect theme colors, not the content of author-supplied images. See [Markdown](../markdown/) for an image that retains its own colors in both modes.
 

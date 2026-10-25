@@ -1,6 +1,30 @@
 (() => {
   const root = document.documentElement;
   const system = matchMedia('(prefers-color-scheme: dark)');
+  const paletteUrl = new URL('themes/dark.json', document.currentScript.src);
+  const colorNames = [
+    'primary', 'primary-alt', 'secondary', 'secondary-alt',
+    'body-text', 'strong-text', 'muted-text', 'bg', 'bg-alt',
+  ];
+  const paletteStyle = document.createElement('style');
+  paletteStyle.media = 'not all';
+  document.head.append(paletteStyle);
+  let darkPalette;
+  let revision = 0;
+  const loadDarkPalette = () => {
+    darkPalette ??= fetch(paletteUrl).then(async (response) => {
+      if (!response.ok) throw new Error(`Dark palette: HTTP ${response.status}`);
+      const colors = await response.json();
+      if (!colors || Object.keys(colors).length !== colorNames.length ||
+          !colorNames.every((name) => /^#[0-9a-f]{6}$/i.test(colors[name]))) {
+        throw new Error('Dark palette must define the nine base hex colors');
+      }
+      return `:root, ::backdrop {${colorNames.map(
+        (name) => `--brand-${name}: ${colors[name]};`
+      ).join('')}}`;
+    });
+    return darkPalette;
+  };
   const parse = (value) => (value === 'light' || value === 'dark' ? value : 'auto');
   let preference = 'auto';
   try {
@@ -8,10 +32,28 @@
   } catch {
     /* Keep an in-memory preference if storage is unavailable. */
   }
-  const apply = () => {
-    root.dataset.theme = preference === 'auto' ? (system.matches ? 'dark' : 'light') : preference;
+  const apply = async () => {
+    const current = ++revision;
+    const theme = preference === 'auto' ? (system.matches ? 'dark' : 'light') : preference;
+    if (theme === 'dark') {
+      try {
+        const css = await loadDarkPalette();
+        if (current !== revision) return;
+        paletteStyle.textContent = css;
+        paletteStyle.media = 'screen';
+        root.dataset.theme = 'dark';
+      } catch (error) {
+        if (current !== revision) return;
+        paletteStyle.media = 'not all';
+        root.dataset.theme = 'light';
+        console.error('Unable to load the dark palette; using light colors.', error);
+      }
+    } else {
+      paletteStyle.media = 'not all';
+      root.dataset.theme = 'light';
+    }
   };
-  apply();
+  void apply();
   system.addEventListener('change', apply);
   document.addEventListener('DOMContentLoaded', () => {
     const picker = document.getElementById('mode-picker');

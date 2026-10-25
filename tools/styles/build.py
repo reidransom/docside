@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile the shipped stylesheet, including the consolidated theme palette."""
+"""Compile the shipped stylesheet and default light palette."""
 
 from __future__ import annotations
 

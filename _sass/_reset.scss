@@ -11,14 +11,14 @@
   }
 
   html {
-    color-scheme: dark;
+    color-scheme: light;
     accent-color: var(--sl-color-accent);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
 
-  html[data-theme='light'] {
-    color-scheme: light;
+  html[data-theme='dark'] {
+    color-scheme: dark;
   }
 
   body {

@@ -199,7 +199,6 @@ def check_nonlocalized_build(jigyll: Path, temporary: Path) -> None:
     output = temporary / "single-output"
     require_success(build(jigyll, site, output))
     page = (output / "index.html").read_text(encoding="utf-8")
-    assert '<html lang="en" data-theme="dark"' in page
     assert ">Skip to content</a>" in page
     assert 'aria-label="Search"' in page
     assert (output / "assets/search-data.json").exists()

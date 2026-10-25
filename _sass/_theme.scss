@@ -1,206 +1,93 @@
-@use 'sass:color';
-
-// Base brand palette. Light and dark variants are derived below.
-$primary: #3525CC;
-$primary-alt: #4F3EDD;
-$secondary: #CE30AE;
-$secondary-alt: #F170E9;
-$body-text: #495057;
-$strong-text: #1A1530;
-$muted-text: #6B6A82;
-$bg: #FAFAF7;
-$bg-alt: #F4F2EC;
-
 /*! Adapted from stock Starlight 39d4e71; MIT, Astro contributors. See assets/starlight-LICENSE. */
 @layer starlight.base {
   :root,
   ::backdrop {
-    /* Shared brand tokens; variants are derived here. */
-    --brand-primary: #{$primary};
-    --brand-primary-alt: #{$primary-alt};
-    --brand-secondary: #{$secondary};
-    --brand-secondary-alt: #{$secondary-alt};
-    /* Colors (dark mode) */
-    --sl-color-white: hsl(0, 0%, 100%); /* “white” */
-    --sl-color-gray-1: #{$bg-alt};
-    --sl-color-gray-2: #{color.mix($bg, $muted-text, 70%)};
-    --sl-color-gray-3: #{color.mix($bg, $muted-text, 40%)};
-    --sl-color-gray-4: #{$muted-text};
-    --sl-color-gray-5: #{color.mix($muted-text, $strong-text, 35%)};
-    --sl-color-gray-6: #{color.mix($muted-text, $strong-text, 15%)};
-    --sl-color-black: #{$strong-text};
-    --code-bg: #23262f;
-    --code-text: #d6deeb;
-    --code-border: rgb(53 56 65 / 75%);
-    --code-success: #158744;
-    --code-comment: #919f9f;
-    --code-keyword: #c792ea;
-    --code-string: #ecc48d;
-    --code-number: #f78c6c;
-    --code-name: #82aaff;
-    --code-property: #7fdbca;
+    // Default base palette. Runtime palettes override only these nine inputs.
+    --brand-primary: #3525cc;
+    --brand-primary-alt: #4f3edd;
+    --brand-secondary: #ce30ae;
+    --brand-secondary-alt: #f170e9;
+    --brand-body-text: #495057;
+    --brand-strong-text: #1a1530;
+    --brand-muted-text: #6b6a82;
+    --brand-bg: #fafaf7;
+    --brand-bg-alt: #f4f2ec;
 
+    --sl-color-white: var(--brand-strong-text);
+    --sl-color-gray-1: var(--brand-strong-text);
+    --sl-color-gray-2: var(--brand-body-text);
+    --sl-color-gray-3: var(--brand-muted-text);
+    --sl-color-gray-4: color-mix(in srgb, var(--brand-bg) 30%, var(--brand-muted-text));
+    --sl-color-gray-5: color-mix(in srgb, var(--brand-bg) 65%, var(--brand-muted-text));
+    --sl-color-gray-6: color-mix(in srgb, var(--brand-bg-alt) 90%, var(--brand-muted-text));
+    --sl-color-gray-7: var(--brand-bg-alt);
+    --sl-color-black: var(--brand-bg);
+
+    // Shared semantic hues; their surfaces and text follow the active base palette.
     --sl-hue-orange: 41;
-    --sl-color-orange-low: hsl(var(--sl-hue-orange), 39%, 22%);
-    --sl-color-orange: hsl(var(--sl-hue-orange), 82%, 63%);
-    --sl-color-orange-high: hsl(var(--sl-hue-orange), 82%, 87%);
     --sl-hue-green: 101;
-    --sl-color-green-low: hsl(var(--sl-hue-green), 39%, 22%);
-    --sl-color-green: hsl(var(--sl-hue-green), 82%, 63%);
-    --sl-color-green-high: hsl(var(--sl-hue-green), 82%, 80%);
     --sl-hue-blue: 234;
-    --sl-color-blue-low: hsl(var(--sl-hue-blue), 54%, 20%);
-    --sl-color-blue: hsl(var(--sl-hue-blue), 100%, 60%);
-    --sl-color-blue-high: hsl(var(--sl-hue-blue), 100%, 87%);
-    --sl-hue-purple: #{color.channel($secondary, 'hue', $space: hsl)};
-    --sl-color-purple-low: #{color.mix($secondary, $strong-text, 25%)};
-    --sl-color-purple: var(--brand-secondary);
-    --sl-color-purple-high: var(--brand-secondary-alt);
     --sl-hue-red: 339;
-    --sl-color-red-low: hsl(var(--sl-hue-red), 39%, 22%);
-    --sl-color-red: hsl(var(--sl-hue-red), 82%, 63%);
-    --sl-color-red-high: hsl(var(--sl-hue-red), 82%, 87%);
-
-    --sl-color-accent-low: #{color.mix($primary, $strong-text, 35%)};
-    --sl-color-accent: var(--brand-primary-alt);
-    --sl-color-accent-high: #{color.mix($bg, $primary, 75%)};
+    @each $name in 'orange', 'green', 'blue', 'red' {
+      --sl-color-#{$name}: hsl(var(--sl-hue-#{$name}), 90%, 50%);
+      --sl-color-#{$name}-low: color-mix(in srgb, var(--brand-bg) 90%, var(--sl-color-#{$name}));
+      --sl-color-#{$name}-high: color-mix(in srgb, var(--brand-strong-text) 65%, var(--sl-color-#{$name}));
+    }
+    --sl-color-purple: var(--brand-secondary);
+    --sl-color-purple-high: color-mix(in srgb, var(--brand-secondary) 60%, var(--brand-strong-text));
+    --sl-color-purple-low: color-mix(in srgb, var(--brand-bg) 90%, var(--brand-secondary));
+    --sl-color-accent: var(--brand-primary);
+    --sl-color-accent-high: var(--brand-primary);
+    --sl-color-accent-low: color-mix(in srgb, var(--brand-bg) 90%, var(--brand-primary));
 
     --sl-color-text: var(--sl-color-gray-2);
-    --sl-color-text-accent: var(--sl-color-accent-high);
-    --sl-color-text-invert: var(--sl-color-accent-low);
-    --sl-color-bg: var(--sl-color-black);
-    --sl-color-bg-nav: var(--sl-color-gray-6);
-    --sl-color-bg-sidebar: var(--sl-color-gray-6);
-    --sl-color-bg-inline-code: var(--sl-color-gray-5);
-    --sl-color-bg-accent: var(--sl-color-accent-high);
-    --sl-color-hairline-light: var(--sl-color-gray-5);
-    --sl-color-hairline: var(--sl-color-gray-6);
-    --sl-color-hairline-shade: var(--sl-color-black);
-
-    --sl-color-backdrop-overlay: hsla(223, 13%, 10%, 0.66);
-
-    /* Shadows (dark mode) */
-    --sl-shadow-sm: 0px 1px 1px hsla(0, 0%, 0%, 0.12), 0px 2px 1px hsla(0, 0%, 0%, 0.24);
-    --sl-shadow-md: 0px 8px 4px hsla(0, 0%, 0%, 0.08), 0px 5px 2px hsla(0, 0%, 0%, 0.08),
-      0px 3px 2px hsla(0, 0%, 0%, 0.12), 0px 1px 1px hsla(0, 0%, 0%, 0.15);
-    --sl-shadow-lg: 0px 25px 7px hsla(0, 0%, 0%, 0.03), 0px 16px 6px hsla(0, 0%, 0%, 0.1),
-      0px 9px 5px hsla(223, 13%, 10%, 0.33), 0px 4px 4px hsla(0, 0%, 0%, 0.75),
-      0px 4px 2px hsla(0, 0%, 0%, 0.25);
-
-  }
-
-  :root[data-theme='light'],
-  [data-theme='light'] ::backdrop {
-    /* Colours (light mode) */
-    --sl-color-white: #{$strong-text};
-    --sl-color-gray-1: #{$strong-text};
-    --sl-color-gray-2: #{$body-text};
-    --sl-color-gray-3: #{$muted-text};
-    --sl-color-gray-4: #{color.mix($bg, $muted-text, 30%)};
-    --sl-color-gray-5: #{color.mix($bg, $muted-text, 65%)};
-    --sl-color-gray-6: #{color.mix($bg-alt, $muted-text, 90%)};
-    --sl-color-gray-7: #{$bg-alt};
-    --sl-color-black: #{$bg};
-    --code-bg: #f6f7f9;
-    --code-text: #403f53;
-    --code-border: rgb(193 195 200 / 75%);
-    --code-success: #078662;
-    --code-comment: #5d6376;
-    --code-keyword: #8844ae;
-    --code-string: #984b00;
-    --code-number: #aa0982;
-    --code-name: #3b61b0;
-    --code-property: #096e72;
-
-    --sl-color-orange-high: hsl(var(--sl-hue-orange), 80%, 25%);
-    --sl-color-orange: hsl(var(--sl-hue-orange), 90%, 60%);
-    --sl-color-orange-low: hsl(var(--sl-hue-orange), 90%, 88%);
-    --sl-color-green-high: hsl(var(--sl-hue-green), 80%, 22%);
-    --sl-color-green: hsl(var(--sl-hue-green), 90%, 46%);
-    --sl-color-green-low: hsl(var(--sl-hue-green), 85%, 90%);
-    --sl-color-blue-high: hsl(var(--sl-hue-blue), 80%, 30%);
-    --sl-color-blue: hsl(var(--sl-hue-blue), 90%, 60%);
-    --sl-color-blue-low: hsl(var(--sl-hue-blue), 88%, 90%);
-    --sl-color-purple-high: #{color.mix($secondary, $strong-text, 60%)};
-    --sl-color-purple: var(--brand-secondary);
-    --sl-color-purple-low: #{color.mix($bg, $secondary, 90%)};
-    --sl-color-red-high: hsl(var(--sl-hue-red), 80%, 30%);
-    --sl-color-red: hsl(var(--sl-hue-red), 90%, 60%);
-    --sl-color-red-low: hsl(var(--sl-hue-red), 80%, 90%);
-
-    --sl-color-accent-high: var(--brand-primary);
-    --sl-color-accent: var(--brand-primary);
-    --sl-color-accent-low: #{color.mix($bg, $primary, 90%)};
-
     --sl-color-text-accent: var(--sl-color-accent);
     --sl-color-text-invert: var(--sl-color-black);
+    --sl-color-bg: var(--sl-color-black);
     --sl-color-bg-nav: var(--sl-color-gray-7);
     --sl-color-bg-sidebar: var(--sl-color-bg);
     --sl-color-bg-inline-code: var(--sl-color-gray-6);
     --sl-color-bg-accent: var(--sl-color-accent);
     --sl-color-hairline-light: var(--sl-color-gray-6);
+    --sl-color-hairline: var(--sl-color-gray-6);
     --sl-color-hairline-shade: var(--sl-color-gray-6);
+    --sl-color-backdrop-overlay: color-mix(in srgb, var(--brand-muted-text) 66%, transparent);
 
-    --sl-color-backdrop-overlay: hsla(225, 9%, 36%, 0.66);
+    --code-bg: color-mix(in srgb, var(--brand-bg-alt) 85%, var(--brand-bg));
+    --code-text: var(--brand-body-text);
+    --code-border: color-mix(in srgb, var(--brand-muted-text) 40%, transparent);
+    --code-success: var(--sl-color-green-high);
+    --code-comment: var(--brand-muted-text);
+    --code-keyword: var(--brand-primary-alt);
+    --code-string: var(--sl-color-orange-high);
+    --code-number: var(--brand-secondary);
+    --code-name: var(--brand-primary);
+    --code-property: var(--sl-color-green-high);
 
-    /* Shadows (light mode) */
-    --sl-shadow-sm: 0px 1px 1px hsla(0, 0%, 0%, 0.06), 0px 2px 1px hsla(0, 0%, 0%, 0.06);
-    --sl-shadow-md: 0px 8px 4px hsla(0, 0%, 0%, 0.03), 0px 5px 2px hsla(0, 0%, 0%, 0.03),
-      0px 3px 2px hsla(0, 0%, 0%, 0.06), 0px 1px 1px hsla(0, 0%, 0%, 0.06);
-    --sl-shadow-lg: 0px 25px 7px rgba(0, 0, 0, 0.01), 0px 16px 6px hsla(0, 0%, 0%, 0.03),
-      0px 9px 5px hsla(223, 13%, 10%, 0.08), 0px 4px 4px hsla(0, 0%, 0%, 0.16),
-      0px 4px 2px hsla(0, 0%, 0%, 0.04);
+    --sl-shadow-sm: 0px 1px 1px rgb(0 0 0 / 6%), 0px 2px 1px rgb(0 0 0 / 6%);
+    --sl-shadow-md: 0px 8px 4px rgb(0 0 0 / 3%), 0px 5px 2px rgb(0 0 0 / 3%),
+      0px 3px 2px rgb(0 0 0 / 6%), 0px 1px 1px rgb(0 0 0 / 6%);
+    --sl-shadow-lg: 0px 25px 7px rgb(0 0 0 / 1%), 0px 16px 6px rgb(0 0 0 / 3%),
+      0px 9px 5px rgb(23 26 33 / 8%), 0px 4px 4px rgb(0 0 0 / 16%),
+      0px 4px 2px rgb(0 0 0 / 4%);
   }
 }
 
 @layer docifly {
   :root {
     --sl-badge-default-border: var(--sl-color-accent);
-    --sl-badge-default-bg: var(--sl-color-accent-low);
-    --sl-badge-default-text: #fff;
-    --sl-badge-note-border: var(--sl-color-blue);
-    --sl-badge-note-bg: var(--sl-color-blue-low);
-    --sl-badge-note-text: #fff;
-    --sl-badge-danger-border: var(--sl-color-red);
-    --sl-badge-danger-bg: var(--sl-color-red-low);
-    --sl-badge-danger-text: #fff;
-    --sl-badge-success-border: var(--sl-color-green);
-    --sl-badge-success-bg: var(--sl-color-green-low);
-    --sl-badge-success-text: #fff;
-    --sl-badge-caution-border: var(--sl-color-orange);
-    --sl-badge-caution-bg: var(--sl-color-orange-low);
-    --sl-badge-caution-text: #fff;
-    --sl-badge-tip-border: var(--sl-color-purple);
-    --sl-badge-tip-bg: var(--sl-color-purple-low);
-    --sl-badge-tip-text: #fff;
-  }
-
-  [data-theme='light']:root {
-    --sl-badge-default-bg: var(--sl-color-accent-high);
-    --sl-badge-note-bg: var(--sl-color-blue-high);
-    --sl-badge-danger-bg: var(--sl-color-red-high);
-    --sl-badge-success-bg: var(--sl-color-green-high);
-    --sl-badge-caution-bg: var(--sl-color-orange-high);
-    --sl-badge-tip-bg: var(--sl-color-purple-high);
+    --sl-badge-default-bg: var(--sl-color-accent);
+    --sl-badge-default-text: var(--brand-bg);
+    @each $name, $color in (note: 'blue', danger: 'red', success: 'green', caution: 'orange', tip: 'purple') {
+      --sl-badge-#{$name}-border: var(--sl-color-#{$color});
+      --sl-badge-#{$name}-bg: var(--sl-color-#{$color}-high);
+      --sl-badge-#{$name}-text: var(--brand-bg);
+    }
   }
 
   #article pre:has(.code-line) {
-    // Keep solid and striped phases readable with the unchanged syntax palette.
-    --marker-neutral-bg: rgb(255 255 255 / 6%);
-    --marker-neutral-gutter: color-mix(in srgb, white 6%, var(--code-bg));
-    --marker-neutral-edge: var(--sl-color-gray-3);
-    --marker-insert-bg: rgb(30 87 21 / 22%);
-    --marker-insert-gutter: color-mix(in srgb, rgb(30 87 21) 22%, var(--code-bg));
-    --marker-insert-edge: #58a64b;
-    --marker-delete-bg: rgb(134 45 39 / 26%);
-    --marker-delete-gutter: color-mix(in srgb, rgb(134 45 39) 26%, var(--code-bg));
-    --marker-delete-edge: #f85149;
-    --marker-pattern: rgb(255 255 255 / 3%);
-  }
-
-  [data-theme='light'] #article pre:has(.code-line) {
-    --marker-neutral-bg: rgb(0 0 0 / 8%);
-    --marker-neutral-gutter: color-mix(in srgb, black 8%, var(--code-bg));
+    --marker-neutral-bg: color-mix(in srgb, var(--brand-strong-text) 8%, transparent);
+    --marker-neutral-gutter: color-mix(in srgb, var(--brand-strong-text) 8%, var(--code-bg));
     --marker-neutral-edge: var(--sl-color-gray-3);
     --marker-insert-bg: rgb(142 199 125 / 34%);
     --marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 34%, var(--code-bg));
@@ -208,27 +95,16 @@ $bg-alt: #F4F2EC;
     --marker-delete-bg: rgb(255 156 142 / 31%);
     --marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 31%, var(--code-bg));
     --marker-delete-edge: #cf222e;
-    --marker-pattern: rgb(255 255 255 / 10%);
+    --marker-pattern: color-mix(in srgb, var(--brand-bg) 10%, transparent);
   }
   #article .copy-button {
     --code-copy-hover-bg: color-mix(in srgb, var(--sl-color-text) 20%, var(--code-bg));
   }
 
-  [data-theme='dark'] :is(
-    .file-tree .comment,
-    .file-tree .omission,
-    .sl-link-card:hover .link-card-description
-  ) {
-    color: color-mix(in srgb, var(--sl-color-gray-3) 99%, var(--sl-color-white));
-  }
-
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .hero-image[data-hero-depth] {
-      --hero-depth-shadow-color: color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 28%, transparent);
-      --hero-depth-shadow-color-enter: color-mix(in srgb, var(--hero-depth-shadow, var(--sl-color-white)) 8%, transparent);
-    }
-    [data-theme='dark'] .hero-image[data-hero-depth] {
-      --hero-depth-shadow: var(--sl-color-black);
+      --hero-depth-shadow-color: rgb(0 0 0 / 28%);
+      --hero-depth-shadow-color-enter: rgb(0 0 0 / 8%);
     }
   }
 }
