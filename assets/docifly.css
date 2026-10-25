@@ -15,7 +15,7 @@
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
-  html[data-theme=dark] {
+  html:is([data-theme=dark], [data-theme=punk]) {
     color-scheme: dark;
   }
   body {

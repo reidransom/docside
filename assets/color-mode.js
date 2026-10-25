@@ -1,7 +1,7 @@
 (() => {
   const root = document.documentElement;
   const system = matchMedia('(prefers-color-scheme: dark)');
-  const paletteUrl = new URL('themes/dark.json', document.currentScript.src);
+  const scriptUrl = document.currentScript.src;
   const colorNames = [
     'primary', 'primary-alt', 'secondary', 'secondary-alt',
     'body-text', 'strong-text', 'muted-text', 'bg', 'bg-alt',
@@ -9,23 +9,23 @@
   const paletteStyle = document.createElement('style');
   paletteStyle.media = 'not all';
   document.head.append(paletteStyle);
-  let darkPalette;
+  const palettes = new Map();
   let revision = 0;
-  const loadDarkPalette = () => {
-    darkPalette ??= fetch(paletteUrl).then(async (response) => {
-      if (!response.ok) throw new Error(`Dark palette: HTTP ${response.status}`);
+  const loadPalette = (theme) => {
+    if (!palettes.has(theme)) palettes.set(theme, fetch(new URL(`themes/${theme}.json`, scriptUrl)).then(async (response) => {
+      if (!response.ok) throw new Error(`${theme} palette: HTTP ${response.status}`);
       const colors = await response.json();
       if (!colors || Object.keys(colors).length !== colorNames.length ||
           !colorNames.every((name) => /^#[0-9a-f]{6}$/i.test(colors[name]))) {
-        throw new Error('Dark palette must define the nine base hex colors');
+        throw new Error(`${theme} palette must define the nine base hex colors`);
       }
       return `:root, ::backdrop {${colorNames.map(
         (name) => `--brand-${name}: ${colors[name]};`
       ).join('')}}`;
-    });
-    return darkPalette;
+    }));
+    return palettes.get(theme);
   };
-  const parse = (value) => (value === 'light' || value === 'dark' ? value : 'auto');
+  const parse = (value) => (['light', 'dark', 'punk'].includes(value) ? value : 'auto');
   let preference = 'auto';
   try {
     preference = parse(localStorage.getItem('starlight-theme'));
@@ -35,18 +35,18 @@
   const apply = async () => {
     const current = ++revision;
     const theme = preference === 'auto' ? (system.matches ? 'dark' : 'light') : preference;
-    if (theme === 'dark') {
+    if (theme !== 'light') {
       try {
-        const css = await loadDarkPalette();
+        const css = await loadPalette(theme);
         if (current !== revision) return;
         paletteStyle.textContent = css;
         paletteStyle.media = 'screen';
-        root.dataset.theme = 'dark';
+        root.dataset.theme = theme;
       } catch (error) {
         if (current !== revision) return;
         paletteStyle.media = 'not all';
         root.dataset.theme = 'light';
-        console.error('Unable to load the dark palette; using light colors.', error);
+        console.error(`Unable to load the ${theme} palette; using light colors.`, error);
       }
     } else {
       paletteStyle.media = 'not all';
@@ -68,7 +68,7 @@
     };
     const updatePicker = () => {
       select.value = preference;
-      icon?.setAttribute('d', icons[preference]);
+      icon?.setAttribute('d', icons[preference === 'punk' ? 'dark' : preference]);
     };
     updatePicker();
     select.addEventListener('change', () => {

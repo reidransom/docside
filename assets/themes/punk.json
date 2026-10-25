@@ -1,0 +1,11 @@
+{
+  "primary": "#39FF14",
+  "primary-alt": "#FF2DAA",
+  "secondary": "#FF2DAA",
+  "secondary-alt": "#FF2DAA",
+  "body-text": "#E2D6FD",
+  "strong-text": "#FF2DAA",
+  "muted-text": "#B99DFA",
+  "bg": "#000000",
+  "bg-alt": "#0D0D0D"
+}
