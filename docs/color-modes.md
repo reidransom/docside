@@ -7,9 +7,17 @@ Use **Select theme** to choose Dark, Light, Punk, or Auto. The control sits in t
 
 The default Light palette has purple accents, pink secondary accents, and warm paper backgrounds. `_sass/_theme.scss` defines its base colors and the CSS rules that derive backgrounds, text, accents, status colors, code colors, badges, and borders.
 
-Dark loads its base colors from `assets/themes/dark.json`. Punk loads `assets/themes/punk.json` for neon green accents, pink headings and keywords, violet text, and black backgrounds. Both files use the same nine hex-color keys:
+Dark loads four base colors from `assets/themes/dark.json`: `primary`, `secondary`, `body-text`, and `bg`. Use six-digit hex values. All five variants are calculated in CSS and update automatically when a base color changes:
 
-`primary`, `primary-alt`, `secondary`, `secondary-alt`, `body-text`, `strong-text`, `muted-text`, `bg`, and `bg-alt`.
+| Variant | Derivation (`color-mix` in sRGB) |
+| --- | --- |
+| `primary-alt` | 80% primary + 20% background |
+| `secondary-alt` | 60% secondary + 40% white |
+| `strong-text` | 25% body text + 75% white |
+| `muted-text` | 72% body text + 28% background |
+| `bg-alt` | 92% background + 8% body text |
+
+Dark-scheme palettes may explicitly override any of these variants. Punk uses `assets/themes/punk.json` with all nine colors to retain its neon green accents, pink headings and keywords, violet text, and black backgrounds. Light-scheme palette files require all nine colors; the built-in Light palette remains in CSS.
 
 Publish JSON color changes with the site. They do not need Sass compilation. After changing Sass, run `python tools/styles/build.py` to rebuild `assets/docifly.css`. See [Theme internals](../internals/#styles-and-shipped-output) for build dependencies.
 
@@ -17,7 +25,7 @@ Borders come from the shared CSS rules. The base palette has no separate border 
 
 ## Add a theme
 
-1. Add `assets/themes/ocean.json` using the same nine base-color keys as `dark.json`.
+1. Add `assets/themes/ocean.json` using the same four base-color keys as `dark.json`.
 2. Add an entry to the array in `assets/themes/index.json`:
 
    ```json

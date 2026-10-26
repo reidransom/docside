@@ -5,9 +5,9 @@
   const ready = document.readyState === 'loading'
     ? new Promise((resolve) => document.addEventListener('DOMContentLoaded', resolve, { once: true }))
     : Promise.resolve();
+  const baseColorNames = ['primary', 'secondary', 'body-text', 'bg'];
   const colorNames = [
-    'primary', 'primary-alt', 'secondary', 'secondary-alt',
-    'body-text', 'strong-text', 'muted-text', 'bg', 'bg-alt',
+    ...baseColorNames, 'primary-alt', 'secondary-alt', 'strong-text', 'muted-text', 'bg-alt',
   ];
   const paletteStyle = document.createElement('style');
   paletteStyle.media = 'screen';
@@ -20,11 +20,14 @@
       palettes.set(theme.id, fetch(new URL(theme.palette, registryUrl)).then(async (response) => {
         if (!response.ok) throw new Error(`${theme.id} palette: HTTP ${response.status}`);
         const colors = await response.json();
-        if (!colors || Object.keys(colors).length !== colorNames.length ||
-            !colorNames.every((name) => /^#[0-9a-f]{6}$/i.test(colors[name]))) {
-          throw new Error(`${theme.id} palette must define the nine base hex colors`);
+        const requiredNames = theme.scheme === 'dark' ? baseColorNames : colorNames;
+        if (!colors || typeof colors !== 'object' || Array.isArray(colors) ||
+            !requiredNames.every((name) => Object.hasOwn(colors, name)) ||
+            !Object.entries(colors).every(([name, color]) =>
+              colorNames.includes(name) && /^#[0-9a-f]{6}$/i.test(color))) {
+          throw new Error(`${theme.id} palette must define four base hex colors; light palettes also require all five variants`);
         }
-        return colorNames.map((name) => `--brand-${name}: ${colors[name]};`).join('');
+        return Object.entries(colors).map(([name, color]) => `--brand-${name}: ${color};`).join('');
       }));
     }
     return palettes.get(theme.id);

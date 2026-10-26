@@ -2,7 +2,7 @@
 @layer starlight.base {
   :root,
   ::backdrop {
-    // Default base palette. Runtime palettes override only these nine inputs.
+    // Default light palette. Runtime palettes override the base colors.
     --brand-primary: #3525cc;
     --brand-primary-alt: #4f3edd;
     --brand-secondary: #ce30ae;
@@ -70,6 +70,18 @@
     --sl-shadow-lg: 0px 25px 7px rgb(0 0 0 / 1%), 0px 16px 6px rgb(0 0 0 / 3%),
       0px 9px 5px rgb(23 26 33 / 8%), 0px 4px 4px rgb(0 0 0 / 16%),
       0px 4px 2px rgb(0 0 0 / 4%);
+  }
+
+  :root[data-color-scheme='dark'],
+  :root[data-color-scheme='dark']::backdrop,
+  [data-color-scheme='dark'] ::backdrop {
+    // Dark palettes need only primary, secondary, body-text, and bg.
+    // Explicit runtime variants (e.g. Punk) take precedence over these defaults.
+    --brand-primary-alt: color-mix(in srgb, var(--brand-primary) 80%, var(--brand-bg));
+    --brand-secondary-alt: color-mix(in srgb, var(--brand-secondary) 60%, white);
+    --brand-strong-text: color-mix(in srgb, var(--brand-body-text) 25%, white);
+    --brand-muted-text: color-mix(in srgb, var(--brand-body-text) 72%, var(--brand-bg));
+    --brand-bg-alt: color-mix(in srgb, var(--brand-bg) 92%, var(--brand-body-text));
   }
 }
 
