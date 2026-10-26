@@ -81,6 +81,8 @@ Images explicitly configured with `hero.image.depth: true` load `assets/hero.js`
 
 `assets/prose.js` discovers headings with IDs inside `#article`, wraps them for anchor presentation, and links to the IDs already emitted by Jigyll. It does not derive new slugs or rewrite heading text.
 
+Heading permalinks use the filled `link-alt` glyph from `tools/icons/icons.json`, with room around the path inside its 24-by-24 viewBox to avoid clipping.
+
 ### Table of contents
 
 `_includes/toc.html` renders an Overview entry and eligible H2/H3 entries from Jigyll 1.12.0's `page.headings` metadata. The engine collects that flat, article-ordered `{level, id, text}` list from rendered article HTML before layouts; it includes `.no_toc`, nested-Markdown, repeated, and explicit IDs unchanged. Docifly skips entries without IDs or labels and does not derive replacement slugs.

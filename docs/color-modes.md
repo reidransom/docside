@@ -1,13 +1,19 @@
 ---
-title: Color modes and fallback behavior
+title: Color modes
 permalink: /color-modes/
 ---
 
-The **Select theme** control offers Dark, Light, Punk, and Auto. On a wide screen it is in the header; on a narrow screen it moves into Menu. It is the same control in both places, not two independently stored preferences.
+Use **Select theme** to choose Dark, Light, Punk, or Auto. The control sits in the header on wide screens and moves into Menu on narrow screens. Both locations use the same saved preference.
 
-Light is the default palette in `_sass/_theme.scss`: purple primary accents, pink secondary accents, and warm paper surfaces. One shared set of runtime CSS rules derives surfaces, text, accents, semantic shades, code colors, and badges from the active base colors. Dark is loaded separately from `assets/themes/dark.json`, which contains only nine base hex colors: `primary`, `primary-alt`, `secondary`, `secondary-alt`, `body-text`, `strong-text`, `muted-text`, `bg`, and `bg-alt`. Editing the JSON does not require Sass compilation; publish the updated asset with the site. After editing Sass, run `python tools/styles/build.py` to compile `assets/docifly.css`. See [Theme internals](../internals/#styles-and-shipped-output) for build dependencies.
+The default Light palette has purple accents, pink secondary accents, and warm paper backgrounds. `_sass/_theme.scss` defines its base colors and the CSS rules that derive backgrounds, text, accents, status colors, code colors, badges, and borders.
 
-Select Punk to load `assets/themes/punk.json`: neon green accents, neon pink headings and keywords, violet reading and muted text, and black surfaces. Borders follow the shared derivation rules; the base-color schema has no independent border input.
+Dark loads its base colors from `assets/themes/dark.json`. Punk loads `assets/themes/punk.json` for neon green accents, pink headings and keywords, violet text, and black backgrounds. Both files use the same nine hex-color keys:
+
+`primary`, `primary-alt`, `secondary`, `secondary-alt`, `body-text`, `strong-text`, `muted-text`, `bg`, and `bg-alt`.
+
+Publish JSON color changes with the site. They do not need Sass compilation. After changing Sass, run `python tools/styles/build.py` to rebuild `assets/docifly.css`. See [Theme internals](../internals/#styles-and-shipped-output) for build dependencies.
+
+Borders come from the shared CSS rules. The base palette has no separate border color.
 
 ## Add a theme
 
@@ -18,47 +24,62 @@ Select Punk to load `assets/themes/punk.json`: neon green accents, neon pink hea
    { "id": "ocean", "label": "Ocean", "scheme": "dark", "palette": "ocean.json" }
    ```
 
-3. Publish both JSON files. No JavaScript, template, or Sass edits are needed.
+3. Publish the palette file and updated registry. You do not need to edit JavaScript, templates, or Sass.
 
-Registry order determines dropdown order; Auto is appended automatically. IDs must be unique lowercase names starting with a letter, followed by letters, digits, or hyphens. `auto` is reserved. `scheme` is `light` or `dark`; it controls the icon, native controls, hero image variant, and appearance-specific component styling. Palette paths are relative to the registry URL, including deployment prefixes. `label` is the dropdown text unless a localized `data-label-<id>` attribute overrides it on the selector.
+Entries appear in the dropdown in registry order, with Auto last.
 
-Keep the `light` entry with `palette: null` for the CSS default and the `dark` entry for system Auto. Additional themes need a palette file. Saved IDs removed from the registry fall back to Auto. If the registry cannot load, the page stays light and the selector remains hidden.
+| Field | Purpose |
+| --- | --- |
+| `id` | Unique lowercase name. Start with a letter, then use letters, digits, or hyphens. `auto` is reserved. |
+| `label` | Dropdown text. A localized `data-label-<id>` attribute on the selector takes precedence. |
+| `scheme` | `light` or `dark`. Sets the icon, browser control colors, hero image variant, and light/dark component styles. |
+| `palette` | Path relative to the registry URL. Deployment prefixes stay intact. |
+
+Keep the `light` entry with `palette: null` to use the CSS default. Keep `dark` for Auto to follow the system setting. Each additional theme needs a palette file.
+
+If a saved theme ID no longer exists in the registry, the loader uses Auto. If the registry fails to load, the page stays light and hides the selector.
 
 ## Choose a preference
 
-| Preference | Effective palette | Persistence |
-| --- | --- | --- |
-| Dark | Loads the dark base palette regardless of the system setting | Saved locally when storage is available |
-| Light | Light regardless of the system setting | Saved locally when storage is available |
-| Punk | Loads the punk base palette regardless of the system setting | Saved locally when storage is available |
-| Auto | Follows the system color preference | Clears the explicit stored choice |
+| Preference | Behavior |
+| --- | --- |
+| Dark | Uses the dark palette regardless of the system setting |
+| Light | Uses the light palette regardless of the system setting |
+| Punk | Uses the punk palette regardless of the system setting |
+| Auto | Follows the system's light or dark preference |
 
-Try Light and then follow [Code blocks](../code/). Your explicit preference should survive navigation. Switch back to Auto when you want the system preference to decide.
+Dark, Light, and Punk save your choice locally when browser storage is available. Auto clears that saved choice.
+
+Choose Light, then open [Code blocks](../code/) to check that your choice survives navigation. Choose Auto to follow the system again.
 
 ### Auto follows live changes
 
-With Auto selected, changing the operating system's appearance should change the site's effective palette without a reload. A browser's developer tools may also let you emulate `prefers-color-scheme` for manual inspection. With Dark, Light, or Punk selected, the explicit choice wins over the system setting.
+With Auto selected, changing your operating system's appearance switches the page between Light and Dark without a reload. Auto never selects Punk. An explicit Dark, Light, or Punk choice takes precedence over the system setting.
 
-Auto follows only the system's dark or light preference; it never selects Punk.
+You can also use browser developer tools to emulate `prefers-color-scheme`.
 
 ## Read without storage
 
-The stored preference uses the `starlight-theme` local-storage key. Invalid values fall back to Auto. If storage access is unavailable, the page still initializes from the system preference and lets you change its in-memory preference.
+The loader saves your preference under the `starlight-theme` local-storage key. Invalid values fall back to Auto.
 
-An in-memory choice is not a promise of persistence after navigation or reload. This distinction matters in restricted browsing contexts: a readable page and working selector do not imply that the browser permitted a saved setting.
+If the browser blocks storage, the selector still works for the current page. Your choice may be lost on navigation or reload. A working selector does not mean the browser saved the setting.
 
 ## Read without JavaScript
 
-JavaScript-disabled reading uses the default **light** palette. The server-rendered table of contents and ordinary fragment links remain. JavaScript adds active-section feedback and responsive disclosure behavior; it also adds the mode selector, heading-anchor controls, and copy buttons.
+Without JavaScript, the page uses Light. The article, links, images, server-highlighted code, table of contents, and ordinary fragment links still work. Navigation sections can still expand and collapse.
 
-The article, links, images, server-highlighted code, and native navigation disclosures remain. The mobile menu relies on native popover support; JavaScript adds focus handling and persistence to that native behavior.
+JavaScript adds the mode selector, heading-anchor controls, copy buttons, active-section feedback, and responsive table-of-contents controls. The mobile menu needs native popover support. JavaScript adds focus handling and saves its state.
 
-You can disable JavaScript in browser settings and reload to inspect this fallback. Re-enable it afterward to restore the enhancements. This is a suggested manual check, not a maintained automated test.
+To check this fallback, disable JavaScript in browser settings and reload. Turn it back on afterward to restore the controls. This is a manual check, not an automated test.
 
 ## Initialization and responsiveness
 
-The color-mode asset executes in the document head before styles and body content. It loads `assets/themes/index.json`, then requests the selected palette only when needed and caches each palette request for subsequent switches on the page. Default light colors remain visible on a cold visit until loading completes. If a palette request fails or its colors are invalid, the page falls back to light and logs the error; the stored preference is preserved. A pending response cannot override a later selection. Print output always uses the light print palette. The selector initializes after both registry loading and DOM readiness; global controls place it in the header or menu at the 50rem navigation transition.
+`assets/color-mode.js` runs in the document head before the stylesheet and page content. It loads `assets/themes/index.json`, then fetches the selected palette if needed. It caches palette requests for later switches on the same page.
 
-Palette changes affect theme colors, not the content of author-supplied images. See [Markdown](../markdown/) for an image that retains its own colors in both modes.
+A fresh page shows Light until loading finishes. If a palette request fails or contains invalid colors, the loader uses Light and logs the error. It keeps your saved preference. If you change themes while a request is pending, the old response cannot override your new choice.
 
-For source ownership, see [Theme internals](../internals/). For ways to inspect keyboard focus and mobile layout, see [Manual inspection](../inspection/).
+The selector appears once the registry has loaded and the DOM is ready. The global-controls script moves it between the header and Menu at 50rem. Print always uses the light print palette.
+
+Theme changes do not recolor images. The [Markdown](../markdown/) example keeps its image colors when you switch themes.
+
+See [Theme internals](../internals/) for the files behind each feature, or [Manual inspection](../inspection/) for keyboard-focus and mobile-layout checks.

@@ -47,7 +47,7 @@ navigation:
             link: /markdown/
           - label: Code blocks
             link: /code/
-          - label: Color modes and fallback behavior
+          - label: Color modes
             link: /color-modes/
   - label: Maintainers
     items:
