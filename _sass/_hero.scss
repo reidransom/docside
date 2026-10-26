@@ -33,11 +33,11 @@
     display: none;
   }
 
-  [data-theme='light'] .hero-image-dark {
+  [data-color-scheme='light'] .hero-image-dark {
     display: none;
   }
 
-  [data-theme='light'] .hero-image-light {
+  [data-color-scheme='light'] .hero-image-light {
     display: block;
   }
 

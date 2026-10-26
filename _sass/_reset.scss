@@ -17,10 +17,6 @@
     text-size-adjust: 100%;
   }
 
-  html:is([data-theme='dark'], [data-theme='punk']) {
-    color-scheme: dark;
-  }
-
   body {
     font-family: var(--__sl-font);
     line-height: var(--sl-line-height);

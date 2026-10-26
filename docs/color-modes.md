@@ -9,6 +9,21 @@ Light is the default palette in `_sass/_theme.scss`: purple primary accents, pin
 
 Select Punk to load `assets/themes/punk.json`: neon green accents, neon pink headings and keywords, violet reading and muted text, and black surfaces. Borders follow the shared derivation rules; the base-color schema has no independent border input.
 
+## Add a theme
+
+1. Add `assets/themes/ocean.json` using the same nine base-color keys as `dark.json`.
+2. Add an entry to the array in `assets/themes/index.json`:
+
+   ```json
+   { "id": "ocean", "label": "Ocean", "scheme": "dark", "palette": "ocean.json" }
+   ```
+
+3. Publish both JSON files. No JavaScript, template, or Sass edits are needed.
+
+Registry order determines dropdown order; Auto is appended automatically. IDs must be unique lowercase names starting with a letter, followed by letters, digits, or hyphens. `auto` is reserved. `scheme` is `light` or `dark`; it controls the icon, native controls, hero image variant, and appearance-specific component styling. Palette paths are relative to the registry URL, including deployment prefixes. `label` is the dropdown text unless a localized `data-label-<id>` attribute overrides it on the selector.
+
+Keep the `light` entry with `palette: null` for the CSS default and the `dark` entry for system Auto. Additional themes need a palette file. Saved IDs removed from the registry fall back to Auto. If the registry cannot load, the page stays light and the selector remains hidden.
+
 ## Choose a preference
 
 | Preference | Effective palette | Persistence |
@@ -42,7 +57,7 @@ You can disable JavaScript in browser settings and reload to inspect this fallba
 
 ## Initialization and responsiveness
 
-The color-mode asset executes in the document head before styles and body content. It requests the selected Dark or Punk JSON only when needed and caches each palette request for subsequent switches on the page. Default light colors remain visible on a cold visit until the request completes. If the request fails or the palette is invalid, the page falls back to light and logs the error; the stored preference is preserved. A pending response cannot override a later selection. Print output always uses the light print palette. Once the DOM is ready, the selector initializes; global controls place it in the header or menu at the 50rem navigation transition.
+The color-mode asset executes in the document head before styles and body content. It loads `assets/themes/index.json`, then requests the selected palette only when needed and caches each palette request for subsequent switches on the page. Default light colors remain visible on a cold visit until loading completes. If a palette request fails or its colors are invalid, the page falls back to light and logs the error; the stored preference is preserved. A pending response cannot override a later selection. Print output always uses the light print palette. The selector initializes after both registry loading and DOM readiness; global controls place it in the header or menu at the 50rem navigation transition.
 
 Palette changes affect theme colors, not the content of author-supplied images. See [Markdown](../markdown/) for an image that retains its own colors in both modes.
 

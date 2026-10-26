@@ -229,8 +229,8 @@
     text-align: center;
   }
 
-  [data-theme='light'] #article figure.highlight[data-code-frame],
-  [data-theme='light'] #article figure.highlight[data-code-frame='terminal']::before {
+  [data-color-scheme='light'] #article figure.highlight[data-code-frame],
+  [data-color-scheme='light'] #article figure.highlight[data-code-frame='terminal']::before {
     background: var(--sl-color-gray-6);
   }
   #article .copy-button {

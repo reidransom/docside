@@ -15,9 +15,6 @@
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
-  html:is([data-theme=dark], [data-theme=punk]) {
-    color-scheme: dark;
-  }
   body {
     font-family: var(--__sl-font);
     line-height: var(--sl-line-height);
@@ -379,7 +376,7 @@
     border-radius: inherit;
     inset: min(0px, (2rem - 44px) / 2);
   }
-  [data-theme=light] #menu-toggle {
+  [data-color-scheme=light] #menu-toggle {
     background: var(--sl-color-black);
     color: var(--sl-color-white);
   }
@@ -393,7 +390,7 @@
     background: var(--sl-color-gray-2);
     box-shadow: none;
   }
-  [data-theme=light] body:has(#site-nav:popover-open) #menu-toggle {
+  [data-color-scheme=light] body:has(#site-nav:popover-open) #menu-toggle {
     background: var(--sl-color-gray-5);
   }
   body:has(#site-nav:popover-open) #menu-toggle .open-icon {
@@ -1062,8 +1059,8 @@ how we do it.
     letter-spacing: 0.025ch;
     text-align: center;
   }
-  [data-theme=light] #article figure.highlight[data-code-frame],
-  [data-theme=light] #article figure.highlight[data-code-frame=terminal]::before {
+  [data-color-scheme=light] #article figure.highlight[data-code-frame],
+  [data-color-scheme=light] #article figure.highlight[data-code-frame=terminal]::before {
     background: var(--sl-color-gray-6);
   }
   #article .copy-button {
@@ -1651,10 +1648,10 @@ how we do it.
   .hero-image-light {
     display: none;
   }
-  [data-theme=light] .hero-image-dark {
+  [data-color-scheme=light] .hero-image-dark {
     display: none;
   }
-  [data-theme=light] .hero-image-light {
+  [data-color-scheme=light] .hero-image-light {
     display: block;
   }
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {

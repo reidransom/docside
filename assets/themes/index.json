@@ -1,0 +1,5 @@
+[
+  { "id": "dark", "label": "Dark", "scheme": "dark", "palette": "dark.json" },
+  { "id": "light", "label": "Light", "scheme": "light", "palette": null },
+  { "id": "punk", "label": "Punk", "scheme": "dark", "palette": "punk.json" }
+]

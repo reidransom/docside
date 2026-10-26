@@ -98,7 +98,7 @@
     border-radius: inherit;
     inset: min(0px, calc((2rem - 44px) / 2));
   }
-  [data-theme='light'] #menu-toggle {
+  [data-color-scheme='light'] #menu-toggle {
     background: var(--sl-color-black);
     color: var(--sl-color-white);
   }
@@ -112,7 +112,7 @@
     background: var(--sl-color-gray-2);
     box-shadow: none;
   }
-  [data-theme='light'] body:has(#site-nav:popover-open) #menu-toggle {
+  [data-color-scheme='light'] body:has(#site-nav:popover-open) #menu-toggle {
     background: var(--sl-color-gray-5);
   }
   body:has(#site-nav:popover-open) #menu-toggle .open-icon {

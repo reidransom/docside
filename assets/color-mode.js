@@ -1,61 +1,79 @@
 (() => {
   const root = document.documentElement;
   const system = matchMedia('(prefers-color-scheme: dark)');
-  const scriptUrl = document.currentScript.src;
+  const registryUrl = new URL('themes/index.json', document.currentScript.src);
+  const ready = document.readyState === 'loading'
+    ? new Promise((resolve) => document.addEventListener('DOMContentLoaded', resolve, { once: true }))
+    : Promise.resolve();
   const colorNames = [
     'primary', 'primary-alt', 'secondary', 'secondary-alt',
     'body-text', 'strong-text', 'muted-text', 'bg', 'bg-alt',
   ];
   const paletteStyle = document.createElement('style');
-  paletteStyle.media = 'not all';
+  paletteStyle.media = 'screen';
   document.head.append(paletteStyle);
   const palettes = new Map();
   let revision = 0;
   const loadPalette = (theme) => {
-    if (!palettes.has(theme)) palettes.set(theme, fetch(new URL(`themes/${theme}.json`, scriptUrl)).then(async (response) => {
-      if (!response.ok) throw new Error(`${theme} palette: HTTP ${response.status}`);
-      const colors = await response.json();
-      if (!colors || Object.keys(colors).length !== colorNames.length ||
-          !colorNames.every((name) => /^#[0-9a-f]{6}$/i.test(colors[name]))) {
-        throw new Error(`${theme} palette must define the nine base hex colors`);
-      }
-      return `:root, ::backdrop {${colorNames.map(
-        (name) => `--brand-${name}: ${colors[name]};`
-      ).join('')}}`;
-    }));
-    return palettes.get(theme);
+    if (theme.palette === null) return Promise.resolve('');
+    if (!palettes.has(theme.id)) {
+      palettes.set(theme.id, fetch(new URL(theme.palette, registryUrl)).then(async (response) => {
+        if (!response.ok) throw new Error(`${theme.id} palette: HTTP ${response.status}`);
+        const colors = await response.json();
+        if (!colors || Object.keys(colors).length !== colorNames.length ||
+            !colorNames.every((name) => /^#[0-9a-f]{6}$/i.test(colors[name]))) {
+          throw new Error(`${theme.id} palette must define the nine base hex colors`);
+        }
+        return colorNames.map((name) => `--brand-${name}: ${colors[name]};`).join('');
+      }));
+    }
+    return palettes.get(theme.id);
   };
-  const parse = (value) => (['light', 'dark', 'punk'].includes(value) ? value : 'auto');
-  let preference = 'auto';
-  try {
-    preference = parse(localStorage.getItem('starlight-theme'));
-  } catch {
-    /* Keep an in-memory preference if storage is unavailable. */
-  }
-  const apply = async () => {
-    const current = ++revision;
-    const theme = preference === 'auto' ? (system.matches ? 'dark' : 'light') : preference;
-    if (theme !== 'light') {
+
+  const initialize = async () => {
+    const response = await fetch(registryUrl);
+    if (!response.ok) throw new Error(`Theme registry: HTTP ${response.status}`);
+    const entries = await response.json();
+    if (!Array.isArray(entries) || !entries.every((theme) =>
+      /^[a-z][a-z0-9-]*$/.test(theme.id) && theme.id !== 'auto' &&
+      typeof theme.label === 'string' && theme.label.length > 0 &&
+      ['light', 'dark'].includes(theme.scheme) &&
+      (theme.palette === null || typeof theme.palette === 'string'))) {
+      throw new Error('Invalid theme registry');
+    }
+    const themes = new Map(entries.map((theme) => [theme.id, theme]));
+    if (themes.size !== entries.length || !themes.has('light') || !themes.has('dark') ||
+        themes.get('light').palette !== null) {
+      throw new Error('Theme registry requires unique IDs, default Light, and Dark');
+    }
+    const parse = (value) => themes.has(value) ? value : 'auto';
+    let preference = 'auto';
+    try {
+      preference = parse(localStorage.getItem('starlight-theme'));
+    } catch {
+      /* Keep an in-memory preference if storage is unavailable. */
+    }
+    const apply = async () => {
+      const current = ++revision;
+      const id = preference === 'auto' ? (system.matches ? 'dark' : 'light') : preference;
+      const theme = themes.get(id);
       try {
-        const css = await loadPalette(theme);
+        const colors = await loadPalette(theme);
         if (current !== revision) return;
-        paletteStyle.textContent = css;
-        paletteStyle.media = 'screen';
-        root.dataset.theme = theme;
+        paletteStyle.textContent = `:root, ::backdrop {color-scheme: ${theme.scheme};${colors}}`;
+        root.dataset.theme = id;
+        root.dataset.colorScheme = theme.scheme;
       } catch (error) {
         if (current !== revision) return;
-        paletteStyle.media = 'not all';
+        paletteStyle.textContent = '';
         root.dataset.theme = 'light';
-        console.error(`Unable to load the ${theme} palette; using light colors.`, error);
+        root.dataset.colorScheme = 'light';
+        console.error(`Unable to load the ${id} palette; using light colors.`, error);
       }
-    } else {
-      paletteStyle.media = 'not all';
-      root.dataset.theme = 'light';
-    }
-  };
-  void apply();
-  system.addEventListener('change', apply);
-  document.addEventListener('DOMContentLoaded', () => {
+    };
+    void apply();
+    system.addEventListener('change', apply);
+    await ready;
     const picker = document.getElementById('mode-picker');
     const select = document.getElementById('color-mode');
     if (!picker || !(select instanceof HTMLSelectElement)) return;
@@ -66,14 +84,18 @@
         'M12 3V1m0 22v-2M3 12H1m22 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4m-12.8 0-1.4 1.4M19.8 4.2l-1.4 1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0',
       dark: 'M20.8 14.2A9 9 0 0 1 9.8 3.2 9 9 0 1 0 20.8 14.2Z',
     };
+    for (const theme of entries) {
+      const label = select.getAttribute(`data-label-${theme.id}`) || theme.label;
+      select.add(new Option(label, theme.id), select.options.length - 1);
+    }
     const updatePicker = () => {
       select.value = preference;
-      icon?.setAttribute('d', icons[preference === 'punk' ? 'dark' : preference]);
+      icon?.setAttribute('d', icons[preference === 'auto' ? 'auto' : themes.get(preference).scheme]);
     };
     updatePicker();
     select.addEventListener('change', () => {
       preference = parse(select.value);
-      apply();
+      void apply();
       updatePicker();
       try {
         if (preference === 'auto') localStorage.removeItem('starlight-theme');
@@ -83,5 +105,8 @@
       }
     });
     picker.hidden = false;
+  };
+  void initialize().catch((error) => {
+    console.error('Unable to load the theme registry; using light colors.', error);
   });
 })();
