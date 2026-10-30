@@ -117,14 +117,16 @@
 
   @media (min-width: 50rem) {
     .hero {
-      grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
-      gap: 3%;
+      grid-template-columns: minmax(0, 34rem) minmax(0, 25rem);
+      justify-content: center;
+      gap: 4rem;
       padding-block: clamp(2.5rem, calc(1rem + 10vmin), 10rem);
     }
 
     .hero-image {
       order: 2;
       width: min(100%, 25rem);
+      margin-inline: 0;
     }
 
     .hero-stack {
