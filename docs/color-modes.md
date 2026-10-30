@@ -3,7 +3,7 @@ title: Color modes
 permalink: /color-modes/
 ---
 
-Use **Select theme** to choose Dark, Light, Punk, or Auto. The control sits in the header on wide screens and moves into Menu on narrow screens. Both locations use the same saved preference.
+Use **Select theme** to choose Dark, Light, Punk, Ice, or Auto. The control sits in the header on wide screens and moves into Menu on narrow screens. Both locations use the same saved preference.
 
 The default Light palette has purple accents, pink secondary accents, and warm paper backgrounds. `_sass/_theme.scss` defines its base colors and the CSS rules that derive backgrounds, text, accents, status colors, code colors, badges, and borders.
 
@@ -18,6 +18,8 @@ Dark loads four base colors from `assets/themes/dark.json`: `primary`, `secondar
 | `bg-alt` | 92% background + 8% body text |
 
 Dark-scheme palettes may explicitly override any of these variants. Punk uses `assets/themes/punk.json` with all nine colors to retain its neon green accents, pink headings and keywords, violet text, and black backgrounds. Light-scheme palette files require all nine colors; the built-in Light palette remains in CSS.
+
+Ice uses `assets/themes/ice.json` with all nine colors, inspired by [ZeroClaw](https://www.zeroclaw.com/): a near-black navy background, sky-blue links and actions, cyan secondary accents, cool slate body text, and white headings. It uses dark-scheme components without changing the default Dark palette.
 
 Publish JSON color changes with the site. They do not need Sass compilation. After changing Sass, run `python tools/styles/build.py` to rebuild `assets/docifly.css`. See [Theme internals](../internals/#styles-and-shipped-output) for build dependencies.
 
@@ -54,15 +56,16 @@ If a saved theme ID no longer exists in the registry, the loader uses Auto. If t
 | Dark | Uses the dark palette regardless of the system setting |
 | Light | Uses the light palette regardless of the system setting |
 | Punk | Uses the punk palette regardless of the system setting |
+| Ice | Uses the ice palette regardless of the system setting |
 | Auto | Follows the system's light or dark preference |
 
-Dark, Light, and Punk save your choice locally when browser storage is available. Auto clears that saved choice.
+Dark, Light, Punk, and Ice save your choice locally when browser storage is available. Auto clears that saved choice.
 
 Choose Light, then open [Code blocks](../code/) to check that your choice survives navigation. Choose Auto to follow the system again.
 
 ### Auto follows live changes
 
-With Auto selected, changing your operating system's appearance switches the page between Light and Dark without a reload. Auto never selects Punk. An explicit Dark, Light, or Punk choice takes precedence over the system setting.
+With Auto selected, changing your operating system's appearance switches the page between Light and Dark without a reload. Auto never selects Punk or Ice. An explicit Dark, Light, Punk, or Ice choice takes precedence over the system setting.
 
 You can also use browser developer tools to emulate `prefers-color-scheme`.
 

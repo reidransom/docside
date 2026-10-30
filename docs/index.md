@@ -30,7 +30,7 @@ Then organize your [navigation](./navigation/), write [headings](./headings/), a
 
 - [Markdown](./markdown/) shows lists, tables, images, quotations, and inline formatting alongside authoring examples.
 - [Code blocks](./code/) shows highlighted code, whitespace, and horizontal overflow. Try copying a block.
-- [Color modes](./color-modes/) explains Dark, Light, and Auto, including what happens without JavaScript or storage.
+- [Color modes](./color-modes/) explains the available palettes and Auto, including what happens without JavaScript or storage.
 - [Manual inspection](./inspection/) suggests ways to try the site with a keyboard and at different window sizes.
 
 ## Understand the implementation
