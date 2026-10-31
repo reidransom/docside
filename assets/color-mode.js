@@ -9,25 +9,59 @@
   const colorNames = [
     ...baseColorNames, 'primary-alt', 'secondary-alt', 'strong-text', 'muted-text', 'bg-alt',
   ];
+  const cacheKey = `docifly-palette:${registryUrl.href}`;
+  const validColors = (colors, scheme) =>
+    colors && typeof colors === 'object' && !Array.isArray(colors) &&
+    (scheme === 'dark' ? baseColorNames : colorNames).every((name) => Object.hasOwn(colors, name)) &&
+    Object.entries(colors).every(([name, color]) =>
+      colorNames.includes(name) && /^#[0-9a-f]{6}$/i.test(color));
   const paletteStyle = document.createElement('style');
   paletteStyle.media = 'screen';
   document.head.append(paletteStyle);
   const palettes = new Map();
+  const setPalette = (theme, colors) => {
+    const declarations = colors === null ? '' :
+      Object.entries(colors).map(([name, color]) => `--brand-${name}: ${color};`).join('');
+    paletteStyle.textContent = `:root, ::backdrop {color-scheme: ${theme.scheme};${declarations}}` +
+      ':root {background-color: var(--brand-bg);}';
+    root.dataset.theme = theme.id;
+    root.dataset.colorScheme = theme.scheme;
+  };
+  const useLight = () => {
+    paletteStyle.textContent = '';
+    root.dataset.theme = 'light';
+    root.dataset.colorScheme = 'light';
+    try {
+      localStorage.removeItem(cacheKey);
+    } catch {
+      /* Storage is optional. */
+    }
+  };
+  let savedPreference;
+  try {
+    savedPreference = localStorage.getItem('starlight-theme');
+    const cached = JSON.parse(localStorage.getItem(cacheKey));
+    const id = !savedPreference || savedPreference === 'auto'
+      ? (system.matches ? 'dark' : 'light') : savedPreference;
+    if (cached?.id === id && ['light', 'dark'].includes(cached.scheme) &&
+        ((id === 'light' && cached.scheme === 'light' && cached.colors === null) ||
+          validColors(cached.colors, cached.scheme))) {
+      setPalette(cached, cached.colors);
+    }
+  } catch {
+    /* Missing, invalid, or blocked storage must not prevent loading fresh colors. */
+  }
   let revision = 0;
   const loadPalette = (theme) => {
-    if (theme.palette === null) return Promise.resolve('');
+    if (theme.palette === null) return Promise.resolve(null);
     if (!palettes.has(theme.id)) {
       palettes.set(theme.id, fetch(new URL(theme.palette, registryUrl)).then(async (response) => {
         if (!response.ok) throw new Error(`${theme.id} palette: HTTP ${response.status}`);
         const colors = await response.json();
-        const requiredNames = theme.scheme === 'dark' ? baseColorNames : colorNames;
-        if (!colors || typeof colors !== 'object' || Array.isArray(colors) ||
-            !requiredNames.every((name) => Object.hasOwn(colors, name)) ||
-            !Object.entries(colors).every(([name, color]) =>
-              colorNames.includes(name) && /^#[0-9a-f]{6}$/i.test(color))) {
+        if (!validColors(colors, theme.scheme)) {
           throw new Error(`${theme.id} palette must define four base hex colors; light palettes also require all five variants`);
         }
-        return Object.entries(colors).map(([name, color]) => `--brand-${name}: ${color};`).join('');
+        return colors;
       }));
     }
     return palettes.get(theme.id);
@@ -50,12 +84,7 @@
       throw new Error('Theme registry requires unique IDs, default Light, and Dark');
     }
     const parse = (value) => themes.has(value) ? value : 'auto';
-    let preference = 'auto';
-    try {
-      preference = parse(localStorage.getItem('starlight-theme'));
-    } catch {
-      /* Keep an in-memory preference if storage is unavailable. */
-    }
+    let preference = parse(savedPreference);
     const apply = async () => {
       const current = ++revision;
       const id = preference === 'auto' ? (system.matches ? 'dark' : 'light') : preference;
@@ -63,14 +92,15 @@
       try {
         const colors = await loadPalette(theme);
         if (current !== revision) return;
-        paletteStyle.textContent = `:root, ::backdrop {color-scheme: ${theme.scheme};${colors}}`;
-        root.dataset.theme = id;
-        root.dataset.colorScheme = theme.scheme;
+        setPalette(theme, colors);
+        try {
+          localStorage.setItem(cacheKey, JSON.stringify({ id, scheme: theme.scheme, colors }));
+        } catch {
+          /* Theme switching still works without a persistent pre-paint palette. */
+        }
       } catch (error) {
         if (current !== revision) return;
-        paletteStyle.textContent = '';
-        root.dataset.theme = 'light';
-        root.dataset.colorScheme = 'light';
+        useLight();
         console.error(`Unable to load the ${id} palette; using light colors.`, error);
       }
     };
@@ -110,6 +140,7 @@
     picker.hidden = false;
   };
   void initialize().catch((error) => {
+    useLight();
     console.error('Unable to load the theme registry; using light colors.', error);
   });
 })();

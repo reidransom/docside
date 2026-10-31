@@ -85,9 +85,9 @@ To check this fallback, disable JavaScript in browser settings and reload. Turn 
 
 ## Initialization and responsiveness
 
-`assets/color-mode.js` runs in the document head before the stylesheet and page content. It loads `assets/themes/index.json`, then fetches the selected palette if needed. It caches palette requests for later switches on the same page.
+`assets/color-mode.js` runs in the document head before the stylesheet and page content. When storage is available, it restores the last applied palette synchronously, so navigation and reloads keep the selected colors instead of briefly showing Light. The cached palette is scoped to the site's registry URL and used only when it matches the saved preference and, for Auto, the current system appearance.
 
-A fresh page shows Light until loading finishes. If a palette request fails or contains invalid colors, the loader uses Light and logs the error. It keeps your saved preference. If you change themes while a request is pending, the old response cannot override your new choice.
+The loader still fetches `assets/themes/index.json` and the selected palette on each page to pick up published changes. Palette requests are cached for later switches on the same page. Without a matching cached palette, the page shows Light until loading finishes. If a palette request fails or contains invalid colors, the loader clears the cached palette, uses Light, and logs the error. It keeps your saved preference. If you change themes while a request is pending, the old response cannot override your new choice.
 
 The selector appears once the registry has loaded and the DOM is ready. The global-controls script moves it between the header and Menu at 50rem. Print always uses the light print palette.
 
