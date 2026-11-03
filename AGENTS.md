@@ -1,19 +1,27 @@
-## Development
+# Ticket tracking
 
-This repo is both a [jigyll](https://github.com/reidransom/jigyll) theme and a jigyll website that documents the theme and is themed with that theme.
+Track tickets in local Markdown files under `.scratch/`. Each feature or bug
+gets its own ticket directory:
 
-Preview the site (and theme) with [servd](https://github.com/reidransom/servd) in `docs/`.
+```text
+sample-project/.scratch/
+├── sample-ticket-a/
+│   ├── issues/
+│   │   ├── 01-sample-task.md
+│   │   ├── 02-sample-task.md
+│   │   └── 03-sample-task.md
+│   ├── map.md
+│   └── spec.md
+└── sample-ticket-b/
+    ├── issues/
+    │   └── 01-sample-task.md
+    └── spec.md
+```
 
-## Agent skills
-
-### Issue tracker
-
-Issues live as Markdown files under `.scratch/<feature>/`. See `.scratch/agents/issue-tracker.md`.
-
-### Triage labels
-
-The canonical five triage roles use their default label strings. See `.scratch/agents/triage-labels.md`.
-
-### Domain docs
-
-This repository uses a single-context layout. See `.scratch/agents/domain.md`.
+- Use a descriptive ticket directory name for each feature or bug.
+- Write the technical design document in `spec.md`.
+- Add an optional `map.md` to define scope when needed.
+- Track tasks in `issues/` as numbered Markdown files, such as
+  `01-sample-task.md`.
+- Each task must be testable and fit within a single context window.
+- Keep ticket files local; `.scratch/` is ignored by Git.
