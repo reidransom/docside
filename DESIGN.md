@@ -1,217 +1,107 @@
 ---
 name: Docifly
-description: A clear, calm, technical documentation system with expressive headings and restrained controls.
+description: A restrained Basecoat Vega documentation system with bounded prose and persistent wayfinding.
 colors:
-  reference-blue-light: "hsl(234, 90%, 60%)"
-  reference-blue-dark: "hsl(224, 100%, 60%)"
-  reference-blue-dark-text: "hsl(224, 100%, 85%)"
-  reference-blue-light-deep: "hsl(234, 80%, 30%)"
-  reference-blue-light-tint: "hsl(234, 88%, 90%)"
-  reference-blue-dark-shade: "hsl(224, 54%, 20%)"
-  paper: "hsl(0, 0%, 100%)"
-  paper-nav: "hsl(224, 19%, 97%)"
-  cool-gray-1: "hsl(224, 20%, 94%)"
-  cool-gray-2: "hsl(224, 6%, 77%)"
-  cool-gray-3: "hsl(224, 6%, 56%)"
-  cool-gray-4: "hsl(224, 7%, 36%)"
-  cool-gray-5: "hsl(224, 10%, 23%)"
-  cool-gray-6: "hsl(224, 14%, 16%)"
-  cool-ink: "hsl(224, 10%, 10%)"
-  code-light-bg: "#f6f7f9"
-  code-light-text: "#403f53"
-  code-dark-bg: "#23262f"
-  code-dark-text: "#d6deeb"
+  background: "var(--background)"
+  foreground: "var(--foreground)"
+  primary: "var(--primary)"
+  primary-foreground: "var(--primary-foreground)"
+  muted: "var(--muted)"
+  muted-foreground: "var(--muted-foreground)"
+  border: "var(--border)"
+  ring: "var(--ring)"
 typography:
   display:
-    fontFamily: "Urbanist, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif"
+    fontFamily: "Geist, Geist Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1.8125rem, calc(0.25rem + 5vw), 4rem)"
-    fontWeight: 800
+    fontWeight: 700
     lineHeight: 1.2
     letterSpacing: "-0.02em"
   headline:
-    fontFamily: "Urbanist, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif"
+    fontFamily: "Geist, Geist Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "2.625rem"
-    fontWeight: 800
+    fontWeight: 700
     lineHeight: 1.2
-    letterSpacing: "-0.02em"
-  title:
-    fontFamily: "Urbanist, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif"
-    fontSize: "2.1875rem"
-    fontWeight: 800
-    lineHeight: 1.2
-    letterSpacing: "-0.02em"
   body:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif"
+    fontFamily: "Geist, Geist Sans, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.75
-  label:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif"
-    fontSize: "0.875rem"
-    lineHeight: 1.4
   code:
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+    fontFamily: "Geist Mono, ui-monospace, monospace"
     fontSize: "0.875rem"
     lineHeight: 1.75
 rounded:
-  code: "1px"
-  compact: "0.25rem"
-  field: "0.5rem"
-  action: "999rem"
+  control: "var(--radius-md)"
+  card: "var(--radius-xl)"
 spacing:
-  quarter: "0.25rem"
   half: "0.5rem"
-  three-quarter: "0.75rem"
   base: "1rem"
   panel: "1.5rem"
-components:
-  button-primary-light:
-    backgroundColor: "{colors.reference-blue-light}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.action}"
-    padding: "0.9375rem 1.25rem"
-  button-primary-dark:
-    backgroundColor: "{colors.reference-blue-dark-text}"
-    textColor: "{colors.cool-ink}"
-    rounded: "{rounded.action}"
-    padding: "0.9375rem 1.25rem"
-  button-secondary-light:
-    textColor: "{colors.cool-ink}"
-    rounded: "{rounded.action}"
-    padding: "0.9375rem 1.25rem"
-  button-minimal-light:
-    textColor: "{colors.cool-ink}"
-    rounded: "{rounded.action}"
-    padding: "0.9375rem 0"
-  search-input-light:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.cool-ink}"
-    rounded: "{rounded.field}"
-    padding: "0.75rem 1rem"
 ---
 
 # Design System: Docifly
 
-## Overview
+## Authority and intent
 
-**Creative North Star: "The Clear Reference Desk"**
+Docifly is a **Read-mode** documentation surface. The shared visual authority is the pinned, unmodified **Basecoat 1.1.0 default Vega** distribution, not the old Starlight skin. Vega supplies the reset, semantic Light/Dark tokens, component geometry, radii, control states, focus treatment, and font stacks. Docifly retains its folded-D identity artwork, documentation topology, prose hierarchy, and supported author APIs.
 
-A clear, calm, technical system that puts documentation ahead of interface decoration. Strong Urbanist headings establish signposts; system-font prose and compact supporting controls keep sustained reading familiar. The purple folded-D artwork carries identity without replacing the blue interaction palette.
+Readability and predictable wayfinding take priority over decoration. Do not recreate the former blue/pill/Urbanist styling through overrides. The intentional changes include neutral stock themes, system-fallback typography, Vega cards/alerts/badges/buttons, and the default filled/raised Vega tab selection rather than an underline skin. Punk and Ice retain their own colors on these same components.
 
-Components are precise and restrained. The workspace is flat, while selected utilities are lifted: borders and cool neutral layers organize persistent regions; small shadows distinguish link cards and larger shadows separate overlays. Light and dark are complete semantic themes, not simple color inversion.
+This record reflects actual local headless inspection of documentation, long guides, components, tabs, code, splash, not-found, Arabic RTL, enlarged text, search, and installed consumers at root and `/docs/`. The maintained browser gate covers pinned Chromium, Firefox, and WebKit on Linux; it does not certify accessibility, real Safari, physical devices, or visual/interaction parity with another documentation framework. Historical captures are not current visual baselines.
 
-**Key Characteristics:**
-- Heavy geometric headings with familiar system-font prose.
-- Blue interaction accents and cool neutral surfaces in both themes.
-- Persistent desktop wayfinding that collapses for smaller screens.
-- Flat content regions, restrained borders, and selectively lifted utilities.
-- Existing folded-D identity artwork, not a generalized gradient treatment.
+## Delivery and cascade
 
-This record describes the incumbent implementation, not a redesign or a parity certification. Sources: `_sass/`, shipped `assets/docifly.css`, and the served documentation overview and getting-started page inspected on desktop and mobile. Frontmatter typography stacks omit trailing emoji fallbacks for portability; runtime stacks in `_sass/_props.scss` remain authoritative for those fallbacks.
+All layouts load `assets/vendor/basecoat/basecoat.cdn.min.css` before `assets/docifly.css`, with prefix-safe escaped asset URLs. The synchronous color-mode bootstrap runs before both. The vendor asset is local and immutable; `tools/styles/basecoat.py` imports/checks the pinned archive separately from the offline documentation Sass build.
 
-## Colors
+Basecoat's layers are `properties`, `theme`, `base`, `components`, and `utilities`; Docifly adaptations follow in `docifly`. Vendor semantic `:root`/`.dark` values are unlayered. Custom palette rules are screen-only, more specific `html:root` rules; the unlayered light print baseline wins independently. No second reset, old token adapter, Basecoat JavaScript, compatibility pack, Tailwind runtime, or consumer frontend build is shipped.
 
-Reference Blue supplies interaction emphasis; Paper and Cool Ink anchor theme-specific neutral layers. Fold Purple describes the existing identity artwork, not a newly extracted flat UI token.
+## Color and themes
 
-### Primary
+Use shared semantic pairs directly: `background`/`foreground`, `card`/`card-foreground`, `popover`/`popover-foreground`, `primary`/`primary-foreground`, `secondary`/`secondary-foreground`, `muted`/`muted-foreground`, `accent`/`accent-foreground`, and corresponding sidebar roles. Borders, inputs, and rings use their named roles. `accent` is an interaction surface, not a universal colored-text token.
 
-- **Reference Blue:** light-theme links, action fills, and emphasis use `reference-blue-light`. Dark-theme interaction text and fills use `reference-blue-dark-text`; the saturated `reference-blue-dark` is a separate primitive, not the default dark link color.
-- **Reference Blue tint and shade:** low/high accent variants support badges, selection, and inverted text. Resolve semantic tokens for the active theme rather than hard-coding one variant.
+Stock Light and Dark use vendor defaults without palette JSON. Punk and Ice, and registered custom choices, define exactly the 26 six-digit semantic colors documented in `docs/color-modes.md`. Dark schemes also set `html.dark`; Auto resolves only to stock Light/Dark and follows live system changes. One Docifly controller owns selection, cached restoration, fresh registry/palette authority, stale-response protection, and optional preference storage. Returning to stock clears custom overrides.
 
-### Secondary
+Only documentation-specific properties use `--docifly-*`: reading geometry/type, syntax/markers, semantic statuses, and the optional hero-depth effect. Notes, tips, cautions, dangers, and success labels retain distinct semantic color pairs. Their colors extend Vega, not replace its geometry. Check foregrounds against actual composited surfaces, including both code-marker stripe phases. Syntax text retains a 4.5:1 target on the shipped examples; arbitrary author palettes require their own contrast review.
 
-Semantic callout and badge families are blue for notes, purple for tips, orange for cautions, red for dangers, and green for success badges. Their low/base/high values are implemented in `_sass/_props.scss`, with badge mappings in `_sass/_components.scss`. They are contextual signals, not interchangeable decorative accents. These component-specific families are intentionally not expanded into a second palette here.
-
-### Neutral
-
-- **Paper:** light page and sidebar background; **Paper Nav:** slightly tinted light header.
-- **Cool Ink:** dark page background and light primary text.
-- **Cool Gray:** dark header/sidebar, body text, borders, inline-code surfaces, and muted labels. The numbered primitive ramp is ordered light-to-dark; runtime gray names reverse roles in light mode.
-- **Code surfaces:** dedicated light/dark backgrounds and text colors, with syntax colors maintained in `_sass/_props.scss`.
-
-**The Semantic Theme Rule.** Use the active theme's semantic CSS properties for text, backgrounds, borders, and accents; token names such as “white” and “black” describe roles that change with the theme.
+The purple folded-D logo is identity artwork, not the stock interaction accent. Theme changes do not recolor content images.
 
 ## Typography
 
-**Display and heading font:** Urbanist, locally shipped at weight 800, with system fallbacks. **Body and interface font:** the platform system stack. **Code and badges:** the system monospace stack.
+Use Basecoat's Geist/Geist Sans and Geist Mono preferences with installed system fallbacks. No fonts are bundled or downloaded. Runtime vendor stacks, including emoji fallbacks, are authoritative; the compact frontmatter records only the principal families.
 
-The geometric, tightly tracked headings provide character without making paragraphs depend on a custom font. The hierarchy is an explicit stepped scale, not one universal modular ratio.
+Article headings retain the documentation-specific scale and weight 700. H1 is 2.1875rem in the compact shell and 2.625rem in the wide shell; H2 is 1.8125rem → 2.1875rem, H3 1.5rem → 1.8125rem, and H4 1.25rem → 1.5rem. Prose uses a 1.75 reading line height, with code at 0.875rem and smaller code labels at 0.8125rem. Hero titles remain fluid and bounded. Component titles retain Vega typography rather than inheriting article-heading rules.
 
-- **Display:** fluid hero title, using the frontmatter display role.
-- **Headline:** document h1 is (2.1875rem) below the main desktop breakpoint and uses the headline role above it.
-- **Title:** document h2 is (1.8125rem) below that breakpoint and uses the title role above it.
-- **Lower headings:** h3 (1.5rem → 1.8125rem), h4 (1.25rem → 1.5rem), and h5 (1.125rem). These remain weight 800 with the heading line height and tracking.
-- **Body:** use the body role for prose; document content has a width cap, not a prescribed character count.
-- **Labels:** desktop nested navigation uses the label size; top-level labels use (1rem, weight 600). Mobile top-level navigation is (1.125rem).
-- **Code:** block code uses the code role; inline code and smaller code labels use (0.8125rem).
+Each `.sl-markdown-content` is a prose scope that stops at components, tabs, and code frames. Explicit nested Markdown starts a fresh scope. Existing `sl-*` names for actual prose/icon/steps responsibilities are not a compatibility token interface or an alternate component skin.
 
-**The Heading/Prose Rule.** Preserve Urbanist for headings and the site title; use the system stack for body text and ordinary controls. Card titles have their own weight-600 treatment and should not be mistaken for document headings.
+## Layout and responsive behavior
 
-## Layout
+Preserve the fixed header, left navigation, bounded 45rem reading column, and optional right TOC rail. The header is 3.5rem in compact layout and 4rem in the wide shell; the sidebar is 18.75rem. Logical inline properties mirror the shell for RTL. Splash pages omit sidebars, retain shared controls, and allow an 80rem hero width. Hero actions wrap with readable labels.
 
-Documentation uses a fixed header, left navigation, bounded reading column, and right table of contents when space permits. The header is (3.5rem) on smaller screens and (4rem) at the main desktop breakpoint. The sidebar width is (18.75rem); ordinary content is capped at (45rem). Horizontal content padding increases from (1rem) to (1.5rem) at the wide breakpoint. Content panels use (1.5rem) vertical padding, with a larger bottom reading buffer.
+Navigation changes at 50rem (800 CSS pixels with a 16px browser font); the TOC changes at 72rem (1152px). Enlarged root text can activate the compact-shell guards even at a desktop viewport. The one set of global controls moves between header and Menu without cloning. Preserve focus during relocation and clear overlay/inert state at transitions.
 
-At (50rem), navigation becomes a persistent sidebar, the mobile menu control disappears, heading sizes increase, and hero layouts switch from a centered single column to a (7:4) text/image split. The heading-token media query uses (50em); other shell rules use (50rem). At (72rem), the table of contents becomes a right-hand rail and its mobile bar no longer reserves vertical space. Below that threshold, heading navigation uses a mobile bar. Use logical inline directions so the structure can mirror for RTL.
+Wide source, tables, file trees, and long tab labels scroll locally rather than widening the page. Inline prose literals wrap. Inspect 320/390px widths, both sides of each breakpoint, 200% text, long labels, and native localized RTL content.
 
-Splash heroes have a separate width cap of (80rem); article content is centered at the ordinary (45rem) cap, as is the page title when no hero is present. Hero copy is bounded to (50ch); identity artwork scales independently and is not a background decoration. Actions wrap instead of squeezing labels.
+## Components and interaction
 
-Prose blocks typically separate by the base spacing token; headings following non-headings have (1.5em) top separation. Code and tab strips preserve horizontal scrolling rather than clipping useful content. Component padding is contextual; the frontmatter spacing entries record recurring distances, not an enforced universal spacing scale.
+- **Actions:** public primary/secondary/minimal variants map to Vega default/outline/ghost buttons. Keep validated destinations, icon position, escaping, focus, and new-window safety. Documentation adaptations provide wrapping and touch geometry, not a pill skin.
+- **Cards:** Vega header/content structure with scoped nested Markdown. Ordinary cards are not clickable; link cards expose one semantic whole-card link without nested interactive controls.
+- **Badges and callouts:** Vega geometry with narrow status/size extensions. Static callouts are labeled asides, not unsolicited live alerts.
+- **Tabs:** one Docifly controller enhances source sections into Vega's direct-child tablist/panels. Keep deterministic IDs, RTL arrows, Home/End, exact-label sync, optional persistence, local overflow, focus, and scroll stability. Nested groups remain unsupported. All panels remain readable without JavaScript and in print.
+- **Navigation:** native disclosures and popover with recursive links, current-page semantics, optional storage, keyboard focus trapping, and Escape restoration. Language/version pickers remain native disclosures with ordinary links.
+- **Search:** native modal dialog and Vega controls. Real MiniSearch 7.2.0 loads from the documented SRI-pinned production CDN, unlike locally shipped Basecoat. Keep disabled-library, corpus-error/Retry, empty, and no-result states distinct. Results and their padding have one destination; Escape returns focus to the opener.
+- **Code:** server-highlighted source and frame metadata are authoritative. Vega copy buttons report actual Clipboard API success/denial. Copy excludes captions, marker decoration, and gutters and retains the source newline. Normal selection remains available without the API.
 
-## Elevation & Depth
+Basecoat's standalone utility subset is not all of Tailwind. Copied upstream demos may need missing utilities or interaction controllers; they are not automatically supported Docifly includes. Do not add a second controller to make a pasted demo work.
 
-**Flat workspace, lifted utilities.** Persistent reading regions are separated by tonal backgrounds and thin borders. Link cards use the small shadow; the mobile menu button uses the medium shadow; the search dialog and focused skip link use the large shadow. Exact theme-specific shadow values are recorded in the sidecar. Search overlays use a tinted backdrop with (0.25rem) blur.
+## Motion, fallback, and paper
 
-**The Utility Lift Rule.** Keep reading surfaces flat. Reuse the implemented small, medium, and large shadow roles for the utilities that already need separation rather than adding ambient shadows to every container.
+Retain native/Vega state transitions rather than inventing page transitions or ambient motion. Opt-in folded-D hero depth has a finite entrance and bounded pointer response; touch, reduced motion, and no JavaScript keep it static. Page navigation remains ordinary document loads.
 
-Page navigation uses ordinary document loads without transition animation; the current-page link updates in place without motion. Splash artwork can explicitly opt into `hero.image.depth: true`: a finite (900ms) entrance, bounded pointer-driven perspective, and an offset soft shadow derived from the theme's neutral colors. Hero copy stays still; touch, reduced motion, and JavaScript-disabled rendering retain the original static artwork. Pointer tracking stops on exit or when offscreen, with no idle animation loop. The version-picker caret retains its (0.2s ease) transition; there is no global animation scale.
+Without JavaScript, Light content, links, images, native disclosures, server TOC/code, and all tab panels remain readable. Search is disabled; theme selection, copy controls, active-section feedback, enhanced tabs, and focus management need their existing controllers. Denied storage must not break current-page operation.
 
-## Shapes
+Print uses an explicit light semantic/status/code baseline even if `html.dark` is set. Hide interactive/fixed chrome, expand tab panels and disclosure paint, wrap code/tables, retain frames and canonical URLs, and append HTTP(S) article destinations. Inspect saved paper/PDF, not only layout boxes. Return to the exact screen palette, selection, disclosure state, and preference without print-time writes.
 
-Actions are fully rounded pills. Navigation links and badges use compact corners; search fields, desktop search dialogs, and link cards use field-sized corners. Ordinary content cards are square and bordered; code blocks are nearly square. The mobile menu button is circular. Do not normalize these distinct shapes into one global radius.
+## Change discipline
 
-Borders are generally (1px). Callouts use a stronger inline-start stripe (0.25rem). Tabs use a (2px) baseline and selected underline. The folded-D artwork retains its existing geometry and gradients as an asset.
-
-## Components
-
-### Buttons
-
-Precise and restrained. Primary link actions use the semantic text-accent fill with the theme's page-background color for their label. Secondary actions are outlined with primary text; minimal actions remove horizontal padding and visible fill. Desktop dimensions are captured in frontmatter; below (50rem), link actions use (0.4375rem 1.125rem) padding and (0.875rem) type.
-
-Primary hover retains its color assignment; do not invent a darker fill or lift. Link-action keyboard focus uses the browser outline with (0.25rem) offset. The general focus-visible treatment elsewhere is an accent outline (2px) with (2px) offset.
-
-### Cards / Containers
-
-Ordinary cards are square, bordered, page-colored containers with fluid padding (1rem to 2.5rem). Link cards use rounded corners, (1rem) padding, and the small shadow. Preserve these two container types rather than treating all cards as clickable. Link-card hover uses the implemented raised neutral surface, stronger border, and primary-text icon.
-
-### Inputs / Fields
-
-Search is the canonical field: page-colored background, primary text, neutral border, field radius, and the padding recorded in frontmatter. Focus changes the input border to the accent, in addition to the shared focus outline. The header search trigger uses a (2.5rem) height and a keyboard-shortcut hint on desktop; on mobile it becomes an icon-only control. Disabled triggers use reduced opacity (0.65). No generic form error style is established.
-
-The search dialog is full-screen on mobile. On desktop it is top-centered with a (40rem) width cap, rounded corners, and the large shadow. Results are individually surfaced containers with compact corners.
-
-### Navigation
-
-Recursive navigation groups use native disclosure controls and indentation lines. Current-page links use an accent fill, inverted text, and weight 600. Hover/focus raises the label to the theme's primary text color. Small-screen navigation is a full-height popover below the header; the circular toggle shows open/close state. Preserve current-page semantics and visible keyboard focus.
-
-### Badges and Callouts
-
-Badges are compact monospace labels with theme-specific semantic fills, a (1px) border, and compact corners. They are labels, not invented interactive chips. Callouts use semantic tinted surfaces and an inline-start stripe, with matching emphasized title/icon color.
-
-### Tabs and Code
-
-Tabs are a horizontally scrollable row of text controls: selection combines weight 600, primary text, and an accent underline. Code uses a dedicated neutral surface, monospace text, syntax colors, and horizontal overflow. Frames, line markers, copy controls, and feedback keep their existing documented variants; this record does not define new ones.
-
-## Do's and Don'ts
-
-### Do:
-- **Do** resolve semantic color properties for the active light or dark theme.
-- **Do** preserve the Urbanist heading/system-prose distinction.
-- **Do** keep reading content bounded and preserve mobile navigation and horizontal code overflow.
-- **Do** retain visible keyboard focus and current-page or selected-state semantics.
-- **Do** use existing folded-D artwork for identity and semantic colors for contextual signals.
-
-### Don't:
-- **Don't** equate the purple logo artwork with the blue interaction accent.
-- **Don't** give every content region a shadow or the same corner radius.
-- **Don't** invent hover motion, form states, or additional palette roles absent from the implementation.
-- **Don't** describe this extracted design record or historical screenshots as proof of complete Starlight parity.
+Prefer vendor semantics and existing public includes. Keep narrow documentation adaptations scoped to their purpose; do not hard-code the discarded appearance, introduce token aliases, duplicate controllers, or turn historical evidence into parity/certification claims. Rebuild shipped CSS after Sass changes, run relevant real-consumer gates, and inspect rendered states before updating this record.

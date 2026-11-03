@@ -61,6 +61,13 @@ Both operations are offline and use only Python's standard library. Import valid
 
 Importing does not edit layouts or compile Sass. `tools/styles/build.py` remains responsible only for documentation Sass and never refreshes dependencies; theme consumers need no new package manager or frontend toolchain. The standalone stylesheet includes the global reset, tokens, component rules, and only its bundled utility subset, not arbitrary Tailwind classes. Its semantic `:root`/`.dark` declarations are **unlayered**: the runtime's screen-only custom rules use `html:root` specificity to win even when restored before the vendor link loads. The light print baseline is also unlayered and more specific than vendor defaults, so `html.dark` cannot leak dark semantics into print. No vendor bytes are patched. Dark component variants use `html.dark`, synchronized by Docifly's one theme controller. No Basecoat JavaScript or compatibility pack is shipped.
 
+Upstream Basecoat templates are not Liquid includes, and its standalone CSS
+does not contain every Tailwind utility. Pasting an arbitrary Basecoat demo
+does not make it a supported Docifly component: it may require absent utility
+classes or a JavaScript controller. Use the public `components/` includes for
+the documented API. Do not load Basecoat's tabs/all-in-one scripts beside
+Docifly's controllers; that would duplicate state and event ownership.
+
 When changing code-marker styles, check whole-line and inline marks in Light, Dark, Punk, and Ice, including both stripe phases and numbered gutters. Composite translucent marker backgrounds over the actual code surface before calculating WCAG relative luminance. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source. Narrow `--docifly-code-muted` and `--docifly-code-focus` extensions keep captions/gutters and code focus readable; dark insertion/deletion fills use less opacity rather than changing Vega's shared palette.
 
 All typography uses Basecoat's font stacks: Geist/Geist Sans with system sans-serif fallbacks, and Geist Mono with system monospace fallbacks. These are preferences for locally installed fonts, not downloads or bundled font assets. Article headings retain a documentation-specific scale, weight 700, restrained tracking, and a bounded reading column; site-title and hero geometry remain documentation adaptations. Component typography remains Vega-owned rather than inheriting a global heading-font override.
@@ -123,6 +130,12 @@ Heading permalinks use the filled `link-alt` glyph from `tools/icons/icons.json`
 
 `assets/toc.js` enhances the existing links. It switches between a rail and a disclosure, maintains current-section feedback from the article headings, and focuses the emitted target after link selection. It does not create, remove, or label TOC entries.
 
+The compact outline explicitly removes the list from display while its native
+`details` is closed. This prevents closed-content paint over the reading
+column, including with enlarged text; do not rely on a zero-height or
+transparent `::details-content` alone. Opening the disclosure and the desktop
+rail retain the ordinary list; server-rendered no-JavaScript markup stays open.
+
 ### Tabs
 
 `assets/tabs.js` is the sole tab controller; Basecoat JavaScript is not loaded. Server-rendered `.tab-item` sections remain fully readable without JavaScript. Enhancement moves their panels and decorative icons into Vega's `.tabs` structure with a direct-child ARIA tablist and panels, removes the section wrappers, and retains plain-text panel headings for print. IDs are deterministic from page-local DOM order. Tabs are named by their labels alone; selected/hidden/tabindex state and panel labels stay aligned. Long-label scrolling is local to the tablist, with no replacement tab skin. Exact text-label synchronization never transfers focus to a receiving group, and unequal panel heights above the initiating group do not move it in the viewport. Versioned persistence is optional per sync key; missing labels fall back to the group's first panel on restoration and storage failures retain in-memory behavior. Nested groups remain unsupported.
@@ -147,8 +160,10 @@ Search uses a native modal dialog with Vega's popover surface and controls.
 The existing enhancer keeps Tab/Shift-Tab within its visible controls and
 results and returns focus to its opener on Cancel/Escape. A failed corpus load
 offers the existing explicit Retry action; no-results and empty-query messages
-remain separate from that error. Opening the modal dismisses the native menu
-popover so its covered-content state can clear.
+remain separate from that error. Opening the modal explicitly closes the
+native menu popover first; navigation clears its covered-content inert state
+synchronously on `beforetoggle` close. This handoff must not rely on implicit
+top-layer dismissal delivering a later event before focus is restored.
 
 Highlighting and fenced-code metadata parsing are server-side Jigyll/Chroma behavior. Differences from stock Starlight's code highlighter cannot be repaired by inventing tokens in CSS or the copy handler.
 
@@ -189,6 +204,15 @@ npx playwright install --with-deps chromium firefox webkit
 JIGYLL=/path/to/jigyll npm test
 ```
 
+Provision packages/browsers before the functional run. If the exact pinned
+binaries already exist in a shared cache, set
+`PLAYWRIGHT_BROWSERS_PATH=/absolute/path/to/cache` for `npm test` instead of
+downloading them again. Record successful launches and actual versions for
+all three projects; a missing executable is not a passing or silently skipped
+browser. The configured gate has no retries. Chromium-only native clipboard
+permission/readback checks do not establish the same permissions API on
+Firefox or WebKit; cross-browser copy feedback remains separately exercised.
+
 Functional browser runs are local-only. `tools/browser/tests/fixtures.mjs`
 installs the shared `local-policy.mjs` policy on the default context; tests
 needing clipboard permissions or disabled JavaScript use its
@@ -226,6 +250,13 @@ states, modal focus, enlarged-text relocation, localized long labels, and
 no-JavaScript disclosures. Run the localization boundary checker from the
 repository root with an absolute executable path:
 `python tools/localization/check.py --jigyll /absolute/path/to/jigyll`.
+
+The development theme symlink points back into this repository. The current
+localization checker's recursive theme copy must not follow that link: park
+`docs/_theme/docifly` outside `docs/` temporarily and restore it in a `finally`
+step when running the checker from the development checkout. Do not replace
+the symlink with copied internals or mistake the copied checker fixture for
+the real Git-installer test.
 
 The generated `.artifacts/environment.json` records the platform, Jigyll and
 theme revisions, package-lock digest, browser revisions, color modes, pages,

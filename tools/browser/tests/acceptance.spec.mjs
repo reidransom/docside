@@ -174,10 +174,12 @@ for (const installation of installations) {
     await page.goto(urlFor(installation, pages[1]));
     const details = page.locator('#toc details');
     await expect(details).not.toHaveAttribute('open', '');
+    await expect(page.locator('#toc ul')).toBeHidden();
     await details.locator('summary').click();
     const link = page.locator('#toc a[data-toc-target="maintain-the-examples"]');
     await link.click();
     await expect(page).toHaveURL(/#maintain-the-examples$/);
+    await expect(page.locator('#toc ul')).toBeHidden();
     await expect(page.locator('#maintain-the-examples')).toBeFocused();
     const position = await page.locator('#maintain-the-examples').evaluate((heading) => ({
       top: heading.getBoundingClientRect().top,
@@ -194,6 +196,7 @@ for (const installation of installations) {
     await page.setViewportSize({ width: 1151, height: 900 });
     await expect.poll(() => page.evaluate(() => matchMedia('(min-width: 72rem)').matches)).toBe(false);
     await expect(details).not.toHaveAttribute('open', '');
+    await expect(page.locator('#toc ul')).toBeHidden();
     await expect(details.locator('summary')).toBeFocused();
   });
 

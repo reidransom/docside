@@ -140,11 +140,18 @@ for (const prefix of ['', '/docs']) {
       await page.emulateMedia({ media: 'print' });
       for (const panel of await panels.all()) await expect(panel).toBeVisible();
       for (const label of await page.locator('.tab-item-label').all()) await expect(label).toBeVisible();
-      await expect(disclosure.locator('ul').first()).toBeVisible();
+      // WebKit's visibility heuristic treats every closed details descendant
+      // as hidden even when ::details-content visibly paints it for print.
       const expanded = await disclosure.evaluate((node) => ({
         bottom: node.getBoundingClientRect().bottom,
         contentBottom: node.querySelector('ul').getBoundingClientRect().bottom,
+        contentHeight: node.querySelector('ul').getBoundingClientRect().height,
+        contentVisibility: getComputedStyle(node, '::details-content').contentVisibility,
+        opacity: getComputedStyle(node, '::details-content').opacity,
       }));
+      expect(expanded.contentHeight).toBeGreaterThan(0);
+      expect(expanded.contentVisibility).toBe('visible');
+      expect(expanded.opacity).toBe('1');
       expect(expanded.contentBottom).toBeLessThanOrEqual(expanded.bottom + 1);
       await expect(disclosure).toContainText('complete-output.txt');
       await expect(page.locator('#global-controls')).toBeHidden();

@@ -20,9 +20,9 @@ Success means developers can install the theme, configure a documentation site, 
 
 ## Positioning
 
-Stock Starlight is the reference for Docifly's appearance and responsive behavior, not a runtime dependency or a claim of Astro compatibility. Consumers do not need to install Node.js, Astro, or Sass to use the shipped theme.
+Basecoat 1.1.0's default Vega distribution is Docifly's shared visual authority: its local standalone CSS owns the reset, stock Light/Dark colors, component geometry, focus/state treatment, and font stacks. Docifly owns the documentation shell, prose, semantic status/code extensions, and existing browser behavior. This is a clean foundation replacement, not an optional skin or a claim of Astro compatibility.
 
-Visual parity and interaction parity are distinct claims that require a defined scope and current evidence. Using Starlight as a reference does not establish either claim by itself.
+Consumers use shipped assets with Git and Jigyll; they need no Node.js, npm, Python, Sass, or Tailwind build. MiniSearch remains a separate SRI-pinned production CDN dependency for search, with no runtime local fallback.
 
 ## Operating Context
 
@@ -38,7 +38,7 @@ The existing documentation describes documentation and splash layouts, optional 
 
 Keep Markdown-first authoring and the consumer installation workflow. Browser enhancements must be described according to their actual supported behavior, including documented JavaScript and storage limitations.
 
-Use the domain definitions in `CONTEXT.md`: stock Starlight means its default documentation experience, not the Starlight website's site-specific customizations. Visual parity concerns rendered appearance; interaction parity concerns observable control behavior.
+Keep scope precise: the current local acceptance surface is the maintained documentation, feature fixtures, and real Git-installed consumers at root and `/docs/`, using pinned headless Chromium, Firefox, and WebKit on Linux. Playwright WebKit is not real Safari evidence. Historical Starlight comparisons and domain definitions in `CONTEXT.md` do not establish current visual or interaction parity.
 
 ## Brand Commitments
 
@@ -49,7 +49,7 @@ Preserve the Docifly name and existing purple folded-D logo assets. Existing pro
 - `docs/`: installation, configuration, feature guides, implementation details, and manual inspection instructions; the site itself demonstrates the theme.
 - `docs/media/` and `__docs/`: existing Docifly identity artwork.
 - `fixtures/`: feature-specific content and scenarios.
-- `evidence/` and `docs/poc.md`: retained inspection and historical proof-of-concept material. Historical captures are not current proof of complete Starlight parity.
+- `evidence/` and `docs/poc.md`: retained inspection and historical proof-of-concept material, not current proof of the Basecoat cutover or parity.
 - `docs/internals.md`: maintainer browser acceptance guidance. Failure-diagnostic screenshots are not visual-parity baselines.
 
 Do not invent customer proof, testimonials, benchmarks, accessibility certification, or parity results.
@@ -57,7 +57,7 @@ Do not invent customer proof, testimonials, benchmarks, accessibility certificat
 ## Product Principles
 
 1. Make documentation useful for readers and straightforward for developers to author and maintain.
-2. Keep consumer use independent of Node.js, Astro, and Sass installations.
+2. Keep consumer use independent of frontend build tools; ship local Basecoat Vega and compiled documentation CSS.
 3. Use this documentation site as a real consumer and demonstration of the theme.
 4. Preserve precise terminology and make claims only within the scope supported by evidence.
 

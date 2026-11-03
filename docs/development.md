@@ -15,6 +15,11 @@ jigyll serve --source docs --host 127.0.0.1 --port 4322
 
 Or run `jigyll serve` inside `docs/`. The checked-in `docs/_theme/docifly` symlink points to the repository root, so the preview uses local theme files without a Ruby bundle or a separate installation. Open <http://127.0.0.1:4322/>; restart the server after editing theme files.
 
+The existing `docs/.servd.toml` runs the watched Jigyll preview. If this
+directory is registered with servd, use `servd up --wait` from `docs/` and
+`servd status` for its actual port/URL. This uses the existing registration;
+do not add a second proxy or change its host binding for theme verification.
+
 ## Preview an installed consumer
 
 To check the committed theme through Jigyll's normal installer, run these commands from the repository root in a checkout named `docifly`:
@@ -48,6 +53,41 @@ git -C .poc/living-docs/_theme/docifly pull --ff-only
 ```
 
 Use the actual installed theme directory if your checkout has a different name. Inspect theme changes through this installed consumer rather than copying internal files into the site.
+
+Build a prefixed output separately to exercise the same installed assets:
+
+```sh
+jigyll build --source .poc/living-docs --destination "$PWD/.poc/prefix-preview/docs" --baseurl /docs
+```
+
+Serve `.poc/prefix-preview/` and visit `/docs/`, not `/`. Check actual requests
+for both `assets/vendor/basecoat/basecoat.cdn.min.css` and
+`assets/docifly.css` beneath that prefix. Record
+`git -C .poc/living-docs/_theme/docifly rev-parse HEAD` when reporting an
+installer check: copying the working tree is not an immutable installer test.
+
+## Maintain shipped styles
+
+Basecoat 1.1.0's default Vega stylesheet is checked in unmodified and loaded
+before compiled documentation CSS. Ordinary Markdown edits and consumer
+builds need only Git/Jigyll, not Node, npm, Python, Sass, or Tailwind.
+Maintainers changing Sass run:
+
+```sh
+python tools/styles/build.py
+jigyll build --source docs --destination .poc/docs-preview
+```
+
+The Sass build is offline and does not refresh vendor assets. For an explicit
+vendor refresh from an already acquired pinned archive, use
+`python tools/styles/basecoat.py import --archive /path/to/basecoat-css-1.1.0.tgz`,
+then `python tools/styles/basecoat.py check` and
+`python -m unittest discover -s tools/styles -p 'test_basecoat.py'`.
+Review the license/manifest and rebuild/inspect the real pages; a version
+upgrade is a separate reviewed change, not a side effect of compilation.
+See [Theme internals](../internals/#styles-and-shipped-output) for cascade and
+controller ownership and [Color modes](../color-modes/) for the complete
+semantic custom-palette migration.
 
 ## Read or inspect
 

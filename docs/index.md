@@ -3,7 +3,7 @@ title: Docifly
 layout: splash
 permalink: /
 hero:
-  tagline: A standalone Jigyll documentation theme that uses stock Starlight as its design reference.
+  tagline: A standalone Jigyll documentation theme built on Basecoat Vega.
   image:
     src: /media/docifly-icon.svg
     alt: Docifly purple folded D logo
@@ -41,6 +41,6 @@ Then organize your [navigation](./navigation/), write [headings](./headings/), a
 
 Docifly has documentation and splash layouts with optional heroes. It supports recursive navigation, heading navigation, Markdown and code formatting, color modes, and local full-text search. Each feature's docs describe the supported components and output.
 
-Visual parity means matching appearances under a defined set of conditions. Interaction parity means matching observable control behavior. Trying this site by hand does not prove that it fully matches stock Starlight in either respect.
+Basecoat 1.1.0's default Vega supplies the shared appearance; Docifly supplies the documentation shell and supported authoring features. Arbitrary upstream demos may need utilities or controllers that are not shipped here. Local browser checks and manual inspection do not establish accessibility certification, real Safari support, or complete parity with another documentation framework.
 
 Historical proof-of-concept captures and result files remain in the theme repository's `evidence/poc/`, outside this published documentation site. The tools that captured those results have been retired, so they are not a current measurement of this site.

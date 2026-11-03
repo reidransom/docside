@@ -6,7 +6,10 @@ for (const installation of installations) {
   test(`${installation.name} real offline search indexes generated content and respects exclusions`, async ({ page }) => {
     await page.goto(urlFor(installation, { path: '/' }));
     await page.locator('#search-toggle').click();
-    await expect(page.locator('#search-dialog')).toBeVisible();
+    // Vega's dialog shell has no box; the visible frame owns the modal surface.
+    await expect(page.locator('#search-dialog')).toHaveAttribute('open', '');
+    await expect(page.locator('.search-dialog-frame')).toBeVisible();
+    await expect(page.locator('#search-input')).toBeFocused();
     await page.locator('#search-input').fill('Documentation workflow');
     const result = page.locator('#search-results a');
     await expect(result.first()).toContainText('Overview');

@@ -11,6 +11,12 @@ Punk and Ice are complete custom semantic palettes over the same components. Pun
 
 The custom-palette format uses Basecoat semantic names **without** the leading `--`. This replaces the former base-color/derived-variant format: convert every custom file to the complete schema below. There is no legacy-schema fallback. Shared foreground/background pairs, borders, inputs, focus rings, and sidebar colors are explicit; Docifly's syntax, code-marker, and semantic-notice extensions remain CSS-owned.
 
+The intentional appearance change is broader than recoloring: stock themes
+now use Vega controls, cards, alerts, and tabs, with its neutral Light/Dark
+defaults rather than the former shared skin. Public Liquid arguments remain
+the same. Do not reproduce the old appearance with token aliases or add a
+second theme controller.
+
 Publish JSON color changes with the site. They do not need Sass compilation. After changing Sass, run `python tools/styles/build.py` to rebuild `assets/docifly.css`. See [Theme internals](../internals/#styles-and-shipped-output) for build dependencies.
 
 
@@ -57,6 +63,13 @@ Publish JSON color changes with the site. They do not need Sass compilation. Aft
    ```
 
 3. Publish the palette file and updated registry. You do not need to edit JavaScript, templates, or Sass.
+
+Check the resulting rendered surfaces, not just the JSON: body/muted text,
+selected navigation, semantic notices, focus rings, native controls, and
+syntax over both plain and marked code backgrounds. Validation proves the
+schema and color syntax, not contrast for an arbitrary author palette.
+Switch back to both stock themes to confirm no custom colors remain, then
+inspect light print and screen restoration.
 
 Entries appear in the dropdown in registry order, with Auto last.
 

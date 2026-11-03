@@ -36,12 +36,15 @@ for (const { name, base } of installations) {
     await page.keyboard.press('Control+k');
     await expect(page.locator('#search-input')).toBeFocused();
     await expect.poll(() => page.locator('#site-nav').evaluate(node => node.matches(':popover-open'))).toBe(false);
+    await expect.poll(() => page.locator('.site-header').evaluate(node => node.inert)).toBe(false);
+    await expect.poll(() => page.locator('#main-content').evaluate(node => node.inert)).toBe(false);
     for (const key of ['Shift+Tab', 'Tab', 'Tab', 'Tab', 'Shift+Tab']) {
       await page.keyboard.press(key);
       await expect.poll(() => page.locator('#search-dialog').evaluate(node => node.contains(document.activeElement))).toBe(true);
     }
     await page.keyboard.press('Escape');
-    await expect(page.locator('#search-dialog')).not.toBeVisible();
+    await expect(page.locator('#search-dialog')).not.toHaveAttribute('open', '');
+    await expect(page.locator('.search-dialog-frame')).not.toBeVisible();
     await expect(page.locator('#search-toggle')).toBeFocused();
     await expect.poll(() => page.locator('#main-content').evaluate(node => node.inert)).toBe(false);
     await page.locator('#menu-toggle').click();
