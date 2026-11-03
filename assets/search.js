@@ -202,6 +202,10 @@
 
   const open = (opener = toggle) => {
     state.opener = opener;
+    // Close explicitly so navigation can clear inert state before the modal
+    // replaces it in the top layer; implicit dismissal omits events in WebKit.
+    const navigation = document.getElementById('site-nav');
+    if (navigation?.matches(':popover-open')) navigation.hidePopover();
     if (!dialog.open) dialog.showModal();
     document.body.dataset.searchModalOpen = '';
     input.focus();

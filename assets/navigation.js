@@ -68,8 +68,7 @@
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) save();
   });
-  const update = () => {
-    const open = nav.matches(':popover-open') && !desktop.matches;
+  const update = (open = nav.matches(':popover-open') && !desktop.matches) => {
     toggle.setAttribute('aria-expanded', String(open));
     covered.forEach((element) => {
       if (element) element.inert = open;
@@ -79,7 +78,11 @@
       nav.querySelector('a')?.focus();
     }
   };
-  nav.addEventListener('toggle', update);
+  nav.addEventListener('beforetoggle', (event) => {
+    // Opening a modal can dismiss the popover before its toggle event is delivered.
+    if (event.newState === 'closed') update(false);
+  });
+  nav.addEventListener('toggle', () => update());
   update();
   nav.addEventListener('click', (event) => {
     if (
