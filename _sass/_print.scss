@@ -31,7 +31,7 @@
   #toc-slot,
   .copy-button,
   .copy-feedback,
-  .tablist-wrapper,
+  .docifly-tabs > [role='tablist'],
   .sl-anchor-link {
     display: none !important;
   }
@@ -196,8 +196,15 @@
   }
 
   @layer docifly {
-    .tabs .tab-item-label[hidden],
-    .tabs .tab-panel[hidden] {
+    .docifly-tabs {
+      display: block;
+    }
+  }
+
+  /* Basecoat's base-layer hidden rule is important; override in that layer. */
+  @layer base {
+    .docifly-tabs .tab-item-label[hidden],
+    .docifly-tabs .tab-panel[hidden] {
       display: block !important;
     }
   }
@@ -213,7 +220,8 @@
     display: none;
   }
 
-  .tabs .tab-item + .tab-item {
+  .docifly-tabs > .tab-item + .tab-item,
+  .docifly-tabs > .tab-panel + .tab-item-label {
     margin-top: 5mm;
   }
 

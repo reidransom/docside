@@ -1,7 +1,6 @@
 (() => {
   const groupElements = Array.from(document.querySelectorAll('[data-tabs]'));
   if (!groupElements.length) return;
-  const rtl = document.documentElement.dir === 'rtl';
 
   const focusableSelector = [
     'a[href]',
@@ -19,7 +18,7 @@
 
   const groups = groupElements.map((element, groupIndex) => {
     const items = Array.from(element.children).filter((child) => child.matches('.tab-item'));
-    const sync = element.querySelector(':scope > .tabs-sync-key')?.textContent?.trim() || '';
+    const sync = element.getAttribute('data-tabs-sync') || '';
     const group = {
       element,
       groupIndex,
@@ -70,7 +69,15 @@
       candidate.tabIndex = selected ? 0 : -1;
       group.panels[candidateIndex].hidden = !selected;
     });
-    if (focus) tab.focus();
+    if (focus) {
+      tab.focus({ preventScroll: true });
+      // Reveal long labels only inside their list, without moving the document.
+      const list = tab.parentElement;
+      const bounds = list.getBoundingClientRect();
+      const labelBounds = tab.getBoundingClientRect();
+      if (labelBounds.left < bounds.left) list.scrollBy({ left: labelBounds.left - bounds.left, behavior: 'instant' });
+      else if (labelBounds.right > bounds.right) list.scrollBy({ left: labelBounds.right - bounds.right, behavior: 'instant' });
+    }
 
     if (synchronize && group.sync) {
       const label = group.labels[index];
@@ -90,13 +97,9 @@
     if (!group.items.length) return;
     if (group.sync && !activeBySync.has(group.sync)) activeBySync.set(group.sync, group.labels[0]);
 
-    const wrapper = document.createElement('div');
-    wrapper.className = 'tablist-wrapper';
     const tablist = document.createElement('div');
-    tablist.className = 'tablist';
     tablist.setAttribute('role', 'tablist');
     tablist.setAttribute('aria-orientation', 'horizontal');
-    wrapper.append(tablist);
 
     group.items.forEach((item, itemIndex) => {
       const heading = item.querySelector(':scope > .tab-item-label');
@@ -106,17 +109,21 @@
       const panelId = `docifly-tab-panel-${group.groupIndex}-${itemIndex}`;
       const tab = document.createElement('button');
       tab.type = 'button';
-      tab.className = 'tab';
       tab.id = tabId;
-      tab.append(...Array.from(heading.childNodes, (node) => node.cloneNode(true)));
+      tab.append(...heading.childNodes);
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-controls', panelId);
       panel.id = panelId;
       panel.setAttribute('role', 'tabpanel');
       panel.setAttribute('aria-labelledby', tabId);
-      if (!panel.querySelector(focusableSelector)) panel.tabIndex = 0;
+      const hasFocusableContent = Array.from(panel.querySelectorAll(focusableSelector)).some(
+        (candidate) => candidate.tabIndex >= 0 && !candidate.closest('[hidden], [inert]') && candidate.getClientRects().length,
+      );
+      if (!hasFocusableContent) panel.tabIndex = 0;
       heading.hidden = true;
-      item.setAttribute('role', 'presentation');
+      heading.textContent = group.labels[itemIndex];
+      group.element.append(heading, panel);
+      item.remove();
       tablist.append(tab);
       group.tabs.push(tab);
       group.panels.push(panel);
@@ -127,6 +134,7 @@
       });
       tab.addEventListener('keydown', (event) => {
         const index = group.tabs.indexOf(tab);
+        const rtl = getComputedStyle(group.element).direction === 'rtl';
         let nextIndex;
         if (event.key === 'ArrowLeft')
           nextIndex = (index + (rtl ? 1 : -1) + group.tabs.length) % group.tabs.length;
@@ -141,8 +149,8 @@
     });
 
     if (!group.tabs.length) return;
-    group.element.prepend(wrapper);
-    group.element.classList.add('is-enhanced');
+    group.element.prepend(tablist);
+    group.element.classList.add('tabs');
     const synchronizedLabel = group.sync ? activeBySync.get(group.sync) : undefined;
     const initialIndex = synchronizedLabel ? group.labels.indexOf(synchronizedLabel) : 0;
     applySelection(group, initialIndex === -1 ? 0 : initialIndex);

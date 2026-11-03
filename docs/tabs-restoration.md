@@ -22,3 +22,5 @@ The restored pnpm panel.
 {% include components/tab.html label="pnpm" content=pnpm_restore %}
 {% endcapture %}
 {% include components/tabs.html content=restore_tabs sync="package-manager" persist=true %}
+
+Restoration matches the saved label, not its position: this page deliberately starts with `Yarn`, while the main guide starts with `npm`. Reload keeps the selected label when storage is available. With no saved choice, an unknown saved label, or denied storage, this page starts on `Yarn`. Every panel is readable without JavaScript and in print; leaving print restores the screen selection.

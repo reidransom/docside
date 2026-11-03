@@ -2000,10 +2000,11 @@ how we do it.
     outline: 2px solid var(--ring);
     outline-offset: 3px;
   }
-  .tabs {
+  .docifly-tabs {
     min-width: 0;
+    margin-block: var(--docifly-content-gap-y);
   }
-  .tabs > .tab-item + .tab-item {
+  .docifly-tabs > .tab-item + .tab-item {
     margin-top: 1.5rem;
   }
   .tab-item-label {
@@ -2014,50 +2015,19 @@ how we do it.
     color: var(--foreground);
     font-size: var(--docifly-text-lg);
   }
-  .tablist-wrapper {
+  /* Vega owns the tab treatment; only long-label overflow is local. */
+  .docifly-tabs > [role=tablist] {
     max-width: 100%;
     overflow-x: auto;
+    justify-content: start;
   }
-  .tablist {
-    display: flex;
-    width: max-content;
-    min-width: 100%;
-    padding: 0;
-    border-bottom: 2px solid var(--border);
-  }
-  .tablist .tab {
-    --docifly-tab-color-border: var(--border);
-    display: flex;
+  .docifly-tabs > [role=tablist] > [role=tab] {
     flex: 0 0 auto;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.275rem 1.25rem;
-    overflow-wrap: normal;
-    color: var(--muted-foreground);
-    font: inherit;
-    line-height: var(--docifly-line-height-headings);
-    white-space: nowrap;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    box-shadow: 0 2px 0 var(--docifly-tab-color-border);
-    outline-offset: var(--docifly-outline-offset-inside);
-  }
-  .tablist .tab[aria-selected=true] {
-    --docifly-tab-color-border: var(--primary);
-    color: var(--foreground);
-    font-weight: 600;
-  }
-  .tabs.is-enhanced > .tab-item {
-    margin-top: 0;
   }
   .tab-panel code {
     direction: ltr;
     white-space: nowrap;
     unicode-bidi: isolate;
-  }
-  .tabs.is-enhanced .tab-panel {
-    margin-top: 1rem;
   }
   .tab-panel > :first-child {
     margin-top: 0;
@@ -2153,7 +2123,7 @@ how we do it.
   #toc-slot,
   .copy-button,
   .copy-feedback,
-  .tablist-wrapper,
+  .docifly-tabs > [role=tablist],
   .sl-anchor-link {
     display: none !important;
   }
@@ -2292,8 +2262,14 @@ how we do it.
     content-visibility: visible !important;
   }
   @layer docifly {
-    .tabs .tab-item-label[hidden],
-    .tabs .tab-panel[hidden] {
+    .docifly-tabs {
+      display: block;
+    }
+  }
+  /* Basecoat's base-layer hidden rule is important; override in that layer. */
+  @layer base {
+    .docifly-tabs .tab-item-label[hidden],
+    .docifly-tabs .tab-panel[hidden] {
       display: block !important;
     }
   }
@@ -2306,7 +2282,8 @@ how we do it.
   #article summary::-webkit-details-marker {
     display: none;
   }
-  .tabs .tab-item + .tab-item {
+  .docifly-tabs > .tab-item + .tab-item,
+  .docifly-tabs > .tab-panel + .tab-item-label {
     margin-top: 5mm;
   }
   .file-tree,

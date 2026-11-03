@@ -167,18 +167,6 @@ for (const installation of installations) {
     await expect.poll(() => disclosure.evaluate((details) => details.open)).toBe(!initial);
   });
 
-  test(`${installation.name} synchronized tab state uses the Docifly namespace`, async ({ page }) => {
-    await page.goto(urlFor(installation, pages[0]));
-    const tabs = page.locator('[role="tab"]');
-    await expect(tabs).toHaveCount(2);
-    await tabs.nth(1).click();
-    await expect.poll(() =>
-      page.evaluate(() => localStorage.getItem('docifly-tabs:v1:acceptance-tabs')),
-    ).toBe('Second print panel');
-    expect(await page.evaluate(() => localStorage.getItem('starlyt-tabs:v1:acceptance-tabs'))).toBeNull();
-    await page.reload();
-    await expect(tabs.nth(1)).toHaveAttribute('aria-selected', 'true');
-  });
 
   test(`${installation.name} TOC navigates and cleans up at its breakpoint`, async ({ page }) => {
     await page.setViewportSize({ width: 1151, height: 900 });

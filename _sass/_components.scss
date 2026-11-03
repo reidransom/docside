@@ -440,11 +440,12 @@
   }
 
 
-  .tabs {
+  .docifly-tabs {
     min-width: 0;
+    margin-block: var(--docifly-content-gap-y);
   }
 
-  .tabs > .tab-item + .tab-item {
+  .docifly-tabs > .tab-item + .tab-item {
     margin-top: 1.5rem;
   }
 
@@ -457,46 +458,15 @@
     font-size: var(--docifly-text-lg);
   }
 
-  .tablist-wrapper {
+  /* Vega owns the tab treatment; only long-label overflow is local. */
+  .docifly-tabs > [role='tablist'] {
     max-width: 100%;
     overflow-x: auto;
+    justify-content: start;
   }
 
-  .tablist {
-    display: flex;
-    width: max-content;
-    min-width: 100%;
-    padding: 0;
-    border-bottom: 2px solid var(--border);
-  }
-
-  .tablist .tab {
-    --docifly-tab-color-border: var(--border);
-    display: flex;
+  .docifly-tabs > [role='tablist'] > [role='tab'] {
     flex: 0 0 auto;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.275rem 1.25rem;
-    overflow-wrap: normal;
-    color: var(--muted-foreground);
-    font: inherit;
-    line-height: var(--docifly-line-height-headings);
-    white-space: nowrap;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    box-shadow: 0 2px 0 var(--docifly-tab-color-border);
-    outline-offset: var(--docifly-outline-offset-inside);
-  }
-
-  .tablist .tab[aria-selected='true'] {
-    --docifly-tab-color-border: var(--primary);
-    color: var(--foreground);
-    font-weight: 600;
-  }
-
-  .tabs.is-enhanced > .tab-item {
-    margin-top: 0;
   }
 
   .tab-panel code {
@@ -505,9 +475,6 @@
     unicode-bidi: isolate;
   }
 
-  .tabs.is-enhanced .tab-panel {
-    margin-top: 1rem;
-  }
 
   .tab-panel > :first-child {
     margin-top: 0;

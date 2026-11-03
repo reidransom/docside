@@ -113,7 +113,7 @@ Heading permalinks use the filled `link-alt` glyph from `tools/icons/icons.json`
 
 ### Tabs
 
-`assets/tabs.js` enhances top-level `.tab-item` sections into the ARIA tabs pattern, assigns deterministic IDs from page-local DOM order, and keeps exact text-label synchronization separate from focus. It clones any decorative server-rendered icon into the tab control without adding it to the accessible name. Versioned persistence is optional per sync key and storage failures retain in-memory behavior. Without the enhancer, every panel heading and body stays visible in source order.
+`assets/tabs.js` is the sole tab controller; Basecoat JavaScript is not loaded. Server-rendered `.tab-item` sections remain fully readable without JavaScript. Enhancement moves their panels and decorative icons into Vega's `.tabs` structure with a direct-child ARIA tablist and panels, removes the section wrappers, and retains plain-text panel headings for print. IDs are deterministic from page-local DOM order. Tabs are named by their labels alone; selected/hidden/tabindex state and panel labels stay aligned. Long-label scrolling is local to the tablist, with no replacement tab skin. Exact text-label synchronization never transfers focus to a receiving group, and unequal panel heights above the initiating group do not move it in the viewport. Versioned persistence is optional per sync key; missing labels fall back to the group's first panel on restoration and storage failures retain in-memory behavior. Nested groups remain unsupported.
 
 ### Clipboard
 
