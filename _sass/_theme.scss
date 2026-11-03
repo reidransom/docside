@@ -16,7 +16,6 @@
       --docifly-status-#{$name}-surface: color-mix(in srgb, var(--background) 92%, var(--docifly-status-#{$name}));
       --docifly-status-#{$name}-text: color-mix(in srgb, var(--foreground) 75%, var(--docifly-status-#{$name}));
     }
-    --docifly-backdrop-overlay: rgb(0 0 0 / 50%);
   }
   :root.dark {
     --docifly-code-success: #23733b;

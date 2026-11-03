@@ -102,6 +102,8 @@ def check_inventory() -> None:
         "Dark",
         "Light",
         "Auto",
+        "Punk",
+        "Ice",
         "Retry",
         "Page not found",
         "Back to home",
@@ -149,11 +151,14 @@ def check_localized_build(jigyll: Path, temporary: Path) -> None:
     assert 'aria-label="Rechercher"' in french
     assert '>Choisir le thème<' in french
     assert 'data-copy-label="Copier dans le presse-papiers"' in french
-    assert '>خطر</span>' in arabic
-    assert 'id="search-input" type="search" dir="auto"' in arabic
+    assert re.search(r'<div data-title[^>]*>خطر</div>', arabic)
+    assert re.search(r'<input\b[^>]*id="search-input"[^>]*type="search"[^>]*dir="auto"', arabic)
     assert '<table>' in arabic
     assert 'src="/assets/rtl-layout.svg"' in arabic
     assert 'data-tabs' in arabic
+    for page in (french, arabic, prefixed, prefixed_arabic):
+        assert 'data-label-punk="Punk"' in page
+        assert 'data-label-ice="Ice"' in page
     assert 'class="file-tree not-content"' in arabic
     assert "abcdefghijklmnopqrstuvwxyz-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ" in arabic
     assert 'href="/fr/accueil/" aria-current="page"' in french

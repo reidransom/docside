@@ -95,13 +95,6 @@ run(jigyll, ['build', '--source', source, '--destination', join(output, 'docs')]
 // The existing native localization fixture is a companion consumer at both prefixes.
 const localizedSource = join(workspace, 'localized-consumer');
 cpSync(join(repository, 'fixtures', 'localization', 'site'), localizedSource, { recursive: true });
-// The older retained catalogs predate these registered proper-name themes.
-// Supplement the disposable consumer only; do not alter the source catalogs.
-for (const locale of ['en', 'fr', 'ar']) {
-  const catalog = join(localizedSource, '_data', 'locales', locale, 'messages.yml');
-  writeFileSync(catalog, readFileSync(catalog, 'utf8')
-    .replace('  color_mode:\n', '  color_mode:\n    punk: "Punk"\n    ice: "Ice"\n'));
-}
 mkdirSync(join(localizedSource, '_theme'), { recursive: true });
 symlinkSync(theme, join(localizedSource, '_theme', 'docifly'), 'dir');
 const localizedConfig = readFileSync(join(localizedSource, '_config.yml'), 'utf8');

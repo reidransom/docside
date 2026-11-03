@@ -49,7 +49,7 @@ Try closing **Reference**, navigating to another page, and opening it again. If 
 
 ## Use the mobile menu
 
-Below 50rem—800 CSS pixels with the default 16px font setting—the sidebar becomes a **Menu** popover. The color selector moves into the same menu instead of creating a second selector.
+Below 50rem—800 CSS pixels with the default 16px font setting—the sidebar becomes a **Menu** popover. The theme, language, and version controls move into the same menu instead of creating duplicate controls. Enlarging the root text size also activates this compact layout when the columns no longer fit.
 
 Open Menu, follow a link, and reopen it. With JavaScript enabled, opening the menu makes covered content inert and moves focus into navigation. Escape closes the menu and returns focus to its button. Tab and Shift-Tab cycle through the open menu controls and its button.
 
@@ -58,6 +58,8 @@ Open Menu, follow a link, and reopen it. With JavaScript enabled, opening the me
 Try widening the window while the menu is open. At the desktop transition, the overlay closes and the normal sidebar takes over. Narrow the window again: the article should remain available, without a stale overlay blocking it.
 
 The menu uses the browser's native popover support. Without JavaScript, native links, disclosures, and popover navigation remain; the added focus handling and persistence are not available.
+
+Navigation keeps its native disclosures and ordinary links. Vega supplies the shared control appearance; the selected page uses the paired sidebar foreground/background colors, while hover and keyboard focus remain distinct.
 
 ## Skip repeated navigation
 

@@ -21,6 +21,8 @@ docifly:
     label: "Select theme"
     dark: "Dark"
     light: "Light"
+    punk: "Punk"
+    ice: "Ice"
     auto: "Auto"
   copy:
     label: "Copy to clipboard"

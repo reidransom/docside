@@ -46,6 +46,8 @@
     if (!retry) return;
     const button = document.createElement('button');
     button.type = 'button';
+    button.className = 'btn';
+    button.dataset.variant = 'outline';
     button.textContent = messages.retry;
     button.addEventListener('click', load);
     status.append(button);
@@ -220,6 +222,16 @@
   });
   input.addEventListener('input', renderResults);
   document.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab' && dialog.open) {
+      const controls = Array.from(dialog.querySelectorAll('input, button, a[href]'))
+        .filter((element) => !element.disabled && element.getClientRects().length);
+      const index = controls.indexOf(document.activeElement);
+      if ((event.shiftKey && index <= 0) || (!event.shiftKey && index === controls.length - 1)) {
+        event.preventDefault();
+        controls[event.shiftKey ? controls.length - 1 : 0]?.focus();
+      }
+      return;
+    }
     if (event.key === 'Escape' && dialog.open) {
       event.preventDefault();
       dialog.close();

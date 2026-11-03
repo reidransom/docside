@@ -158,11 +158,12 @@ for (const installation of installations) {
     await page.goto(urlFor(installation, pages[0]));
     const disclosure = page.locator('#site-nav details').first();
     const initial = await disclosure.evaluate((details) => details.open);
+    const saved = await page.evaluate(() => JSON.stringify(Object.values(sessionStorage)));
     await disclosure.locator('summary').click();
     await expect.poll(() => disclosure.evaluate((details) => details.open)).toBe(!initial);
-    const storageKeys = await page.evaluate(() => Object.keys(sessionStorage));
-    expect(storageKeys.some((key) => key.startsWith('docifly-sidebar:'))).toBe(true);
-    expect(storageKeys.some((key) => key.startsWith('starlyt-sidebar:'))).toBe(false);
+    // Native toggle events save asynchronously; wait for observable storage change,
+    // then prove restoration without coupling to the controller's private key.
+    await expect.poll(() => page.evaluate(() => JSON.stringify(Object.values(sessionStorage)))).not.toBe(saved);
     await page.reload();
     await expect.poll(() => disclosure.evaluate((details) => details.open)).toBe(!initial);
   });

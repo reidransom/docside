@@ -17,6 +17,11 @@ Start with a wide window, then narrow it. The sidebar becomes Menu below 50rem; 
 
 You do not need an exhaustive viewport matrix. Look at transitions that matter to the change: a long navigation label, the [Markdown table and image](../markdown/), or the [long code line](../code/). The article should remain readable, and content that scrolls locally should not force the whole page sideways.
 
+Try 200% root text at an intermediate desktop width too. Menu and the outline
+should become compact, and the one shared set of theme/language/version
+controls should remain reachable. Restore the text size with focus on a moved
+control and check that focus follows it back to the header.
+
 ## Try navigation with the keyboard
 
 Reload and press Tab to reveal **Skip to content**. Activate it, then explore the article's links. Visible focus should tell you where the keyboard will act.
@@ -49,11 +54,18 @@ On a page with a vertical scrollbar, confirm the header and article stay horizon
 
 Temporarily block `assets/search-data.json` in developer tools to see the visible failure state, then use Retry after unblocking it. With JavaScript disabled, Search remains disabled and cannot receive keyboard focus.
 
+Try a term with no match, then a specific heading such as **Use groups**.
+Results, snippets, and their surrounding padding share one destination. Tab
+and Shift-Tab cycle within the native search dialog; Cancel and Escape return
+focus to Search. Opening search from an open Menu closes that popover first.
+An unavailable MiniSearch CDN script is a separate failure: Search remains
+disabled, with no runtime fallback.
+
 ## Change color preferences
 
-Use the selector to choose Light, then navigate to another page. Try Dark and Auto too. With Auto selected, change the system color preference or use browser developer tools to emulate it; the effective palette should follow the system rather than retain an explicit choice.
+Use the native selector to choose Light, then navigate to another page. Try Dark, Punk, Ice, and Auto too. With Auto selected, change the system color preference or use browser developer tools to emulate it; the effective palette should follow the system rather than retain an explicit choice.
 
-Inspect text, code, focus indicators, and native controls in both palettes. The example image owns its colors and does not recolor merely because the page palette changes.
+Inspect text, code, focus indicators, and native controls in all four palettes. The example image owns its colors and does not recolor merely because the page palette changes.
 
 On the [overview](../), move a mouse across the folded-D artwork, then away. Its perspective should respond and settle without moving the copy. Try a touch viewport or reduced motion: the artwork stays static. Scroll it out of view and return to check that it is not continuously animating.
 
@@ -61,7 +73,7 @@ Check that the theme selector’s caret is a symmetric downward chevron in both 
 
 ## Inspect the fallback when useful
 
-Disable JavaScript in the browser and reload. Read the article, follow links, and use native navigation disclosures. The palette is dark; the server-rendered outline and ordinary fragment links remain. Active-section feedback, responsive TOC disclosure behavior, heading-anchor controls, copying, and mode selection require JavaScript. Re-enable it afterward.
+Disable JavaScript in the browser and reload. Read the article, follow links, and use native navigation disclosures. The palette is Light; the server-rendered outline and ordinary fragment links remain. Language/version disclosures also keep their ordinary destinations. Active-section feedback, responsive TOC disclosure behavior, heading-anchor controls, copying, and mode selection require JavaScript. Re-enable it afterward.
 
 If storage is unavailable, reading should still work. A selector choice made in memory need not survive navigation. You do not need to reproduce every storage or permission condition for every documentation edit.
 

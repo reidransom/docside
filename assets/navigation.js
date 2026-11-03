@@ -102,7 +102,7 @@
     let focusTarget = null;
     if (!desktop.matches && focusWasInMenu) focusTarget = toggle;
     if (desktop.matches && (focusWasInMenu || focusWasOnToggle))
-      focusTarget = nav.querySelector('a');
+      focusTarget = currentFocus?.closest('#global-controls') ? currentFocus : nav.querySelector('a');
     const expectedDesktop = desktop.matches;
     if (nav.matches(':popover-open')) nav.hidePopover();
     update();

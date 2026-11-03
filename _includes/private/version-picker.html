@@ -7,7 +7,7 @@
   {% endfor %}
   {% if active_version %}
 <details id="version-picker" data-global-control>
-  <summary aria-label="{% include private/ui-message.html key='docifly.version' default='Version' %}: {{ active_version.label | escape }}">
+  <summary class="btn" data-variant="ghost" aria-label="{% include private/ui-message.html key='docifly.version' default='Version' %}: {{ active_version.label | escape }}">
     <span class="version-picker-control">
       <span class="version-current">{{ active_version.label | escape }}</span>
       <svg class="version-caret" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m6.3 9 5.7 5.7L17.7 9l1.4 1.4-7.1 7.1-7.1-7.1Z"/></svg>

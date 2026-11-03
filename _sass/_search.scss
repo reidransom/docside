@@ -1,25 +1,9 @@
-/*! Search control geometry adapted from stock Starlight; result behavior is Docifly-native. */
+// Vega owns controls and the native dialog surface; Docifly owns search layout.
 @mixin compact-search {
-  #site-search {
-    flex: 0 0 auto;
-  }
-  #search-toggle {
-    border: 0;
-    border-radius: 0;
-    padding: 0 0.5rem;
-    width: auto;
-    height: 2.5rem;
-    background: transparent;
-    color: var(--foreground);
-    font-size: var(--docifly-text-xl);
-  }
-  #search-toggle::after {
-    inset-inline: min(0px, calc((1rem + 16px - 44px) / 2));
-  }
+  #site-search { flex: 0 0 auto; }
+  #search-toggle { width: 2.5rem; padding-inline: 0; justify-content: center; }
   #search-toggle > span,
-  #search-toggle > kbd {
-    display: none;
-  }
+  #search-toggle > kbd { display: none; }
 }
 
 @layer docifly {
@@ -30,149 +14,70 @@
   }
   #search-toggle {
     position: relative;
-    align-items: center;
-    gap: 0.5rem;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding-inline-start: 0.75rem;
-    padding-inline-end: 0.5rem;
+    justify-content: flex-start;
     width: 100%;
-    height: 2.5rem;
-    background: var(--background);
     color: var(--muted-foreground);
-    cursor: pointer;
-    display: flex;
-    font: inherit;
-    font-size: var(--docifly-text-sm);
   }
   #search-toggle::after {
     content: '';
     position: absolute;
-    inset-block: min(0px, calc((2.5rem - 44px) / 2));
+    inset-block: min(0px, calc((2.25rem - 44px) / 2));
     inset-inline: 0;
   }
-  #search-toggle:hover:not(:disabled) {
-    border-color: var(--muted-foreground);
-    color: var(--foreground);
-  }
-  #search-toggle:disabled {
-    cursor: default;
-    opacity: 0.65;
-  }
+  #search-toggle > span { overflow: hidden; text-overflow: ellipsis; }
   #search-toggle > kbd {
     display: flex;
     gap: 0.25em;
     margin-inline-start: auto;
   }
   #search-toggle kbd {
-    border-radius: 0.25rem;
+    border-radius: var(--radius-sm);
     padding-inline: 0.375rem;
     background: var(--muted);
+    color: var(--muted-foreground);
     font-family: var(--font-sans);
     font-size: var(--docifly-text-2xs);
   }
-  #search-dialog {
-    margin: 0;
-    border: 1px solid var(--border);
-    padding: 0;
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    max-height: 100%;
-    background: var(--muted);
-    color: var(--foreground);
-    box-shadow: var(--shadow-lg);
+  #search-dialog > .search-dialog-frame {
+    width: calc(100% - 2rem);
+    max-width: 40rem;
+    min-height: 15rem;
   }
-  #search-dialog::backdrop {
-    background: var(--docifly-backdrop-overlay);
-    backdrop-filter: blur(0.25rem);
+  .search-dialog-frame > header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
   }
-  .search-dialog-frame {
-    overflow: auto;
-    padding: 1rem;
-  }
-  #search-close {
-    float: inline-end;
-    border: 0;
-    padding: 0.5rem;
-    background: transparent;
-    color: var(--primary);
-    cursor: pointer;
-    font: inherit;
-  }
-  #search-input {
-    box-sizing: border-box;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
-    width: calc(100% - 4.5rem);
-    background: var(--background);
-    color: var(--foreground);
-    font: inherit;
-    unicode-bidi: plaintext;
-  }
-  #search-input:focus-visible {
-    border-color: var(--ring);
-  }
-  #search-status {
-    clear: both;
-    margin-top: 1rem;
-  }
-  #search-status p {
-    margin: 0;
-  }
-  #search-status button {
-    margin-top: 0.75rem;
-  }
-  #search-results ol {
-    margin: 1rem 0;
-    padding: 0;
-    list-style: none;
-  }
-  #search-results li + li {
-    margin-top: 0.75rem;
-  }
+  #search-input { flex: 1 1 12rem; width: 0; unicode-bidi: plaintext; }
+  #search-close { flex: none; }
+  .search-dialog-frame > section { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  #search-status { color: var(--muted-foreground); overflow-wrap: anywhere; }
+  #search-status p { margin: 0; }
+  #search-status button { margin-top: 0.75rem; }
+  #search-results ol { margin: 1rem 0 0; padding: 0; list-style: none; }
+  #search-results li + li { margin-top: 0.5rem; }
   #search-results a {
     display: block;
-    border-radius: 0.3125rem;
-    padding: 0.9375rem 1.25rem;
-    background: var(--background);
-    color: var(--foreground);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    color: var(--popover-foreground);
     text-decoration: none;
-  }
-  .search-title {
-    color: var(--primary);
-    font-weight: 600;
-    text-decoration: underline;
-  }
-  #search-results p {
-    margin: 0.5rem 0 0;
     overflow-wrap: anywhere;
   }
-  .search-section {
-    color: var(--foreground);
-  }
-  body[data-search-modal-open] {
-    overflow: hidden;
-  }
+  #search-results a:hover,
+  #search-results a:focus-visible { background: var(--accent); color: var(--accent-foreground); }
+  .search-title { font-weight: 600; }
+  #search-results p { margin: 0.375rem 0 0; color: var(--muted-foreground); }
+  body[data-search-modal-open] { overflow: hidden; }
+  @media (max-width: 49.999rem) { @include compact-search; }
+  :root[data-compact-sidebar] { @include compact-search; }
   @media (max-width: 49.999rem) {
-    @include compact-search;
+    #search-dialog > .search-dialog-frame { padding: 1rem; gap: 1rem; }
   }
-  @media (min-width: 50rem) {
-    :root[data-compact-sidebar] {
-      @include compact-search;
-    }
-    :root:not([data-compact-sidebar]) #search-dialog {
-      margin: 4rem auto auto;
-      border-radius: 0.5rem;
-      width: 90%;
-      max-width: 40rem;
-      height: max-content;
-      min-height: 15rem;
-      max-height: calc(100% - 8rem);
-    }
-    :root:not([data-compact-sidebar]) .search-dialog-frame {
-      padding: 1.5rem;
-    }
+  @media (any-pointer: coarse) {
+    #search-close, #search-status button { min-height: 44px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #search-dialog, #search-dialog::backdrop, #search-dialog > * { transition: none; }
   }
 }

@@ -52,6 +52,11 @@ therefore drops the current query string and fragment instead of guessing that
 another edition has an equivalent route or heading ID. The disclosure and its
 ordinary anchors remain operable when JavaScript is disabled.
 
+The picker is a native disclosure styled as a Vega ghost control, not a custom
+select controller. Long current-language labels are abbreviated in the header;
+the choices retain their complete wrapping text. On documentation pages, the
+same picker moves into Menu at the compact-shell transition.
+
 ## Author right-to-left content
 
 Locales with `direction: rtl` mirror the shell while retaining source and focus
@@ -115,12 +120,15 @@ docifly:
     label: "Select theme"
     dark: "Dark"
     light: "Light"
+    punk: "Punk"
+    ice: "Ice"
     auto: "Auto"
   copy:
     label: "Copy to clipboard"
     success: "Copied!"
     failure: "Copy failed"
   language: "Language"
+  version: "Version"
   callout:
     note: "Note"
     tip: "Tip"
@@ -137,6 +145,10 @@ inventory live under `fixtures/localization/`. Missing messages follow Jigyll's
 policy: the default is a build failure. Set `localization.missing_messages: key`
 only when visibly rendering the unresolved key is preferable during catalog
 work.
+
+The registered Punk and Ice names are required catalog entries too; retained
+English, French, and Arabic catalogs include them directly. Custom theme labels
+remain registry-owned.
 
 ## Search one locale
 

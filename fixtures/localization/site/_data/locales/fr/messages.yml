@@ -21,6 +21,8 @@ docifly:
     label: "Choisir le thème"
     dark: "Sombre"
     light: "Clair"
+    punk: "Punk"
+    ice: "Ice"
     auto: "Automatique"
   copy:
     label: "Copier dans le presse-papiers"

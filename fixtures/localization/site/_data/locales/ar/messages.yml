@@ -21,6 +21,8 @@ docifly:
     label: "اختر السمة"
     dark: "داكن"
     light: "فاتح"
+    punk: "Punk"
+    ice: "Ice"
     auto: "تلقائي"
   copy:
     label: "نسخ إلى الحافظة"

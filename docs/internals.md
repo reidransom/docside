@@ -67,6 +67,14 @@ All typography uses Basecoat's font stacks: Geist/Geist Sans with system sans-se
 
 The principal responsive transitions are 50rem for sidebar/menu placement and 72rem for the TOC rail/disclosure. At the default 16px browser font setting these are 800 and 1152 CSS pixels. They are font-relative layout decisions, not promises about named devices.
 
+Header buttons, the theme's native `select`, and the native search `dialog`
+use Vega's `btn`, `select`, `input`, and `dialog` contracts. Docifly adds only
+shell placement, compact/touch geometry, wrapping, and search-result layout.
+Language/version pickers remain native `details` disclosures with ordinary
+links and paired popover/selection colors; no Basecoat interaction controller
+is loaded. Heroes and not-found actions share the public Vega link-button
+renderer, including narrow-screen wrapping and 44px minimum action height.
+
 For responsive changes, inspect `/internals/#search` and `/icons/` at 320–390 CSS pixels: inline prose code must wrap without widening the page, while tables, fenced code, and file trees scroll locally. At 1280×900, set the root font size to 200%, then restore it with focus in navigation or the TOC; check compact-shell transitions and focus retention. Exercise Menu/Search outside their visible shapes, navigation/TOC rows, and search-result sections, snippets, and padding with touch and keyboard.
 
 For language-picker changes, preview a consumer of `fixtures/localization/site/` with English, French, and Arabic editions. Check Light/Dark and 320px, 390px, and desktop widths: the popup must stay within the viewport below the fixed header, preserve the current-edition highlight, and keep long labels readable. With JavaScript disabled, verify that the native disclosure and edition links still work from the header.
@@ -88,6 +96,10 @@ Successful applications save `{version: 2, id, scheme, colors}` under `docifly-p
 `assets/navigation.js` enhances the native navigation popover and disclosures. It makes covered content inert while the mobile menu is open, handles keyboard focus and Escape, closes the menu after link selection, and cleans up at the responsive transition.
 
 The navigation enhancement compares the viewport with the current root font at the existing 50rem and 72rem thresholds. Its compact-shell guards let font-size overrides fall back from wide columns; navigation, TOC, and shared controls follow the rendered control state rather than viewport media queries alone.
+
+The global-controls enhancer relocates one DOM instance rather than cloning
+controls. Returning from the compact menu to the desktop header preserves focus
+on a global control; navigation focus otherwise moves to the first sidebar link.
 
 Session persistence stores group state and scroll position under a base-URL-specific key. A signature of navigation labels and links prevents stale state being applied after the consumer changes its navigation. Native controls still work when storage access fails.
 
@@ -124,6 +136,13 @@ Jigyll parses fenced-code metadata and emits the semantic `figure.highlight[data
 `assets/js/zzzz-search-data.json` is a front-matter-bearing theme asset whose `search-data` layout runs after Jigyll renders all page bodies. It emits deterministic same-origin records for published default-layout HTML pages and output-enabled collection documents. Each record contains the title, base-URL-correct URL, article text, and Jigyll heading metadata; `search_exclude: true` omits a document. Component regions marked with `data-search-exclude` are delimited by private build-time markers and removed from the article body before text normalization, so illustrative file-tree labels do not enter the corpus.
 
 The layouts load the MIT-licensed MiniSearch 7.2.0 browser bundle directly from `https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js`, pinned with SHA-384 Subresource Integrity and anonymous CORS. No library bundle or local fallback is shipped. Search requires access to jsDelivr; a Content Security Policy must permit `https://cdn.jsdelivr.net` in its script sources. If the library cannot load, the search control remains disabled. `assets/search.js` uses the same Unicode tokenizer for indexing and matching, normalizes case and canonical Unicode form, requires every token, and allows a prefix only on the final token. It verifies exact matches itself after MiniSearch finds candidates, ranks title/heading/body hits deterministically, and uses text-only DOM APIs for corpus values. The disabled control remains unavailable without JavaScript; the native dialog supplies loading, guidance, results, failure, and retry states.
+
+Search uses a native modal dialog with Vega's popover surface and controls.
+The existing enhancer keeps Tab/Shift-Tab within its visible controls and
+results and returns focus to its opener on Cancel/Escape. A failed corpus load
+offers the existing explicit Retry action; no-results and empty-query messages
+remain separate from that error. Opening the modal dismisses the native menu
+popover so its covered-content state can clear.
 
 Highlighting and fenced-code metadata parsing are server-side Jigyll/Chroma behavior. Differences from stock Starlight's code highlighter cannot be repaired by inventing tokens in CSS or the copy handler.
 
@@ -178,13 +197,21 @@ explicitly deny that known script to exercise the failure state.
 Native localized companion consumers reuse `fixtures/localization/site/` at
 `/localized/` and `/localized/docs/`, with French routes such as
 `/localized/fr/demarrage/` and Arabic RTL routes such as
-`/localized/docs/ar/dalil/`. Preparation supplies the registered Punk/Ice
-proper-name labels in the disposable catalogs because the retained source
-catalogs predate those theme choices. The generated pages use Jigyll's actual
+`/localized/docs/ar/dalil/`. The maintained catalogs and message inventory
+include all supported theme labels, including Punk and Ice; preparation no
+longer patches disposable catalogs. The generated pages use Jigyll's actual
 locale metadata, translations, and locale-filtered search corpus, not a `dir`
 attribute applied to an English fixture. The offline search integration tests
 check an expected generated result, excluded content, Arabic locale isolation,
 and the known script-denied disabled state.
+
+For focused shell work, run `npx --no-install playwright test tests/acceptance.spec.mjs tests/chrome.spec.mjs --project=chromium`
+from `tools/browser/` after `npm run build-fixture`. These exercise persistence
+after observable native-toggle storage, specific search navigation/retry/empty
+states, modal focus, enlarged-text relocation, localized long labels, and
+no-JavaScript disclosures. Run the localization boundary checker from the
+repository root with an absolute executable path:
+`python tools/localization/check.py --jigyll /absolute/path/to/jigyll`.
 
 The generated `.artifacts/environment.json` records the platform, Jigyll and
 theme revisions, package-lock digest, browser revisions, color modes, pages,
