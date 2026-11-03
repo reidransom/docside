@@ -839,7 +839,9 @@
   }
   #article .code-frame {
     position: relative;
-    --copy-size: 2.5rem;
+    direction: ltr;
+    --copy-size: 1.5rem;
+    --copy-offset: calc(0.75rem + 1px);
     margin-block: var(--docifly-content-gap-y);
   }
   #article .code-frame > pre {
@@ -864,6 +866,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  #article figure.highlight[data-code-frame=editor]:has(> .code-title) {
+    --copy-offset: 0.3125rem;
+  }
   #article figure.highlight[data-code-frame=editor] > .code-title {
     width: fit-content;
     max-width: 100%;
@@ -873,9 +878,15 @@
     border-block-start-color: var(--primary);
     border-block-end: 0;
   }
+  #article figure.highlight.code-frame[data-code-frame=editor] > .code-title {
+    max-width: calc(100% - var(--copy-size) - 1.5rem);
+  }
   #article figure.highlight[data-code-frame] > .code-title + pre {
     border-start-start-radius: 0;
     border-start-end-radius: 0;
+  }
+  #article figure.highlight[data-code-frame=terminal] {
+    --copy-offset: 0.25rem;
   }
   #article figure.highlight[data-code-frame=terminal]::before {
     display: block;
@@ -916,11 +927,18 @@
   #article .copy-button {
     position: absolute;
     inset-inline-end: calc(0.5rem + 1px);
-    top: calc(0.4rem + 1px);
+    top: var(--copy-offset);
     width: var(--copy-size);
     height: var(--copy-size);
     margin: 0;
     flex: none;
+  }
+  @media (pointer: coarse) {
+    #article .copy-button::before {
+      position: absolute;
+      inset: -0.625rem;
+      content: "";
+    }
   }
   #article :is(pre, .copy-button):focus-visible {
     outline: 2px solid var(--docifly-code-focus);
@@ -929,8 +947,9 @@
   #article .copy-feedback {
     --feedback-bg: var(--docifly-status-green-surface);
     position: absolute;
-    inset-inline-end: calc(0.5rem + 1px + var(--copy-size) + 0.6rem);
-    top: calc(0.4rem + 1px);
+    inset-inline-end: calc(0.5rem + 1px);
+    bottom: calc(100% + 0.375rem);
+    max-width: calc(100% - 1rem);
     padding: 0.125rem 0.75rem;
     font: 0.9rem/1.65 var(--font-sans);
     color: var(--docifly-status-green-text);
@@ -938,15 +957,16 @@
     border: 1px solid currentColor;
     border-radius: var(--radius-md);
     pointer-events: none;
+    overflow-wrap: anywhere;
     user-select: none;
   }
   #article .copy-feedback::after {
     content: "";
     position: absolute;
-    top: calc(50% - 0.35rem);
-    inset-inline-end: calc(-2 * (0.35rem - 0.5px));
+    top: 100%;
+    inset-inline-end: calc(var(--copy-size) / 2 - 0.35rem);
     border: 0.35rem solid transparent;
-    border-inline-start-color: var(--feedback-bg);
+    border-block-start-color: var(--feedback-bg);
   }
   #article .copy-feedback[data-error] {
     --feedback-bg: var(--docifly-status-red-surface);

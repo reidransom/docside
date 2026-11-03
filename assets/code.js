@@ -23,7 +23,7 @@
     button.type = 'button';
     button.className = 'btn copy-button';
     button.dataset.variant = 'outline';
-    button.dataset.size = 'icon';
+    button.dataset.size = 'icon-xs';
     button.title = messages.copyLabel;
     button.setAttribute('aria-label', messages.copyLabel);
     const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');

@@ -46,6 +46,66 @@ for (const prefix of ['', '/docs']) {
     expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(source);
   });
 
+  test(`${prefix || '/'} RTL articles keep copy controls in the LTR source gutter`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 900 });
+    await page.goto(`${prefix}/code/`);
+    await page.locator('#article').evaluate((article) => { article.dir = 'rtl'; });
+    const placement = await page.locator('#article .code-frame').first().evaluate((frame) => {
+      const pre = frame.querySelector('pre');
+      const source = pre.getBoundingClientRect();
+      const button = frame.querySelector('.copy-button').getBoundingClientRect();
+      return {
+        direction: getComputedStyle(pre).direction,
+        sourceEnd: source.right - parseFloat(getComputedStyle(pre).paddingRight),
+        buttonStart: button.left,
+      };
+    });
+    expect(placement.direction).toBe('ltr');
+    expect(placement.buttonStart, 'copy control must not cover the start of RTL article source').toBeGreaterThanOrEqual(placement.sourceEnd);
+  });
+
+  test(`${prefix || '/'} copy controls stay clear of frame titles and within short source blocks`, async ({ page }) => {
+    for (const width of [320, 1280]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(`${prefix}/code/`);
+      for (const theme of ['light', 'dark']) {
+        if (width < 800) await page.getByRole('button', { name: 'Menu', exact: true }).click();
+        await page.locator('#color-mode').selectOption(theme);
+        await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
+        if (width < 800) await page.keyboard.press('Escape');
+        const placements = await page.locator('#article .code-frame').evaluateAll((frames) =>
+          frames.map((frame) => {
+            const button = frame.querySelector('.copy-button').getBoundingClientRect();
+            const pre = frame.querySelector('pre').getBoundingClientRect();
+            const title = frame.querySelector('.code-title');
+            const framedHeader = title || frame.dataset.codeFrame === 'terminal';
+            const caption = title?.getBoundingClientRect();
+            return {
+              header: Boolean(framedHeader),
+              top: button.top - pre.top,
+              bottom: button.bottom - pre.top,
+              sourceHeight: pre.height,
+              titleEnd: caption ? caption.right - parseFloat(getComputedStyle(title).paddingRight) : null,
+              buttonStart: button.left,
+            };
+          }),
+        );
+        for (const placement of placements) {
+          if (placement.header) {
+            expect(placement.bottom, 'copy control must not straddle title and source').toBeLessThanOrEqual(0);
+            if (placement.titleEnd !== null) {
+              expect(placement.titleEnd, 'caption must leave room for its copy control').toBeLessThanOrEqual(placement.buttonStart);
+            }
+          } else {
+            expect(placement.top).toBeGreaterThanOrEqual(0);
+            expect(placement.bottom).toBeLessThanOrEqual(placement.sourceHeight);
+          }
+        }
+        expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+      }
+    }
+  });
+
   test(`${prefix || '/'} nested Markdown anchors retain engine targets without changing component titles`, async ({ page }) => {
     await page.goto(`${prefix}/`);
     const card = page.locator('#article article.card');

@@ -184,6 +184,8 @@ This deliberately long JSON line is useful for inspecting horizontal scrolling i
 
 The copy control should remain usable even when the code extends beyond the visible block. Use a keyboard to reach the block and its control as well as a pointer.
 
+The compact copy control sits at the top right of the source, or inside the title bar of an editor or terminal frame. Long captions leave room for it, including in RTL articles. Touch input has a larger hit area; copy feedback appears above the block without covering the caption or source.
+
 ## Plain code
 
 A fence without a language is also valid:
