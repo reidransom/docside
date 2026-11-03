@@ -43,6 +43,20 @@ Run this from the theme repository root, not the documentation consumer. The bui
 
 A standalone Dart Sass executable supplies the compiler without Node.js. Merely editing Markdown does not require compilation, and consumers loading the shipped CSS need neither Python nor Sass. `jigyll build` consumes the compiled asset; it does not run this maintainer build step.
 
+The pinned Basecoat dependency is maintained separately from Sass. `assets/vendor/basecoat/` contains the unmodified `basecoat-css@1.1.0` standalone Vega stylesheet, the release's MIT license, and `manifest.json` with the original archive/distribution URLs, exact archive member names, byte sizes, and SHA-256 digests. The stylesheet also retains its upstream Tailwind CSS MIT notice verbatim; the manifest lists retained CSS notices. It contains no font files or external asset requests: its six image URLs are inline SVG data URLs, and its Geist/Geist Mono font stacks fall back to locally available system fonts.
+
+To reimport the pinned release from an already acquired local npm archive, run these explicit maintainer operations from the repository root:
+
+```sh
+python tools/styles/basecoat.py import --archive /path/to/basecoat-css-1.1.0.tgz
+python tools/styles/basecoat.py check
+python -m unittest discover -s tools/styles -p 'test_basecoat.py'
+```
+
+Both operations are offline and use only Python's standard library. Import validates the package name, version, MIT declaration, and the exact required regular-file members before staging any replacement. It never extracts arbitrary archive paths, templates, scripts, or other stylesheets; failed validation or staging leaves the installed distribution untouched, and a failed publication rename restores the previous distribution. Check needs no archive: it rejects missing or altered installed CSS/license bytes and invalid pinned manifest metadata. The recorded digests provide local integrity/provenance, not an upstream signature. A version upgrade requires a separate reviewed change to the tool's pin, release/license inspection, manifest/digest review, and local rendering proof; do not edit the generated vendor bytes.
+
+Importing does not edit layouts or compile Sass. `tools/styles/build.py` remains responsible only for documentation Sass and never refreshes dependencies; theme consumers need no new package manager or frontend toolchain. The standalone stylesheet includes the global reset, tokens, component rules, and only its bundled utility subset, not arbitrary Tailwind classes. Its layer order starts with `properties`, then `theme`, `base`, `components`, and `utilities`, but the semantic `:root`/`.dark` token declarations are unlayered. Dark component variants specifically use `html.dark`. Layout/style integration must account for those global rules and cascade precedence rather than loading a second reset or patching the vendor file. No Basecoat JavaScript or compatibility stylesheet is vendored.
+
 When changing code-marker styles, check whole-line and inline marks in Light and Dark, including both stripe phases. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source.
 
 Headings (`h1`–`h6`), including hero titles and the desktop table-of-contents title, and the header's `.site-title` use self-hosted Urbanist ExtraBold (800) with `-0.02em` letter spacing. Body and other interface text retain the system font stack. The Latin and extended-Latin WOFF2 subsets live in `assets/fonts/`, alongside the SIL Open Font License; `font-display: swap` keeps text visible while they load. Font URLs are relative to the stylesheet, so deployment prefixes apply without a runtime request to Google Fonts. Scripts not covered by Urbanist use the existing system fallback.

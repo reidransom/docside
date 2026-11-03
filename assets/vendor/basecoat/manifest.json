@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "package": {
+    "name": "basecoat-css",
+    "version": "1.1.0",
+    "license": "MIT",
+    "metadata_member": "package/package.json",
+    "metadata_sha256": "4ea2d0444d7aa443d5559fcfbbf23aa519e3d622931663cddec5035e3e07c557"
+  },
+  "archive": {
+    "url": "https://registry.npmjs.org/basecoat-css/-/basecoat-css-1.1.0.tgz",
+    "sha256": "46eb1cedcd3845013d03a2f46341c63ec51f97185cef932eeb79a332a7c12b48"
+  },
+  "files": {
+    "basecoat.cdn.min.css": {
+      "member": "package/dist/basecoat.cdn.min.css",
+      "url": "https://cdn.jsdelivr.net/npm/basecoat-css@1.1.0/dist/basecoat.cdn.min.css",
+      "sha256": "e6354ef1e99adc94257e579507f18cb00307a08cc2b976deb320368eb7c28e70",
+      "bytes": 236766
+    },
+    "LICENSE.md": {
+      "member": "package/LICENSE.md",
+      "url": "https://cdn.jsdelivr.net/npm/basecoat-css@1.1.0/LICENSE.md",
+      "sha256": "160a6cea26ff1931297957499ab739e94c4bc79ecea18b490c9f533fa76ace78",
+      "bytes": 1068
+    }
+  },
+  "retained_css_notices": [
+    "/*! tailwindcss v4.3.1 | MIT License | https://tailwindcss.com */"
+  ]
+}
