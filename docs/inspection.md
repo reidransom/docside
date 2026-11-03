@@ -46,6 +46,13 @@ Open [Code blocks](../code/) and copy the Python example into a plain text edito
 
 Copying needs JavaScript and browser Clipboard API support. HTTPS or a trustworthy local origin is appropriate. If permissions are denied, feedback should report failure rather than success. Where the API is missing entirely, normal text selection remains available without a misleading copy button.
 
+Use the framed `deploy.sh` example too: its numbers start at 8 and its three
+lines have neutral, inserted, and deleted markers. Select the source normally,
+then use Copy to clipboard and paste. Neither path should add gutter numbers,
+marker characters, the caption, or control labels. Native browser selection
+may omit the final structural newline; the copy control preserves the exact
+rendered source, including that newline.
+
 ## Try search
 
 Open Search or press Control+K (Command+K on Apple devices), then confirm the input receives focus. Search a title, a heading, and a code term. A heading result links directly to its existing fragment. Press Escape to return focus to Search.
@@ -70,6 +77,20 @@ Inspect text, code, focus indicators, and native controls in all four palettes. 
 On the [overview](../), move a mouse across the folded-D artwork, then away. Its perspective should respond and settle without moving the copy. Try a touch viewport or reduced motion: the artwork stays static. Scroll it out of view and return to check that it is not continuously animating.
 
 Check that the theme selector’s caret is a symmetric downward chevron in both palettes.
+
+## Print and return to reading
+
+Choose Dark, Punk, or Ice, select a nondefault tab, and leave a file-tree
+directory closed. Open print preview or save a PDF. The paper should have a
+light background, all labeled tab panels and directory contents, readable
+wrapped code/table cells, no navigation or copy controls, and a canonical URL
+after the article. Check an absolute HTTP(S) link's destination as well as a
+relative or email link, which should not gain a suffix.
+
+Inspect the saved paper, not just developer-tools print colors: disclosure
+content can have layout boxes while still being collapsed or transparent.
+Return to screen and check the same palette, tab selection, and closed
+directory state. Print must not rewrite the theme preference.
 
 ## Inspect the fallback when useful
 

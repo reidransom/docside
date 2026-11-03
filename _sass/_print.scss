@@ -26,6 +26,8 @@
   #site-search,
   #mode-picker,
   #language-picker,
+  #version-picker,
+  #global-controls,
   #menu-toggle,
   #site-nav,
   #toc-slot,
@@ -121,11 +123,12 @@
     unicode-bidi: isolate;
   }
 
-  .sl-markdown-content code:not(:where(.not-content *)),
-  .tab-panel code {
+  #article code {
     padding: 0;
     margin: 0;
     background: transparent;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   #article pre,
@@ -173,6 +176,7 @@
   }
 
   .sl-markdown-content :is(th, td):not(:where(.not-content *)) {
+    min-width: 0;
     overflow-wrap: anywhere;
     word-break: break-word;
   }
@@ -193,6 +197,9 @@
 
   #article details::details-content {
     content-visibility: visible !important;
+    block-size: auto;
+    opacity: 1;
+    transition: none;
   }
 
   @layer docifly {
@@ -236,6 +243,23 @@
 
   .file-tree {
     overflow: visible;
+    contain: none;
+    overflow-wrap: anywhere;
+    break-inside: auto;
+  }
+
+  .card-grid,
+  .card-grid.stagger {
+    display: block;
+    padding-bottom: 0;
+  }
+
+  .card-grid.stagger > :nth-child(2n) {
+    transform: none;
+  }
+
+  .card-grid > .card + .card {
+    margin-top: 5mm;
     break-inside: auto;
   }
 

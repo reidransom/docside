@@ -3,7 +3,7 @@ title: Code blocks
 permalink: /code/
 ---
 
-Fenced code is rendered by Jigyll and highlighted by Chroma. Docifly styles that output and adds a clipboard control when the browser supports it. The blocks on this page are the examples themselves, not a separate test fixture.
+Fenced code is rendered by Jigyll and highlighted by Chroma. Docifly styles that output and adds a Basecoat Vega clipboard control when the browser supports it. The blocks on this page are the examples themselves, not a separate test fixture.
 
 ## Author a fenced block
 
@@ -202,7 +202,16 @@ The control is called **Copy to clipboard**. It becomes available with JavaScrip
 
 When writing succeeds, the feedback is **Copied!**. If the browser rejects the write, it is **Copy failed**; failure must not be presented as success. When the Clipboard API is unavailable, there is no copy button. You can still select and copy text normally.
 
-Try copying a block and pasting it into an editor. If your browser allows per-site clipboard permissions, denying access is a useful optional way to inspect the failure message. There is no requirement to automate that check.
+Try copying a block and pasting it into an editor. If your browser allows per-site clipboard permissions, deny access to inspect **Copy failed**, then restore the permission. The control reports the browser's actual write result; a failed attempt does not replace the existing clipboard contents.
+
+## Print code
+
+Print uses a light reading palette even when Dark, Punk, or Ice is selected.
+Frames, captions, line numbers, and neutral/insertion/deletion markers remain;
+syntax text prints in a single dark color. Long lines wrap onto the paper
+instead of being clipped at the screen scroller. Copy controls and feedback
+do not print. Returning to the page restores the selected screen palette
+without changing the saved preference.
 
 ## Highlighting scope
 

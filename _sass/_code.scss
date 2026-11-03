@@ -7,11 +7,14 @@
     // Expressive Code adds a one-pixel inner border before its line padding.
     padding: 0.75rem 3rem 0.75rem calc(0.90625rem + 1px);
     border: 1px solid var(--docifly-code-border);
-    border-radius: 1px;
+    border-radius: var(--radius-lg);
     font: var(--docifly-text-code) / var(--docifly-line-height) var(--font-mono);
     color: var(--docifly-code-text);
     background: var(--docifly-code-bg);
     tab-size: 2;
+    direction: ltr;
+    text-align: left;
+    unicode-bidi: isolate;
   }
   #article pre code {
     all: unset;
@@ -79,7 +82,7 @@
     margin-inline-end: 0.75rem;
     padding-inline-end: 0.75rem;
     border-inline-end: 1px solid var(--docifly-code-border);
-    color: var(--muted-foreground);
+    color: var(--docifly-code-muted);
     background-color: var(--docifly-code-bg);
     font-variant-numeric: tabular-nums;
     text-align: end;
@@ -153,6 +156,7 @@
   #article .code-frame {
     position: relative;
     --copy-size: 2.5rem;
+    margin-block: var(--docifly-content-gap-y);
   }
   #article .code-frame > pre {
     margin: 0;
@@ -162,9 +166,9 @@
     position: relative;
     display: block;
     min-width: 0;
-    margin: 0;
+    margin: var(--docifly-content-gap-y) 0;
     background: var(--background);
-    border-radius: 1px;
+    border-radius: var(--radius-lg);
   }
 
   #article figure.highlight[data-code-frame] > pre {
@@ -174,7 +178,7 @@
   #article figure.highlight[data-code-frame] > .code-title {
     min-width: 0;
     overflow: hidden;
-    color: var(--muted-foreground);
+    color: var(--docifly-code-muted);
     font: 0.9rem / 1.65 var(--font-sans);
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -233,6 +237,7 @@
   [data-color-scheme='light'] #article figure.highlight[data-code-frame='terminal']::before {
     background: var(--muted);
   }
+  /* Vega owns the control; only placement and code-specific reach remain here. */
   #article .copy-button {
     position: absolute;
     inset-inline-end: calc(0.5rem + 1px);
@@ -240,48 +245,23 @@
     width: var(--copy-size);
     height: var(--copy-size);
     margin: 0;
-    border: 0;
-    border-radius: 0.2rem;
-    padding: 0;
-    background: var(--docifly-code-bg);
-    color: var(--foreground);
-    cursor: pointer;
-    opacity: 0.75;
+    flex: none;
   }
-  #article .copy-button::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 1px solid currentColor;
-    border-radius: inherit;
-    opacity: 0.4;
-    pointer-events: none;
-  }
-  #article .copy-button svg {
-    display: block;
-    width: calc(100% - 0.95rem);
-    height: calc(100% - 0.95rem);
-    margin: 0.475rem;
-  }
-  #article .copy-button:focus-visible {
-    outline: revert;
-    outline-offset: 0;
-  }
-  #article .copy-button:hover,
-  #article .copy-button:focus-visible {
-    background: var(--docifly-code-copy-hover-bg);
-    opacity: 1;
+  #article :is(pre, .copy-button):focus-visible {
+    outline: 2px solid var(--docifly-code-focus);
+    outline-offset: 2px;
   }
   #article .copy-feedback {
-    --feedback-bg: var(--docifly-code-success);
+    --feedback-bg: var(--docifly-status-green-surface);
     position: absolute;
     inset-inline-end: calc(0.5rem + 1px + var(--copy-size) + 0.6rem);
     top: calc(0.4rem + 1px);
     padding: 0.125rem 0.75rem;
     font: 0.9rem / 1.65 var(--font-sans);
-    color: white;
+    color: var(--docifly-status-green-text);
     background: var(--feedback-bg);
-    border-radius: 0.2rem;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-md);
     pointer-events: none;
     user-select: none;
   }
@@ -299,21 +279,5 @@
   }
   #article .copy-feedback:empty {
     display: none;
-  }
-  @media (hover: hover) {
-    #article .code-frame {
-      --copy-size: 2rem;
-    }
-    #article .copy-button {
-      opacity: 0;
-    }
-    #article .code-frame:hover .copy-button:not(:hover):not(:focus-visible),
-    #article .code-frame:focus-within .copy-button:not(:hover):not(:focus-visible) {
-      opacity: 0.75;
-    }
-    #article .copy-button:hover,
-    #article .copy-button:focus-visible {
-      opacity: 1;
-    }
   }
 }

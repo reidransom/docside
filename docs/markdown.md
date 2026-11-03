@@ -16,6 +16,11 @@ Use **strong text**, *emphasis*, and `inline code` for different purposes. Read 
 
 Inline markup should retain a readable baseline inside a paragraph. Literal values such as `<article>`, `baseurl: /docs`, and `navigation.items` should not be mistaken for page markup.
 
+Inline code may wrap within a long literal on narrow screens, including inside
+tab panels and nested Markdown. Fenced code keeps its source whitespace and
+scrolls horizontally instead; the [code guide](../code/) covers selection,
+numbering, markers, and clipboard behavior.
+
 ## Lists
 
 ```markdown
@@ -77,6 +82,13 @@ This is a blockquote, not a custom callout or an Astro component. Docifly does n
 
 Try narrowing the window while reading this table and the code examples. Distinguish local content overflow from unwanted page-wide horizontal scrolling.
 
+Tables keep wide cells in a local horizontal scroller, as do fenced code,
+file trees, and long tab lists. Inline code within table cells stays together
+so the table, rather than the whole page, owns that overflow. Images remain
+bounded by their reading column. Article formatting stops at component chrome;
+explicit Markdown bodies inside cards, callouts, and tab panels start their
+own reading scope.
+
 ## Images
 
 ```markdown
@@ -96,3 +108,13 @@ A thematic break can separate related ideas without pretending to be a heading:
 ---
 
 For longer source examples, continue to [Code blocks](../code/). For the rendering responsibilities behind these examples, read [Theme internals](../internals/).
+
+## Print a reading copy
+
+Print expands tab panels and native disclosures, hides navigation and
+interactive controls, and uses a light palette independently of the screen
+theme. Code and table cells wrap to fit the paper. A canonical page URL appears
+after the article; absolute HTTP(S) article links also show their destinations.
+Relative links, fragments, email, and telephone links do not gain destination
+suffixes. Content artwork retains its own colors. Closing print preview leaves
+the screen theme and selected tab unchanged.

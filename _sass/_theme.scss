@@ -4,7 +4,8 @@
     --docifly-code-bg: var(--muted);
     --docifly-code-text: var(--foreground);
     --docifly-code-border: var(--border);
-    --docifly-code-success: #23733b;
+    --docifly-code-muted: color-mix(in srgb, var(--foreground) 20%, var(--muted-foreground));
+    --docifly-code-focus: color-mix(in srgb, var(--foreground) 70%, var(--ring));
     --docifly-code-comment: #57606a;
     --docifly-code-keyword: #6f24a4;
     --docifly-code-string: #854300;
@@ -18,7 +19,6 @@
     }
   }
   :root.dark {
-    --docifly-code-success: #23733b;
     --docifly-code-comment: #aab4c0;
     --docifly-code-keyword: #d9a5ff;
     --docifly-code-string: #f2ca8d;
@@ -38,8 +38,12 @@
     --docifly-marker-delete-edge: #cf222e;
     --docifly-marker-pattern: color-mix(in srgb, var(--background) 10%, transparent);
   }
-  #article .copy-button {
-    --docifly-code-copy-hover-bg: color-mix(in srgb, var(--foreground) 20%, var(--docifly-code-bg));
+  /* Dark code needs less marker luminance to retain syntax contrast. */
+  :root.dark #article pre:has(.code-line) {
+    --docifly-marker-insert-bg: rgb(142 199 125 / 18%);
+    --docifly-marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 18%, var(--docifly-code-bg));
+    --docifly-marker-delete-bg: rgb(255 156 142 / 18%);
+    --docifly-marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 18%, var(--docifly-code-bg));
   }
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .hero-image[data-hero-depth] {
@@ -91,5 +95,19 @@
     --sidebar-border: #d4d4d4;
     --sidebar-ring: #737373;
     --docifly-code-print-text: #111111;
+    --docifly-code-bg: #f5f5f5;
+    --docifly-code-text: #111111;
+    --docifly-code-border: #d4d4d4;
+    --docifly-code-comment: #525252;
+    --docifly-code-keyword: #111111;
+    --docifly-code-string: #111111;
+    --docifly-code-number: #111111;
+    --docifly-code-name: #111111;
+    --docifly-code-property: #111111;
+    @each $name in ('orange', 'green', 'blue', 'red', 'purple') {
+      --docifly-status-#{$name}: #525252;
+      --docifly-status-#{$name}-surface: #f5f5f5;
+      --docifly-status-#{$name}-text: #171717;
+    }
   }
 }

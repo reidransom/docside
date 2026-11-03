@@ -61,7 +61,7 @@ Both operations are offline and use only Python's standard library. Import valid
 
 Importing does not edit layouts or compile Sass. `tools/styles/build.py` remains responsible only for documentation Sass and never refreshes dependencies; theme consumers need no new package manager or frontend toolchain. The standalone stylesheet includes the global reset, tokens, component rules, and only its bundled utility subset, not arbitrary Tailwind classes. Its semantic `:root`/`.dark` declarations are **unlayered**: the runtime's screen-only custom rules use `html:root` specificity to win even when restored before the vendor link loads. The light print baseline is also unlayered and more specific than vendor defaults, so `html.dark` cannot leak dark semantics into print. No vendor bytes are patched. Dark component variants use `html.dark`, synchronized by Docifly's one theme controller. No Basecoat JavaScript or compatibility pack is shipped.
 
-When changing code-marker styles, check whole-line and inline marks in Light and Dark, including both stripe phases. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source.
+When changing code-marker styles, check whole-line and inline marks in Light, Dark, Punk, and Ice, including both stripe phases and numbered gutters. Composite translucent marker backgrounds over the actual code surface before calculating WCAG relative luminance. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source. Narrow `--docifly-code-muted` and `--docifly-code-focus` extensions keep captions/gutters and code focus readable; dark insertion/deletion fills use less opacity rather than changing Vega's shared palette.
 
 All typography uses Basecoat's font stacks: Geist/Geist Sans with system sans-serif fallbacks, and Geist Mono with system monospace fallbacks. These are preferences for locally installed fonts, not downloads or bundled font assets. Article headings retain a documentation-specific scale, weight 700, restrained tracking, and a bounded reading column; site-title and hero geometry remain documentation adaptations. Component typography remains Vega-owned rather than inheriting a global heading-font override.
 
@@ -131,6 +131,12 @@ Heading permalinks use the filled `link-alt` glyph from `tools/icons/icons.json`
 
 Jigyll parses fenced-code metadata and emits the semantic `figure.highlight[data-code-frame]` seam, escaped caption, and unchanged server-highlighted code. `assets/code.js` treats that figure as the canonical frame container, adds native code/copy focus stops when the Clipboard API is available, reads only `code.textContent`, prevents overlapping copy attempts, and reports the actual write result. Untitled and unframed blocks retain the same enhancer without browser-side source parsing.
 
+Copy controls use Vega's outline/icon button contract. Their documentation-only
+rules position them over the code frame; semantic feedback pairs distinguish
+success and denial without replacing the actual Clipboard API result. Inline
+prose code wraps even inside tab panels; fenced source remains preformatted
+inside its own focusable horizontal scroller.
+
 ### Search
 
 `assets/js/zzzz-search-data.json` is a front-matter-bearing theme asset whose `search-data` layout runs after Jigyll renders all page bodies. It emits deterministic same-origin records for published default-layout HTML pages and output-enabled collection documents. Each record contains the title, base-URL-correct URL, article text, and Jigyll heading metadata; `search_exclude: true` omits a document. Component regions marked with `data-search-exclude` are delimited by private build-time markers and removed from the article body before text normalization, so illustrative file-tree labels do not enter the corpus.
@@ -148,13 +154,21 @@ Highlighting and fenced-code metadata parsing are server-side Jigyll/Chroma beha
 
 ### Print
 
-`_sass/_print.scss` removes fixed and interactive chrome; `_sass/_theme.scss` defines the light
-print palette. Print presentation expands tab and disclosure content, wraps code and table cells,
-and appends destinations only to HTTP(S) article links. Layouts render one
-screen-hidden canonical URL that the print stylesheet reveals after the
-article. Browser paper size, 12 mm margins, scale, headers/footers, and
-background-graphics behavior remain print-dialog or automation settings rather
-than theme configuration.
+`_sass/_print.scss` removes fixed and interactive chrome; `_sass/_theme.scss`
+defines a complete, unlayered light semantic/status/code baseline that wins
+over vendor defaults even while `html.dark` stays set. Custom palette injection
+is screen-only; printing needs no extra theme controller or preference writes.
+Print expands all labeled tab panels and native disclosure content, including
+Basecoat's collapsed `::details-content` block size and opacity, removes
+staggered-grid offsets and file-tree paint containment, and wraps code/table
+cells. It appends destinations only to HTTP(S) article links. Layouts render one
+screen-hidden canonical URL after the article. Leaving print retains the
+screen palette, selection, and disclosure state unchanged.
+
+Browser paper size, 12 mm margins, scale, headers/footers, and background
+graphics remain print-dialog or automation settings rather than theme
+configuration. Inspect an actual saved rendering/PDF: visible layout boxes
+alone do not prove disclosure contents are painted.
 
 ### Maintainer browser acceptance
 

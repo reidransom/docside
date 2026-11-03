@@ -21,7 +21,9 @@
     if (pre instanceof HTMLElement) pre.tabIndex = 0;
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'copy-button';
+    button.className = 'btn copy-button';
+    button.dataset.variant = 'outline';
+    button.dataset.size = 'icon';
     button.title = messages.copyLabel;
     button.setAttribute('aria-label', messages.copyLabel);
     const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');

@@ -2,7 +2,7 @@
 @layer docifly {
   /* Each Markdown body starts a fresh scope. Components stop outer prose;
      their explicit Markdown sections opt back in without styling their chrome. */
-  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, [role='tab']) {
+  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, .docifly-tabs, .code-frame, figure.highlight, [role='tab']) {
     :is(ul, ol) { padding-inline-start: 1.5rem; }
     ul { list-style: disc; }
     ol { list-style: decimal; }
@@ -75,8 +75,8 @@
       border-inline-start: 1px solid var(--border);
       padding-inline-start: 1rem;
     }
-    table { display: block; overflow: auto; border-spacing: 0; }
-    table code:not(pre *) { overflow-wrap: normal; }
+    table { display: block; max-width: 100%; overflow: auto; border-spacing: 0; }
+    table code:not(pre *) { white-space: nowrap; overflow-wrap: normal; }
     :is(th, td) {
       border-bottom: 1px solid var(--border);
       padding: 0.5rem 1rem;
