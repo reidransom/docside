@@ -409,6 +409,9 @@
     box-shadow: var(--shadow-md);
     overscroll-behavior: contain;
   }
+  #toc details:not([open]) > ul {
+    display: none;
+  }
   #toc a {
     display: flex;
     justify-content: space-between;
