@@ -2,14 +2,14 @@
 @layer docifly {
   #site-nav {
     position: fixed;
-    inset: var(--sl-nav-height) 0 0;
+    inset: var(--docifly-nav-height) 0 0;
     margin: 0;
     border: 0;
     width: 100%;
     height: auto;
-    padding: 1rem var(--sl-sidebar-pad-x);
-    color: var(--sl-color-text);
-    background: var(--sl-color-bg);
+    padding: 1rem var(--docifly-sidebar-pad-x);
+    color: var(--sidebar-foreground);
+    background: var(--sidebar);
     overflow-y: auto;
     overflow-wrap: anywhere;
     scrollbar-gutter: stable;
@@ -22,7 +22,7 @@
   }
   #site-nav ul ul li {
     margin-inline-start: var(--item-pad);
-    border-inline-start: 1px solid var(--sl-color-hairline-light);
+    border-inline-start: 1px solid var(--border);
     padding-inline-start: var(--item-pad);
   }
   #site-nav > ul > li + li {
@@ -32,7 +32,7 @@
     display: block;
     border-radius: 0.25rem;
     text-decoration: none;
-    color: var(--sl-color-gray-2);
+    color: var(--muted-foreground);
     padding: 0.3em var(--item-pad);
     line-height: 1.4;
   }
@@ -49,11 +49,11 @@
   #site-nav summary,
   #site-nav > ul > li > a {
     font-weight: 600;
-    color: var(--sl-color-white);
+    color: var(--sidebar-foreground);
   }
   #site-nav > ul > li > a,
   #site-nav summary > span {
-    font-size: var(--sl-text-lg);
+    font-size: var(--docifly-text-lg);
   }
   #site-nav summary::marker,
   #site-nav summary::-webkit-details-marker {
@@ -67,12 +67,12 @@
   }
   #site-nav a:hover,
   #site-nav a:focus {
-    color: var(--sl-color-white);
+    color: var(--sidebar-accent-foreground);
   }
   #site-nav a[aria-current='page'] {
     font-weight: 600;
-    color: var(--sl-color-text-invert);
-    background: var(--sl-color-text-accent);
+    color: var(--sidebar-primary-foreground);
+    background: var(--sidebar-primary);
   }
   html[dir='rtl'] details:not([open]) > summary .caret {
     transform: rotate(180deg);
@@ -80,16 +80,16 @@
   #menu-toggle {
     position: fixed;
     z-index: 10;
-    top: calc((var(--sl-nav-height) - 2rem) / 2);
-    inset-inline-end: var(--sl-nav-pad-x);
+    top: calc((var(--docifly-nav-height) - 2rem) / 2);
+    inset-inline-end: var(--docifly-nav-pad-x);
     border: 0;
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
     padding: 0.5rem;
-    background: var(--sl-color-white);
-    color: var(--sl-color-black);
-    box-shadow: var(--sl-shadow-md);
+    background: var(--foreground);
+    color: var(--background);
+    box-shadow: var(--shadow-md);
     cursor: pointer;
   }
   #menu-toggle::after {
@@ -99,8 +99,8 @@
     inset: min(0px, calc((2rem - 44px) / 2));
   }
   [data-color-scheme='light'] #menu-toggle {
-    background: var(--sl-color-black);
-    color: var(--sl-color-white);
+    background: var(--background);
+    color: var(--foreground);
   }
   #menu-toggle .close-icon {
     display: none;
@@ -109,11 +109,11 @@
     overflow: hidden;
   }
   body:has(#site-nav:popover-open) #menu-toggle {
-    background: var(--sl-color-gray-2);
+    background: var(--muted-foreground);
     box-shadow: none;
   }
   [data-color-scheme='light'] body:has(#site-nav:popover-open) #menu-toggle {
-    background: var(--sl-color-gray-5);
+    background: var(--border);
   }
   body:has(#site-nav:popover-open) #menu-toggle .open-icon {
     display: none;
@@ -135,20 +135,20 @@
     }
     :root:not([data-compact-sidebar]) #site-nav {
       display: block;
-      width: var(--sl-sidebar-width);
+      width: var(--docifly-sidebar-width);
       inset-inline-end: auto;
-      border-inline-end: 1px solid var(--sl-color-hairline-shade);
-      background: var(--sl-color-bg-sidebar);
+      border-inline-end: 1px solid var(--sidebar-border);
+      background: var(--sidebar);
     }
     :root:not([data-compact-sidebar]) #site-nav > ul > li + li {
       margin-top: 0.5rem;
     }
     :root:not([data-compact-sidebar]) #site-nav a {
-      font-size: var(--sl-text-sm);
+      font-size: var(--docifly-text-sm);
     }
     :root:not([data-compact-sidebar]) #site-nav > ul > li > a,
     :root:not([data-compact-sidebar]) #site-nav summary > span {
-      font-size: var(--sl-text-base);
+      font-size: var(--docifly-text-base);
     }
     :root:not([data-compact-sidebar]) body:has(#site-nav:popover-open) {
       overflow: auto;

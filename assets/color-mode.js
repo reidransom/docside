@@ -5,32 +5,36 @@
   const ready = document.readyState === 'loading'
     ? new Promise((resolve) => document.addEventListener('DOMContentLoaded', resolve, { once: true }))
     : Promise.resolve();
-  const baseColorNames = ['primary', 'secondary', 'body-text', 'bg'];
   const colorNames = [
-    ...baseColorNames, 'primary-alt', 'secondary-alt', 'strong-text', 'muted-text', 'bg-alt',
+    'background', 'foreground', 'card', 'card-foreground', 'popover', 'popover-foreground',
+    'primary', 'primary-foreground', 'secondary', 'secondary-foreground', 'muted',
+    'muted-foreground', 'accent', 'accent-foreground', 'destructive', 'border', 'input', 'ring',
+    'sidebar', 'sidebar-foreground', 'sidebar-primary', 'sidebar-primary-foreground',
+    'sidebar-accent', 'sidebar-accent-foreground', 'sidebar-border', 'sidebar-ring',
   ];
+  const cacheVersion = 2;
   const cacheKey = `docifly-palette:${registryUrl.href}`;
-  const validColors = (colors, scheme) =>
+  const validColors = (colors) =>
     colors && typeof colors === 'object' && !Array.isArray(colors) &&
-    (scheme === 'dark' ? baseColorNames : colorNames).every((name) => Object.hasOwn(colors, name)) &&
-    Object.entries(colors).every(([name, color]) =>
-      colorNames.includes(name) && /^#[0-9a-f]{6}$/i.test(color));
+    Object.keys(colors).length === colorNames.length &&
+    colorNames.every((name) => Object.hasOwn(colors, name) &&
+      typeof colors[name] === 'string' && /^#[0-9a-f]{6}$/i.test(colors[name]));
+  const stock = (id) => ({ id, scheme: id, palette: null });
   const paletteStyle = document.createElement('style');
   paletteStyle.media = 'screen';
   document.head.append(paletteStyle);
   const palettes = new Map();
   const setPalette = (theme, colors) => {
-    const declarations = colors === null ? '' :
-      Object.entries(colors).map(([name, color]) => `--brand-${name}: ${color};`).join('');
-    paletteStyle.textContent = `:root, ::backdrop {color-scheme: ${theme.scheme};${declarations}}` +
-      ':root {background-color: var(--brand-bg);}';
+    // One synchronous update: no frame can observe a new scheme with an old palette.
+    // Specificity beats the vendor's unlayered :root/.dark even before its link loads.
+    paletteStyle.textContent = colors === null ? '' :
+      `html:root, ::backdrop {${colorNames.map((name) => `--${name}: ${colors[name]};`).join('')}}`;
+    root.classList.toggle('dark', theme.scheme === 'dark');
     root.dataset.theme = theme.id;
     root.dataset.colorScheme = theme.scheme;
   };
   const useLight = () => {
-    paletteStyle.textContent = '';
-    root.dataset.theme = 'light';
-    root.dataset.colorScheme = 'light';
+    setPalette(stock('light'), null);
     try {
       localStorage.removeItem(cacheKey);
     } catch {
@@ -40,16 +44,25 @@
   let savedPreference;
   try {
     savedPreference = localStorage.getItem('starlight-theme');
-    const cached = JSON.parse(localStorage.getItem(cacheKey));
-    const id = !savedPreference || savedPreference === 'auto'
-      ? (system.matches ? 'dark' : 'light') : savedPreference;
-    if (cached?.id === id && ['light', 'dark'].includes(cached.scheme) &&
-        ((id === 'light' && cached.scheme === 'light' && cached.colors === null) ||
-          validColors(cached.colors, cached.scheme))) {
-      setPalette(cached, cached.colors);
-    }
   } catch {
-    /* Missing, invalid, or blocked storage must not prevent loading fresh colors. */
+    /* A denied preference must not prevent Auto or fresh colors. */
+  }
+  const initialId = !savedPreference || savedPreference === 'auto'
+    ? (system.matches ? 'dark' : 'light') : savedPreference;
+  if (initialId === 'light' || initialId === 'dark') {
+    // Stock schemes need no JSON snapshot to restore before the first paint.
+    setPalette(stock(initialId), null);
+  } else {
+    try {
+      const cached = JSON.parse(localStorage.getItem(cacheKey));
+      if (cached?.version === cacheVersion && cached.id === initialId &&
+          /^[a-z][a-z0-9-]*$/.test(cached.id) &&
+          ['light', 'dark'].includes(cached.scheme) && validColors(cached.colors)) {
+        setPalette(cached, cached.colors);
+      }
+    } catch {
+      /* Invalid, obsolete, or blocked snapshots never prevent fresh loading. */
+    }
   }
   let revision = 0;
   const loadPalette = (theme) => {
@@ -58,8 +71,8 @@
       palettes.set(theme.id, fetch(new URL(theme.palette, registryUrl)).then(async (response) => {
         if (!response.ok) throw new Error(`${theme.id} palette: HTTP ${response.status}`);
         const colors = await response.json();
-        if (!validColors(colors, theme.scheme)) {
-          throw new Error(`${theme.id} palette must define four base hex colors; light palettes also require all five variants`);
+        if (!validColors(colors)) {
+          throw new Error(`${theme.id} palette must define exactly the ${colorNames.length} semantic six-digit hex colors`);
         }
         return colors;
       }));
@@ -72,16 +85,18 @@
     if (!response.ok) throw new Error(`Theme registry: HTTP ${response.status}`);
     const entries = await response.json();
     if (!Array.isArray(entries) || !entries.every((theme) =>
-      /^[a-z][a-z0-9-]*$/.test(theme.id) && theme.id !== 'auto' &&
-      typeof theme.label === 'string' && theme.label.length > 0 &&
+      theme && typeof theme === 'object' &&
+      typeof theme.id === 'string' && /^[a-z][a-z0-9-]*$/.test(theme.id) && theme.id !== 'auto' &&
+      typeof theme.label === 'string' && theme.label.trim().length > 0 &&
       ['light', 'dark'].includes(theme.scheme) &&
-      (theme.palette === null || typeof theme.palette === 'string'))) {
+      (['light', 'dark'].includes(theme.id)
+        ? theme.palette === null && theme.scheme === theme.id
+        : typeof theme.palette === 'string' && theme.palette.trim().length > 0))) {
       throw new Error('Invalid theme registry');
     }
     const themes = new Map(entries.map((theme) => [theme.id, theme]));
-    if (themes.size !== entries.length || !themes.has('light') || !themes.has('dark') ||
-        themes.get('light').palette !== null) {
-      throw new Error('Theme registry requires unique IDs, default Light, and Dark');
+    if (themes.size !== entries.length || !themes.has('light') || !themes.has('dark')) {
+      throw new Error('Theme registry requires unique IDs and stock Light and Dark');
     }
     const parse = (value) => themes.has(value) ? value : 'auto';
     let preference = parse(savedPreference);
@@ -94,9 +109,9 @@
         if (current !== revision) return;
         setPalette(theme, colors);
         try {
-          localStorage.setItem(cacheKey, JSON.stringify({ id, scheme: theme.scheme, colors }));
+          localStorage.setItem(cacheKey, JSON.stringify({ version: cacheVersion, id, scheme: theme.scheme, colors }));
         } catch {
-          /* Theme switching still works without a persistent pre-paint palette. */
+          /* Switching still works without a persistent pre-paint snapshot. */
         }
       } catch (error) {
         if (current !== revision) return;
@@ -105,7 +120,9 @@
       }
     };
     void apply();
-    system.addEventListener('change', apply);
+    system.addEventListener('change', () => {
+      if (preference === 'auto') void apply();
+    });
     await ready;
     const picker = document.getElementById('mode-picker');
     const select = document.getElementById('color-mode');
@@ -134,7 +151,7 @@
         if (preference === 'auto') localStorage.removeItem('starlight-theme');
         else localStorage.setItem('starlight-theme', preference);
       } catch {
-        /* This tab still honors changes when persistence is denied. */
+        /* This page still honors changes when persistence is denied. */
       }
     });
     picker.hidden = false;

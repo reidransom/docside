@@ -6,11 +6,11 @@
     overflow: auto;
     // Expressive Code adds a one-pixel inner border before its line padding.
     padding: 0.75rem 3rem 0.75rem calc(0.90625rem + 1px);
-    border: 1px solid var(--code-border);
+    border: 1px solid var(--docifly-code-border);
     border-radius: 1px;
-    font: var(--sl-text-code) / var(--sl-line-height) var(--__sl-font-mono);
-    color: var(--code-text);
-    background: var(--code-bg);
+    font: var(--docifly-text-code) / var(--docifly-line-height) var(--font-mono);
+    color: var(--docifly-code-text);
+    background: var(--docifly-code-bg);
     tab-size: 2;
   }
   #article pre code {
@@ -19,22 +19,22 @@
     white-space: pre;
   }
   #article pre :is(.c, .ch, .cm, .c1, .cs, .cp, .cpf) {
-    color: var(--code-comment);
+    color: var(--docifly-code-comment);
   }
   #article pre :is(.k, .kc, .kd, .kn, .kp, .kr, .kt, .o, .ow) {
-    color: var(--code-keyword);
+    color: var(--docifly-code-keyword);
   }
   #article pre :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss) {
-    color: var(--code-string);
+    color: var(--docifly-code-string);
   }
   #article pre :is(.m, .mb, .mf, .mh, .mi, .il, .mo) {
-    color: var(--code-number);
+    color: var(--docifly-code-number);
   }
   #article pre :is(.n, .na, .nb, .bp, .nc, .no, .nd, .ne, .nf, .fm, .nl, .nn, .nx) {
-    color: var(--code-name);
+    color: var(--docifly-code-name);
   }
   #article pre :is(.nt, .nv, .vc, .vg, .vi, .vm) {
-    color: var(--code-property);
+    color: var(--docifly-code-property);
   }
 
   #article pre:has(.code-line) {
@@ -78,9 +78,9 @@
     width: var(--line-number-width);
     margin-inline-end: 0.75rem;
     padding-inline-end: 0.75rem;
-    border-inline-end: 1px solid var(--code-border);
-    color: var(--sl-color-gray-2);
-    background-color: var(--code-bg);
+    border-inline-end: 1px solid var(--docifly-code-border);
+    color: var(--muted-foreground);
+    background-color: var(--docifly-code-bg);
     font-variant-numeric: tabular-nums;
     text-align: end;
     user-select: none;
@@ -88,59 +88,59 @@
   }
 
   #article :is(.code-line, mark).is-marked {
-    background-color: var(--marker-neutral-bg);
+    background-color: var(--docifly-marker-neutral-bg);
   }
 
   #article :is(.code-line, mark).is-inserted {
-    background-color: var(--marker-insert-bg);
+    background-color: var(--docifly-marker-insert-bg);
     background-image: repeating-linear-gradient(
       135deg,
       transparent 0 6px,
-      var(--marker-pattern) 6px 8px
+      var(--docifly-marker-pattern) 6px 8px
     );
   }
 
   #article :is(.code-line, mark).is-deleted {
-    background-color: var(--marker-delete-bg);
+    background-color: var(--docifly-marker-delete-bg);
     background-image: repeating-linear-gradient(
       45deg,
       transparent 0 6px,
-      var(--marker-pattern) 6px 8px
+      var(--docifly-marker-pattern) 6px 8px
     );
   }
 
   #article .code-line.is-marked::before {
-    background-color: var(--marker-neutral-gutter);
+    background-color: var(--docifly-marker-neutral-gutter);
   }
 
   #article .code-line.is-inserted::before {
-    background-color: var(--marker-insert-gutter);
+    background-color: var(--docifly-marker-insert-gutter);
     background-image: repeating-linear-gradient(
       135deg,
       transparent 0 6px,
-      var(--marker-pattern) 6px 8px
+      var(--docifly-marker-pattern) 6px 8px
     );
   }
 
   #article .code-line.is-deleted::before {
-    background-color: var(--marker-delete-gutter);
+    background-color: var(--docifly-marker-delete-gutter);
     background-image: repeating-linear-gradient(
       45deg,
       transparent 0 6px,
-      var(--marker-pattern) 6px 8px
+      var(--docifly-marker-pattern) 6px 8px
     );
   }
 
   #article .code-line.is-marked {
-    border-inline-start-color: var(--marker-neutral-edge);
+    border-inline-start-color: var(--docifly-marker-neutral-edge);
   }
 
   #article .code-line.is-inserted {
-    border-inline-start-color: var(--marker-insert-edge);
+    border-inline-start-color: var(--docifly-marker-insert-edge);
   }
 
   #article .code-line.is-deleted {
-    border-inline-start-color: var(--marker-delete-edge);
+    border-inline-start-color: var(--docifly-marker-delete-edge);
   }
 
   #article mark:is(.is-marked, .is-inserted, .is-deleted) {
@@ -163,7 +163,7 @@
     display: block;
     min-width: 0;
     margin: 0;
-    background: var(--sl-color-black);
+    background: var(--background);
     border-radius: 1px;
   }
 
@@ -174,8 +174,8 @@
   #article figure.highlight[data-code-frame] > .code-title {
     min-width: 0;
     overflow: hidden;
-    color: var(--sl-color-gray-2);
-    font: 0.9rem / 1.65 var(--__sl-font);
+    color: var(--muted-foreground);
+    font: 0.9rem / 1.65 var(--font-sans);
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -184,9 +184,9 @@
     width: fit-content;
     max-width: 100%;
     padding: calc(0.25rem + 1px) 1rem;
-    background: var(--code-bg);
-    border: 1px solid var(--code-border);
-    border-block-start-color: var(--sl-color-accent-high);
+    background: var(--docifly-code-bg);
+    border: 1px solid var(--docifly-code-border);
+    border-block-start-color: var(--primary);
     border-block-end: 0;
   }
 
@@ -199,8 +199,8 @@
     display: block;
     height: calc(0.9rem * 1.65 + 0.5625rem);
     content: '';
-    background: var(--sl-color-black);
-    border: 1px solid var(--code-border);
+    background: var(--background);
+    border: 1px solid var(--docifly-code-border);
     border-block-end: 0;
   }
 
@@ -210,7 +210,7 @@
     inset-inline-start: 1rem;
     width: 0.4375rem;
     height: 0.4375rem;
-    color: var(--sl-color-gray-4);
+    color: var(--border);
     content: '';
     background: currentColor;
     border-radius: 50%;
@@ -231,7 +231,7 @@
 
   [data-color-scheme='light'] #article figure.highlight[data-code-frame],
   [data-color-scheme='light'] #article figure.highlight[data-code-frame='terminal']::before {
-    background: var(--sl-color-gray-6);
+    background: var(--muted);
   }
   #article .copy-button {
     position: absolute;
@@ -243,8 +243,8 @@
     border: 0;
     border-radius: 0.2rem;
     padding: 0;
-    background: var(--code-bg);
-    color: var(--sl-color-text);
+    background: var(--docifly-code-bg);
+    color: var(--foreground);
     cursor: pointer;
     opacity: 0.75;
   }
@@ -269,16 +269,16 @@
   }
   #article .copy-button:hover,
   #article .copy-button:focus-visible {
-    background: var(--code-copy-hover-bg);
+    background: var(--docifly-code-copy-hover-bg);
     opacity: 1;
   }
   #article .copy-feedback {
-    --feedback-bg: var(--code-success);
+    --feedback-bg: var(--docifly-code-success);
     position: absolute;
     inset-inline-end: calc(0.5rem + 1px + var(--copy-size) + 0.6rem);
     top: calc(0.4rem + 1px);
     padding: 0.125rem 0.75rem;
-    font: 0.9rem / 1.65 var(--__sl-font);
+    font: 0.9rem / 1.65 var(--font-sans);
     color: white;
     background: var(--feedback-bg);
     border-radius: 0.2rem;
@@ -294,8 +294,8 @@
     border-inline-start-color: var(--feedback-bg);
   }
   #article .copy-feedback[data-error] {
-    --feedback-bg: var(--sl-color-red-low);
-    color: var(--sl-color-red-high);
+    --feedback-bg: var(--docifly-status-red-surface);
+    color: var(--docifly-status-red-text);
   }
   #article .copy-feedback:empty {
     display: none;

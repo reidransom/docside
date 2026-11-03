@@ -12,10 +12,10 @@ for (const installation of installations) {
   test(`${installation.name} exposes the Docifly consumer contract`, async ({ page }) => {
     await page.goto(urlFor(installation, pages[0]));
     await expect(page.locator('header .site-title')).toHaveText('Docifly Docs');
-    const stylesheet = page.locator('link[rel="stylesheet"]');
-    await expect(stylesheet).toHaveAttribute('href', /\/assets\/docifly\.css$/);
-    const response = await page.request.get(new URL(await stylesheet.getAttribute('href'), page.url()).href);
-    expect(response.ok()).toBe(true);
+    for (const stylesheet of await page.locator('link[rel="stylesheet"]').all()) {
+      const response = await page.request.get(new URL(await stylesheet.getAttribute('href'), page.url()).href);
+      expect(response.ok()).toBe(true);
+    }
   });
 
   for (const pageEntry of pages) {

@@ -2,7 +2,7 @@
   #version-picker {
     position: relative;
     flex: none;
-    color: var(--sl-color-gray-2);
+    color: var(--muted-foreground);
   }
   #version-picker > summary {
     display: block;
@@ -18,7 +18,7 @@
   }
   #version-picker > summary:hover,
   #version-picker[open] > summary {
-    color: var(--sl-color-white);
+    color: var(--foreground);
   }
   .version-picker-control {
     display: grid;
@@ -29,7 +29,7 @@
   }
   .version-current {
     overflow: hidden;
-    font-size: var(--sl-text-sm);
+    font-size: var(--docifly-text-sm);
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -52,10 +52,10 @@
     padding: 0.375rem;
     margin: 0;
     list-style: none;
-    background: var(--sl-color-bg-nav);
-    border: 1px solid var(--sl-color-gray-5);
+    background: var(--background);
+    border: 1px solid var(--border);
     border-radius: 0.25rem;
-    box-shadow: var(--sl-shadow-lg);
+    box-shadow: var(--shadow-lg);
   }
   #version-picker li {
     margin: 0;
@@ -64,18 +64,18 @@
     display: block;
     padding: 0.5rem 0.75rem;
     overflow-wrap: anywhere;
-    color: var(--sl-color-gray-1);
+    color: var(--foreground);
     text-decoration: none;
     border-radius: 0.125rem;
   }
   #version-picker a.version-option:hover,
   #version-picker a.version-option:focus-visible {
-    color: var(--sl-color-white);
-    background: var(--sl-color-gray-6);
+    color: var(--foreground);
+    background: var(--muted);
   }
   #version-picker .version-option.current {
-    color: var(--sl-color-text-accent);
-    background: var(--sl-color-accent-low);
+    color: var(--primary);
+    background: var(--accent);
   }
   #site-nav #version-picker {
     margin-top: 0.5rem;
@@ -86,7 +86,7 @@
   }
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) #version-picker > summary {
-      font-size: var(--sl-text-sm);
+      font-size: var(--docifly-text-sm);
     }
   }
 }

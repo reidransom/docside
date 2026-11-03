@@ -3,10 +3,10 @@
   #toc {
     position: fixed;
     z-index: 4;
-    top: calc(var(--sl-nav-height) - 1px);
-    inset-inline: var(--sl-content-inline-start) 0;
-    border-top: 1px solid var(--sl-color-gray-5);
-    background: var(--sl-color-bg-nav);
+    top: calc(var(--docifly-nav-height) - 1px);
+    inset-inline: var(--docifly-content-inline-start) 0;
+    border-top: 1px solid var(--border);
+    background: var(--background);
   }
   #toc h2 {
     display: none;
@@ -15,10 +15,10 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    height: var(--sl-mobile-toc-height);
-    border-bottom: 1px solid var(--sl-color-hairline-shade);
+    height: var(--docifly-mobile-toc-height);
+    border-bottom: 1px solid var(--border);
     padding: 0.5rem 1rem;
-    font-size: var(--sl-text-xs);
+    font-size: var(--docifly-text-xs);
     cursor: pointer;
     outline-offset: -3px;
   }
@@ -32,12 +32,12 @@
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid var(--sl-color-gray-5);
+    border: 1px solid var(--border);
     border-radius: 0.5rem;
     padding-block: 0.5rem;
     padding-inline: 0.75rem 0.5rem;
     line-height: 1;
-    background: var(--sl-color-bg);
+    background: var(--background);
     user-select: none;
   }
   .toc-toggle .caret {
@@ -46,25 +46,25 @@
     text-align: center;
   }
   #toc details[open] .toc-toggle {
-    color: var(--sl-color-white);
-    border-color: var(--sl-color-accent);
+    color: var(--foreground);
+    border-color: var(--ring);
   }
   .toc-current {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    color: var(--sl-color-white);
+    color: var(--foreground);
   }
   #toc ul {
     margin: -1px 0 0;
-    border: 1px solid var(--sl-color-gray-6);
-    border-top-color: var(--sl-color-hairline-shade);
+    border: 1px solid var(--muted);
+    border-top-color: var(--border);
     padding: 0;
     list-style: none;
-    max-height: calc(85vh - var(--sl-nav-height) - var(--sl-mobile-toc-height));
+    max-height: calc(85vh - var(--docifly-nav-height) - var(--docifly-mobile-toc-height));
     overflow-y: auto;
-    background: var(--sl-color-bg);
-    box-shadow: var(--sl-shadow-md);
+    background: var(--background);
+    box-shadow: var(--shadow-md);
     overscroll-behavior: contain;
   }
   #toc a {
@@ -73,9 +73,9 @@
     gap: 1rem;
     padding-block: 0.5rem;
     padding-inline: calc(1rem + var(--depth) * 1rem) 1rem;
-    border-top: 1px solid var(--sl-color-gray-6);
-    color: var(--sl-color-text);
-    font-size: var(--sl-text-sm);
+    border-top: 1px solid var(--muted);
+    color: var(--foreground);
+    font-size: var(--docifly-text-sm);
     line-height: 1.25;
     text-decoration: none;
     overflow-wrap: anywhere;
@@ -85,11 +85,11 @@
     border-top: 0;
   }
   #toc a[aria-current='true'] {
-    color: var(--sl-color-white);
+    color: var(--foreground);
   }
   :root[data-compact-toc] #toc a[aria-current='true']::after {
     content: '✓';
-    color: var(--sl-color-text-accent);
+    color: var(--primary);
   }
   @media (max-width: 71.999rem) {
     #toc a {
@@ -98,7 +98,7 @@
     }
     #toc a[aria-current='true']::after {
       content: '✓';
-      color: var(--sl-color-text-accent);
+      color: var(--primary);
     }
   }
   @media (min-width: 72rem) {
@@ -108,29 +108,29 @@
       width: 100%;
       height: 100vh;
       border-top: 0;
-      border-inline-start: 1px solid var(--sl-color-hairline);
-      padding: calc(var(--sl-nav-height) + 1rem) var(--sl-sidebar-pad-x) 1rem;
-      background: var(--sl-color-bg);
+      border-inline-start: 1px solid var(--border);
+      padding: calc(var(--docifly-nav-height) + 1rem) var(--docifly-sidebar-pad-x) 1rem;
+      background: var(--background);
       overflow-y: auto;
       scrollbar-width: none;
     }
     :root:not([data-compact-toc]) #toc > h2,
     :root:not([data-compact-toc]) #toc > details {
       width: min(
-        calc(var(--sl-sidebar-width) - 2 * var(--sl-sidebar-pad-x)),
+        calc(var(--docifly-sidebar-width) - 2 * var(--docifly-sidebar-pad-x)),
         calc(
           (
-              100vw - var(--sl-sidebar-width) - 2 * var(--sl-content-pad-x) - 2 *
-                var(--sl-sidebar-pad-x)
+              100vw - var(--docifly-sidebar-width) - 2 * var(--docifly-content-pad-x) - 2 *
+                var(--docifly-sidebar-pad-x)
             ) * 0.25
         )
       );
     }
     :root:not([data-compact-toc]) #toc h2 {
       display: block;
-      color: var(--sl-color-white);
-      font-size: var(--sl-text-h5);
-      line-height: var(--sl-line-height-headings);
+      color: var(--foreground);
+      font-size: var(--docifly-text-h5);
+      line-height: var(--docifly-line-height-headings);
       margin-bottom: 0.5rem;
     }
     :root:not([data-compact-toc]) #toc summary {
@@ -149,14 +149,14 @@
       border-radius: 0.25rem;
       padding-block: 0.25rem;
       padding-inline: calc(0.5rem + var(--depth) * 1rem) 0.5rem;
-      color: var(--sl-color-gray-3);
-      font-size: var(--sl-text-xs);
+      color: var(--muted-foreground);
+      font-size: var(--docifly-text-xs);
     }
     :root:not([data-compact-toc]) #toc a:hover {
-      color: var(--sl-color-white);
+      color: var(--foreground);
     }
     :root:not([data-compact-toc]) #toc a[aria-current='true'] {
-      color: var(--sl-color-text-accent);
+      color: var(--primary);
     }
   }
 }

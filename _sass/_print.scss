@@ -10,8 +10,8 @@
   }
 
   body {
-    color: var(--sl-color-text);
-    background: var(--sl-color-bg);
+    color: var(--foreground);
+    background: var(--background);
     font-size: 11pt;
   }
 
@@ -43,12 +43,12 @@
     padding: 0 0 4mm;
     margin-bottom: 6mm;
     border: 0;
-    border-bottom: 1px solid var(--sl-color-gray-5);
+    border-bottom: 1px solid var(--border);
     background: transparent;
   }
 
   .site-title {
-    color: var(--sl-color-white);
+    color: var(--foreground);
     font-size: 14pt;
   }
 
@@ -85,7 +85,7 @@
 
   h1,
   .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) {
-    color: var(--sl-color-white);
+    color: var(--foreground);
     break-after: avoid;
   }
 
@@ -102,10 +102,10 @@
     display: block;
     margin: 8mm 0 0;
     padding-top: 3mm;
-    border-top: 1px solid var(--sl-color-gray-5);
-    color: var(--sl-color-gray-2);
+    border-top: 1px solid var(--border);
+    color: var(--muted-foreground);
     direction: ltr;
-    font-family: var(--sl-font-system-mono);
+    font-family: var(--font-mono);
     font-size: 9pt;
     overflow-wrap: anywhere;
     unicode-bidi: isolate;
@@ -114,7 +114,7 @@
   #article a[href^='http://']::after,
   #article a[href^='https://']::after {
     content: ' (' attr(href) ')';
-    color: var(--sl-color-gray-2);
+    color: var(--muted-foreground);
     direction: ltr;
     font-size: 0.85em;
     overflow-wrap: anywhere;
@@ -130,7 +130,7 @@
 
   #article pre,
   #article pre * {
-    color: var(--code-print-text) !important;
+    color: var(--docifly-code-print-text) !important;
   }
 
   #article pre {
@@ -222,7 +222,7 @@
   .card,
   .sl-badge,
   .sl-link-button.primary {
-    color: var(--sl-color-white);
+    color: var(--foreground);
     background: transparent;
   }
 
@@ -232,6 +232,6 @@
   }
 
   .sl-badge {
-    border-color: var(--sl-color-gray-3);
+    border-color: var(--muted-foreground);
   }
 }

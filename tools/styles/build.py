@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile the shipped stylesheet and default light palette."""
+"""Compile the shipped documentation stylesheet against local Basecoat defaults."""
 
 from __future__ import annotations
 

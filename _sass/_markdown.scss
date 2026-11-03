@@ -1,26 +1,35 @@
 /*! Adapted from stock Starlight Markdown styles; MIT, Astro contributors. */
-@layer starlight.content {
+@layer docifly {
+  .sl-markdown-content :is(ul, ol):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *)) {
+    padding-inline-start: 1.5rem;
+  }
+  .sl-markdown-content ul:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *)) {
+    list-style: disc;
+  }
+  .sl-markdown-content ol:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *)) {
+    list-style: decimal;
+  }
   .sl-markdown-content
     :not(a, strong, em, del, span, input, code, br)
-    + :not(a, strong, em, del, span, input, code, br, :where(.not-content *)) {
-    margin-top: var(--sl-content-gap-y);
+    + :not(a, strong, em, del, span, input, code, br, :where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    margin-top: var(--docifly-content-gap-y);
   }
 
   /* Headings after non-headings have more spacing. */
   .sl-markdown-content
     :not(h1, h2, h3, h4, h5, h6)
-    + :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
+    + :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     margin-top: 1.5em;
   }
 
-  .sl-markdown-content li + li:not(:where(.not-content *)),
-  .sl-markdown-content dt + dt:not(:where(.not-content *)),
-  .sl-markdown-content dt + dd:not(:where(.not-content *)),
-  .sl-markdown-content dd + dd:not(:where(.not-content *)) {
+  .sl-markdown-content li + li:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
+  .sl-markdown-content dt + dt:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
+  .sl-markdown-content dt + dd:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
+  .sl-markdown-content dd + dd:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     margin-top: 0.25rem;
   }
 
-  .sl-markdown-content li:not(:where(.not-content *)) {
+  .sl-markdown-content li:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     overflow-wrap: anywhere;
   }
 
@@ -40,7 +49,7 @@
 	 :is(ol, ul):has(> li > :not(a, strong, em, del, span, input, code, br, script, ol, ul))
 	 > li
 	 > :is(
-			:last-child:not(a, strong, em, del, span, input, code, br, script, :where(.not-content *)),
+			:last-child:not(a, strong, em, del, span, input, code, br, script, :where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
 			/*
 			 * For list items ending with 1 or multiple script elements (`:has(~
 			 * script:last-child)`), we need to style the last non-script
@@ -52,119 +61,123 @@
     margin-bottom: 1.25rem;
   }
 
-  .sl-markdown-content dt:not(:where(.not-content *)) {
+  .sl-markdown-content dt:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     font-weight: 700;
   }
-  .sl-markdown-content dd:not(:where(.not-content *)) {
+  .sl-markdown-content dd:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     padding-inline-start: 1rem;
   }
 
-  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
-    color: var(--sl-color-white);
-    line-height: var(--sl-line-height-headings);
+  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    color: var(--foreground);
+    line-height: var(--docifly-line-height-headings);
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
-  .sl-markdown-content :is(img, picture, video, canvas, svg, iframe):not(:where(.not-content *)) {
+  .sl-markdown-content :is(img, picture, video, canvas, svg, iframe):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     display: block;
     max-width: 100%;
     height: auto;
   }
 
-  .sl-markdown-content h1:not(:where(.not-content *)) {
-    font-size: var(--sl-text-h1);
+  .sl-markdown-content h1:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    font-size: var(--docifly-text-h1);
   }
-  .sl-markdown-content h2:not(:where(.not-content *)) {
-    font-size: var(--sl-text-h2);
+  .sl-markdown-content h2:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    font-size: var(--docifly-text-h2);
   }
-  .sl-markdown-content h3:not(:where(.not-content *)) {
-    font-size: var(--sl-text-h3);
+  .sl-markdown-content h3:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    font-size: var(--docifly-text-h3);
   }
-  .sl-markdown-content h4:not(:where(.not-content *)) {
-    font-size: var(--sl-text-h4);
+  .sl-markdown-content h4:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    font-size: var(--docifly-text-h4);
   }
-  .sl-markdown-content h5:not(:where(.not-content *)) {
-    font-size: var(--sl-text-h5);
+  .sl-markdown-content h5:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    font-size: var(--docifly-text-h5);
   }
-  .sl-markdown-content h6:not(:where(.not-content *)) {
-    font-size: var(--sl-text-h6);
-  }
-
-  .sl-markdown-content a:not(:where(.not-content *)) {
-    color: var(--sl-color-text-accent);
-  }
-  .sl-markdown-content a:hover:not(:where(.not-content *)) {
-    color: var(--sl-color-white);
+  .sl-markdown-content h6:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    font-size: var(--docifly-text-h6);
   }
 
-  .sl-markdown-content code:not(:where(.not-content *)) {
-    background-color: var(--sl-color-bg-inline-code);
+  .sl-markdown-content a:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .sl-markdown-content a:hover:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    color: var(--foreground);
+  }
+
+  .sl-markdown-content code:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    background-color: var(--muted);
     margin-block: -0.125rem;
     padding: 0.125rem 0.375rem;
-    font-size: var(--sl-text-code-sm);
+    font-size: var(--docifly-text-code-sm);
     direction: ltr;
     white-space: normal;
     overflow-wrap: anywhere;
   }
 
-  .sl-markdown-content :is(code, a[href]):not(:where(.not-content *)) {
+  .sl-markdown-content :is(code, a[href]):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     unicode-bidi: isolate;
   }
   .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) code {
     font-size: inherit;
   }
 
-  .sl-markdown-content pre:not(:where(.not-content *)) {
-    border: 1px solid var(--sl-color-gray-5);
+  .sl-markdown-content pre:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    border: 1px solid var(--border);
     padding: 0.75rem 1rem;
-    font-size: var(--sl-text-code);
+    font-size: var(--docifly-text-code);
     tab-size: 2;
     direction: ltr;
     text-align: left;
     unicode-bidi: isolate;
   }
 
-  .sl-markdown-content pre code:not(:where(.not-content *)) {
+  .sl-markdown-content pre code:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     all: unset;
-    font-family: var(--__sl-font-mono);
+    font-family: var(--font-mono);
   }
 
-  .sl-markdown-content blockquote:not(:where(.not-content *)) {
-    border-inline-start: 1px solid var(--sl-color-gray-5);
+  .sl-markdown-content blockquote:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    border-inline-start: 1px solid var(--border);
     padding-inline-start: 1rem;
   }
 
   /* Table styling */
-  .sl-markdown-content table:not(:where(.not-content *)) {
+  .sl-markdown-content table:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     display: block;
     overflow: auto;
     border-spacing: 0;
   }
-  .sl-markdown-content table code:not(:where(pre *, .not-content *)) {
+  .sl-markdown-content table code:not(:where(pre *, .not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     overflow-wrap: normal;
   }
-  .sl-markdown-content :is(th, td):not(:where(.not-content *)) {
-    border-bottom: 1px solid var(--sl-color-gray-5);
+  .sl-markdown-content :is(th, td):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    border-bottom: 1px solid var(--border);
     padding: 0.5rem 1rem;
     /* Align text to the top of the row in multiline tables. */
     vertical-align: baseline;
   }
-  .sl-markdown-content :is(th:first-child, td:first-child):not(:where(.not-content *)) {
+  .sl-markdown-content :is(th:first-child, td:first-child):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     padding-inline-start: 0;
   }
-  .sl-markdown-content :is(th:last-child, td:last-child):not(:where(.not-content *)) {
+  .sl-markdown-content :is(th:last-child, td:last-child):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     padding-inline-end: 0;
   }
-  .sl-markdown-content th:not(:where(.not-content *)) {
-    color: var(--sl-color-white);
+  .sl-markdown-content th:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+    color: var(--foreground);
     font-weight: 600;
   }
   /* Align headings to the start of the line unless set by the `align` attribute. */
-  .sl-markdown-content th:not([align]):not(:where(.not-content *)) {
+  .sl-markdown-content th:not([align]):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
     text-align: start;
   }
   @media (max-width: 49.999rem) {
-    .sl-markdown-content :is(th, td):nth-child(2):last-child:not(:where(.not-content *)) {
-      min-width: min(20rem, calc(100vw - 2 * var(--sl-content-pad-x)));
+    .sl-markdown-content :is(th, td):nth-child(2):last-child:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
+      min-width: min(20rem, calc(100vw - 2 * var(--docifly-content-pad-x)));
     }
   }
 }

@@ -1,85 +1,54 @@
-/*! Adapted from stock Starlight 39d4e71; MIT, Astro contributors. See assets/starlight-LICENSE. */
-@layer starlight.base {
-  :root,
-  ::backdrop {
-    /* Text size and line height */
-    --sl-text-2xs: 0.75rem; /* 12px */
-    --sl-text-xs: 0.8125rem; /* 13px */
-    --sl-text-sm: 0.875rem; /* 14px */
-    --sl-text-base: 1rem; /* 16px */
-    --sl-text-lg: 1.125rem; /* 18px */
-    --sl-text-xl: 1.25rem; /* 20px */
-    --sl-text-2xl: 1.5rem; /* 24px */
-    --sl-text-3xl: 1.8125rem; /* 29px */
-    --sl-text-4xl: 2.1875rem; /* 35px */
-    --sl-text-5xl: 2.625rem; /* 42px */
-    --sl-text-6xl: 4rem; /* 64px */
-
-    --sl-text-body: var(--sl-text-base);
-    --sl-text-body-sm: var(--sl-text-xs);
-    --sl-text-code: var(--sl-text-sm);
-    --sl-text-code-sm: var(--sl-text-xs);
-    --sl-text-h1: var(--sl-text-4xl);
-    --sl-text-h2: var(--sl-text-3xl);
-    --sl-text-h3: var(--sl-text-2xl);
-    --sl-text-h4: var(--sl-text-xl);
-    --sl-text-h5: var(--sl-text-lg);
-
-    --sl-line-height: 1.75;
-    --sl-line-height-headings: 1.2;
-
-    /*
-			Although technically superseded by the `system-ui` font-family, we use `-apple-system` and
-			`BlinkMacSystemFont` because `system-ui` causes issues on Windows computers in some languages.
-			See: https://github.com/withastro/starlight/issues/3721
-		*/
-    --sl-font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-      'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-      'Noto Color Emoji';
-    --sl-font-system-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
-    --__sl-font: var(--sl-font, var(--sl-font-system)), var(--sl-font-system);
-    --__sl-font-mono: var(--sl-font-mono, var(--sl-font-system-mono)), var(--sl-font-system-mono);
-
-    /** Key layout values */
-    --sl-nav-height: 3.5rem;
-    --sl-nav-pad-x: 1rem;
-    --sl-nav-pad-y: 0.75rem;
-    --sl-mobile-toc-height: 3rem;
-    --sl-sidebar-width: 18.75rem;
-    --sl-sidebar-pad-x: 1rem;
-    --sl-content-width: 45rem;
-    --sl-content-pad-x: 1rem;
-    --sl-content-gap-y: 1rem;
-    --sl-main-pad: 0 0 3vh 0;
-    --sl-menu-button-size: 2rem;
-    --sl-nav-gap: var(--sl-content-pad-x);
-    /* Offset required to show outline inside an element instead of round the outside */
-    --sl-outline-offset-inside: -0.1875rem;
-
-    /* Global z-index values */
-    --sl-z-index-toc: 4;
-    --sl-z-index-menu: 5;
-    --sl-z-index-navbar: 10;
-    --sl-z-index-skiplink: 20;
+/*! Shell values adapted from Starlight 39d4e71; MIT, Astro contributors. See assets/starlight-LICENSE. */
+@layer docifly {
+  :root {
+    --docifly-text-2xs: 0.75rem;
+    --docifly-text-xs: 0.8125rem;
+    --docifly-text-sm: 0.875rem;
+    --docifly-text-base: 1rem;
+    --docifly-text-lg: 1.125rem;
+    --docifly-text-xl: 1.25rem;
+    --docifly-text-2xl: 1.5rem;
+    --docifly-text-3xl: 1.8125rem;
+    --docifly-text-4xl: 2.1875rem;
+    --docifly-text-5xl: 2.625rem;
+    --docifly-text-6xl: 4rem;
+    --docifly-text-body: var(--docifly-text-base);
+    --docifly-text-code: var(--docifly-text-sm);
+    --docifly-text-code-sm: var(--docifly-text-xs);
+    --docifly-text-h1: var(--docifly-text-4xl);
+    --docifly-text-h2: var(--docifly-text-3xl);
+    --docifly-text-h3: var(--docifly-text-2xl);
+    --docifly-text-h4: var(--docifly-text-xl);
+    --docifly-text-h5: var(--docifly-text-lg);
+    --docifly-text-h6: var(--docifly-text-base);
+    --docifly-line-height: 1.75;
+    --docifly-line-height-headings: 1.2;
+    --docifly-nav-height: 3.5rem;
+    --docifly-nav-pad-x: 1rem;
+    --docifly-nav-pad-y: 0.75rem;
+    --docifly-mobile-toc-height: 3rem;
+    --docifly-sidebar-width: 18.75rem;
+    --docifly-sidebar-pad-x: 1rem;
+    --docifly-content-width: 45rem;
+    --docifly-content-pad-x: 1rem;
+    --docifly-content-gap-y: 1rem;
+    --docifly-main-pad: 0 0 3vh 0;
+    --docifly-outline-offset-inside: -0.1875rem;
   }
-
-
-  @media (min-width: 50em) {
+  @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) {
-      --sl-nav-height: 4rem;
-      --sl-nav-pad-x: 1.5rem;
-      --sl-text-h1: var(--sl-text-5xl);
-      --sl-text-h2: var(--sl-text-4xl);
-      --sl-text-h3: var(--sl-text-3xl);
-      --sl-text-h4: var(--sl-text-2xl);
+      --docifly-nav-height: 4rem;
+      --docifly-nav-pad-x: 1.5rem;
+      --docifly-text-h1: var(--docifly-text-5xl);
+      --docifly-text-h2: var(--docifly-text-4xl);
+      --docifly-text-h3: var(--docifly-text-3xl);
+      --docifly-text-h4: var(--docifly-text-2xl);
     }
   }
-
   @media (min-width: 72rem) {
     :root:not([data-compact-toc]) {
-      --sl-content-pad-x: 1.5rem;
-      --sl-mobile-toc-height: 0rem;
+      --docifly-content-pad-x: 1.5rem;
+      --docifly-mobile-toc-height: 0rem;
     }
   }
 }

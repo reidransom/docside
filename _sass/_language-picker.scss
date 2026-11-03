@@ -3,7 +3,7 @@
   #language-picker {
     position: relative;
     flex: none;
-    color: var(--sl-color-gray-2);
+    color: var(--muted-foreground);
   }
 
   #language-picker > summary {
@@ -22,7 +22,7 @@
 
   #language-picker > summary:hover,
   #language-picker[open] > summary {
-    color: var(--sl-color-white);
+    color: var(--foreground);
   }
 
   .language-picker-control {
@@ -35,7 +35,7 @@
 
   .language-current {
     overflow: hidden;
-    font-size: var(--sl-text-sm);
+    font-size: var(--docifly-text-sm);
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -61,14 +61,14 @@
     padding: 0.375rem;
     margin: 0;
     list-style: none;
-    background: var(--sl-color-bg-nav);
-    border: 1px solid var(--sl-color-gray-5);
+    background: var(--background);
+    border: 1px solid var(--border);
     border-radius: 0.25rem;
-    box-shadow: var(--sl-shadow-lg);
+    box-shadow: var(--shadow-lg);
   }
 
   .site-header #language-picker > ul {
-    inset-block-start: calc((100% + var(--sl-nav-height)) / 2 + 0.25rem);
+    inset-block-start: calc((100% + var(--docifly-nav-height)) / 2 + 0.25rem);
   }
 
   #language-picker li {
@@ -79,20 +79,20 @@
     display: block;
     padding: 0.5rem 0.75rem;
     overflow-wrap: anywhere;
-    color: var(--sl-color-gray-1);
+    color: var(--foreground);
     text-decoration: none;
     border-radius: 0.125rem;
   }
 
   #language-picker a.language-option:hover,
   #language-picker a.language-option:focus-visible {
-    color: var(--sl-color-white);
-    background: var(--sl-color-gray-6);
+    color: var(--foreground);
+    background: var(--muted);
   }
 
   #language-picker .language-option.current {
-    color: var(--sl-color-text-accent);
-    background: var(--sl-color-accent-low);
+    color: var(--primary);
+    background: var(--accent);
   }
 
   #site-nav #language-picker {
@@ -107,8 +107,8 @@
   #site-nav #language-picker > ul {
     inset-inline-start: 0;
     inset-inline-end: auto;
-    min-width: min(12rem, calc(100vw - 2 * var(--sl-sidebar-pad-x) - 1rem));
-    max-width: min(22rem, calc(100vw - 2 * var(--sl-sidebar-pad-x) - 1rem));
+    min-width: min(12rem, calc(100vw - 2 * var(--docifly-sidebar-pad-x) - 1rem));
+    max-width: min(22rem, calc(100vw - 2 * var(--docifly-sidebar-pad-x) - 1rem));
   }
 
   @media (max-width: 49.999rem) {
@@ -122,9 +122,9 @@
 
     .site-header #language-picker > ul {
       inset-block-start: calc(100% + 0.25rem);
-      inset-inline-end: var(--sl-nav-pad-x);
-      min-width: min(12rem, calc(100% - 2 * var(--sl-nav-pad-x)));
-      max-width: min(22rem, calc(100% - 2 * var(--sl-nav-pad-x)));
+      inset-inline-end: var(--docifly-nav-pad-x);
+      min-width: min(12rem, calc(100% - 2 * var(--docifly-nav-pad-x)));
+      max-width: min(22rem, calc(100% - 2 * var(--docifly-nav-pad-x)));
     }
 
     .site-header .language-picker-control {
@@ -139,7 +139,7 @@
 
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) #language-picker > summary {
-      font-size: var(--sl-text-sm);
+      font-size: var(--docifly-text-sm);
     }
   }
 }

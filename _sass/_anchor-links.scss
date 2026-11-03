@@ -31,23 +31,23 @@ how we do it.
    This ensures that when the anchor link wraps, the final word in the heading will wrap with it.
 
 */
-@layer starlight.content {
+@layer docifly {
   /* ======================================================
    WRAPPER
    ====================================================== */
-  .sl-markdown-content .sl-heading-wrapper {
+  .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)) {
     /* The size of the SVG icon. */
-    --sl-anchor-icon-size: 0.8275em;
+    --docifly-anchor-icon-size: 0.8275em;
     /* The horizontal space between the SVG icon and the end of the heading text. */
-    --sl-anchor-icon-gap: 0.25em;
+    --docifly-anchor-icon-gap: 0.25em;
     /* The end of line space required to accommodate the anchor link. */
-    --sl-anchor-icon-space: calc(var(--sl-anchor-icon-size) + var(--sl-anchor-icon-gap));
+    --docifly-anchor-icon-space: calc(var(--docifly-anchor-icon-size) + var(--docifly-anchor-icon-gap));
 
-    line-height: var(--sl-line-height-headings);
+    line-height: var(--docifly-line-height-headings);
   }
 
   /* If the heading is hidden, remove the wrapper's box to avoid unwanted spacing. */
-  .sl-markdown-content .sl-heading-wrapper:has(> :first-child:is(.sr-only, [hidden])) {
+  .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)):has(> :first-child:is(.sr-only, [hidden])) {
     display: contents;
   }
 
@@ -59,32 +59,32 @@ how we do it.
   }
 
   /* These font sizes are set in `markdown.css` for heading elements, but we need them one level higher on the wrapper. */
-  .sl-markdown-content .sl-heading-wrapper.level-h1 {
-    font-size: var(--sl-text-h1);
+  .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)).level-h1 {
+    font-size: var(--docifly-text-h1);
   }
-  .sl-markdown-content .sl-heading-wrapper.level-h2 {
-    font-size: var(--sl-text-h2);
+  .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)).level-h2 {
+    font-size: var(--docifly-text-h2);
   }
-  .sl-markdown-content .sl-heading-wrapper.level-h3 {
-    font-size: var(--sl-text-h3);
+  .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)).level-h3 {
+    font-size: var(--docifly-text-h3);
   }
-  .sl-markdown-content .sl-heading-wrapper.level-h4 {
-    font-size: var(--sl-text-h4);
+  .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)).level-h4 {
+    font-size: var(--docifly-text-h4);
   }
-  .sl-markdown-content .sl-heading-wrapper.level-h5 {
-    font-size: var(--sl-text-h5);
+  .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)).level-h5 {
+    font-size: var(--docifly-text-h5);
   }
-  .sl-markdown-content .sl-heading-wrapper.level-h6 {
-    font-size: var(--sl-text-h6);
+  .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)).level-h6 {
+    font-size: var(--docifly-text-h6);
   }
 
   /* ======================================================
    HEADING
    ====================================================== */
-  .sl-markdown-content .sl-heading-wrapper > :first-child:not([hidden]) {
+  .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)) > :first-child:not([hidden]) {
     display: inline;
     /* Apply end-of-line padding to the heading element. */
-    padding-inline-end: var(--sl-anchor-icon-space);
+    padding-inline-end: var(--docifly-anchor-icon-space);
   }
 
   /* ======================================================
@@ -93,7 +93,7 @@ how we do it.
   .sl-markdown-content .sl-anchor-link {
     position: relative;
     /* Move the anchor link over the heading element’s end-of-line padding. */
-    margin-inline-start: calc(-1 * var(--sl-anchor-icon-size));
+    margin-inline-start: calc(-1 * var(--docifly-anchor-icon-size));
     /* Prevent double or triple clicks from potentially selecting the anchor link a11y text. */
     -webkit-user-select: none;
     user-select: none;
@@ -122,11 +122,11 @@ how we do it.
   /* Size and position the SVG icon inside the link. */
   .sl-markdown-content .sl-anchor-icon > svg {
     display: inline;
-    width: var(--sl-anchor-icon-size);
+    width: var(--docifly-anchor-icon-size);
     /* Center the link icon SVG vertically in the line. */
     vertical-align: top;
     transform: translateY(
-      calc((var(--sl-line-height-headings) * 1em - var(--sl-anchor-icon-size)) / 2)
+      calc((var(--docifly-line-height-headings) * 1em - var(--docifly-anchor-icon-size)) / 2)
     );
   }
 
@@ -137,7 +137,7 @@ how we do it.
       opacity: 0;
     }
     .sl-markdown-content .sl-anchor-link:focus,
-    .sl-markdown-content .sl-heading-wrapper:hover .sl-anchor-link {
+    .sl-markdown-content .sl-heading-wrapper:not(:where(.card *, .alert *, .btn *, .badge *)):hover .sl-anchor-link {
       opacity: 1;
     }
   }

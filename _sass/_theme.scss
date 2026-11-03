@@ -1,150 +1,96 @@
-/*! Adapted from stock Starlight 39d4e71; MIT, Astro contributors. See assets/starlight-LICENSE. */
-@layer starlight.base {
-  :root,
-  ::backdrop {
-    // Default light palette. Runtime palettes override the base colors.
-    --brand-primary: #3525cc;
-    --brand-primary-alt: #4f3edd;
-    --brand-secondary: #ce30ae;
-    --brand-secondary-alt: #f170e9;
-    --brand-body-text: #495057;
-    --brand-strong-text: #1a1530;
-    --brand-muted-text: #6b6a82;
-    --brand-bg: #fafaf7;
-    --brand-bg-alt: #f4f2ec;
-
-    --sl-color-white: var(--brand-strong-text);
-    --sl-color-gray-1: var(--brand-strong-text);
-    --sl-color-gray-2: var(--brand-body-text);
-    --sl-color-gray-3: var(--brand-muted-text);
-    --sl-color-gray-4: color-mix(in srgb, var(--brand-bg) 30%, var(--brand-muted-text));
-    --sl-color-gray-5: color-mix(in srgb, var(--brand-bg) 65%, var(--brand-muted-text));
-    --sl-color-gray-6: color-mix(in srgb, var(--brand-bg-alt) 90%, var(--brand-muted-text));
-    --sl-color-gray-7: var(--brand-bg-alt);
-    --sl-color-black: var(--brand-bg);
-
-    // Shared semantic hues; their surfaces and text follow the active base palette.
-    --sl-hue-orange: 41;
-    --sl-hue-green: 101;
-    --sl-hue-blue: 234;
-    --sl-hue-red: 339;
-    @each $name in 'orange', 'green', 'blue', 'red' {
-      --sl-color-#{$name}: hsl(var(--sl-hue-#{$name}), 90%, 50%);
-      --sl-color-#{$name}-low: color-mix(in srgb, var(--brand-bg) 90%, var(--sl-color-#{$name}));
-      --sl-color-#{$name}-high: color-mix(in srgb, var(--brand-strong-text) 65%, var(--sl-color-#{$name}));
-    }
-    --sl-color-purple: var(--brand-secondary);
-    --sl-color-purple-high: color-mix(in srgb, var(--brand-secondary) 60%, var(--brand-strong-text));
-    --sl-color-purple-low: color-mix(in srgb, var(--brand-bg) 90%, var(--brand-secondary));
-    --sl-color-accent: var(--brand-primary);
-    --sl-color-accent-high: var(--brand-primary);
-    --sl-color-accent-low: color-mix(in srgb, var(--brand-bg) 90%, var(--brand-primary));
-
-    --sl-color-text: var(--sl-color-gray-2);
-    --sl-color-text-accent: var(--sl-color-accent);
-    --sl-color-text-invert: var(--sl-color-black);
-    --sl-color-bg: var(--sl-color-black);
-    --sl-color-bg-nav: var(--sl-color-gray-7);
-    --sl-color-bg-sidebar: var(--sl-color-bg);
-    --sl-color-bg-inline-code: var(--sl-color-gray-6);
-    --sl-color-bg-accent: var(--sl-color-accent);
-    --sl-color-hairline-light: var(--sl-color-gray-6);
-    --sl-color-hairline: var(--sl-color-gray-6);
-    --sl-color-hairline-shade: var(--sl-color-gray-6);
-    --sl-color-backdrop-overlay: color-mix(in srgb, var(--brand-muted-text) 66%, transparent);
-
-    --code-bg: color-mix(in srgb, var(--brand-bg-alt) 85%, var(--brand-bg));
-    --code-text: var(--brand-body-text);
-    --code-border: color-mix(in srgb, var(--brand-muted-text) 40%, transparent);
-    --code-success: var(--sl-color-green-high);
-    --code-comment: var(--brand-muted-text);
-    --code-keyword: var(--brand-primary-alt);
-    --code-string: var(--sl-color-orange-high);
-    --code-number: var(--brand-secondary);
-    --code-name: var(--brand-primary);
-    --code-property: var(--sl-color-green-high);
-
-    --sl-shadow-sm: 0px 1px 1px rgb(0 0 0 / 6%), 0px 2px 1px rgb(0 0 0 / 6%);
-    --sl-shadow-md: 0px 8px 4px rgb(0 0 0 / 3%), 0px 5px 2px rgb(0 0 0 / 3%),
-      0px 3px 2px rgb(0 0 0 / 6%), 0px 1px 1px rgb(0 0 0 / 6%);
-    --sl-shadow-lg: 0px 25px 7px rgb(0 0 0 / 1%), 0px 16px 6px rgb(0 0 0 / 3%),
-      0px 9px 5px rgb(23 26 33 / 8%), 0px 4px 4px rgb(0 0 0 / 16%),
-      0px 4px 2px rgb(0 0 0 / 4%);
-  }
-
-  :root[data-color-scheme='dark'],
-  :root[data-color-scheme='dark']::backdrop,
-  [data-color-scheme='dark'] ::backdrop {
-    // Dark palettes need only primary, secondary, body-text, and bg.
-    // Explicit runtime variants (e.g. Punk) take precedence over these defaults.
-    --brand-primary-alt: color-mix(in srgb, var(--brand-primary) 80%, var(--brand-bg));
-    --brand-secondary-alt: color-mix(in srgb, var(--brand-secondary) 60%, white);
-    --brand-strong-text: color-mix(in srgb, var(--brand-body-text) 25%, white);
-    --brand-muted-text: color-mix(in srgb, var(--brand-body-text) 72%, var(--brand-bg));
-    --brand-bg-alt: color-mix(in srgb, var(--brand-bg) 92%, var(--brand-body-text));
-  }
-}
-
+// Basecoat owns shared colors and font stacks. Only documentation extensions live here.
 @layer docifly {
   :root {
-    --sl-badge-default-border: var(--sl-color-accent);
-    --sl-badge-default-bg: var(--sl-color-accent);
-    --sl-badge-default-text: var(--brand-bg);
-    @each $name, $color in (note: 'blue', danger: 'red', success: 'green', caution: 'orange', tip: 'purple') {
-      --sl-badge-#{$name}-border: var(--sl-color-#{$color});
-      --sl-badge-#{$name}-bg: var(--sl-color-#{$color}-high);
-      --sl-badge-#{$name}-text: var(--brand-bg);
+    --docifly-code-bg: var(--muted);
+    --docifly-code-text: var(--foreground);
+    --docifly-code-border: var(--border);
+    --docifly-code-success: #23733b;
+    --docifly-code-comment: #57606a;
+    --docifly-code-keyword: #6f24a4;
+    --docifly-code-string: #854300;
+    --docifly-code-number: #a32962;
+    --docifly-code-name: #174ea6;
+    --docifly-code-property: #176438;
+    @each $name, $hue in ('orange': 41, 'green': 140, 'blue': 234, 'red': 350, 'purple': 285) {
+      --docifly-status-#{$name}: hsl(#{$hue}, 70%, 45%);
+      --docifly-status-#{$name}-surface: color-mix(in srgb, var(--background) 92%, var(--docifly-status-#{$name}));
+      --docifly-status-#{$name}-text: color-mix(in srgb, var(--foreground) 75%, var(--docifly-status-#{$name}));
     }
+    --docifly-backdrop-overlay: rgb(0 0 0 / 50%);
   }
-
+  :root.dark {
+    --docifly-code-success: #23733b;
+    --docifly-code-comment: #aab4c0;
+    --docifly-code-keyword: #d9a5ff;
+    --docifly-code-string: #f2ca8d;
+    --docifly-code-number: #f6acd1;
+    --docifly-code-name: #a5c9ff;
+    --docifly-code-property: #a6dfb5;
+  }
   #article pre:has(.code-line) {
-    --marker-neutral-bg: color-mix(in srgb, var(--brand-strong-text) 8%, transparent);
-    --marker-neutral-gutter: color-mix(in srgb, var(--brand-strong-text) 8%, var(--code-bg));
-    --marker-neutral-edge: var(--sl-color-gray-3);
-    --marker-insert-bg: rgb(142 199 125 / 34%);
-    --marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 34%, var(--code-bg));
-    --marker-insert-edge: #2da043;
-    --marker-delete-bg: rgb(255 156 142 / 31%);
-    --marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 31%, var(--code-bg));
-    --marker-delete-edge: #cf222e;
-    --marker-pattern: color-mix(in srgb, var(--brand-bg) 10%, transparent);
+    --docifly-marker-neutral-bg: color-mix(in srgb, var(--foreground) 8%, transparent);
+    --docifly-marker-neutral-gutter: color-mix(in srgb, var(--foreground) 8%, var(--docifly-code-bg));
+    --docifly-marker-neutral-edge: var(--muted-foreground);
+    --docifly-marker-insert-bg: rgb(142 199 125 / 34%);
+    --docifly-marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 34%, var(--docifly-code-bg));
+    --docifly-marker-insert-edge: #2da043;
+    --docifly-marker-delete-bg: rgb(255 156 142 / 31%);
+    --docifly-marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 31%, var(--docifly-code-bg));
+    --docifly-marker-delete-edge: #cf222e;
+    --docifly-marker-pattern: color-mix(in srgb, var(--background) 10%, transparent);
   }
   #article .copy-button {
-    --code-copy-hover-bg: color-mix(in srgb, var(--sl-color-text) 20%, var(--code-bg));
+    --docifly-code-copy-hover-bg: color-mix(in srgb, var(--foreground) 20%, var(--docifly-code-bg));
   }
-
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .hero-image[data-hero-depth] {
-      --hero-depth-shadow-color: rgb(0 0 0 / 28%);
-      --hero-depth-shadow-color-enter: rgb(0 0 0 / 8%);
+      --docifly-hero-depth-shadow-color: rgb(0 0 0 / 28%);
+      --docifly-hero-depth-shadow-color-enter: rgb(0 0 0 / 8%);
     }
   }
 }
 
+@media screen {
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+}
+
+// Unlayered and more specific than the vendor's unlayered :root/.dark defaults.
+// The runtime custom stylesheet is screen-only, so no palette can leak into print.
 @media print {
-  :root {
+  html:root, ::backdrop {
     color-scheme: light;
-    --sl-color-white: hsl(224, 10%, 10%);
-    --sl-color-gray-1: hsl(224, 14%, 16%);
-    --sl-color-gray-2: hsl(224, 10%, 23%);
-    --sl-color-gray-3: hsl(224, 7%, 36%);
-    --sl-color-gray-4: hsl(224, 6%, 56%);
-    --sl-color-gray-5: hsl(224, 6%, 77%);
-    --sl-color-gray-6: hsl(224, 20%, 94%);
-    --sl-color-gray-7: hsl(224, 19%, 97%);
-    --code-print-text: #111;
-    --sl-color-black: #fff;
-    --sl-color-text: var(--sl-color-gray-2);
-    --sl-color-text-accent: hsl(234, 80%, 30%);
-    --sl-color-text-invert: #fff;
-    --sl-color-bg: #fff;
-    --sl-color-bg-nav: #fff;
-    --sl-color-bg-sidebar: #fff;
-    --sl-color-bg-inline-code: var(--sl-color-gray-6);
-    --sl-color-hairline-light: var(--sl-color-gray-6);
-    --sl-color-hairline-shade: var(--sl-color-gray-5);
-    --sl-shadow-sm: none;
-    --sl-shadow-md: none;
-    --sl-shadow-lg: none;
+    --background: #ffffff;
+    --foreground: #171717;
+    --card: #ffffff;
+    --card-foreground: #171717;
+    --popover: #ffffff;
+    --popover-foreground: #171717;
+    --primary: #171717;
+    --primary-foreground: #fafafa;
+    --secondary: #f5f5f5;
+    --secondary-foreground: #171717;
+    --muted: #f5f5f5;
+    --muted-foreground: #525252;
+    --accent: #f5f5f5;
+    --accent-foreground: #171717;
+    --destructive: #b91c1c;
+    --border: #d4d4d4;
+    --input: #d4d4d4;
+    --ring: #737373;
+    --chart-1: #525252;
+    --chart-2: #525252;
+    --chart-3: #525252;
+    --chart-4: #525252;
+    --chart-5: #525252;
+    --sidebar: #ffffff;
+    --sidebar-foreground: #171717;
+    --sidebar-primary: #171717;
+    --sidebar-primary-foreground: #fafafa;
+    --sidebar-accent: #f5f5f5;
+    --sidebar-accent-foreground: #171717;
+    --sidebar-border: #d4d4d4;
+    --sidebar-ring: #737373;
+    --docifly-code-print-text: #111111;
   }
 }
