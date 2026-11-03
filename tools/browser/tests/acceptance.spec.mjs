@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures.mjs';
 import { installations, modes, pages, urlFor, viewports } from '../matrix.mjs';
 
 const waitForLayout = async (page) => {
@@ -221,8 +221,8 @@ for (const installation of installations) {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   });
 
-  test(`${installation.name} clipboard reports exact success and honest denial`, async ({ browser }) => {
-    const successContext = await browser.newContext({ viewport: { width: 1024, height: 768 } });
+  test(`${installation.name} clipboard reports exact success and honest denial`, async ({ createLocalContext }) => {
+    const successContext = await createLocalContext({ viewport: { width: 1024, height: 768 } });
     await successContext.addInitScript(() => {
       Object.defineProperty(navigator, 'clipboard', {
         configurable: true,
@@ -237,7 +237,7 @@ for (const installation of installations) {
     await expect.poll(() => successPage.evaluate(() => window.__copiedText)).toBe(source);
     await successContext.close();
 
-    const deniedContext = await browser.newContext({ viewport: { width: 1024, height: 768 } });
+    const deniedContext = await createLocalContext({ viewport: { width: 1024, height: 768 } });
     await deniedContext.addInitScript(() => {
       Object.defineProperty(navigator, 'clipboard', {
         configurable: true,
@@ -253,8 +253,8 @@ for (const installation of installations) {
     await deniedContext.close();
   });
 
-  test(`${installation.name} remains readable without JavaScript`, async ({ browser }) => {
-    const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+  test(`${installation.name} remains readable without JavaScript`, async ({ createLocalContext }) => {
+    const context = await createLocalContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
     const page = await context.newPage();
     await page.goto(urlFor(installation, pages[0]));
     await expect(page.locator('#article')).toContainText('Documentation workflow');

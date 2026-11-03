@@ -1,0 +1,11 @@
+{
+  "name": "minisearch",
+  "version": "7.2.0",
+  "source": "https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js",
+  "license": "MIT",
+  "licenseSource": "https://cdn.jsdelivr.net/npm/minisearch@7.2.0/LICENSE.txt",
+  "bytes": 18556,
+  "integrity": "sha384-9Eacb80ywplqCp0P/bR61+zYn5Pg2LmQ7T8rppdoKHcQMmXbRh1wHwRC8avUJvnz",
+  "sha256": "8a05b42785db448f2c19e24a6a2107204c825565fe4f95aa69b79652baf26e82",
+  "scope": "Maintainer browser tests only; never a production asset or runtime fallback."
+}

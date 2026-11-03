@@ -1,11 +1,11 @@
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { arch, platform, release, tmpdir } from 'node:os';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import revisions from './browser-revisions.json' with { type: 'json' };
-import { installations, modes, pages, viewports } from './matrix.mjs';
+import { featurePages, installations, localizedInstallations, modes, pages, viewports } from './matrix.mjs';
 
 const browserRoot = dirname(fileURLToPath(import.meta.url));
 const repository = resolve(browserRoot, '../..');
@@ -21,6 +21,17 @@ rmSync(workspace, { recursive: true, force: true });
 mkdirSync(artifacts, { recursive: true });
 mkdirSync(source, { recursive: true });
 cpSync(join(repository, 'fixtures', 'content'), source, { recursive: true });
+// Reuse maintained author examples, not copies of their rendered implementation.
+for (const name of readdirSync(join(repository, 'docs'))) {
+  if (name.endsWith('.md') && name !== 'index.md') {
+    cpSync(join(repository, 'docs', name), join(source, name));
+  }
+}
+cpSync(join(repository, 'docs', 'media'), join(source, 'media'), { recursive: true });
+for (const name of ['excluded.md', 'unpublished.md']) {
+  mkdirSync(join(source, 'search-fixtures'), { recursive: true });
+  cpSync(join(repository, 'fixtures', 'search', name), join(source, 'search-fixtures', name));
+}
 cpSync(repository, theme, {
   recursive: true,
   filter(path) {
@@ -74,6 +85,26 @@ run(jigyll, ['build', '--source', source, '--destination', output]);
 writeFileSync(join(source, '_config.yml'), config('/docs'));
 run(jigyll, ['build', '--source', source, '--destination', join(output, 'docs')]);
 
+// The existing native localization fixture is a companion consumer at both prefixes.
+const localizedSource = join(workspace, 'localized-consumer');
+cpSync(join(repository, 'fixtures', 'localization', 'site'), localizedSource, { recursive: true });
+// The older retained catalogs predate these registered proper-name themes.
+// Supplement the disposable consumer only; do not alter the source catalogs.
+for (const locale of ['en', 'fr', 'ar']) {
+  const catalog = join(localizedSource, '_data', 'locales', locale, 'messages.yml');
+  writeFileSync(catalog, readFileSync(catalog, 'utf8')
+    .replace('  color_mode:\n', '  color_mode:\n    punk: "Punk"\n    ice: "Ice"\n'));
+}
+mkdirSync(join(localizedSource, '_theme'), { recursive: true });
+symlinkSync(theme, join(localizedSource, '_theme', 'docifly'), 'dir');
+const localizedConfig = readFileSync(join(localizedSource, '_config.yml'), 'utf8');
+for (const baseurl of ['/localized', '/localized/docs']) {
+  writeFileSync(join(localizedSource, '_config.yml'), localizedConfig
+    .replace('url: https://example.test', 'url: http://127.0.0.1:4444')
+    .replace('baseurl: ""', `baseurl: "${baseurl}"`));
+  run(jigyll, ['build', '--source', localizedSource, '--destination', join(output, baseurl)]);
+}
+
 const themeDiff = execFileSync(
   'git',
   [
@@ -104,7 +135,8 @@ const environment = {
   jigyll: run(jigyll, ['version']),
   packageLockSha256: createHash('sha256').update(packageLock).digest('hex'),
   installations,
-  pages,
+  localizedInstallations,
+  pages: [...pages, ...featurePages],
   modes,
   viewports,
 };

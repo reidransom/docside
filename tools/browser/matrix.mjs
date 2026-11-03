@@ -21,5 +21,24 @@ export const pages = [
   { name: 'code', path: '/reference/code-examples/' },
 ];
 
+export const featurePages = [
+  { name: 'cards', path: '/cards/' },
+  { name: 'callouts', path: '/callouts/' },
+  { name: 'link-buttons', path: '/link-buttons/' },
+  { name: 'badges', path: '/badges/' },
+  { name: 'steps', path: '/steps/' },
+  { name: 'file-trees', path: '/file-trees/' },
+  { name: 'icons', path: '/icons/' },
+  { name: 'tabs', path: '/tabs/' },
+  { name: 'tabs-restoration', path: '/tabs-restoration/' },
+  { name: 'splash', path: '/minimal-hero/' },
+  { name: 'not-found', path: '/404.html' },
+];
+
+export const localizedInstallations = [
+  { name: 'localized-root', base: '/localized' },
+  { name: 'localized-prefix', base: '/localized/docs' },
+];
+
 export const urlFor = (installation, page) =>
   `${installation.base}${page.path}`.replace(/\/{2,}/g, '/');

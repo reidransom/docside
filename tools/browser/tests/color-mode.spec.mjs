@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures.mjs';
 
 test('navigation keeps the selected palette while fresh theme JSON loads', async ({ page }) => {
   await page.goto('/');

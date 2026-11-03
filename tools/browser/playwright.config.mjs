@@ -19,6 +19,7 @@ export default defineConfig({
     locale: 'en-US',
     timezoneId: 'UTC',
     deviceScaleFactor: 1,
+    serviceWorkers: 'block',
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
   },

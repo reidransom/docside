@@ -122,8 +122,10 @@ than theme configuration.
 `tools/browser/` is a maintainer-only Playwright gate. Its package lock pins
 Playwright, `browser-revisions.json` records the corresponding Chromium,
 Firefox, and WebKit revisions, and the preparation step builds the shared
-overview, long-guide, and code fixtures at both `/` and `/docs/`. Node,
-Playwright, and downloaded browsers are not part of a Jigyll consumer install.
+overview, long-guide, and code fixtures at both `/` and `/docs/`. It also copies
+the maintained Markdown examples (components, tabs, splash, and not-found)
+and their artwork into those consumers, rather than duplicating their templates.
+Node, Playwright, and downloaded browsers are not part of a Jigyll consumer install.
 
 Run the gate on a Playwright-supported Linux host:
 
@@ -133,6 +135,36 @@ npm ci
 npx playwright install --with-deps chromium firefox webkit
 JIGYLL=/path/to/jigyll npm test
 ```
+
+Functional browser runs are local-only. `tools/browser/tests/fixtures.mjs`
+installs the shared `local-policy.mjs` policy on the default context; tests
+needing clipboard permissions or disabled JavaScript use its
+`createLocalContext` fixture so explicitly created contexts receive the same
+policy before their first page. Service workers are blocked. Only the configured
+local test origin and non-network resources are allowed; unexpected external
+HTTP(S) requests are aborted and fail the test. Each test attaches its request
+decisions as `local-requests` JSON.
+
+The one external script URL already present in production layouts is fulfilled
+from real MiniSearch 7.2.0 bytes in
+`tools/browser/fixtures/minisearch/7.2.0/`. Its manifest records the upstream
+source, MIT license source, size, SHA-256, and SHA-384 SRI. The policy validates
+the bytes and their match with all three production layouts before running.
+No acquisition is performed during a functional run. This is a maintainer-only
+fixture, not a shipped runtime search fallback; production CDN loading and its
+disabled-search failure behavior remain unchanged. A page-level route may
+explicitly deny that known script to exercise the failure state.
+
+Native localized companion consumers reuse `fixtures/localization/site/` at
+`/localized/` and `/localized/docs/`, with French routes such as
+`/localized/fr/demarrage/` and Arabic RTL routes such as
+`/localized/docs/ar/dalil/`. Preparation supplies the registered Punk/Ice
+proper-name labels in the disposable catalogs because the retained source
+catalogs predate those theme choices. The generated pages use Jigyll's actual
+locale metadata, translations, and locale-filtered search corpus, not a `dir`
+attribute applied to an English fixture. The offline search integration tests
+check an expected generated result, excluded content, Arabic locale isolation,
+and the known script-denied disabled state.
 
 The generated `.artifacts/environment.json` records the platform, Jigyll and
 theme revisions, package-lock digest, browser revisions, color modes, pages,
