@@ -1,183 +1,95 @@
 /*! Adapted from stock Starlight Markdown styles; MIT, Astro contributors. */
 @layer docifly {
-  .sl-markdown-content :is(ul, ol):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *)) {
-    padding-inline-start: 1.5rem;
-  }
-  .sl-markdown-content ul:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *)) {
-    list-style: disc;
-  }
-  .sl-markdown-content ol:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *)) {
-    list-style: decimal;
-  }
-  .sl-markdown-content
+  /* Each Markdown body starts a fresh scope. Components stop outer prose;
+     their explicit Markdown sections opt back in without styling their chrome. */
+  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, [role='tab']) {
+    :is(ul, ol) { padding-inline-start: 1.5rem; }
+    ul { list-style: disc; }
+    ol { list-style: decimal; }
+
     :not(a, strong, em, del, span, input, code, br)
-    + :not(a, strong, em, del, span, input, code, br, :where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    margin-top: var(--docifly-content-gap-y);
-  }
+      + :not(a, strong, em, del, span, input, code, br) {
+      margin-top: var(--docifly-content-gap-y);
+    }
+    :not(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6) {
+      margin-top: 1.5em;
+    }
+    li + li, dt + dt, dt + dd, dd + dd { margin-top: 0.25rem; }
+    li { overflow-wrap: anywhere; }
+    :is(ol, ul):has(> li > :not(a, strong, em, del, span, input, code, br, script, ol, ul))
+      > li > :is(
+        :last-child:not(a, strong, em, del, span, input, code, br, script),
+        :not(script):has(~ script:last-child):not(:has(~ :not(script)))
+      ) { margin-bottom: 1.25rem; }
+    dt { font-weight: 700; }
+    dd { padding-inline-start: 1rem; }
 
-  /* Headings after non-headings have more spacing. */
-  .sl-markdown-content
-    :not(h1, h2, h3, h4, h5, h6)
-    + :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    margin-top: 1.5em;
-  }
+    :is(h1, h2, h3, h4, h5, h6) {
+      color: var(--foreground);
+      line-height: var(--docifly-line-height-headings);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    :is(img, picture, video, canvas, svg, iframe) {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    h1 { font-size: var(--docifly-text-h1); }
+    h2 { font-size: var(--docifly-text-h2); }
+    h3 { font-size: var(--docifly-text-h3); }
+    h4 { font-size: var(--docifly-text-h4); }
+    h5 { font-size: var(--docifly-text-h5); }
+    h6 { font-size: var(--docifly-text-h6); }
 
-  .sl-markdown-content li + li:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
-  .sl-markdown-content dt + dt:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
-  .sl-markdown-content dt + dd:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
-  .sl-markdown-content dd + dd:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    margin-top: 0.25rem;
-  }
-
-  .sl-markdown-content li:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    overflow-wrap: anywhere;
-  }
-
-  /*
-	 * This complex selector manages spacing inside lists.
-	 *
-	 * - Finds all lists containing items with non-inline direct children (e.g.
-	 *   ul > li > p)
-	 * - Applies a bottom margin to the last non-inline child of each list item
-	 *   in this list
-	 *
-	 * This ensures that even if only one list item contains a block element
-	 * (most commonly a paragraph), siblings of that list item are spaced
-	 * consistently.
-	 */
-  .sl-markdown-content
-	 :is(ol, ul):has(> li > :not(a, strong, em, del, span, input, code, br, script, ol, ul))
-	 > li
-	 > :is(
-			:last-child:not(a, strong, em, del, span, input, code, br, script, :where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
-			/*
-			 * For list items ending with 1 or multiple script elements (`:has(~
-			 * script:last-child)`), we need to style the last non-script
-			 * element (`:not(script)`) that doesn't have a subsequent sibling
-			 * that is not a script (`:not(:has(~ :not(script)))`).
-			 */
-			:not(script):has(~ script:last-child):not(:has(~ :not(script)))
-	 ) {
-    margin-bottom: 1.25rem;
-  }
-
-  .sl-markdown-content dt:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-weight: 700;
-  }
-  .sl-markdown-content dd:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    padding-inline-start: 1rem;
-  }
-
-  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    color: var(--foreground);
-    line-height: var(--docifly-line-height-headings);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .sl-markdown-content :is(img, picture, video, canvas, svg, iframe):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .sl-markdown-content h1:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h1);
-  }
-  .sl-markdown-content h2:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h2);
-  }
-  .sl-markdown-content h3:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h3);
-  }
-  .sl-markdown-content h4:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h4);
-  }
-  .sl-markdown-content h5:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h5);
-  }
-  .sl-markdown-content h6:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h6);
-  }
-
-  .sl-markdown-content a:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    color: var(--primary);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-  }
-  .sl-markdown-content a:hover:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    color: var(--foreground);
-  }
-
-  .sl-markdown-content code:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    background-color: var(--muted);
-    margin-block: -0.125rem;
-    padding: 0.125rem 0.375rem;
-    font-size: var(--docifly-text-code-sm);
-    direction: ltr;
-    white-space: normal;
-    overflow-wrap: anywhere;
-  }
-
-  .sl-markdown-content :is(code, a[href]):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    unicode-bidi: isolate;
-  }
-  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) code {
-    font-size: inherit;
-  }
-
-  .sl-markdown-content pre:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    border: 1px solid var(--border);
-    padding: 0.75rem 1rem;
-    font-size: var(--docifly-text-code);
-    tab-size: 2;
-    direction: ltr;
-    text-align: left;
-    unicode-bidi: isolate;
-  }
-
-  .sl-markdown-content pre code:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    all: unset;
-    font-family: var(--font-mono);
-  }
-
-  .sl-markdown-content blockquote:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    border-inline-start: 1px solid var(--border);
-    padding-inline-start: 1rem;
-  }
-
-  /* Table styling */
-  .sl-markdown-content table:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    display: block;
-    overflow: auto;
-    border-spacing: 0;
-  }
-  .sl-markdown-content table code:not(:where(pre *, .not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    overflow-wrap: normal;
-  }
-  .sl-markdown-content :is(th, td):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    border-bottom: 1px solid var(--border);
-    padding: 0.5rem 1rem;
-    /* Align text to the top of the row in multiline tables. */
-    vertical-align: baseline;
-  }
-  .sl-markdown-content :is(th:first-child, td:first-child):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    padding-inline-start: 0;
-  }
-  .sl-markdown-content :is(th:last-child, td:last-child):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    padding-inline-end: 0;
-  }
-  .sl-markdown-content th:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    color: var(--foreground);
-    font-weight: 600;
-  }
-  /* Align headings to the start of the line unless set by the `align` attribute. */
-  .sl-markdown-content th:not([align]):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    text-align: start;
-  }
-  @media (max-width: 49.999rem) {
-    .sl-markdown-content :is(th, td):nth-child(2):last-child:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-      min-width: min(20rem, calc(100vw - 2 * var(--docifly-content-pad-x)));
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+    a:hover { color: var(--foreground); }
+    code {
+      background-color: var(--muted);
+      margin-block: -0.125rem;
+      padding: 0.125rem 0.375rem;
+      font-size: var(--docifly-text-code-sm);
+      direction: ltr;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    :is(code, a[href]) { unicode-bidi: isolate; }
+    :is(h1, h2, h3, h4, h5, h6) code { font-size: inherit; }
+    pre {
+      max-width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      font-size: var(--docifly-text-code);
+      tab-size: 2;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+    }
+    pre code { all: unset; font-family: var(--font-mono); }
+    blockquote {
+      border-inline-start: 1px solid var(--border);
+      padding-inline-start: 1rem;
+    }
+    table { display: block; overflow: auto; border-spacing: 0; }
+    table code:not(pre *) { overflow-wrap: normal; }
+    :is(th, td) {
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      vertical-align: baseline;
+    }
+    :is(th:first-child, td:first-child) { padding-inline-start: 0; }
+    :is(th:last-child, td:last-child) { padding-inline-end: 0; }
+    th { color: var(--foreground); font-weight: 600; }
+    th:not([align]) { text-align: start; }
+    @media (max-width: 49.999rem) {
+      :is(th, td):nth-child(2):last-child {
+        min-width: min(20rem, calc(100vw - 2 * var(--docifly-content-pad-x)));
+      }
     }
   }
 }

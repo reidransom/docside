@@ -11,7 +11,8 @@
 {% unless link_button_variant == 'primary' or link_button_variant == 'secondary' or link_button_variant == 'minimal' %}{% assign link_button_variant = 'primary' %}{% endunless %}
 {% assign link_button_icon_position = include.icon_position | default: 'leading' | strip %}
 {% unless link_button_icon_position == 'leading' or link_button_icon_position == 'trailing' %}{% assign link_button_icon_position = 'leading' %}{% endunless %}
+{% assign link_button_vega_variant = 'primary' %}{% case link_button_variant %}{% when 'secondary' %}{% assign link_button_vega_variant = 'outline' %}{% when 'minimal' %}{% assign link_button_vega_variant = 'ghost' %}{% endcase %}
 {% if link_button_text != '' and link_button_href != '' and link_button_valid %}
   {% if link_button_prefix == '/' %}{% assign link_button_href = link_button_href | relative_url %}{% endif %}
-<a class="sl-link-button not-content {{ link_button_variant }}" href="{{ link_button_href | escape }}"{% if include.new_window == true %} target="_blank" rel="noopener noreferrer"{% endif %}>{% if include.icon and link_button_icon_position == 'leading' %}{% include components/icon.html name=include.icon size="large" %}{% endif %}<span>{{ include.text | escape }}</span>{% if include.icon and link_button_icon_position == 'trailing' %}{% include components/icon.html name=include.icon size="large" %}{% endif %}</a>
+<a class="btn not-content docifly-action" data-variant="{{ link_button_vega_variant }}" data-size="default" href="{{ link_button_href | escape }}"{% if include.new_window == true %} target="_blank" rel="noopener noreferrer"{% endif %}>{% if include.icon and link_button_icon_position == 'leading' %}{% include components/icon.html name=include.icon %}{% endif %}<span>{{ include.text | escape }}</span>{% if include.icon and link_button_icon_position == 'trailing' %}{% include components/icon.html name=include.icon %}{% endif %}</a>
 {% endif %}

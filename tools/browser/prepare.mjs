@@ -63,6 +63,13 @@ navigation:
     items:
       - label: Code examples
         link: /reference/code-examples/
+      - label: Badges
+        link: /badges/
+        badge: {text: New!, variant: success, size: large}
+      - label: Cards
+        link: /cards/
+        aria_label: Cards, stable
+        badge: {text: Stable, variant: note, size: small}
 docifly_versioning:
   entries:
     - id: legacy

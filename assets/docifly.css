@@ -487,154 +487,141 @@
 }
 /*! Adapted from stock Starlight Markdown styles; MIT, Astro contributors. */
 @layer docifly {
-  .sl-markdown-content :is(ul, ol):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *)) {
-    padding-inline-start: 1.5rem;
-  }
-  .sl-markdown-content ul:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *)) {
-    list-style: disc;
-  }
-  .sl-markdown-content ol:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *)) {
-    list-style: decimal;
-  }
-  .sl-markdown-content :not(a, strong, em, del, span, input, code, br) + :not(a, strong, em, del, span, input, code, br, :where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    margin-top: var(--docifly-content-gap-y);
-  }
-  /* Headings after non-headings have more spacing. */
-  .sl-markdown-content :not(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    margin-top: 1.5em;
-  }
-  .sl-markdown-content li + li:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
-  .sl-markdown-content dt + dt:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
-  .sl-markdown-content dt + dd:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
-  .sl-markdown-content dd + dd:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    margin-top: 0.25rem;
-  }
-  .sl-markdown-content li:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    overflow-wrap: anywhere;
-  }
-  /*
-  * This complex selector manages spacing inside lists.
-  *
-  * - Finds all lists containing items with non-inline direct children (e.g.
-  *   ul > li > p)
-  * - Applies a bottom margin to the last non-inline child of each list item
-  *   in this list
-  *
-  * This ensures that even if only one list item contains a block element
-  * (most commonly a paragraph), siblings of that list item are spaced
-  * consistently.
-  */
-  .sl-markdown-content :is(ol, ul):has(> li > :not(a, strong, em, del, span, input, code, br, script, ol, ul)) > li > :is(:last-child:not(a, strong, em, del, span, input, code, br, script, :where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])),
-  :not(script):has(~ script:last-child):not(:has(~ :not(script)))) {
-    margin-bottom: 1.25rem;
-  }
-  .sl-markdown-content dt:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-weight: 700;
-  }
-  .sl-markdown-content dd:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    padding-inline-start: 1rem;
-  }
-  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    color: var(--foreground);
-    line-height: var(--docifly-line-height-headings);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-  .sl-markdown-content :is(img, picture, video, canvas, svg, iframe):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-  .sl-markdown-content h1:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h1);
-  }
-  .sl-markdown-content h2:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h2);
-  }
-  .sl-markdown-content h3:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h3);
-  }
-  .sl-markdown-content h4:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h4);
-  }
-  .sl-markdown-content h5:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h5);
-  }
-  .sl-markdown-content h6:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    font-size: var(--docifly-text-h6);
-  }
-  .sl-markdown-content a:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    color: var(--primary);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-  }
-  .sl-markdown-content a:hover:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    color: var(--foreground);
-  }
-  .sl-markdown-content code:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    background-color: var(--muted);
-    margin-block: -0.125rem;
-    padding: 0.125rem 0.375rem;
-    font-size: var(--docifly-text-code-sm);
-    direction: ltr;
-    white-space: normal;
-    overflow-wrap: anywhere;
-  }
-  .sl-markdown-content :is(code, a[href]):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    unicode-bidi: isolate;
-  }
-  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) code {
-    font-size: inherit;
-  }
-  .sl-markdown-content pre:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    border: 1px solid var(--border);
-    padding: 0.75rem 1rem;
-    font-size: var(--docifly-text-code);
-    tab-size: 2;
-    direction: ltr;
-    text-align: left;
-    unicode-bidi: isolate;
-  }
-  .sl-markdown-content pre code:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    all: unset;
-    font-family: var(--font-mono);
-  }
-  .sl-markdown-content blockquote:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    border-inline-start: 1px solid var(--border);
-    padding-inline-start: 1rem;
-  }
-  /* Table styling */
-  .sl-markdown-content table:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    display: block;
-    overflow: auto;
-    border-spacing: 0;
-  }
-  .sl-markdown-content table code:not(:where(pre *, .not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    overflow-wrap: normal;
-  }
-  .sl-markdown-content :is(th, td):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    border-bottom: 1px solid var(--border);
-    padding: 0.5rem 1rem;
-    /* Align text to the top of the row in multiline tables. */
-    vertical-align: baseline;
-  }
-  .sl-markdown-content :is(th:first-child, td:first-child):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    padding-inline-start: 0;
-  }
-  .sl-markdown-content :is(th:last-child, td:last-child):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    padding-inline-end: 0;
-  }
-  .sl-markdown-content th:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    color: var(--foreground);
-    font-weight: 600;
-  }
-  /* Align headings to the start of the line unless set by the `align` attribute. */
-  .sl-markdown-content th:not([align]):not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-    text-align: start;
-  }
-  @media (max-width: 49.999rem) {
-    .sl-markdown-content :is(th, td):nth-child(2):last-child:not(:where(.not-content, .not-content *, .card, .card *, .alert, .alert *, .btn, .btn *, .badge, .badge *, [role=tab])) {
-      min-width: min(20rem, 100vw - 2 * var(--docifly-content-pad-x));
+  /* Each Markdown body starts a fresh scope. Components stop outer prose;
+     their explicit Markdown sections opt back in without styling their chrome. */
+  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, [role='tab']) {
+    :is(ul, ol) {
+      padding-inline-start: 1.5rem;
+    }
+    ul {
+      list-style: disc;
+    }
+    ol {
+      list-style: decimal;
+    }
+    :not(a, strong, em, del, span, input, code, br) + :not(a, strong, em, del, span, input, code, br) {
+      margin-top: var(--docifly-content-gap-y);
+    }
+    :not(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6) {
+      margin-top: 1.5em;
+    }
+    li + li, dt + dt, dt + dd, dd + dd {
+      margin-top: 0.25rem;
+    }
+    li {
+      overflow-wrap: anywhere;
+    }
+    :is(ol, ul):has(> li > :not(a, strong, em, del, span, input, code, br, script, ol, ul)) > li > :is(:last-child:not(a, strong, em, del, span, input, code, br, script),
+    :not(script):has(~ script:last-child):not(:has(~ :not(script)))) {
+      margin-bottom: 1.25rem;
+    }
+    dt {
+      font-weight: 700;
+    }
+    dd {
+      padding-inline-start: 1rem;
+    }
+    :is(h1, h2, h3, h4, h5, h6) {
+      color: var(--foreground);
+      line-height: var(--docifly-line-height-headings);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    :is(img, picture, video, canvas, svg, iframe) {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    h1 {
+      font-size: var(--docifly-text-h1);
+    }
+    h2 {
+      font-size: var(--docifly-text-h2);
+    }
+    h3 {
+      font-size: var(--docifly-text-h3);
+    }
+    h4 {
+      font-size: var(--docifly-text-h4);
+    }
+    h5 {
+      font-size: var(--docifly-text-h5);
+    }
+    h6 {
+      font-size: var(--docifly-text-h6);
+    }
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+    a:hover {
+      color: var(--foreground);
+    }
+    code {
+      background-color: var(--muted);
+      margin-block: -0.125rem;
+      padding: 0.125rem 0.375rem;
+      font-size: var(--docifly-text-code-sm);
+      direction: ltr;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    :is(code, a[href]) {
+      unicode-bidi: isolate;
+    }
+    :is(h1, h2, h3, h4, h5, h6) code {
+      font-size: inherit;
+    }
+    pre {
+      max-width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      font-size: var(--docifly-text-code);
+      tab-size: 2;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+    }
+    pre code {
+      all: unset;
+      font-family: var(--font-mono);
+    }
+    blockquote {
+      border-inline-start: 1px solid var(--border);
+      padding-inline-start: 1rem;
+    }
+    table {
+      display: block;
+      overflow: auto;
+      border-spacing: 0;
+    }
+    table code:not(pre *) {
+      overflow-wrap: normal;
+    }
+    :is(th, td) {
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      vertical-align: baseline;
+    }
+    :is(th:first-child, td:first-child) {
+      padding-inline-start: 0;
+    }
+    :is(th:last-child, td:last-child) {
+      padding-inline-end: 0;
+    }
+    th {
+      color: var(--foreground);
+      font-weight: 600;
+    }
+    th:not([align]) {
+      text-align: start;
+    }
+    @media (max-width: 49.999rem) {
+      :is(th, td):nth-child(2):last-child {
+        min-width: min(20rem, 100vw - 2 * var(--docifly-content-pad-x));
+      }
     }
   }
 }
@@ -1699,6 +1686,7 @@ how we do it.
     overflow-wrap: anywhere;
     text-align: center;
     border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
   }
   .icon-geometry-grid {
     display: grid;
@@ -1712,87 +1700,78 @@ how we do it.
     min-width: 0;
     overflow-wrap: anywhere;
   }
-  .sl-badge {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.25rem;
-    padding: 0.175rem 0.35rem;
+  /* Vega owns geometry; documentation statuses add only semantic color pairs. */
+  .badge[data-status=note],
+  .alert[data-status=note] {
+    color: var(--docifly-status-blue-text);
+    background-color: var(--docifly-status-blue-surface);
+    border-color: var(--docifly-status-blue);
+  }
+  .badge[data-status=tip],
+  .alert[data-status=tip] {
+    color: var(--docifly-status-purple-text);
+    background-color: var(--docifly-status-purple-surface);
+    border-color: var(--docifly-status-purple);
+  }
+  .badge[data-status=caution],
+  .alert[data-status=caution] {
+    color: var(--docifly-status-orange-text);
+    background-color: var(--docifly-status-orange-surface);
+    border-color: var(--docifly-status-orange);
+  }
+  .badge[data-status=danger],
+  .alert[data-status=danger] {
+    color: var(--docifly-status-red-text);
+    background-color: var(--docifly-status-red-surface);
+    border-color: var(--docifly-status-red);
+  }
+  .badge[data-status=success],
+  .alert[data-status=success] {
+    color: var(--docifly-status-green-text);
+    background-color: var(--docifly-status-green-surface);
+    border-color: var(--docifly-status-green);
+  }
+  .badge {
+    max-width: 100%;
+    height: auto;
+    min-height: 1.25rem;
+    white-space: normal;
     overflow-wrap: anywhere;
-    color: var(--docifly-color-text-badge);
-    font-family: var(--font-mono);
-    font-size: var(--docifly-text-sm);
-    line-height: normal;
-    background-color: var(--docifly-color-bg-badge);
-    border: 1px solid var(--docifly-color-border-badge);
-    border-radius: 0.25rem;
+    vertical-align: middle;
   }
-  .sl-badge.default {
-    --docifly-color-bg-badge: var(--primary);
-    --docifly-color-border-badge: var(--primary);
-    --docifly-color-text-badge: var(--primary-foreground);
+  .badge > span {
+    min-width: 0;
   }
-  .sl-badge.note {
-    --docifly-color-bg-badge: var(--docifly-status-blue-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-blue-text);
+  .badge[data-size=small] {
+    font-size: 0.6875rem;
+    padding-inline: 0.375rem;
   }
-  .sl-badge.danger {
-    --docifly-color-bg-badge: var(--docifly-status-red-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-red-text);
+  .badge[data-size=large] {
+    font-size: 0.875rem;
+    padding-inline: 0.625rem;
   }
-  .sl-badge.success {
-    --docifly-color-bg-badge: var(--docifly-status-green-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-green-text);
-  }
-  .sl-badge.tip {
-    --docifly-color-bg-badge: var(--docifly-status-purple-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-purple-text);
-  }
-  .sl-badge.caution {
-    --docifly-color-bg-badge: var(--docifly-status-orange-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-orange-text);
-  }
-  .sl-badge.small {
-    padding: 0.125rem 0.25rem;
-    font-size: var(--docifly-text-xs);
-  }
-  .sl-badge.large {
-    padding: 0.225rem 0.45rem;
-    font-size: var(--docifly-text-base);
-  }
-  #site-nav .sl-badge {
-    padding: 0.125rem 0.375rem;
-    font-size: var(--docifly-text-xs);
-    line-height: 1;
+  #site-nav .badge {
+    flex-shrink: 1;
   }
   #site-nav a > *:not(:last-child) {
     margin-inline-end: 0.25em;
   }
-  #site-nav a[aria-current=page] > .sl-badge {
-    --docifly-color-bg-badge: transparent;
-    --docifly-color-border-badge: currentColor;
-    color: inherit;
-  }
-  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) .sl-badge {
+  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) .badge {
     vertical-align: middle;
   }
-  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6):has(+ p > .sl-badge:only-child) {
+  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6):has(+ p > .badge:only-child) {
     display: inline-block;
   }
-  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) + p:has(> .sl-badge:only-child) {
+  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) + p:has(> .badge:only-child) {
     display: inline;
     margin: 0;
     margin-inline-start: 0.25em;
     vertical-align: middle;
   }
-  .sl-markdown-content .sl-heading-wrapper:has(> .sl-badge) > :first-child {
+  .sl-markdown-content .sl-heading-wrapper:has(> .badge) > :first-child {
     padding-inline-end: 0.25em;
   }
-  .sl-markdown-content .sl-heading-wrapper > .sl-badge {
+  .sl-markdown-content .sl-heading-wrapper > .badge {
     margin-inline-end: var(--docifly-anchor-icon-space);
     vertical-align: middle;
   }
@@ -1862,8 +1841,9 @@ how we do it.
     overflow-x: auto;
     font-family: var(--font-mono);
     font-size: var(--docifly-text-xs);
-    background-color: var(--muted);
+    background-color: var(--card);
     border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
     contain: paint;
   }
   .file-tree .directory > details {
@@ -1981,62 +1961,44 @@ how we do it.
     min-width: 0;
     overflow-wrap: anywhere;
   }
-  .card-title {
+  .docifly-card-title {
     display: flex;
     align-items: center;
-    gap: 1rem;
-  }
-  .card-body {
-    min-width: 0;
-    margin: 0;
-    font-size: clamp(var(--docifly-text-sm), 0.5rem + 1vw, var(--docifly-text-body));
-  }
-  .card-body > :first-child {
-    margin-top: 0;
-  }
-  .sl-link-card {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.5rem;
     min-width: 0;
-    padding: 1rem;
-    color: inherit;
-    text-decoration: none;
-    overflow-wrap: anywhere;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    box-shadow: var(--shadow-sm);
   }
-  .link-card-stack {
+  .card > section,
+  .alert > section {
+    min-width: 0;
+  }
+  .docifly-link-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    padding-inline: 1.5rem;
+    text-decoration: none;
+  }
+  .docifly-link-card-content {
     display: flex;
     min-width: 0;
     flex-direction: column;
     gap: 0.5rem;
   }
-  .link-card-title {
-    color: var(--foreground);
-    font-size: var(--docifly-text-lg);
-    font-weight: 600;
-    line-height: var(--docifly-line-height-headings);
+  .docifly-link-card-title {
+    font-size: 1rem;
+    font-weight: 500;
   }
-  .link-card-description,
-  .link-card-icon {
+  .docifly-link-card-description,
+  .docifly-link-card > svg {
     color: var(--muted-foreground);
   }
-  .link-card-description {
-    line-height: 1.5;
+  .docifly-link-card:hover {
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
-  .link-card-icon {
-    flex-shrink: 0;
-  }
-  .sl-link-card:hover {
-    color: inherit;
-    background: var(--secondary, var(--muted));
-    border-color: var(--muted-foreground);
-  }
-  .sl-link-card:hover .link-card-icon {
-    color: var(--foreground);
+  .docifly-link-card:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
   }
   .tabs {
     min-width: 0;
@@ -2100,116 +2062,56 @@ how we do it.
   .tab-panel > :first-child {
     margin-top: 0;
   }
-  .sl-link-button {
-    display: inline-flex;
-    align-items: center;
+  /* Long authored action labels must wrap without changing Vega's controls. */
+  .docifly-action {
     max-width: 100%;
-    gap: 0.5em;
-    padding: 0.4375rem 1.125rem;
+    height: auto;
+    min-height: 2.25rem;
+    padding-block: 0.5rem;
+    white-space: normal;
+    text-align: start;
     overflow-wrap: anywhere;
-    color: var(--foreground);
-    font-size: var(--docifly-text-sm);
-    line-height: 1.1875;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 999rem;
-    outline-offset: 0.25rem;
   }
-  .sl-link-button:focus-visible {
-    outline: revert;
-    outline-offset: 0.25rem;
-  }
-  .sl-link-button.primary {
-    color: var(--primary-foreground);
-    background: var(--primary);
-    border-color: var(--primary);
-  }
-  .sl-link-button.primary:hover {
-    color: var(--primary-foreground);
-  }
-  .sl-link-button.secondary {
-    color: var(--foreground);
-    border-color: inherit;
-  }
-  .sl-link-button.minimal {
-    padding-inline: 0;
-    color: var(--foreground);
-  }
-  .sl-link-button > span {
+  .docifly-action > span {
     min-width: 0;
   }
-  .sl-link-button .sl-icon {
-    flex-shrink: 0;
+  .sl-markdown-content > .docifly-action {
+    margin-block: 0.5rem;
+    margin-inline-end: 0.5rem;
   }
-  .sl-markdown-content .sl-link-button {
-    margin-inline-end: 1rem;
-  }
-  .sl-markdown-content .sl-link-button:not(:where(p *)) {
-    margin-block: 1rem;
-  }
-  .starlight-aside {
+  .alert {
     min-width: 0;
-    padding: 1rem;
     overflow-wrap: anywhere;
+  }
+  .sl-markdown-content > :is(.alert, .card, .card-grid, .file-tree) {
+    margin-block: var(--docifly-content-gap-y);
+  }
+  .alert > [data-title] {
+    min-width: 0;
+  }
+  .alert:has(> svg) {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .alert > section {
     color: var(--foreground);
-    background-color: var(--docifly-status-blue-surface);
-    border-inline-start: 0.25rem solid var(--docifly-status-blue);
+    text-wrap: pretty;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
   }
-  .starlight-aside--note {
-    --docifly-color-asides-text-accent: var(--docifly-status-blue-text);
-    background-color: var(--docifly-status-blue-surface);
-    border-color: var(--docifly-status-blue);
+  .alert:has(> svg) > section {
+    grid-column: 2;
   }
-  .starlight-aside--tip {
-    --docifly-color-asides-text-accent: var(--docifly-status-purple-text);
-    background-color: var(--docifly-status-purple-surface);
-    border-color: var(--docifly-status-purple);
-  }
-  .starlight-aside--caution {
-    --docifly-color-asides-text-accent: var(--docifly-status-orange-text);
-    background-color: var(--docifly-status-orange-surface);
-    border-color: var(--docifly-status-orange);
-  }
-  .starlight-aside--danger {
-    --docifly-color-asides-text-accent: var(--docifly-status-red-text);
-    background-color: var(--docifly-status-red-surface);
-    border-color: var(--docifly-status-red);
-  }
-  .starlight-aside__title {
-    display: flex;
-    min-width: 0;
-    gap: 0.5rem;
-    align-items: center;
-    color: var(--docifly-color-asides-text-accent);
-    font-size: var(--docifly-text-h5);
-    font-weight: 600;
-    line-height: var(--docifly-line-height-headings);
-  }
-  .starlight-aside__title .sl-icon {
-    font-size: 1.333em;
-  }
-  .starlight-aside__title > span,
-  .starlight-aside__content {
-    min-width: 0;
-  }
-  .starlight-aside__title + .starlight-aside__content {
-    margin-top: 0.5rem;
-  }
-  .starlight-aside__content > :first-child {
+  .alert > section > :first-child,
+  .card > section > :first-child {
     margin-top: 0;
   }
-  .starlight-aside__content > :last-child {
+  .alert > section > :last-child,
+  .card > section > :last-child {
     margin-bottom: 0;
   }
-  .starlight-aside__content a {
-    color: var(--docifly-color-asides-text-accent);
-  }
   @media (min-width: 50rem) {
-    .sl-link-button {
-      padding: 0.9375rem 1.25rem;
-      font-size: var(--docifly-text-base);
-    }
     .card-grid {
+      align-items: start;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
     }
@@ -2408,10 +2310,10 @@ how we do it.
     margin-top: 5mm;
   }
   .file-tree,
-  .starlight-aside,
+  .alert,
   .card,
-  .sl-badge,
-  .sl-link-button.primary {
+  .badge,
+  .docifly-action[data-variant=primary] {
     color: var(--foreground);
     background: transparent;
   }
@@ -2419,7 +2321,7 @@ how we do it.
     overflow: visible;
     break-inside: auto;
   }
-  .sl-badge {
+  .badge {
     border-color: var(--muted-foreground);
   }
 }

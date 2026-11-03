@@ -218,10 +218,10 @@
   }
 
   .file-tree,
-  .starlight-aside,
+  .alert,
   .card,
-  .sl-badge,
-  .sl-link-button.primary {
+  .badge,
+  .docifly-action[data-variant='primary'] {
     color: var(--foreground);
     background: transparent;
   }
@@ -231,7 +231,7 @@
     break-inside: auto;
   }
 
-  .sl-badge {
+  .badge {
     border-color: var(--muted-foreground);
   }
 }

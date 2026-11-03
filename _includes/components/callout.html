@@ -32,8 +32,9 @@
 {% if callout_content != '' %}
   {% assign docifly_callout_index = docifly_callout_index | default: 0 | plus: 1 %}
   {% assign callout_title_id = 'docifly-callout-title-' | append: docifly_callout_index %}
-<aside class="starlight-aside starlight-aside--{{ callout_type }}" aria-labelledby="{{ callout_title_id }}">
-  <p class="starlight-aside__title" id="{{ callout_title_id }}" aria-hidden="true">{% include components/icon.html name=callout_icon size="large" %}<span>{{ callout_title | escape }}</span></p>
-  <div class="starlight-aside__content">{{ include.content | markdownify }}</div>
+<aside class="alert not-content" data-status="{{ callout_type }}" aria-labelledby="{{ callout_title_id }}">
+  {% include components/icon.html name=callout_icon %}
+  <div data-title id="{{ callout_title_id }}">{{ callout_title | escape }}</div>
+  <section class="sl-markdown-content">{{ include.content | markdownify }}</section>
 </aside>
 {% endif %}

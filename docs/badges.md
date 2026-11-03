@@ -11,6 +11,8 @@ Badges are escaped, noninteractive plain-text labels. Their text and shape remai
 
 Each variant uses a fixed decorative icon from the frozen public registry: `star`, `information`, `rocket`, `warning`, `error`, or `approve-check-circle`. The escaped text and badge shape still carry the label when icons or color are unavailable.
 
+Badges use Basecoat Vega's `.badge` geometry. The default uses its primary variant; named statuses use an outline variant with a narrow `data-status` color extension: note blue, tip purple, caution orange, danger red, and success green. Sizes use `data-size="small|medium|large"`; they change label sizing without turning badges into controls. All statuses retain a decorative icon and text rather than relying on color alone.
+
 Use the include directly in prose. `text` is escaped plain text; raw HTML and Markdown are not accepted:
 
 ```liquid

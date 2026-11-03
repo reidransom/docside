@@ -49,3 +49,27 @@ prints its URL. [Internal navigation](./guides/long-guide/), the
 {% include components/tabs.html content=print_tabs sync="acceptance-tabs" persist=true %}
 
 {% include components/file-tree.html items=page.print_tree %}
+
+## Component boundaries
+
+{% include components/link-button.html text="Unsafe action must not render" href="javascript:alert(1)" %}
+{% include components/link-button.html text="Unsafe data action must not render" href="data:text/html,test" %}
+{% include components/link-card.html title="Unsafe card must not render" href="javascript:alert(1)" %}
+{% include components/link-card.html title="Unsafe data card must not render" href="data:text/html,test" %}
+{% include components/link-button.html text="Literal <mark>action</mark> & safe" href="/cards/" %}
+{% include components/link-card.html title="Literal <mark>card</mark> & safe" href="/badges/" description="Literal <em>description</em> & safe" %}
+
+{% capture boundary_body %}
+### Nested component prose
+
+Read **strong content** and [the destination](/cards/).
+
+- First nested item
+- Second nested item
+
+> A nested quotation keeps its prose boundary.
+
+{% include components/link-button.html text="Nested action" href="/cards/" variant="secondary" %}
+{% endcapture %}
+{% include components/card.html title="Literal <mark>title</mark> & safe" icon="star" content=boundary_body %}
+{% include components/callout.html title="Literal <mark>notice</mark> & safe" icon="not-in-the-registry" content=boundary_body %}

@@ -64,9 +64,11 @@ Docifly ships the 130 names from stock Starlight commit `{EXPECTED_COMMIT}`. Thi
 
 An omitted label makes the icon decorative. Supply escaped plain text with `label` only when the icon itself needs an accessible name:
 
-<div class="icon-contract-fixtures not-content"><span data-fixture="meaningful">{{% include components/icon.html name="starlight" label=page.icon_label size="large" color="accent" %}}</span><a href="#all-icons" data-fixture="link">{{% include components/icon.html name="right-arrow" %}} All icons</a><button type="button" data-fixture="button">{{% include components/icon.html name="approve-check" color="green" %}} Confirm</button><span data-fixture="invalid-defaults">{{% include components/icon.html name="star" size="huge" color="url-danger" %}}</span><span data-fixture="unknown">{{% include components/icon.html name="not-in-the-frozen-registry" %}}</span></div>
+<div class="icon-contract-fixtures not-content"><span data-fixture="meaningful">{{% include components/icon.html name="starlight" label=page.icon_label size="large" color="accent" %}}</span><a href="#all-icons" data-fixture="link">{{% include components/icon.html name="right-arrow" %}} All icons</a><button class="btn" data-variant="outline" type="button" data-fixture="button">{{% include components/icon.html name="approve-check" color="green" %}} Confirm</button><span data-fixture="invalid-defaults">{{% include components/icon.html name="star" size="huge" color="url-danger" %}}</span><span data-fixture="unknown">{{% include components/icon.html name="not-in-the-frozen-registry" %}}</span></div>
 
 When an icon appears beside link, button, card, tab, badge, or callout text, omit `label`; the surrounding text remains the sole accessible name. Color is supplementary and never the only meaning.
+
+Icons inherit the surrounding Basecoat semantic foreground by default. Fixed semantic colors remain narrow documentation extensions; sizes and the frozen registry are unchanged. The executable button example uses Vega's outline control, with its visible text supplying the accessible name.
 
 ## Sizes and semantic colors
 

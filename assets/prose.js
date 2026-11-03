@@ -3,6 +3,7 @@
   if (!anchorLabel) return;
   document.querySelectorAll('#article :is(h1, h2, h3, h4, h5, h6)[id]').forEach((heading) => {
     if (
+      (heading.closest('.not-content') && heading.closest('.sl-markdown-content')?.contains(heading.closest('.not-content'))) ||
       heading.parentElement.classList.contains('sl-heading-wrapper') ||
       !heading.textContent.trim()
     )
@@ -11,7 +12,7 @@
     const headingBadge =
       badgeContainer instanceof HTMLParagraphElement &&
       badgeContainer.childElementCount === 1 &&
-      badgeContainer.firstElementChild?.matches('.sl-badge') &&
+      badgeContainer.firstElementChild?.matches('.badge') &&
       badgeContainer.textContent.trim() === badgeContainer.firstElementChild.textContent.trim()
         ? badgeContainer.firstElementChild
         : null;

@@ -43,6 +43,20 @@ rtl_tree:
 </p>
 {% include components/callout.html type="danger" content="محتوى التنبيه العربي مع رابط https://example.test واسم Docifly." %}
 
+{% include components/badge.html text="تجريبي" variant="caution" %}
+{% include components/link-button.html text="ابدأ القراءة" href="/al-bidaya/" variant="secondary" icon="right-arrow" icon_position="trailing" %}
+{% capture rtl_card_body %}
+محتوى **مهم** مع `config.toml`.
+
+- عنصر عربي أول
+- عنصر عربي ثان
+{% endcapture %}
+{% capture rtl_cards %}
+{% include components/card.html title="بطاقة محتوى عربي" icon="open-book" content=rtl_card_body %}
+{% include components/link-card.html title="انتقل إلى البداية" href="/al-bidaya/" description="رابط واحد بترتيب قراءة عربي." %}
+{% endcapture %}
+{% include components/card-grid.html content=rtl_cards %}
+
 | المرحلة | الأمر | المسار | الإصدار | الحالة | ملاحظة طويلة |
 | --- | --- | --- | --- | --- | --- |
 | البناء | `jigyll build` | `/docs/ar/dalil/` | 2026.9 | ناجح | هذا عمود طويل يثبت أن الجدول العريض يمرر محليًا من دون توسيع الصفحة |

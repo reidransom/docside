@@ -85,6 +85,7 @@
     overflow-wrap: anywhere;
     text-align: center;
     border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
   }
 
   .icon-geometry-grid {
@@ -101,95 +102,59 @@
     overflow-wrap: anywhere;
   }
 
-  .sl-badge {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.25rem;
-    padding: 0.175rem 0.35rem;
+  /* Vega owns geometry; documentation statuses add only semantic color pairs. */
+  @each $status, $color in ('note': 'blue', 'tip': 'purple', 'caution': 'orange', 'danger': 'red', 'success': 'green') {
+    .badge[data-status='#{$status}'],
+    .alert[data-status='#{$status}'] {
+      color: var(--docifly-status-#{$color}-text);
+      background-color: var(--docifly-status-#{$color}-surface);
+      border-color: var(--docifly-status-#{$color});
+    }
+  }
+
+  .badge {
+    max-width: 100%;
+    height: auto;
+    min-height: 1.25rem;
+    white-space: normal;
     overflow-wrap: anywhere;
-    color: var(--docifly-color-text-badge);
-    font-family: var(--font-mono);
-    font-size: var(--docifly-text-sm);
-    line-height: normal;
-    background-color: var(--docifly-color-bg-badge);
-    border: 1px solid var(--docifly-color-border-badge);
-    border-radius: 0.25rem;
+    vertical-align: middle;
   }
 
-  .sl-badge.default {
-    --docifly-color-bg-badge: var(--primary);
-    --docifly-color-border-badge: var(--primary);
-    --docifly-color-text-badge: var(--primary-foreground);
+  .badge > span {
+    min-width: 0;
   }
 
-  .sl-badge.note {
-    --docifly-color-bg-badge: var(--docifly-status-blue-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-blue-text);
+  .badge[data-size='small'] {
+    font-size: 0.6875rem;
+    padding-inline: 0.375rem;
   }
 
-  .sl-badge.danger {
-    --docifly-color-bg-badge: var(--docifly-status-red-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-red-text);
+  .badge[data-size='large'] {
+    font-size: 0.875rem;
+    padding-inline: 0.625rem;
   }
 
-  .sl-badge.success {
-    --docifly-color-bg-badge: var(--docifly-status-green-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-green-text);
-  }
-
-  .sl-badge.tip {
-    --docifly-color-bg-badge: var(--docifly-status-purple-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-purple-text);
-  }
-
-  .sl-badge.caution {
-    --docifly-color-bg-badge: var(--docifly-status-orange-surface);
-    --docifly-color-border-badge: var(--border);
-    --docifly-color-text-badge: var(--docifly-status-orange-text);
-  }
-
-  .sl-badge.small {
-    padding: 0.125rem 0.25rem;
-    font-size: var(--docifly-text-xs);
-  }
-
-  .sl-badge.large {
-    padding: 0.225rem 0.45rem;
-    font-size: var(--docifly-text-base);
-  }
-
-  #site-nav .sl-badge {
-    padding: 0.125rem 0.375rem;
-    font-size: var(--docifly-text-xs);
-    line-height: 1;
+  #site-nav .badge {
+    flex-shrink: 1;
   }
 
   #site-nav a > *:not(:last-child) {
     margin-inline-end: 0.25em;
   }
 
-  #site-nav a[aria-current='page'] > .sl-badge {
-    --docifly-color-bg-badge: transparent;
-    --docifly-color-border-badge: currentColor;
-    color: inherit;
-  }
-
-  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) .sl-badge {
+  .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) .badge {
     vertical-align: middle;
   }
 
   .sl-markdown-content
-    :is(h1, h2, h3, h4, h5, h6):has(+ p > .sl-badge:only-child) {
+    :is(h1, h2, h3, h4, h5, h6):has(+ p > .badge:only-child) {
     display: inline-block;
   }
 
   .sl-markdown-content
     :is(h1, h2, h3, h4, h5, h6)
-    + p:has(> .sl-badge:only-child) {
+    + p:has(> .badge:only-child) {
     display: inline;
     margin: 0;
     margin-inline-start: 0.25em;
@@ -197,12 +162,12 @@
   }
 
   .sl-markdown-content
-    .sl-heading-wrapper:has(> .sl-badge)
+    .sl-heading-wrapper:has(> .badge)
     > :first-child {
     padding-inline-end: 0.25em;
   }
 
-  .sl-markdown-content .sl-heading-wrapper > .sl-badge {
+  .sl-markdown-content .sl-heading-wrapper > .badge {
     margin-inline-end: var(--docifly-anchor-icon-space);
     vertical-align: middle;
   }
@@ -281,8 +246,9 @@
     overflow-x: auto;
     font-family: var(--font-mono);
     font-size: var(--docifly-text-xs);
-    background-color: var(--muted);
+    background-color: var(--card);
     border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
     contain: paint;
   }
 
@@ -426,72 +392,51 @@
   }
 
 
-  .card-title {
+  .docifly-card-title {
     display: flex;
     align-items: center;
-    gap: 1rem;
-  }
-
-  .card-body {
-    min-width: 0;
-    margin: 0;
-    font-size: clamp(var(--docifly-text-sm), calc(0.5rem + 1vw), var(--docifly-text-body));
-  }
-
-  .card-body > :first-child {
-    margin-top: 0;
-  }
-
-  .sl-link-card {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.5rem;
     min-width: 0;
-    padding: 1rem;
-    color: inherit;
-    text-decoration: none;
-    overflow-wrap: anywhere;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    box-shadow: var(--shadow-sm);
   }
 
-  .link-card-stack {
+  .card > section,
+  .alert > section {
+    min-width: 0;
+  }
+
+  .docifly-link-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    padding-inline: 1.5rem;
+    text-decoration: none;
+  }
+
+  .docifly-link-card-content {
     display: flex;
     min-width: 0;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .link-card-title {
-    color: var(--foreground);
-    font-size: var(--docifly-text-lg);
-    font-weight: 600;
-    line-height: var(--docifly-line-height-headings);
+  .docifly-link-card-title {
+    font-size: 1rem;
+    font-weight: 500;
   }
 
-  .link-card-description,
-  .link-card-icon {
+  .docifly-link-card-description,
+  .docifly-link-card > svg {
     color: var(--muted-foreground);
   }
 
-  .link-card-description {
-    line-height: 1.5;
+  .docifly-link-card:hover {
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
 
-  .link-card-icon {
-    flex-shrink: 0;
-  }
-
-  .sl-link-card:hover {
-    color: inherit;
-    background: var(--secondary, var(--muted));
-    border-color: var(--muted-foreground);
-  }
-
-  .sl-link-card:hover .link-card-icon {
-    color: var(--foreground);
+  .docifly-link-card:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
   }
 
 
@@ -569,137 +514,66 @@
   }
 
 
-  .sl-link-button {
-    display: inline-flex;
-    align-items: center;
+  /* Long authored action labels must wrap without changing Vega's controls. */
+  .docifly-action {
     max-width: 100%;
-    gap: 0.5em;
-    padding: 0.4375rem 1.125rem;
+    height: auto;
+    min-height: 2.25rem;
+    padding-block: 0.5rem;
+    white-space: normal;
+    text-align: start;
     overflow-wrap: anywhere;
-    color: var(--foreground);
-    font-size: var(--docifly-text-sm);
-    line-height: 1.1875;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 999rem;
-    outline-offset: 0.25rem;
   }
 
-  .sl-link-button:focus-visible {
-    outline: revert;
-    outline-offset: 0.25rem;
-  }
-
-  .sl-link-button.primary {
-    color: var(--primary-foreground);
-    background: var(--primary);
-    border-color: var(--primary);
-  }
-
-  .sl-link-button.primary:hover {
-    color: var(--primary-foreground);
-  }
-
-  .sl-link-button.secondary {
-    color: var(--foreground);
-    border-color: inherit;
-  }
-
-  .sl-link-button.minimal {
-    padding-inline: 0;
-    color: var(--foreground);
-  }
-
-  .sl-link-button > span {
+  .docifly-action > span {
     min-width: 0;
   }
 
-  .sl-link-button .sl-icon {
-    flex-shrink: 0;
+  .sl-markdown-content > .docifly-action {
+    margin-block: 0.5rem;
+    margin-inline-end: 0.5rem;
   }
 
-  .sl-markdown-content .sl-link-button {
-    margin-inline-end: 1rem;
-  }
-
-  .sl-markdown-content .sl-link-button:not(:where(p *)) {
-    margin-block: 1rem;
-  }
-
-  .starlight-aside {
+  .alert {
     min-width: 0;
-    padding: 1rem;
     overflow-wrap: anywhere;
+  }
+
+  .sl-markdown-content > :is(.alert, .card, .card-grid, .file-tree) {
+    margin-block: var(--docifly-content-gap-y);
+  }
+
+  .alert > [data-title] {
+    min-width: 0;
+  }
+
+  .alert:has(> svg) {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .alert > section {
     color: var(--foreground);
-    background-color: var(--docifly-status-blue-surface);
-    border-inline-start: 0.25rem solid var(--docifly-status-blue);
+    text-wrap: pretty;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
   }
 
-  .starlight-aside--note {
-    --docifly-color-asides-text-accent: var(--docifly-status-blue-text);
-    background-color: var(--docifly-status-blue-surface);
-    border-color: var(--docifly-status-blue);
+  .alert:has(> svg) > section {
+    grid-column: 2;
   }
 
-  .starlight-aside--tip {
-    --docifly-color-asides-text-accent: var(--docifly-status-purple-text);
-    background-color: var(--docifly-status-purple-surface);
-    border-color: var(--docifly-status-purple);
-  }
-
-  .starlight-aside--caution {
-    --docifly-color-asides-text-accent: var(--docifly-status-orange-text);
-    background-color: var(--docifly-status-orange-surface);
-    border-color: var(--docifly-status-orange);
-  }
-
-  .starlight-aside--danger {
-    --docifly-color-asides-text-accent: var(--docifly-status-red-text);
-    background-color: var(--docifly-status-red-surface);
-    border-color: var(--docifly-status-red);
-  }
-
-  .starlight-aside__title {
-    display: flex;
-    min-width: 0;
-    gap: 0.5rem;
-    align-items: center;
-    color: var(--docifly-color-asides-text-accent);
-    font-size: var(--docifly-text-h5);
-    font-weight: 600;
-    line-height: var(--docifly-line-height-headings);
-  }
-
-  .starlight-aside__title .sl-icon {
-    font-size: 1.333em;
-  }
-
-  .starlight-aside__title > span,
-  .starlight-aside__content {
-    min-width: 0;
-  }
-
-  .starlight-aside__title + .starlight-aside__content {
-    margin-top: 0.5rem;
-  }
-
-  .starlight-aside__content > :first-child {
+  .alert > section > :first-child,
+  .card > section > :first-child {
     margin-top: 0;
   }
 
-  .starlight-aside__content > :last-child {
+  .alert > section > :last-child,
+  .card > section > :last-child {
     margin-bottom: 0;
   }
-
-  .starlight-aside__content a {
-    color: var(--docifly-color-asides-text-accent);
-  }
   @media (min-width: 50rem) {
-    .sl-link-button {
-      padding: 0.9375rem 1.25rem;
-      font-size: var(--docifly-text-base);
-    }
     .card-grid {
+      align-items: start;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
     }
