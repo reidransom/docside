@@ -68,7 +68,7 @@ An omitted label makes the icon decorative. Supply escaped plain text with `labe
 
 When an icon appears beside link, button, card, tab, badge, or callout text, omit `label`; the surrounding text remains the sole accessible name. Color is supplementary and never the only meaning.
 
-Icons inherit the surrounding Basecoat semantic foreground by default. Fixed semantic colors remain narrow documentation extensions; sizes and the frozen registry are unchanged. The executable button example uses Vega's outline control, with its visible text supplying the accessible name.
+Icons inherit the surrounding semantic foreground by default. Fixed semantic colors remain narrow documentation extensions; sizes and the frozen registry are unchanged. The executable button example uses an outline control, with its visible text supplying the accessible name.
 
 ## Sizes and semantic colors
 

@@ -50,7 +50,7 @@ Markdown with **formatting**, lists, links, and code.
 
 `title` is required escaped plain text. `icon` optionally accepts a frozen public icon name; unknown names omit the SVG. `content` is passed through `markdownify` and therefore follows the consumer's trusted Markdown/raw-HTML policy. Cards add no navigation target of their own. A card inside a link card and nested card grids are unsupported.
 
-Rich cards use Basecoat Vega's `.card` surface with a direct `header` and Markdown `section`. The title is a plain-text component label, not an extra document heading. Nested paragraphs, lists, links, headings, and code opt into the same scoped article typography without restyling the card header.
+Rich cards use a `.card` surface with a direct `header` and Markdown `section`. The title is a plain-text component label, not an extra document heading. Nested paragraphs, lists, links, headings, and code opt into the same scoped article typography without restyling the card header.
 
 ## Staggered grid
 
@@ -86,4 +86,4 @@ A link card is one anchor covering one card. Its title and optional description 
 
 Root-relative internal URLs pass through `relative_url`. Fragments, `mailto:`, `tel:`, and absolute HTTP(S) URLs remain unchanged. Missing required values and unsupported schemes omit the link card. Nested grids and interactive card children are not supported.
 
-Link cards share the Vega card surface and add only a single-target layout. The whole card remains one native anchor, including keyboard activation with Enter and a visible focus outline. They have no button, nested anchor, or JavaScript click handler. Both card types keep wide code inside its own scroll area, and the grid becomes two columns at 50rem.
+Link cards share the card surface and add only a single-target layout. The whole card remains one native anchor, including keyboard activation with Enter and a visible focus outline. They have no button, nested anchor, or JavaScript click handler. Both card types keep wide code inside its own scroll area, and the grid becomes two columns at 50rem.

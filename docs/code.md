@@ -3,7 +3,7 @@ title: Code blocks
 permalink: /code/
 ---
 
-Fenced code is rendered by Jigyll and highlighted by Chroma. Docifly styles that output and adds a Basecoat Vega clipboard control when the browser supports it. The blocks on this page are the examples themselves, not a separate test fixture.
+Fenced code is rendered by Jigyll and highlighted by Chroma. Docifly styles that output and adds a clipboard control when the browser supports it. The blocks on this page are the examples themselves, not a separate test fixture.
 
 ## Author a fenced block
 

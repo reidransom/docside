@@ -5,7 +5,7 @@ permalink: /tabs/
 
 Docifly renders captured Markdown as semantic stacked sections, then progressively enhances them into keyboard-operable tabs. Every label and panel remains readable when JavaScript is unavailable.
 
-Enhanced groups use Basecoat's default Vega tabs. Long labels scroll within their own tab list rather than widening the page; keyboard selection reveals the chosen label in that list. Printing returns to labeled stacked panels, including panels hidden on screen.
+Enhanced groups use the theme's shared tab styles. Long labels scroll within their own tab list rather than widening the page; keyboard selection reveals the chosen label in that list. Printing returns to labeled stacked panels, including panels hidden on screen.
 
 ## Independent tabs
 

@@ -27,15 +27,15 @@ The page type and hero are independent. A default page without `hero` gets one o
 
 Public content includes live under `_includes/components/`. `icon.html` validates a frozen 130-name registry, fixed size/color vocabularies, and explicit decorative or labeled accessibility semantics; `tools/icons/icons.json` generates both its trusted private path branches and the complete documentation fixture. `link-button.html` is the single validated action-link renderer shared by public content, heroes, and not-found recovery actions. `badge.html` validates escaped text variants and sizes; a badge placed on the source line after a heading is styled beside it without entering the heading's ID or navigation label. `steps.html` decorates only a rendered outer ordered list, retaining its native `start` value and leaving nested lists or malformed input ordinary. `file-tree.html` recursively renders escaped structured data through a private include, bounds traversal at eight directory levels, and marks its illustrative labels out of search. `callout.html` validates one of four aside types, preserves captured Markdown, labels each aside from its visible escaped title, and falls back to the selected type's icon when a custom name is unknown.
 
-Content buttons, badges, cards, and static callouts render Basecoat Vega structures, not a second component skin. Public author variant names remain unchanged; link buttons map secondary/minimal to Vega outline/ghost. Only status colors, badge sizes, long-label wrapping, and documentation layouts extend the shared components. Each `.sl-markdown-content` starts a CSS `@scope` that stops at component boundaries; explicit Markdown sections inside cards and callouts start a fresh scope, keeping lists and links readable without applying article typography to their chrome.
+Content buttons, badges, cards, and static callouts render shared component structures. Public author variant names remain unchanged; link buttons map secondary/minimal to outline/ghost. Only status colors, badge sizes, long-label wrapping, and documentation layouts extend the shared components. Each `.sl-markdown-content` starts a CSS `@scope` that stops at component boundaries; explicit Markdown sections inside cards and callouts start a fresh scope, keeping lists and links readable without applying article typography to their chrome.
 
 Text labels and titles are escaped. A navigation badge contributes to its link name unless an equivalent `aria_label` supplies that name and hides redundant visible text from assistive technology. Theme asset URLs and navigation links pass through `relative_url` and attribute escaping. Page URLs and navigation links must agree for the current-page marker to appear.
 
 ## Styles and shipped output
 
-All three page layouts load the local, unmodified `assets/vendor/basecoat/basecoat.cdn.min.css` **before** `assets/docifly.css`, using escaped `relative_url` asset paths. The synchronous color-mode bootstrap precedes both. Basecoat supplies the only reset, shared semantic tokens, default Vega component rules, and font stacks; there is no second reset or compatibility token graph.
+All three page layouts load the local shared stylesheet **before** `assets/docifly.css`, using escaped `relative_url` asset paths. The synchronous color-mode bootstrap precedes both. Shared styles supply the reset, semantic tokens, component rules, and font stacks; there is no second reset or compatibility token graph.
 
-`_sass/docifly.scss` is the documentation stylesheet entry point. It loads documentation-only properties, theme extensions, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, content components, and print, then defines shell geometry. Adaptations use the `docifly` layer after Basecoat's `properties`, `theme`, `base`, `components`, and `utilities` layers. Prose styles exclude component surfaces instead of overriding their typography and controls.
+`_sass/docifly.scss` is the documentation stylesheet entry point. It loads documentation-only properties, theme extensions, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, content components, and print, then defines shell geometry. Adaptations use the `docifly` layer after the shared `properties`, `theme`, `base`, `components`, and `utilities` layers. Prose styles exclude component surfaces instead of overriding their typography and controls.
 
 Consumers load the two shipped stylesheets without a frontend build. Maintainers changing Sass rebuild the documentation artifact with Python 3 and Dart Sass 1.79.0 or later available as `sass`:
 
@@ -43,44 +43,24 @@ Consumers load the two shipped stylesheets without a frontend build. Maintainers
 python tools/styles/build.py
 ```
 
-Run this from the theme repository root, not the documentation consumer. The builder compiles `_sass/docifly.scss` into `assets/docifly.css` without fetching or modifying Basecoat. Shell, prose, code, and component rules consume Basecoat semantics directly, including paired sidebar colors. `_sass/_props.scss` retains documentation layout/type values under `--docifly-*`; `_sass/_theme.scss` owns only documentation-specific status, syntax, code-marker, hero-depth, and print extensions. Stock Light/Dark remain vendor-owned. Punk, Ice, and additional custom themes use complete semantic JSON palettes; see [Color modes](../color-modes/) for the exact required schema. Publishing JSON changes needs no Sass compilation. Commit rebuilt CSS with Sass changes.
+Run this from the theme repository root, not the documentation consumer. The builder compiles `_sass/docifly.scss` into `assets/docifly.css` without fetching or modifying dependencies. Shell, prose, code, and component rules consume semantic tokens directly, including paired sidebar colors. `_sass/_props.scss` retains documentation layout/type values under `--docifly-*`; `_sass/_theme.scss` owns only documentation-specific status, syntax, code-marker, hero-depth, and print extensions. Stock Light/Dark remain defined in the shared stylesheet. Punk, Ice, and additional custom themes use complete semantic JSON palettes; see [Color modes](../color-modes/) for the exact required schema. Publishing JSON changes needs no Sass compilation. Commit rebuilt CSS with Sass changes.
 
 A standalone Dart Sass executable supplies the compiler without Node.js. Merely editing Markdown does not require compilation, and consumers loading the shipped CSS need neither Python nor Sass. `jigyll build` consumes the compiled asset; it does not run this maintainer build step.
 
-The pinned Basecoat dependency is maintained separately from Sass. `assets/vendor/basecoat/` contains the unmodified `basecoat-css@1.1.0` standalone Vega stylesheet, the release's MIT license, and `manifest.json` with the original archive/distribution URLs, exact archive member names, byte sizes, and SHA-256 digests. The stylesheet also retains its upstream Tailwind CSS MIT notice verbatim; the manifest lists retained CSS notices. It contains no font files or external asset requests: its six image URLs are inline SVG data URLs, and its Geist/Geist Mono font stacks fall back to locally available system fonts.
 
-To reimport the pinned release from an already acquired local npm archive, run these explicit maintainer operations from the repository root:
+When changing code-marker styles, check whole-line and inline marks in Light, Dark, Punk, and Ice, including both stripe phases and numbered gutters. Composite translucent marker backgrounds over the actual code surface before calculating WCAG relative luminance. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source. Narrow `--docifly-code-muted` and `--docifly-code-focus` extensions keep captions/gutters and code focus readable; dark insertion/deletion fills use less opacity rather than changing the shared palette.
 
-```sh
-python tools/styles/basecoat.py import --archive /path/to/basecoat-css-1.1.0.tgz
-python tools/styles/basecoat.py check
-python -m unittest discover -s tools/styles -p 'test_basecoat.py'
-```
-
-Both operations are offline and use only Python's standard library. Import validates the package name, version, MIT declaration, and the exact required regular-file members before staging any replacement. It never extracts arbitrary archive paths, templates, scripts, or other stylesheets; failed validation or staging leaves the installed distribution untouched, and a failed publication rename restores the previous distribution. Check needs no archive: it rejects missing or altered installed CSS/license bytes and invalid pinned manifest metadata. The recorded digests provide local integrity/provenance, not an upstream signature. A version upgrade requires a separate reviewed change to the tool's pin, release/license inspection, manifest/digest review, and local rendering proof; do not edit the generated vendor bytes.
-
-Importing does not edit layouts or compile Sass. `tools/styles/build.py` remains responsible only for documentation Sass and never refreshes dependencies; theme consumers need no new package manager or frontend toolchain. The standalone stylesheet includes the global reset, tokens, component rules, and only its bundled utility subset, not arbitrary Tailwind classes. Its semantic `:root`/`.dark` declarations are **unlayered**: the runtime's screen-only custom rules use `html:root` specificity to win even when restored before the vendor link loads. The light print baseline is also unlayered and more specific than vendor defaults, so `html.dark` cannot leak dark semantics into print. No vendor bytes are patched. Dark component variants use `html.dark`, synchronized by Docifly's one theme controller. No Basecoat JavaScript or compatibility pack is shipped.
-
-Upstream Basecoat templates are not Liquid includes, and its standalone CSS
-does not contain every Tailwind utility. Pasting an arbitrary Basecoat demo
-does not make it a supported Docifly component: it may require absent utility
-classes or a JavaScript controller. Use the public `components/` includes for
-the documented API. Do not load Basecoat's tabs/all-in-one scripts beside
-Docifly's controllers; that would duplicate state and event ownership.
-
-When changing code-marker styles, check whole-line and inline marks in Light, Dark, Punk, and Ice, including both stripe phases and numbered gutters. Composite translucent marker backgrounds over the actual code surface before calculating WCAG relative luminance. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source. Narrow `--docifly-code-muted` and `--docifly-code-focus` extensions keep captions/gutters and code focus readable; dark insertion/deletion fills use less opacity rather than changing Vega's shared palette.
-
-All typography uses Basecoat's font stacks: Geist/Geist Sans with system sans-serif fallbacks, and Geist Mono with system monospace fallbacks. These are preferences for locally installed fonts, not downloads or bundled font assets. Article headings retain a documentation-specific scale, weight 700, restrained tracking, and a bounded reading column; site-title and hero geometry remain documentation adaptations. Component typography remains Vega-owned rather than inheriting a global heading-font override.
+Typography uses Geist/Geist Sans with system sans-serif fallbacks, and Geist Mono with system monospace fallbacks. These are preferences for locally installed fonts, not downloads or bundled font assets. Article headings retain a documentation-specific scale, weight 700, restrained tracking, and a bounded reading column; site-title and hero geometry remain documentation adaptations. Component typography remains independent of article heading styles.
 
 The principal responsive transitions are 50rem for sidebar/menu placement and 72rem for the TOC rail/disclosure. At the default 16px browser font setting these are 800 and 1152 CSS pixels. They are font-relative layout decisions, not promises about named devices.
 
 Header buttons, the theme's native `select`, and the native search `dialog`
-use Vega's `btn`, `select`, `input`, and `dialog` contracts. Docifly adds only
+use the shared `btn`, `select`, `input`, and `dialog` contracts. Docifly adds only
 shell placement, compact/touch geometry, wrapping, and search-result layout.
 Language/version pickers remain native `details` disclosures with ordinary
-links and paired popover/selection colors; no Basecoat interaction controller
-is loaded. Heroes and not-found actions share the public Vega link-button
-renderer, including narrow-screen wrapping and 44px minimum action height.
+links and paired popover/selection colors. Heroes and not-found actions share
+the public link-button renderer, including narrow-screen wrapping and 44px
+minimum action height.
 
 For responsive changes, inspect `/internals/#search` and `/icons/` at 320–390 CSS pixels: inline prose code must wrap without widening the page, while tables, fenced code, and file trees scroll locally. At 1280×900, set the root font size to 200%, then restore it with focus in navigation or the TOC; check compact-shell transitions and focus retention. Exercise Menu/Search outside their visible shapes, navigation/TOC rows, and search-result sections, snippets, and padding with touch and keyboard.
 
@@ -138,13 +118,13 @@ rail retain the ordinary list; server-rendered no-JavaScript markup stays open.
 
 ### Tabs
 
-`assets/tabs.js` is the sole tab controller; Basecoat JavaScript is not loaded. Server-rendered `.tab-item` sections remain fully readable without JavaScript. Enhancement moves their panels and decorative icons into Vega's `.tabs` structure with a direct-child ARIA tablist and panels, removes the section wrappers, and retains plain-text panel headings for print. IDs are deterministic from page-local DOM order. Tabs are named by their labels alone; selected/hidden/tabindex state and panel labels stay aligned. Long-label scrolling is local to the tablist, with no replacement tab skin. Exact text-label synchronization never transfers focus to a receiving group, and unequal panel heights above the initiating group do not move it in the viewport. Versioned persistence is optional per sync key; missing labels fall back to the group's first panel on restoration and storage failures retain in-memory behavior. Nested groups remain unsupported.
+`assets/tabs.js` is the sole tab controller. Server-rendered `.tab-item` sections remain fully readable without JavaScript. Enhancement moves their panels and decorative icons into the `.tabs` structure with a direct-child ARIA tablist and panels, removes the section wrappers, and retains plain-text panel headings for print. IDs are deterministic from page-local DOM order. Tabs are named by their labels alone; selected/hidden/tabindex state and panel labels stay aligned. Long-label scrolling is local to the tablist. Exact text-label synchronization never transfers focus to a receiving group, and unequal panel heights above the initiating group do not move it in the viewport. Versioned persistence is optional per sync key; missing labels fall back to the group's first panel on restoration and storage failures retain in-memory behavior. Nested groups remain unsupported.
 
 ### Clipboard
 
 Jigyll parses fenced-code metadata and emits the semantic `figure.highlight[data-code-frame]` seam, escaped caption, and unchanged server-highlighted code. `assets/code.js` treats that figure as the canonical frame container, adds native code/copy focus stops when the Clipboard API is available, reads only `code.textContent`, prevents overlapping copy attempts, and reports the actual write result. Untitled and unframed blocks retain the same enhancer without browser-side source parsing.
 
-Copy controls use Vega's outline/icon button contract. Their documentation-only
+Copy controls use the shared outline/icon button contract. Their documentation-only
 rules position them over the code frame; semantic feedback pairs distinguish
 success and denial without replacing the actual Clipboard API result. Inline
 prose code wraps even inside tab panels; fenced source remains preformatted
@@ -156,7 +136,7 @@ inside its own focusable horizontal scroller.
 
 The layouts load the MIT-licensed MiniSearch 7.2.0 browser bundle directly from `https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js`, pinned with SHA-384 Subresource Integrity and anonymous CORS. No library bundle or local fallback is shipped. Search requires access to jsDelivr; a Content Security Policy must permit `https://cdn.jsdelivr.net` in its script sources. If the library cannot load, the search control remains disabled. `assets/search.js` uses the same Unicode tokenizer for indexing and matching, normalizes case and canonical Unicode form, requires every token, and allows a prefix only on the final token. It verifies exact matches itself after MiniSearch finds candidates, ranks title/heading/body hits deterministically, and uses text-only DOM APIs for corpus values. The disabled control remains unavailable without JavaScript; the native dialog supplies loading, guidance, results, failure, and retry states.
 
-Search uses a native modal dialog with Vega's popover surface and controls.
+Search uses a native modal dialog with the shared popover surface and controls.
 The existing enhancer keeps Tab/Shift-Tab within its visible controls and
 results and returns focus to its opener on Cancel/Escape. A failed corpus load
 offers the existing explicit Retry action; no-results and empty-query messages
@@ -174,7 +154,7 @@ defines a complete, unlayered light semantic/status/code baseline that wins
 over vendor defaults even while `html.dark` stays set. Custom palette injection
 is screen-only; printing needs no extra theme controller or preference writes.
 Print expands all labeled tab panels and native disclosure content, including
-Basecoat's collapsed `::details-content` block size and opacity, removes
+the collapsed `::details-content` block size and opacity, removes
 staggered-grid offsets and file-tree paint containment, and wraps code/table
 cells. It appends destinations only to HTTP(S) article links. Layouts render one
 screen-hidden canonical URL after the article. Leaving print retains the

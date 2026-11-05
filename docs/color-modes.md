@@ -5,14 +5,14 @@ permalink: /color-modes/
 
 Use **Select theme** to choose Dark, Light, Punk, Ice, or Auto. The control sits in the header on wide screens and moves into Menu on narrow screens. Both locations use the same saved preference.
 
-Light and Dark use the stock **Basecoat 1.1.0 / Vega** palettes. They do not load a palette JSON file: their registry entries have `palette: null`, and the locally shipped Basecoat stylesheet owns their shared colors and font stacks. The stacks prefer Geist and Geist Mono, then fall back to installed system fonts; Docifly downloads no fonts.
+Light and Dark use the default palettes. They do not load a palette JSON file: their registry entries have `palette: null`, and the locally shipped stylesheet owns their shared colors and font stacks. The stacks prefer Geist and Geist Mono, then fall back to installed system fonts; Docifly downloads no fonts.
 
 Punk and Ice are complete custom semantic palettes over the same components. Punk keeps neon green actions, pink-tinted secondary surfaces, violet text, and black backgrounds. Ice uses near-black navy surfaces, sky-blue actions, cyan-tinted secondary surfaces, and cool slate text, inspired by [ZeroClaw](https://www.zeroclaw.com/).
 
-The custom-palette format uses Basecoat semantic names **without** the leading `--`. This replaces the former base-color/derived-variant format: convert every custom file to the complete schema below. There is no legacy-schema fallback. Shared foreground/background pairs, borders, inputs, focus rings, and sidebar colors are explicit; Docifly's syntax, code-marker, and semantic-notice extensions remain CSS-owned.
+The custom-palette format uses semantic names **without** the leading `--`. This replaces the former base-color/derived-variant format: convert every custom file to the complete schema below. There is no legacy-schema fallback. Shared foreground/background pairs, borders, inputs, focus rings, and sidebar colors are explicit; Docifly's syntax, code-marker, and semantic-notice extensions remain CSS-owned.
 
 The intentional appearance change is broader than recoloring: stock themes
-now use Vega controls, cards, alerts, and tabs, with its neutral Light/Dark
+now use shared controls, cards, alerts, and tabs, with neutral Light/Dark
 defaults rather than the former shared skin. Public Liquid arguments remain
 the same. Do not reproduce the old appearance with token aliases or add a
 second theme controller.
@@ -55,7 +55,7 @@ Publish JSON color changes with the site. They do not need Sass compilation. Aft
    }
    ```
 
-   Every value must be a six-digit hex string, such as `"#38bdf8"`. Missing or unknown keys, short hex, non-string values, and the old base-color keys are rejected. Light-scheme custom palettes use the same complete schema. Basecoat's `accent` is an interaction **surface**, not a universal link/text color; pair it with `accent-foreground`.
+   Every value must be a six-digit hex string, such as `"#38bdf8"`. Missing or unknown keys, short hex, non-string values, and the old base-color keys are rejected. Light-scheme custom palettes use the same complete schema. `accent` is an interaction **surface**, not a universal link/text color; pair it with `accent-foreground`.
 2. Add an entry to the array in `assets/themes/index.json`:
 
    ```json

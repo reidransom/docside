@@ -60,17 +60,16 @@ Build a prefixed output separately to exercise the same installed assets:
 jigyll build --source .poc/living-docs --destination "$PWD/.poc/prefix-preview/docs" --baseurl /docs
 ```
 
-Serve `.poc/prefix-preview/` and visit `/docs/`, not `/`. Check actual requests
-for both `assets/vendor/basecoat/basecoat.cdn.min.css` and
-`assets/docifly.css` beneath that prefix. Record
+Serve `.poc/prefix-preview/` and visit `/docs/`, not `/`. Check that all
+stylesheet requests resolve beneath that prefix. Record
 `git -C .poc/living-docs/_theme/docifly rev-parse HEAD` when reporting an
 installer check: copying the working tree is not an immutable installer test.
 
 ## Maintain shipped styles
 
-Basecoat 1.1.0's default Vega stylesheet is checked in unmodified and loaded
-before compiled documentation CSS. Ordinary Markdown edits and consumer
-builds need only Git/Jigyll, not Node, npm, Python, Sass, or Tailwind.
+Shipped stylesheets are checked in and loaded before compiled documentation
+CSS. Ordinary Markdown edits and consumer builds need only Git/Jigyll, not
+Node, npm, Python, Sass, or Tailwind.
 Maintainers changing Sass run:
 
 ```sh
@@ -78,13 +77,6 @@ python tools/styles/build.py
 jigyll build --source docs --destination .poc/docs-preview
 ```
 
-The Sass build is offline and does not refresh vendor assets. For an explicit
-vendor refresh from an already acquired pinned archive, use
-`python tools/styles/basecoat.py import --archive /path/to/basecoat-css-1.1.0.tgz`,
-then `python tools/styles/basecoat.py check` and
-`python -m unittest discover -s tools/styles -p 'test_basecoat.py'`.
-Review the license/manifest and rebuild/inspect the real pages; a version
-upgrade is a separate reviewed change, not a side effect of compilation.
 See [Theme internals](../internals/#styles-and-shipped-output) for cascade and
 controller ownership and [Color modes](../color-modes/) for the complete
 semantic custom-palette migration.

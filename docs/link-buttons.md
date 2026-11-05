@@ -11,7 +11,7 @@ Link buttons are visually prominent anchors for navigation. They do not represen
 {% include components/link-button.html text="Secondary action" href="/deployment/" variant="secondary" %}
 {% include components/link-button.html text="Minimal action" href="#destinations-and-new-windows" variant="minimal" %}
 
-The include renders a Basecoat Vega `.btn` with `data-size="default"`. Author variants keep their names: `primary` renders `data-variant="primary"`, `secondary` renders `outline`, and `minimal` renders `ghost`. Vega supplies the control shape, focus ring, and theme colors. Long labels can grow onto multiple lines; these anchors are not fixed-height pills.
+The include renders a `.btn` with `data-size="default"`. Author variants keep their names: `primary` renders `data-variant="primary"`, `secondary` renders `outline`, and `minimal` renders `ghost`. Shared styles supply the control shape, focus ring, and theme colors. Long labels can grow onto multiple lines; these anchors are not fixed-height pills.
 
 `variant` accepts `primary`, `secondary`, or `minimal` and defaults to `primary`:
 

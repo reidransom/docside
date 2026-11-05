@@ -5,7 +5,7 @@ permalink: /callouts/
 
 Callouts present supplementary notes, tips, cautions, and dangers as labeled asides. They are static content, not alerts.
 
-They render as Basecoat Vega `.alert` surfaces: a decorative icon, a plain-text title, and a scoped Markdown content section. Docifly adds note-blue, tip-purple, caution-orange, and danger-red status colors, not a single destructive style for every notice. The aside is named by its visible title; it has no live `role="alert"`. Long titles wrap and wide code scrolls inside the notice.
+They render as `.alert` surfaces: a decorative icon, a plain-text title, and a scoped Markdown content section. Docifly adds note-blue, tip-purple, caution-orange, and danger-red status colors, not a single destructive style for every notice. The aside is named by its visible title; it has no live `role="alert"`. Long titles wrap and wide code scrolls inside the notice.
 
 ## Variants
 

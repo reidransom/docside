@@ -59,7 +59,7 @@ Try widening the window while the menu is open. At the desktop transition, the o
 
 The menu uses the browser's native popover support. Without JavaScript, native links, disclosures, and popover navigation remain; the added focus handling and persistence are not available.
 
-Navigation keeps its native disclosures and ordinary links. Vega supplies the shared control appearance; the selected page uses the paired sidebar foreground/background colors, while hover and keyboard focus remain distinct.
+Navigation keeps its native disclosures and ordinary links. Theme styles supply the shared control appearance; the selected page uses the paired sidebar foreground/background colors, while hover and keyboard focus remain distinct.
 
 ## Skip repeated navigation
 

@@ -52,7 +52,7 @@ therefore drops the current query string and fragment instead of guessing that
 another edition has an equivalent route or heading ID. The disclosure and its
 ordinary anchors remain operable when JavaScript is disabled.
 
-The picker is a native disclosure styled as a Vega ghost control, not a custom
+The picker is a native disclosure styled as a ghost control, not a custom
 select controller. Long current-language labels are abbreviated in the header;
 the choices retain their complete wrapping text. On documentation pages, the
 same picker moves into Menu at the compact-shell transition.

@@ -46,7 +46,7 @@ hero:
       variant: minimal
 ```
 
-Action variants are `primary`, `secondary`, and `minimal`; invalid variants fall back to `primary`. These use the same Vega buttons as article actions: primary, outline, and ghost respectively. Actions wrap on narrow screens and retain a 44px minimum height. Action text is plain text. Links must be root-relative internal paths or absolute HTTP(S) URLs. Malformed actions are omitted. The not-found layout uses this same action renderer for its consumer-configured recovery links or default home link.
+Action variants are `primary`, `secondary`, and `minimal`; invalid variants fall back to `primary`. These use the same buttons as article actions: primary, outline, and ghost respectively. Actions wrap on narrow screens and retain a 44px minimum height. Action text is plain text. Links must be root-relative internal paths or absolute HTTP(S) URLs. Malformed actions are omitted. The not-found layout uses this same action renderer for its consumer-configured recovery links or default home link.
 
 ## Add an image
 

@@ -77,8 +77,8 @@ Inspect text, code, focus indicators, and native controls in all four palettes. 
 On the [overview](../), move a mouse across the folded-D artwork, then away. Its perspective should respond and settle without moving the copy. Try a touch viewport or reduced motion: the artwork stays static. Scroll it out of view and return to check that it is not continuously animating.
 
 Check that the theme selector's caret is a symmetric downward chevron in all
-four palettes. Shared controls and component geometry come from local Basecoat
-Vega; copied upstream demos do not automatically gain missing utilities or
+four palettes. Shared controls and component geometry use the local theme
+styles; third-party examples do not automatically gain missing utilities or
 interaction controllers.
 
 ## Print and return to reading
