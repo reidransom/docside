@@ -5,8 +5,6 @@ url: ""
 baseurl: ""
 favicon_dir: /assets/favicons
 navigation:
-  - label: Overview
-    link: /
   - label: Guides
     items:
       - label: Getting started
