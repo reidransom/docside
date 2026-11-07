@@ -22,7 +22,7 @@ This documentation site runs Docside. Open [Getting started](./getting-started/)
 
 ## Start with a working site
 
-Read [Getting started](./getting-started/) to install Docside and configure your site. You don't need to install Node.js, Astro, or Sass to use the shipped theme.
+Read [Getting started](./getting-started/) to install Docside and configure your site.
 
 Then organize your [navigation](./navigation/), write [headings](./headings/), and choose a [deployment location](./deployment/).
 
