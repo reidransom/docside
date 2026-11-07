@@ -122,11 +122,11 @@ rail retain the ordinary list; server-rendered no-JavaScript markup stays open.
 
 ### Clipboard
 
-Jigyll parses fenced-code metadata and emits the semantic `figure.highlight[data-code-frame]` seam, escaped caption, and unchanged server-highlighted code. `assets/code.js` treats that figure as the canonical frame container, adds native code/copy focus stops when the Clipboard API is available, reads only `code.textContent`, prevents overlapping copy attempts, and reports the actual write result. Untitled and unframed blocks retain the same enhancer without browser-side source parsing.
+Jigyll parses fenced-code metadata and emits the semantic `figure.highlight[data-code-frame]` seam, escaped caption, and unchanged server-highlighted code. `assets/code.js` treats that figure as the canonical frame container, adds native code/copy focus stops when browser copy support is available, reads only `code.textContent`, prevents overlapping copy attempts, and reports the actual write result. It prefers the Clipboard API; when that API is absent, a temporary readonly textarea and `document.execCommand('copy')` support HTTP previews while restoring focus and selection. A rejected Clipboard API write remains a failure rather than attempting the fallback. Untitled and unframed blocks retain the same enhancer without browser-side source parsing.
 
 Copy controls use the shared outline/icon button contract. Their documentation-only
 rules position them over the code frame; semantic feedback pairs distinguish
-success and denial without replacing the actual Clipboard API result. Inline
+success and denial without replacing the actual browser copy result. Inline
 prose code wraps even inside tab panels; fenced source remains preformatted
 inside its own focusable horizontal scroller.
 

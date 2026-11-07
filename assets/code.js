@@ -1,10 +1,39 @@
 (() => {
   const messages = document.documentElement.dataset;
   const canCopy =
-    navigator.clipboard?.writeText
+    (navigator.clipboard?.writeText || typeof document.execCommand === 'function')
     && messages.copyLabel
     && messages.copySuccess
     && messages.copyFailure;
+  const copyText = async (text) => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const activeElement = document.activeElement;
+    const selection = window.getSelection();
+    const ranges = [];
+    for (let index = 0; index < selection.rangeCount; index++) {
+      ranges.push(selection.getRangeAt(index).cloneRange());
+    }
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.readOnly = true;
+    textarea.tabIndex = -1;
+    textarea.setAttribute('aria-hidden', 'true');
+    textarea.style.cssText = 'position:fixed;top:0;left:-9999px';
+    document.body.append(textarea);
+    try {
+      textarea.focus({ preventScroll: true });
+      textarea.select();
+      if (!document.execCommand('copy')) throw new Error('Copy failed');
+    } finally {
+      textarea.remove();
+      activeElement?.focus({ preventScroll: true });
+      selection.removeAllRanges();
+      for (const range of ranges) selection.addRange(range);
+    }
+  };
   document.querySelectorAll('#article pre').forEach((pre) => {
     const code = pre.querySelector('code');
     if (!code) return;
@@ -56,7 +85,7 @@
       delete feedback.dataset.error;
       button.setAttribute('aria-busy', 'true');
       try {
-        await navigator.clipboard.writeText(code.textContent);
+        await copyText(code.textContent);
         feedback.textContent = messages.copySuccess;
       } catch {
         feedback.textContent = messages.copyFailure;

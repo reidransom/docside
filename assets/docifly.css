@@ -932,6 +932,17 @@
     height: var(--copy-size);
     margin: 0;
     flex: none;
+    cursor: pointer;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #article .copy-button {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #article .code-frame:is(:hover, :focus-within) .copy-button {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
   @media (pointer: coarse) {
     #article .copy-button::before {

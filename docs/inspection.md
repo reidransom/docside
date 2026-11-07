@@ -44,7 +44,7 @@ On a narrow window, open the outline disclosure and choose a section. Escape and
 
 Open [Code blocks](../code/) and copy the Python example into a plain text editor. Look at indentation, blank lines, and whether the copied text excludes the button's label. Scroll the long JSON line and reach its copy control with the keyboard.
 
-Copying needs JavaScript and browser Clipboard API support. HTTPS or a trustworthy local origin is appropriate. If permissions are denied, feedback should report failure rather than success. Where the API is missing entirely, normal text selection remains available without a misleading copy button.
+Copying needs JavaScript and browser copy support. Check HTTPS or a trustworthy local origin for the Clipboard API path, and an ordinary HTTP preview for the legacy copy-command path. If copying is denied or unsupported, feedback should report failure rather than success. Normal text selection remains available in either case.
 
 Use the framed `deploy.sh` example too: its numbers start at 8 and its three
 lines have neutral, inserted, and deleted markers. Select the source normally,

@@ -200,9 +200,11 @@ Plain code should remain readable in Dark and Light modes. Highlighting does not
 
 ## Clipboard availability
 
-The control is called **Copy to clipboard**. It becomes available with JavaScript and the browser Clipboard API, normally on HTTPS or a trustworthy local origin such as `http://127.0.0.1`.
+The control is called **Copy to clipboard**. It becomes available with JavaScript and browser copy support. It uses the Clipboard API on HTTPS or a trustworthy local origin such as `http://127.0.0.1`, and the browser's legacy copy command when that API is unavailable, including ordinary HTTP previews.
 
-When writing succeeds, the feedback is **Copied!**. If the browser rejects the write, it is **Copy failed**; failure must not be presented as success. When the Clipboard API is unavailable, there is no copy button. You can still select and copy text normally.
+When writing succeeds, the feedback is **Copied!**. If the browser rejects the write, it is **Copy failed**; failure must not be presented as success. If neither copy mechanism is available, there is no copy button. You can still select and copy text normally.
+
+On pointer devices, the button appears when you hover over the code block or focus inside it, and uses a pointer cursor. Touch devices keep the button visible.
 
 Try copying a block and pasting it into an editor. If your browser allows per-site clipboard permissions, deny access to inspect **Copy failed**, then restore the permission. The control reports the browser's actual write result; a failed attempt does not replace the existing clipboard contents.
 

@@ -46,6 +46,42 @@ for (const prefix of ['', '/docs']) {
     expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(source);
   });
 
+  test(`${prefix || '/'} copy works without the Clipboard API and preserves selection and focus`, async ({ createLocalContext, browserName }) => {
+    test.skip(browserName !== 'chromium', 'Native clipboard read permissions are verified in Chromium.');
+    const context = await createLocalContext({ permissions: ['clipboard-read', 'clipboard-write'] });
+    await context.addInitScript(() => {
+      window.readCopiedText = navigator.clipboard.readText.bind(navigator.clipboard);
+      Object.defineProperty(navigator, 'clipboard', { value: undefined, configurable: true });
+    });
+    const page = await context.newPage();
+    await page.goto(`${prefix}/code/`);
+    const frame = page.locator('figure[data-code-frame]').filter({ has: page.locator('.code-title', { hasText: 'deploy.sh' }) });
+    const button = frame.getByRole('button', { name: 'Copy to clipboard' });
+    const source = "printf 'stable\\n'\nprintf 'added\\n'\nprintf 'removed\\n'\n";
+    await button.focus();
+    const selected = await frame.locator('code').evaluate((code) => {
+      const range = document.createRange();
+      range.selectNodeContents(code);
+      getSelection().removeAllRanges();
+      getSelection().addRange(range);
+      return getSelection().toString();
+    });
+    await page.keyboard.press('Enter');
+    await expect(frame.getByRole('status')).toHaveText('Copied!');
+    expect(await page.evaluate(() => window.readCopiedText())).toBe(source);
+    await expect(button).toBeFocused();
+    expect(await page.evaluate(() => getSelection().toString())).toBe(selected);
+
+    await page.evaluate(() => { document.execCommand = () => false; });
+    await page.keyboard.press('Enter');
+    await expect(frame.getByRole('status')).toHaveText('Copy failed');
+    await expect(frame.getByRole('status')).toHaveAttribute('data-error', '');
+    expect(await page.evaluate(() => window.readCopiedText())).toBe(source);
+    await expect(button).toBeFocused();
+    expect(await page.evaluate(() => getSelection().toString())).toBe(selected);
+    await context.close();
+  });
+
   test(`${prefix || '/'} RTL articles keep copy controls in the LTR source gutter`, async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 900 });
     await page.goto(`${prefix}/code/`);
