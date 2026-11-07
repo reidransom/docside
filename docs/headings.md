@@ -19,11 +19,11 @@ Explain the goal before the details.
 Use examples readers can try.
 ```
 
-Jigyll reports every article heading in article order, including `.no_toc` headings and headings produced by supported nested Markdown. Docifly renders only H2 and H3 entries with nonempty IDs and labels; H4–H6 can have anchor links but are not included in that outline. Raw HTML headings without IDs are skipped. The page title, sidebar group labels, and the TOC's own title are outside article metadata.
+Jigyll reports every article heading in article order, including `.no_toc` headings and headings produced by supported nested Markdown. Docside renders only H2 and H3 entries with nonempty IDs and labels; H4–H6 can have anchor links but are not included in that outline. Raw HTML headings without IDs are skipped. The page title, sidebar group labels, and the TOC's own title are outside article metadata.
 
 ### Link to the rendered ID
 
-Jigyll 1.12.0 computes each `page.headings` entry after article Liquid, Markdown, nested Markdown, and content-level TOC processing, before the layout. Every entry has a numeric `level`, the emitted `id`, and decoded rendered `text`; metadata does not replace slugs or deduplicate collisions. Docifly reuses those exact IDs, encodes them in fragment links, and escapes labels. Repeated or explicit IDs therefore remain repeated in the outline and retain the engine's existing target behavior.
+Jigyll 1.12.0 computes each `page.headings` entry after article Liquid, Markdown, nested Markdown, and content-level TOC processing, before the layout. Every entry has a numeric `level`, the emitted `id`, and decoded rendered `text`; metadata does not replace slugs or deduplicate collisions. Docside reuses those exact IDs, encodes them in fragment links, and escapes labels. Repeated or explicit IDs therefore remain repeated in the outline and retain the engine's existing target behavior.
 
 ## Author a change
 
@@ -51,7 +51,7 @@ For an authored stable ID, ordinary HTML can express the heading directly:
 
 <h3 id="release-notes">Release notes</h3>
 
-This is the rendered heading from that example. [Jump to it](#release-notes), or use its generated outline entry. Keep explicit IDs unique within the page and prefer simple, unambiguous values. Raw HTML passes through the Markdown engine; Docifly does not repair malformed or engine-transformed IDs.
+This is the rendered heading from that example. [Jump to it](#release-notes), or use its generated outline entry. Keep explicit IDs unique within the page and prefer simple, unambiguous values. Raw HTML passes through the Markdown engine; Docside does not repair malformed or engine-transformed IDs.
 
 #### A detail outside the outline
 
@@ -69,4 +69,4 @@ At widths below 72rem—1152 CSS pixels with the default font setting—the outl
 
 With JavaScript disabled, the server-rendered outline and ordinary fragment links still work. JavaScript adds active-section feedback, responsive disclosure behavior, and heading-anchor controls. A page with no eligible H2/H3 headings does not display an empty TOC.
 
-Heading metadata belongs to Jigyll; Docifly's layout filters it to its H2/H3 outline. See [Theme internals](../internals/) for the ownership boundary.
+Heading metadata belongs to Jigyll; Docside's layout filters it to its H2/H3 outline. See [Theme internals](../internals/) for the ownership boundary.

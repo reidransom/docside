@@ -1,7 +1,7 @@
 {% assign not_found_title = page.title | strip %}
-{% if not_found_title == '' %}{% capture not_found_title %}{% include private/ui-message.html key='docifly.not_found.title' default='Page not found' %}{% endcapture %}{% endif %}
+{% if not_found_title == '' %}{% capture not_found_title %}{% include private/ui-message.html key='docside.not_found.title' default='Page not found' %}{% endcapture %}{% endif %}
 {% assign not_found_home_href = '/' %}{% if page.language %}{% assign not_found_home_href = '/' | localized_url %}{% endif %}
-{% capture not_found_home_label %}{% include private/ui-message.html key='docifly.not_found.back_home' default='Back to home' %}{% endcapture %}
+{% capture not_found_home_label %}{% include private/ui-message.html key='docside.not_found.back_home' default='Back to home' %}{% endcapture %}
 {% capture html_localization %}{% include private/html-localization.html %}{% endcapture %}
 {% capture enhancement_messages %}{% include private/enhancement-messages.html %}{% endcapture %}
 <!doctype html>
@@ -14,12 +14,12 @@
     {% include private/favicon-head.html %}
     <script src="{{ '/assets/color-mode.js' | relative_url | escape }}"></script>
     <link rel="stylesheet" href="{{ '/assets/vendor/basecoat/basecoat.cdn.min.css' | relative_url | escape }}">
-    <link rel="stylesheet" href="{{ '/assets/docifly.css' | relative_url | escape }}">
+    <link rel="stylesheet" href="{{ '/assets/docside.css' | relative_url | escape }}">
     <script src="https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js" integrity="sha384-9Eacb80ywplqCp0P/bR61+zYn5Pg2LmQ7T8rppdoKHcQMmXbRh1wHwRC8avUJvnz" crossorigin="anonymous" defer></script>
     <script src="{{ '/assets/search.js' | relative_url | escape }}" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">{% include private/ui-message.html key='docifly.skip_to_content' default='Skip to content' %}</a>
+    <a class="skip-link" href="#main-content">{% include private/ui-message.html key='docside.skip_to_content' default='Skip to content' %}</a>
     <header class="site-header">{% include header.html %}</header>
     <div class="splash-frame">
       <main id="main-content" class="main-pane splash-pane" tabindex="-1">

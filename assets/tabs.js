@@ -12,7 +12,7 @@
     '[contenteditable]',
     '[tabindex]:not([tabindex="-1"])',
   ].join(',');
-  const storagePrefix = 'docifly-tabs:v1:';
+  const storagePrefix = 'docside-tabs:v1:';
   const activeBySync = new Map();
   const groupsBySync = new Map();
 
@@ -105,8 +105,8 @@
       const heading = item.querySelector(':scope > .tab-item-label');
       const panel = item.querySelector(':scope > .tab-panel');
       if (!(heading instanceof HTMLElement) || !(panel instanceof HTMLElement)) return;
-      const tabId = `docifly-tab-${group.groupIndex}-${itemIndex}`;
-      const panelId = `docifly-tab-panel-${group.groupIndex}-${itemIndex}`;
+      const tabId = `docside-tab-${group.groupIndex}-${itemIndex}`;
+      const panelId = `docside-tab-panel-${group.groupIndex}-${itemIndex}`;
       const tab = document.createElement('button');
       tab.type = 'button';
       tab.id = tabId;

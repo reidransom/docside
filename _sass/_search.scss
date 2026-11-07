@@ -1,4 +1,4 @@
-// Vega owns controls and the native dialog surface; Docifly owns search layout.
+// Vega owns controls and the native dialog surface; Docside owns search layout.
 @mixin compact-search {
   #site-search { flex: 0 0 auto; }
   #search-toggle { width: 2.5rem; padding-inline: 0; justify-content: center; }
@@ -6,7 +6,7 @@
   #search-toggle > kbd { display: none; }
 }
 
-@layer docifly {
+@layer docside {
   #site-search {
     min-width: 0;
     flex: 1 1 18rem;
@@ -36,7 +36,7 @@
     background: var(--muted);
     color: var(--muted-foreground);
     font-family: var(--font-sans);
-    font-size: var(--docifly-text-2xs);
+    font-size: var(--docside-text-2xs);
   }
   #search-dialog > .search-dialog-frame {
     width: calc(100% - 2rem);

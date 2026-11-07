@@ -25,9 +25,9 @@ Set a root-relative favicon directory in `_config.yml`, without `baseurl`:
 favicon_dir: /assets/favicons
 ```
 
-The directory contains `favicon.ico`, `favicon.svg`, `favicon-32x32.png`, `apple-touch-icon.png`, `safari-pinned-tab.svg`, and `site.webmanifest`. The manifest references the Android and maskable icons in the same directory. Docifly emits the links in the default, splash, and not-found layouts and applies the deployment prefix. The pinned-tab icon uses the purple tint `#6d35ef`.
+The directory contains `favicon.ico`, `favicon.svg`, `favicon-32x32.png`, `apple-touch-icon.png`, `safari-pinned-tab.svg`, and `site.webmanifest`. The manifest references the Android and maskable icons in the same directory. Docside emits the links in the default, splash, and not-found layouts and applies the deployment prefix. The pinned-tab icon uses the purple tint `#6d35ef`.
 
-Omit `favicon_dir` to emit no favicon links. The documentation site enables the generated Docifly icon set; other sites are not automatically given Docifly branding.
+Omit `favicon_dir` to emit no favicon links. The documentation site enables the generated Docside icon set; other sites are not automatically given Docside branding.
 
 ## Add a hero
 
@@ -73,7 +73,7 @@ hero:
     height: 480
 ```
 
-`alt`, `width`, and `height` are required. Alternative text may be empty only when the artwork is decorative. Image paths are root-relative without `baseurl`; Docifly applies the deployment prefix. Incomplete pairs, nonpositive dimensions, and non-root-relative paths omit the image instead of emitting broken markup.
+`alt`, `width`, and `height` are required. Alternative text may be empty only when the artwork is decorative. Image paths are root-relative without `baseurl`; Docside applies the deployment prefix. Incomplete pairs, nonpositive dimensions, and non-root-relative paths omit the image instead of emitting broken markup.
 
 Set `hero.image.depth: true` to give an illustration an optional perspective treatment while preserving the reserved image geometry, alternative text, and hero copy. With JavaScript enabled and a fine hover-capable pointer, the artwork makes one short entrance and tilts by at most 8 degrees as the pointer moves over it, returning to its resting angle on exit. Touch/coarse pointers, reduced-motion preferences, and browsers with JavaScript disabled keep the original artwork static. Reduced-motion changes take effect without reloading; motion also stops while the artwork is offscreen or the page is hidden. Omit `depth` for artwork that should stay still, as on the home page.
 

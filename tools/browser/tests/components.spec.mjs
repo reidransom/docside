@@ -18,7 +18,7 @@ for (const prefix of ['', '/docs']) {
     await expect(card.locator('mark, em, a, button, input')).toHaveCount(0);
     await action.click();
     await expect(page).toHaveURL(new RegExp(`${prefix}/cards/$`));
-    const install = page.getByRole('link', { name: 'Install Docifly Follow the consumer installation path.', exact: true });
+    const install = page.getByRole('link', { name: 'Install Docside Follow the consumer installation path.', exact: true });
     await install.focus();
     await expect(install).toBeFocused();
     expect(await install.evaluate((node) => getComputedStyle(node).outlineStyle)).not.toBe('none');
@@ -104,7 +104,7 @@ test('native steps, icons and RTL components retain their semantics', async ({ p
   await expect(later.locator(':scope > li')).toHaveCount(3);
   await expect(later.locator('li').first()).toContainText('Eighth step');
   await page.goto('/icons/');
-  await expect(page.getByRole('img', { name: 'Docifly <mark>safe</mark> & literal', exact: true })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Docside <mark>safe</mark> & literal', exact: true })).toBeVisible();
   await expect(page.locator('#article').getByRole('link', { name: 'All icons', exact: true })).toHaveCount(1);
   await expect(page.getByRole('button', { name: 'Confirm', exact: true })).toBeVisible();
   await expect(page.locator('[data-fixture="unknown"] svg')).toHaveCount(0);
@@ -123,7 +123,7 @@ test('ordinary cards, notices and native tree disclosures work without JavaScrip
   const page = await context.newPage();
   await page.goto('/docs/cards/');
   await expect(page.locator('article.card').first().getByRole('list')).toHaveCSS('list-style-type', 'disc');
-  const card = page.getByRole('link', { name: 'Install Docifly Follow the consumer installation path.', exact: true });
+  const card = page.getByRole('link', { name: 'Install Docside Follow the consumer installation path.', exact: true });
   await card.focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/\/docs\/getting-started\/$/);

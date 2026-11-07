@@ -1,23 +1,23 @@
-# Docifly
+# Docside
 
-Docifly is a documentation theme for Jigyll, using stock Starlight as visual reference only.
+Docside is a documentation theme for Jigyll, using stock Starlight as visual reference only.
 
 ## Start a new site
 
-Install Git and Jigyll 1.13.0 or later, then create a site with Docifly:
+Install Git and Jigyll 1.13.0 or later, then create a site with Docside:
 
 ```sh
-jigyll new my-docs --theme https://github.com/reidransom/docifly.git
+jigyll new my-docs --theme https://github.com/reidransom/docside.git
 cd my-docs
 ```
 
-The installer clones Docifly into `_theme/docifly/`.
+The installer clones Docside into `_theme/docside/`.
 
 Replace `_config.yml` with a minimal site configuration:
 
 ```yaml
 title: My documentation
-theme: docifly
+theme: docside
 url: ""
 baseurl: ""
 navigation:
@@ -57,7 +57,7 @@ See [Getting started](docs/getting-started.md) for page and navigation examples,
 
 ## Develop the theme
 
-Theme maintainers should use the installed-consumer workflow in [Developing Docifly](docs/development.md). It explains how to preview and rebuild this repository's living documentation without making a direct source build look like consumer-installation proof.
+Theme maintainers should use the installed-consumer workflow in [Developing Docside](docs/development.md). It explains how to preview and rebuild this repository's living documentation without making a direct source build look like consumer-installation proof.
 
 ## Attribution
 

@@ -9,9 +9,9 @@ const waitForLayout = async (page) => {
 };
 
 for (const installation of installations) {
-  test(`${installation.name} exposes the Docifly consumer contract`, async ({ page }) => {
+  test(`${installation.name} exposes the Docside consumer contract`, async ({ page }) => {
     await page.goto(urlFor(installation, pages[0]));
-    await expect(page.locator('header .site-title')).toHaveText('Docifly Docs');
+    await expect(page.locator('header .site-title')).toHaveText('Docside Docs');
     for (const stylesheet of await page.locator('link[rel="stylesheet"]').all()) {
       const response = await page.request.get(new URL(await stylesheet.getAttribute('href'), page.url()).href);
       expect(response.ok()).toBe(true);
@@ -256,7 +256,7 @@ for (const installation of installations) {
     await page.locator('#menu-toggle').click();
     await expect(page.locator('#site-nav a').first()).toBeVisible();
     await page.goto(urlFor(installation, pages[2]));
-    await expect(page.locator('#article code').first()).toContainText('console.log(greet("Docifly"));');
+    await expect(page.locator('#article code').first()).toContainText('console.log(greet("Docside"));');
     await expect(page.locator('.copy-button')).toHaveCount(0);
     const versionPicker = page.locator('#version-picker');
     await expect(versionPicker).toBeVisible();

@@ -16,27 +16,27 @@
 
 
 /*! Shell geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors.
- * See assets/starlight-LICENSE. Consumers use the compiled assets/docifly.css. */
-@layer properties, theme, base, components, utilities, docifly;
-@layer docifly {
+ * See assets/starlight-LICENSE. Consumers use the compiled assets/docside.css. */
+@layer properties, theme, base, components, utilities, docside;
+@layer docside {
   [hidden] {
     display: none !important;
   }
   :root {
-    --docifly-content-inline-start: 0rem;
+    --docside-content-inline-start: 0rem;
   }
   html {
     scrollbar-gutter: stable;
-    scroll-padding-top: calc(1.5rem + var(--docifly-nav-height) + var(--docifly-mobile-toc-height));
+    scroll-padding-top: calc(1.5rem + var(--docside-nav-height) + var(--docside-mobile-toc-height));
     accent-color: var(--primary);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
   html:not([data-has-toc]) {
-    --docifly-mobile-toc-height: 0rem;
+    --docside-mobile-toc-height: 0rem;
   }
   body {
-    line-height: var(--docifly-line-height);
+    line-height: var(--docside-line-height);
   }
   :is(p, h1, h2, h3, h4, h5, h6, code) {
     overflow-wrap: break-word;
@@ -79,9 +79,9 @@
     position: fixed;
     z-index: 10;
     inset: 0 0 auto;
-    height: var(--docifly-nav-height);
-    padding: var(--docifly-nav-pad-y) var(--docifly-nav-pad-x);
-    padding-inline-end: calc(var(--docifly-nav-pad-x) + var(--menu-space, 0rem));
+    height: var(--docside-nav-height);
+    padding: var(--docside-nav-pad-y) var(--docside-nav-pad-x);
+    padding-inline-end: calc(var(--docside-nav-pad-x) + var(--menu-space, 0rem));
     border-bottom: 1px solid var(--border);
     background: var(--background);
     display: flex;
@@ -92,7 +92,7 @@
   .site-title {
     min-width: 0;
     font-family: var(--font-sans);
-    font-size: var(--docifly-text-h4);
+    font-size: var(--docside-text-h4);
     font-weight: 800;
     letter-spacing: -0.02em;
     text-decoration: none;
@@ -100,16 +100,16 @@
     overflow: hidden;
   }
   .page-frame {
-    padding-top: calc(var(--docifly-nav-height) + var(--docifly-mobile-toc-height));
-    padding-inline-start: var(--docifly-content-inline-start);
+    padding-top: calc(var(--docside-nav-height) + var(--docside-mobile-toc-height));
+    padding-inline-start: var(--docside-content-inline-start);
     min-height: 100vh;
   }
   .main-pane {
     min-width: 0;
-    padding: var(--docifly-main-pad);
+    padding: var(--docside-main-pad);
   }
   .content-panel {
-    padding: 1.5rem var(--docifly-content-pad-x);
+    padding: 1.5rem var(--docside-content-pad-x);
   }
   .content-panel + .content-panel {
     border-top: 1px solid var(--border);
@@ -118,7 +118,7 @@
     padding-bottom: 7.5rem;
   }
   .content-container {
-    max-width: var(--docifly-content-width);
+    max-width: var(--docside-content-width);
   }
   :is(#page-title, .hero h1, #toc h2) {
     font-weight: 700;
@@ -126,8 +126,8 @@
   }
   #page-title {
     margin-top: 1rem;
-    font-size: var(--docifly-text-h1);
-    line-height: var(--docifly-line-height-headings);
+    font-size: var(--docside-text-h1);
+    line-height: var(--docside-line-height-headings);
     color: var(--foreground);
   }
   #toc-slot:empty {
@@ -135,7 +135,7 @@
   }
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) {
-      --docifly-content-inline-start: var(--docifly-sidebar-width);
+      --docside-content-inline-start: var(--docside-sidebar-width);
     }
   }
   @media (min-width: 72rem) {
@@ -147,9 +147,9 @@
     }
     :root[data-has-toc]:not([data-compact-toc]) .main-pane {
       width: min(
-        calc(100% - var(--docifly-sidebar-width)),
+        calc(100% - var(--docside-sidebar-width)),
         calc(
-          var(--docifly-content-width) + (100% - var(--docifly-content-width) - var(--docifly-sidebar-width)) / 2
+          var(--docside-content-width) + (100% - var(--docside-content-width) - var(--docside-sidebar-width)) / 2
         )
       );
     }
@@ -162,7 +162,7 @@
     :root:not([data-compact-toc]) #toc-slot {
       order: 2;
       flex: 1;
-      min-width: var(--docifly-sidebar-width);
+      min-width: var(--docside-sidebar-width);
     }
   }
 }

@@ -1,7 +1,7 @@
 {% assign card_title = include.title | strip %}
 {% if card_title != '' %}
 <article class="card not-content">
-  <header><div data-title class="docifly-card-title">{% if include.icon %}{% include components/icon.html name=include.icon %}{% endif %}<span>{{ include.title | escape }}</span></div></header>
+  <header><div data-title class="docside-card-title">{% if include.icon %}{% include components/icon.html name=include.icon %}{% endif %}<span>{{ include.title | escape }}</span></div></header>
   {% if include.content %}<section class="sl-markdown-content">{{ include.content | markdownify }}</section>{% endif %}
 </article>
 {% endif %}

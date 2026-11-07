@@ -10,10 +10,10 @@ import { featurePages, installations, localizedInstallations, modes, pages, view
 const browserRoot = dirname(fileURLToPath(import.meta.url));
 const repository = resolve(browserRoot, '../..');
 const artifacts = join(browserRoot, '.artifacts');
-const workspace = join(tmpdir(), 'docifly-browser-acceptance');
+const workspace = join(tmpdir(), 'docside-browser-acceptance');
 const source = join(workspace, 'consumer');
 const output = join(workspace, 'site-output');
-const theme = join(source, '_theme', 'docifly');
+const theme = join(source, '_theme', 'docside');
 const jigyll = process.env.JIGYLL || 'jigyll';
 
 rmSync(artifacts, { recursive: true, force: true });
@@ -47,10 +47,10 @@ cpSync(repository, theme, {
   },
 });
 
-const config = (baseurl) => `title: Docifly Docs
+const config = (baseurl) => `title: Docside Docs
 url: http://127.0.0.1:4444
 baseurl: "${baseurl}"
-theme: docifly
+theme: docside
 permalink: pretty
 navigation:
   - label: Overview
@@ -70,7 +70,7 @@ navigation:
         link: /cards/
         aria_label: Cards, stable
         badge: {text: Stable, variant: note, size: small}
-docifly_versioning:
+docside_versioning:
   entries:
     - id: legacy
       label: Legacy documentation release with an intentionally long label
@@ -96,7 +96,7 @@ run(jigyll, ['build', '--source', source, '--destination', join(output, 'docs')]
 const localizedSource = join(workspace, 'localized-consumer');
 cpSync(join(repository, 'fixtures', 'localization', 'site'), localizedSource, { recursive: true });
 mkdirSync(join(localizedSource, '_theme'), { recursive: true });
-symlinkSync(theme, join(localizedSource, '_theme', 'docifly'), 'dir');
+symlinkSync(theme, join(localizedSource, '_theme', 'docside'), 'dir');
 const localizedConfig = readFileSync(join(localizedSource, '_config.yml'), 'utf8');
 for (const baseurl of ['/localized', '/localized/docs']) {
   writeFileSync(join(localizedSource, '_config.yml'), localizedConfig

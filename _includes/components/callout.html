@@ -4,16 +4,16 @@
 {% endunless %}
 {% case callout_type %}
   {% when 'tip' %}
-    {% capture callout_title_default %}{% include private/ui-message.html key='docifly.callout.tip' default='Tip' %}{% endcapture %}
+    {% capture callout_title_default %}{% include private/ui-message.html key='docside.callout.tip' default='Tip' %}{% endcapture %}
     {% assign callout_icon_default = 'rocket' %}
   {% when 'caution' %}
-    {% capture callout_title_default %}{% include private/ui-message.html key='docifly.callout.caution' default='Caution' %}{% endcapture %}
+    {% capture callout_title_default %}{% include private/ui-message.html key='docside.callout.caution' default='Caution' %}{% endcapture %}
     {% assign callout_icon_default = 'warning' %}
   {% when 'danger' %}
-    {% capture callout_title_default %}{% include private/ui-message.html key='docifly.callout.danger' default='Danger' %}{% endcapture %}
+    {% capture callout_title_default %}{% include private/ui-message.html key='docside.callout.danger' default='Danger' %}{% endcapture %}
     {% assign callout_icon_default = 'error' %}
   {% else %}
-    {% capture callout_title_default %}{% include private/ui-message.html key='docifly.callout.note' default='Note' %}{% endcapture %}
+    {% capture callout_title_default %}{% include private/ui-message.html key='docside.callout.note' default='Note' %}{% endcapture %}
     {% assign callout_icon_default = 'information' %}
 {% endcase %}
 {% assign callout_title = include.title | default: callout_title_default | strip %}
@@ -30,8 +30,8 @@
 {% endif %}
 {% assign callout_content = include.content | strip %}
 {% if callout_content != '' %}
-  {% assign docifly_callout_index = docifly_callout_index | default: 0 | plus: 1 %}
-  {% assign callout_title_id = 'docifly-callout-title-' | append: docifly_callout_index %}
+  {% assign docside_callout_index = docside_callout_index | default: 0 | plus: 1 %}
+  {% assign callout_title_id = 'docside-callout-title-' | append: docside_callout_index %}
 <aside class="alert not-content" data-status="{{ callout_type }}" aria-labelledby="{{ callout_title_id }}">
   {% include components/icon.html name=callout_icon %}
   <div data-title id="{{ callout_title_id }}">{{ callout_title | escape }}</div>

@@ -1,10 +1,10 @@
 /*! Adapted from stock Starlight heading navigation; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   #toc {
     position: fixed;
     z-index: 4;
-    top: calc(var(--docifly-nav-height) - 1px);
-    inset-inline: var(--docifly-content-inline-start) 0;
+    top: calc(var(--docside-nav-height) - 1px);
+    inset-inline: var(--docside-content-inline-start) 0;
     border-top: 1px solid var(--border);
     background: var(--background);
   }
@@ -15,10 +15,10 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    height: var(--docifly-mobile-toc-height);
+    height: var(--docside-mobile-toc-height);
     border-bottom: 1px solid var(--border);
     padding: 0.5rem 1rem;
-    font-size: var(--docifly-text-xs);
+    font-size: var(--docside-text-xs);
     cursor: pointer;
     outline-offset: -3px;
   }
@@ -60,7 +60,7 @@
     border: 1px solid var(--border);
     padding: 0;
     list-style: none;
-    max-height: calc(85vh - var(--docifly-nav-height) - var(--docifly-mobile-toc-height));
+    max-height: calc(85vh - var(--docside-nav-height) - var(--docside-mobile-toc-height));
     overflow-y: auto;
     background: var(--popover);
     color: var(--popover-foreground);
@@ -78,7 +78,7 @@
     padding-inline: calc(1rem + var(--depth) * 1rem) 1rem;
     border-top: 1px solid var(--muted);
     color: var(--foreground);
-    font-size: var(--docifly-text-sm);
+    font-size: var(--docside-text-sm);
     line-height: 1.25;
     text-decoration: none;
     overflow-wrap: anywhere;
@@ -114,7 +114,7 @@
       height: 100vh;
       border-top: 0;
       border-inline-start: 1px solid var(--border);
-      padding: calc(var(--docifly-nav-height) + 1rem) var(--docifly-sidebar-pad-x) 1rem;
+      padding: calc(var(--docside-nav-height) + 1rem) var(--docside-sidebar-pad-x) 1rem;
       background: var(--background);
       overflow-y: auto;
       scrollbar-width: none;
@@ -122,11 +122,11 @@
     :root:not([data-compact-toc]) #toc > h2,
     :root:not([data-compact-toc]) #toc > details {
       width: min(
-        calc(var(--docifly-sidebar-width) - 2 * var(--docifly-sidebar-pad-x)),
+        calc(var(--docside-sidebar-width) - 2 * var(--docside-sidebar-pad-x)),
         calc(
           (
-              100vw - var(--docifly-sidebar-width) - 2 * var(--docifly-content-pad-x) - 2 *
-                var(--docifly-sidebar-pad-x)
+              100vw - var(--docside-sidebar-width) - 2 * var(--docside-content-pad-x) - 2 *
+                var(--docside-sidebar-pad-x)
             ) * 0.25
         )
       );
@@ -134,8 +134,8 @@
     :root:not([data-compact-toc]) #toc h2 {
       display: block;
       color: var(--foreground);
-      font-size: var(--docifly-text-h5);
-      line-height: var(--docifly-line-height-headings);
+      font-size: var(--docside-text-h5);
+      line-height: var(--docside-line-height-headings);
       margin-bottom: 0.5rem;
     }
     :root:not([data-compact-toc]) #toc summary {
@@ -155,7 +155,7 @@
       padding-block: 0.25rem;
       padding-inline: calc(0.5rem + var(--depth) * 1rem) 0.5rem;
       color: var(--muted-foreground);
-      font-size: var(--docifly-text-xs);
+      font-size: var(--docside-text-xs);
     }
     :root:not([data-compact-toc]) #toc a:hover {
       color: var(--foreground);

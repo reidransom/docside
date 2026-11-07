@@ -1,5 +1,5 @@
 /*! Content component geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
 
   .sl-icon {
     display: inline-block;
@@ -32,23 +32,23 @@
   }
 
   .sl-icon.color-blue {
-    color: var(--docifly-status-blue-text);
+    color: var(--docside-status-blue-text);
   }
 
   .sl-icon.color-green {
-    color: var(--docifly-status-green-text);
+    color: var(--docside-status-green-text);
   }
 
   .sl-icon.color-orange {
-    color: var(--docifly-status-orange-text);
+    color: var(--docside-status-orange-text);
   }
 
   .sl-icon.color-purple {
-    color: var(--docifly-status-purple-text);
+    color: var(--docside-status-purple-text);
   }
 
   .sl-icon.color-red {
-    color: var(--docifly-status-red-text);
+    color: var(--docside-status-red-text);
   }
 
   .sl-icon.color-gray {
@@ -106,9 +106,9 @@
   @each $status, $color in ('note': 'blue', 'tip': 'purple', 'caution': 'orange', 'danger': 'red', 'success': 'green') {
     .badge[data-status='#{$status}'],
     .alert[data-status='#{$status}'] {
-      color: var(--docifly-status-#{$color}-text);
-      background-color: var(--docifly-status-#{$color}-surface);
-      border-color: var(--docifly-status-#{$color});
+      color: var(--docside-status-#{$color}-text);
+      background-color: var(--docside-status-#{$color}-surface);
+      border-color: var(--docside-status-#{$color});
     }
   }
 
@@ -168,16 +168,16 @@
   }
 
   .sl-markdown-content .sl-heading-wrapper > .badge {
-    margin-inline-end: var(--docifly-anchor-icon-space);
+    margin-inline-end: var(--docside-anchor-icon-space);
     vertical-align: middle;
   }
 
   .sl-steps {
-    --bullet-size: calc(var(--docifly-line-height) * 1rem);
+    --bullet-size: calc(var(--docside-line-height) * 1rem);
     --bullet-margin: 0.375rem;
     padding-inline-start: 0;
     list-style: none;
-    counter-reset: steps-counter var(--docifly-steps-start, 0);
+    counter-reset: steps-counter var(--docside-steps-start, 0);
   }
 
   .sl-steps > li {
@@ -199,7 +199,7 @@
     width: var(--bullet-size);
     height: var(--bullet-size);
     color: var(--foreground);
-    font-size: var(--docifly-text-xs);
+    font-size: var(--docside-text-xs);
     font-weight: 600;
     line-height: var(--bullet-size);
     text-align: center;
@@ -221,14 +221,14 @@
   }
 
   .sl-steps > li > :first-child {
-    --lh: calc(1em * var(--docifly-line-height));
+    --lh: calc(1em * var(--docside-line-height));
     --shift-y: calc(0.5 * (var(--bullet-size) - var(--lh)));
     margin-bottom: var(--shift-y);
     transform: translateY(var(--shift-y));
   }
 
   .sl-steps > li > :first-child:where(h1, h2, h3, h4, h5, h6) {
-    --lh: calc(1em * var(--docifly-line-height-headings));
+    --lh: calc(1em * var(--docside-line-height-headings));
   }
 
   @supports (--prop: 1lh) {
@@ -245,7 +245,7 @@
     padding: 1rem;
     overflow-x: auto;
     font-family: var(--font-mono);
-    font-size: var(--docifly-text-xs);
+    font-size: var(--docside-text-xs);
     background-color: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
@@ -387,7 +387,7 @@
   }
 
 
-  .docifly-card-title {
+  .docside-card-title {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -399,7 +399,7 @@
     min-width: 0;
   }
 
-  .docifly-link-card {
+  .docside-link-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -407,40 +407,40 @@
     text-decoration: none;
   }
 
-  .docifly-link-card-content {
+  .docside-link-card-content {
     display: flex;
     min-width: 0;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .docifly-link-card-title {
+  .docside-link-card-title {
     font-size: 1rem;
     font-weight: 500;
   }
 
-  .docifly-link-card-description,
-  .docifly-link-card > svg {
+  .docside-link-card-description,
+  .docside-link-card > svg {
     color: var(--muted-foreground);
   }
 
-  .docifly-link-card:hover {
+  .docside-link-card:hover {
     background: var(--accent);
     color: var(--accent-foreground);
   }
 
-  .docifly-link-card:focus-visible {
+  .docside-link-card:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 3px;
   }
 
 
-  .docifly-tabs {
+  .docside-tabs {
     min-width: 0;
-    margin-block: var(--docifly-content-gap-y);
+    margin-block: var(--docside-content-gap-y);
   }
 
-  .docifly-tabs > .tab-item + .tab-item {
+  .docside-tabs > .tab-item + .tab-item {
     margin-top: 1.5rem;
   }
 
@@ -450,17 +450,17 @@
     gap: 0.5rem;
     margin-bottom: 0.5rem;
     color: var(--foreground);
-    font-size: var(--docifly-text-lg);
+    font-size: var(--docside-text-lg);
   }
 
   /* Vega owns the tab treatment; only long-label overflow is local. */
-  .docifly-tabs > [role='tablist'] {
+  .docside-tabs > [role='tablist'] {
     max-width: 100%;
     overflow-x: auto;
     justify-content: start;
   }
 
-  .docifly-tabs > [role='tablist'] > [role='tab'] {
+  .docside-tabs > [role='tablist'] > [role='tab'] {
     flex: 0 0 auto;
   }
 
@@ -472,7 +472,7 @@
 
 
   /* Long authored action labels must wrap without changing Vega's controls. */
-  .docifly-action {
+  .docside-action {
     max-width: 100%;
     height: auto;
     min-height: 2.25rem;
@@ -482,11 +482,11 @@
     overflow-wrap: anywhere;
   }
 
-  .docifly-action > span {
+  .docside-action > span {
     min-width: 0;
   }
 
-  .sl-markdown-content > .docifly-action {
+  .sl-markdown-content > .docside-action {
     margin-block: 0.5rem;
     margin-inline-end: 0.5rem;
   }
@@ -497,7 +497,7 @@
   }
 
   .sl-markdown-content > :is(.alert, .card, .card-grid, .file-tree) {
-    margin-block: var(--docifly-content-gap-y);
+    margin-block: var(--docside-content-gap-y);
   }
 
   .alert > [data-title] {

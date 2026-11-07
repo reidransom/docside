@@ -1,118 +1,118 @@
 @charset "UTF-8";
 /*! Shell values adapted from Starlight 39d4e71; MIT, Astro contributors. See assets/starlight-LICENSE. */
-@layer docifly {
+@layer docside {
   :root {
-    --docifly-text-2xs: 0.75rem;
-    --docifly-text-xs: 0.8125rem;
-    --docifly-text-sm: 0.875rem;
-    --docifly-text-base: 1rem;
-    --docifly-text-lg: 1.125rem;
-    --docifly-text-xl: 1.25rem;
-    --docifly-text-2xl: 1.5rem;
-    --docifly-text-3xl: 1.8125rem;
-    --docifly-text-4xl: 2.1875rem;
-    --docifly-text-5xl: 2.625rem;
-    --docifly-text-6xl: 4rem;
-    --docifly-text-body: var(--docifly-text-base);
-    --docifly-text-code: var(--docifly-text-sm);
-    --docifly-text-code-sm: var(--docifly-text-xs);
-    --docifly-text-h1: var(--docifly-text-4xl);
-    --docifly-text-h2: var(--docifly-text-3xl);
-    --docifly-text-h3: var(--docifly-text-2xl);
-    --docifly-text-h4: var(--docifly-text-xl);
-    --docifly-text-h5: var(--docifly-text-lg);
-    --docifly-text-h6: var(--docifly-text-base);
-    --docifly-line-height: 1.75;
-    --docifly-line-height-headings: 1.2;
-    --docifly-nav-height: 3.5rem;
-    --docifly-nav-pad-x: 1rem;
-    --docifly-nav-pad-y: 0.75rem;
-    --docifly-mobile-toc-height: 3rem;
-    --docifly-sidebar-width: 18.75rem;
-    --docifly-sidebar-pad-x: 1rem;
-    --docifly-content-width: 45rem;
-    --docifly-content-pad-x: 1rem;
-    --docifly-content-gap-y: 1rem;
-    --docifly-main-pad: 0 0 3vh 0;
-    --docifly-outline-offset-inside: -0.1875rem;
+    --docside-text-2xs: 0.75rem;
+    --docside-text-xs: 0.8125rem;
+    --docside-text-sm: 0.875rem;
+    --docside-text-base: 1rem;
+    --docside-text-lg: 1.125rem;
+    --docside-text-xl: 1.25rem;
+    --docside-text-2xl: 1.5rem;
+    --docside-text-3xl: 1.8125rem;
+    --docside-text-4xl: 2.1875rem;
+    --docside-text-5xl: 2.625rem;
+    --docside-text-6xl: 4rem;
+    --docside-text-body: var(--docside-text-base);
+    --docside-text-code: var(--docside-text-sm);
+    --docside-text-code-sm: var(--docside-text-xs);
+    --docside-text-h1: var(--docside-text-4xl);
+    --docside-text-h2: var(--docside-text-3xl);
+    --docside-text-h3: var(--docside-text-2xl);
+    --docside-text-h4: var(--docside-text-xl);
+    --docside-text-h5: var(--docside-text-lg);
+    --docside-text-h6: var(--docside-text-base);
+    --docside-line-height: 1.75;
+    --docside-line-height-headings: 1.2;
+    --docside-nav-height: 3.5rem;
+    --docside-nav-pad-x: 1rem;
+    --docside-nav-pad-y: 0.75rem;
+    --docside-mobile-toc-height: 3rem;
+    --docside-sidebar-width: 18.75rem;
+    --docside-sidebar-pad-x: 1rem;
+    --docside-content-width: 45rem;
+    --docside-content-pad-x: 1rem;
+    --docside-content-gap-y: 1rem;
+    --docside-main-pad: 0 0 3vh 0;
+    --docside-outline-offset-inside: -0.1875rem;
   }
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) {
-      --docifly-nav-height: 4rem;
-      --docifly-nav-pad-x: 1.5rem;
-      --docifly-text-h1: var(--docifly-text-5xl);
-      --docifly-text-h2: var(--docifly-text-4xl);
-      --docifly-text-h3: var(--docifly-text-3xl);
-      --docifly-text-h4: var(--docifly-text-2xl);
+      --docside-nav-height: 4rem;
+      --docside-nav-pad-x: 1.5rem;
+      --docside-text-h1: var(--docside-text-5xl);
+      --docside-text-h2: var(--docside-text-4xl);
+      --docside-text-h3: var(--docside-text-3xl);
+      --docside-text-h4: var(--docside-text-2xl);
     }
   }
   @media (min-width: 72rem) {
     :root:not([data-compact-toc]) {
-      --docifly-content-pad-x: 1.5rem;
-      --docifly-mobile-toc-height: 0rem;
+      --docside-content-pad-x: 1.5rem;
+      --docside-mobile-toc-height: 0rem;
     }
   }
 }
-@layer docifly {
+@layer docside {
   :root {
-    --docifly-code-bg: var(--muted);
-    --docifly-code-text: var(--foreground);
-    --docifly-code-border: var(--border);
-    --docifly-code-muted: color-mix(in srgb, var(--foreground) 20%, var(--muted-foreground));
-    --docifly-code-focus: color-mix(in srgb, var(--foreground) 70%, var(--ring));
-    --docifly-code-comment: #57606a;
-    --docifly-code-keyword: #6f24a4;
-    --docifly-code-string: #854300;
-    --docifly-code-number: #a32962;
-    --docifly-code-name: #174ea6;
-    --docifly-code-property: #176438;
-    --docifly-status-orange: hsl(41, 70%, 45%);
-    --docifly-status-orange-surface: color-mix(in srgb, var(--background) 92%, var(--docifly-status-orange));
-    --docifly-status-orange-text: color-mix(in srgb, var(--foreground) 75%, var(--docifly-status-orange));
-    --docifly-status-green: hsl(140, 70%, 45%);
-    --docifly-status-green-surface: color-mix(in srgb, var(--background) 92%, var(--docifly-status-green));
-    --docifly-status-green-text: color-mix(in srgb, var(--foreground) 75%, var(--docifly-status-green));
-    --docifly-status-blue: hsl(234, 70%, 45%);
-    --docifly-status-blue-surface: color-mix(in srgb, var(--background) 92%, var(--docifly-status-blue));
-    --docifly-status-blue-text: color-mix(in srgb, var(--foreground) 75%, var(--docifly-status-blue));
-    --docifly-status-red: hsl(350, 70%, 45%);
-    --docifly-status-red-surface: color-mix(in srgb, var(--background) 92%, var(--docifly-status-red));
-    --docifly-status-red-text: color-mix(in srgb, var(--foreground) 75%, var(--docifly-status-red));
-    --docifly-status-purple: hsl(285, 70%, 45%);
-    --docifly-status-purple-surface: color-mix(in srgb, var(--background) 92%, var(--docifly-status-purple));
-    --docifly-status-purple-text: color-mix(in srgb, var(--foreground) 75%, var(--docifly-status-purple));
+    --docside-code-bg: var(--muted);
+    --docside-code-text: var(--foreground);
+    --docside-code-border: var(--border);
+    --docside-code-muted: color-mix(in srgb, var(--foreground) 20%, var(--muted-foreground));
+    --docside-code-focus: color-mix(in srgb, var(--foreground) 70%, var(--ring));
+    --docside-code-comment: #57606a;
+    --docside-code-keyword: #6f24a4;
+    --docside-code-string: #854300;
+    --docside-code-number: #a32962;
+    --docside-code-name: #174ea6;
+    --docside-code-property: #176438;
+    --docside-status-orange: hsl(41, 70%, 45%);
+    --docside-status-orange-surface: color-mix(in srgb, var(--background) 92%, var(--docside-status-orange));
+    --docside-status-orange-text: color-mix(in srgb, var(--foreground) 75%, var(--docside-status-orange));
+    --docside-status-green: hsl(140, 70%, 45%);
+    --docside-status-green-surface: color-mix(in srgb, var(--background) 92%, var(--docside-status-green));
+    --docside-status-green-text: color-mix(in srgb, var(--foreground) 75%, var(--docside-status-green));
+    --docside-status-blue: hsl(234, 70%, 45%);
+    --docside-status-blue-surface: color-mix(in srgb, var(--background) 92%, var(--docside-status-blue));
+    --docside-status-blue-text: color-mix(in srgb, var(--foreground) 75%, var(--docside-status-blue));
+    --docside-status-red: hsl(350, 70%, 45%);
+    --docside-status-red-surface: color-mix(in srgb, var(--background) 92%, var(--docside-status-red));
+    --docside-status-red-text: color-mix(in srgb, var(--foreground) 75%, var(--docside-status-red));
+    --docside-status-purple: hsl(285, 70%, 45%);
+    --docside-status-purple-surface: color-mix(in srgb, var(--background) 92%, var(--docside-status-purple));
+    --docside-status-purple-text: color-mix(in srgb, var(--foreground) 75%, var(--docside-status-purple));
   }
   :root.dark {
-    --docifly-code-comment: #aab4c0;
-    --docifly-code-keyword: #d9a5ff;
-    --docifly-code-string: #f2ca8d;
-    --docifly-code-number: #f6acd1;
-    --docifly-code-name: #a5c9ff;
-    --docifly-code-property: #a6dfb5;
+    --docside-code-comment: #aab4c0;
+    --docside-code-keyword: #d9a5ff;
+    --docside-code-string: #f2ca8d;
+    --docside-code-number: #f6acd1;
+    --docside-code-name: #a5c9ff;
+    --docside-code-property: #a6dfb5;
   }
   #article pre:has(.code-line) {
-    --docifly-marker-neutral-bg: color-mix(in srgb, var(--foreground) 8%, transparent);
-    --docifly-marker-neutral-gutter: color-mix(in srgb, var(--foreground) 8%, var(--docifly-code-bg));
-    --docifly-marker-neutral-edge: var(--muted-foreground);
-    --docifly-marker-insert-bg: rgb(142 199 125 / 34%);
-    --docifly-marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 34%, var(--docifly-code-bg));
-    --docifly-marker-insert-edge: #2da043;
-    --docifly-marker-delete-bg: rgb(255 156 142 / 31%);
-    --docifly-marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 31%, var(--docifly-code-bg));
-    --docifly-marker-delete-edge: #cf222e;
-    --docifly-marker-pattern: color-mix(in srgb, var(--background) 10%, transparent);
+    --docside-marker-neutral-bg: color-mix(in srgb, var(--foreground) 8%, transparent);
+    --docside-marker-neutral-gutter: color-mix(in srgb, var(--foreground) 8%, var(--docside-code-bg));
+    --docside-marker-neutral-edge: var(--muted-foreground);
+    --docside-marker-insert-bg: rgb(142 199 125 / 34%);
+    --docside-marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 34%, var(--docside-code-bg));
+    --docside-marker-insert-edge: #2da043;
+    --docside-marker-delete-bg: rgb(255 156 142 / 31%);
+    --docside-marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 31%, var(--docside-code-bg));
+    --docside-marker-delete-edge: #cf222e;
+    --docside-marker-pattern: color-mix(in srgb, var(--background) 10%, transparent);
   }
   /* Dark code needs less marker luminance to retain syntax contrast. */
   :root.dark #article pre:has(.code-line) {
-    --docifly-marker-insert-bg: rgb(142 199 125 / 18%);
-    --docifly-marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 18%, var(--docifly-code-bg));
-    --docifly-marker-delete-bg: rgb(255 156 142 / 18%);
-    --docifly-marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 18%, var(--docifly-code-bg));
+    --docside-marker-insert-bg: rgb(142 199 125 / 18%);
+    --docside-marker-insert-gutter: color-mix(in srgb, rgb(142 199 125) 18%, var(--docside-code-bg));
+    --docside-marker-delete-bg: rgb(255 156 142 / 18%);
+    --docside-marker-delete-gutter: color-mix(in srgb, rgb(255 156 142) 18%, var(--docside-code-bg));
   }
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .hero-image[data-hero-depth] {
-      --docifly-hero-depth-shadow-color: rgb(0 0 0 / 28%);
-      --docifly-hero-depth-shadow-color-enter: rgb(0 0 0 / 8%);
+      --docside-hero-depth-shadow-color: rgb(0 0 0 / 28%);
+      --docside-hero-depth-shadow-color-enter: rgb(0 0 0 / 8%);
     }
   }
 }
@@ -158,43 +158,43 @@
     --sidebar-accent-foreground: #171717;
     --sidebar-border: #d4d4d4;
     --sidebar-ring: #737373;
-    --docifly-code-print-text: #111111;
-    --docifly-code-bg: #f5f5f5;
-    --docifly-code-text: #111111;
-    --docifly-code-border: #d4d4d4;
-    --docifly-code-comment: #525252;
-    --docifly-code-keyword: #111111;
-    --docifly-code-string: #111111;
-    --docifly-code-number: #111111;
-    --docifly-code-name: #111111;
-    --docifly-code-property: #111111;
-    --docifly-status-orange: #525252;
-    --docifly-status-orange-surface: #f5f5f5;
-    --docifly-status-orange-text: #171717;
-    --docifly-status-green: #525252;
-    --docifly-status-green-surface: #f5f5f5;
-    --docifly-status-green-text: #171717;
-    --docifly-status-blue: #525252;
-    --docifly-status-blue-surface: #f5f5f5;
-    --docifly-status-blue-text: #171717;
-    --docifly-status-red: #525252;
-    --docifly-status-red-surface: #f5f5f5;
-    --docifly-status-red-text: #171717;
-    --docifly-status-purple: #525252;
-    --docifly-status-purple-surface: #f5f5f5;
-    --docifly-status-purple-text: #171717;
+    --docside-code-print-text: #111111;
+    --docside-code-bg: #f5f5f5;
+    --docside-code-text: #111111;
+    --docside-code-border: #d4d4d4;
+    --docside-code-comment: #525252;
+    --docside-code-keyword: #111111;
+    --docside-code-string: #111111;
+    --docside-code-number: #111111;
+    --docside-code-name: #111111;
+    --docside-code-property: #111111;
+    --docside-status-orange: #525252;
+    --docside-status-orange-surface: #f5f5f5;
+    --docside-status-orange-text: #171717;
+    --docside-status-green: #525252;
+    --docside-status-green-surface: #f5f5f5;
+    --docside-status-green-text: #171717;
+    --docside-status-blue: #525252;
+    --docside-status-blue-surface: #f5f5f5;
+    --docside-status-blue-text: #171717;
+    --docside-status-red: #525252;
+    --docside-status-red-surface: #f5f5f5;
+    --docside-status-red-text: #171717;
+    --docside-status-purple: #525252;
+    --docside-status-purple-surface: #f5f5f5;
+    --docside-status-purple-text: #171717;
   }
 }
 /*! Adapted from stock Starlight sidebar and mobile menu; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   #site-nav {
     position: fixed;
-    inset: var(--docifly-nav-height) 0 0;
+    inset: var(--docside-nav-height) 0 0;
     margin: 0;
     border: 0;
     width: 100%;
     height: auto;
-    padding: 1rem var(--docifly-sidebar-pad-x);
+    padding: 1rem var(--docside-sidebar-pad-x);
     color: var(--sidebar-foreground);
     background: var(--sidebar);
     overflow-y: auto;
@@ -241,7 +241,7 @@
   }
   #site-nav > ul > li > a,
   #site-nav summary > span {
-    font-size: var(--docifly-text-lg);
+    font-size: var(--docside-text-lg);
   }
   #site-nav summary::marker,
   #site-nav summary::-webkit-details-marker {
@@ -269,8 +269,8 @@
   #menu-toggle {
     position: fixed;
     z-index: 10;
-    top: calc((var(--docifly-nav-height) - 2.25rem) / 2);
-    inset-inline-end: var(--docifly-nav-pad-x);
+    top: calc((var(--docside-nav-height) - 2.25rem) / 2);
+    inset-inline-end: var(--docside-nav-pad-x);
   }
   #menu-toggle::after {
     content: "";
@@ -304,7 +304,7 @@
     }
     :root:not([data-compact-sidebar]) #site-nav {
       display: block;
-      width: var(--docifly-sidebar-width);
+      width: var(--docside-sidebar-width);
       inset-inline-end: auto;
       border-inline-end: 1px solid var(--sidebar-border);
       background: var(--sidebar);
@@ -313,11 +313,11 @@
       margin-top: 0.5rem;
     }
     :root:not([data-compact-sidebar]) #site-nav a {
-      font-size: var(--docifly-text-sm);
+      font-size: var(--docside-text-sm);
     }
     :root:not([data-compact-sidebar]) #site-nav > ul > li > a,
     :root:not([data-compact-sidebar]) #site-nav summary > span {
-      font-size: var(--docifly-text-base);
+      font-size: var(--docside-text-base);
     }
     :root:not([data-compact-sidebar]) body:has(#site-nav:popover-open) {
       overflow: auto;
@@ -341,12 +341,12 @@
   }
 }
 /*! Adapted from stock Starlight heading navigation; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   #toc {
     position: fixed;
     z-index: 4;
-    top: calc(var(--docifly-nav-height) - 1px);
-    inset-inline: var(--docifly-content-inline-start) 0;
+    top: calc(var(--docside-nav-height) - 1px);
+    inset-inline: var(--docside-content-inline-start) 0;
     border-top: 1px solid var(--border);
     background: var(--background);
   }
@@ -357,10 +357,10 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    height: var(--docifly-mobile-toc-height);
+    height: var(--docside-mobile-toc-height);
     border-bottom: 1px solid var(--border);
     padding: 0.5rem 1rem;
-    font-size: var(--docifly-text-xs);
+    font-size: var(--docside-text-xs);
     cursor: pointer;
     outline-offset: -3px;
   }
@@ -402,7 +402,7 @@
     border: 1px solid var(--border);
     padding: 0;
     list-style: none;
-    max-height: calc(85vh - var(--docifly-nav-height) - var(--docifly-mobile-toc-height));
+    max-height: calc(85vh - var(--docside-nav-height) - var(--docside-mobile-toc-height));
     overflow-y: auto;
     background: var(--popover);
     color: var(--popover-foreground);
@@ -420,7 +420,7 @@
     padding-inline: calc(1rem + var(--depth) * 1rem) 1rem;
     border-top: 1px solid var(--muted);
     color: var(--foreground);
-    font-size: var(--docifly-text-sm);
+    font-size: var(--docside-text-sm);
     line-height: 1.25;
     text-decoration: none;
     overflow-wrap: anywhere;
@@ -456,20 +456,20 @@
       height: 100vh;
       border-top: 0;
       border-inline-start: 1px solid var(--border);
-      padding: calc(var(--docifly-nav-height) + 1rem) var(--docifly-sidebar-pad-x) 1rem;
+      padding: calc(var(--docside-nav-height) + 1rem) var(--docside-sidebar-pad-x) 1rem;
       background: var(--background);
       overflow-y: auto;
       scrollbar-width: none;
     }
     :root:not([data-compact-toc]) #toc > h2,
     :root:not([data-compact-toc]) #toc > details {
-      width: min(var(--docifly-sidebar-width) - 2 * var(--docifly-sidebar-pad-x), (100vw - var(--docifly-sidebar-width) - 2 * var(--docifly-content-pad-x) - 2 * var(--docifly-sidebar-pad-x)) * 0.25);
+      width: min(var(--docside-sidebar-width) - 2 * var(--docside-sidebar-pad-x), (100vw - var(--docside-sidebar-width) - 2 * var(--docside-content-pad-x) - 2 * var(--docside-sidebar-pad-x)) * 0.25);
     }
     :root:not([data-compact-toc]) #toc h2 {
       display: block;
       color: var(--foreground);
-      font-size: var(--docifly-text-h5);
-      line-height: var(--docifly-line-height-headings);
+      font-size: var(--docside-text-h5);
+      line-height: var(--docside-line-height-headings);
       margin-bottom: 0.5rem;
     }
     :root:not([data-compact-toc]) #toc summary {
@@ -489,7 +489,7 @@
       padding-block: 0.25rem;
       padding-inline: calc(0.5rem + var(--depth) * 1rem) 0.5rem;
       color: var(--muted-foreground);
-      font-size: var(--docifly-text-xs);
+      font-size: var(--docside-text-xs);
     }
     :root:not([data-compact-toc]) #toc a:hover {
       color: var(--foreground);
@@ -500,10 +500,10 @@
   }
 }
 /*! Adapted from stock Starlight Markdown styles; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   /* Each Markdown body starts a fresh scope. Components stop outer prose;
      their explicit Markdown sections opt back in without styling their chrome. */
-  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, .docifly-tabs, .code-frame, figure.highlight, [role='tab']) {
+  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, .docside-tabs, .code-frame, figure.highlight, [role='tab']) {
     :is(ul, ol) {
       padding-inline-start: 1.5rem;
     }
@@ -514,7 +514,7 @@
       list-style: decimal;
     }
     :not(a, strong, em, del, span, input, code, br) + :not(a, strong, em, del, span, input, code, br) {
-      margin-top: var(--docifly-content-gap-y);
+      margin-top: var(--docside-content-gap-y);
     }
     :not(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6) {
       margin-top: 1.5em;
@@ -537,7 +537,7 @@
     }
     :is(h1, h2, h3, h4, h5, h6) {
       color: var(--foreground);
-      line-height: var(--docifly-line-height-headings);
+      line-height: var(--docside-line-height-headings);
       font-weight: 700;
       letter-spacing: -0.02em;
     }
@@ -547,22 +547,22 @@
       height: auto;
     }
     h1 {
-      font-size: var(--docifly-text-h1);
+      font-size: var(--docside-text-h1);
     }
     h2 {
-      font-size: var(--docifly-text-h2);
+      font-size: var(--docside-text-h2);
     }
     h3 {
-      font-size: var(--docifly-text-h3);
+      font-size: var(--docside-text-h3);
     }
     h4 {
-      font-size: var(--docifly-text-h4);
+      font-size: var(--docside-text-h4);
     }
     h5 {
-      font-size: var(--docifly-text-h5);
+      font-size: var(--docside-text-h5);
     }
     h6 {
-      font-size: var(--docifly-text-h6);
+      font-size: var(--docside-text-h6);
     }
     a {
       color: var(--primary);
@@ -576,7 +576,7 @@
       background-color: var(--muted);
       margin-block: -0.125rem;
       padding: 0.125rem 0.375rem;
-      font-size: var(--docifly-text-code-sm);
+      font-size: var(--docside-text-code-sm);
       direction: ltr;
       white-space: normal;
       overflow-wrap: anywhere;
@@ -592,7 +592,7 @@
       overflow-x: auto;
       border: 1px solid var(--border);
       padding: 0.75rem 1rem;
-      font-size: var(--docifly-text-code);
+      font-size: var(--docside-text-code);
       tab-size: 2;
       direction: ltr;
       text-align: left;
@@ -636,20 +636,20 @@
     }
     @media (max-width: 49.999rem) {
       :is(th, td):nth-child(2):last-child {
-        min-width: min(20rem, 100vw - 2 * var(--docifly-content-pad-x));
+        min-width: min(20rem, 100vw - 2 * var(--docside-content-pad-x));
       }
     }
   }
 }
 /*! Anchor geometry adapted from stock Starlight; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   /* Nested Markdown opts back in, but component titles and controls do not. */
-  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, .docifly-tabs, .code-frame, figure.highlight, [role='tab']) {
+  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, .docside-tabs, .code-frame, figure.highlight, [role='tab']) {
     .sl-heading-wrapper {
-      --docifly-anchor-icon-size: 0.8275em;
-      --docifly-anchor-icon-gap: 0.25em;
-      --docifly-anchor-icon-space: calc(var(--docifly-anchor-icon-size) + var(--docifly-anchor-icon-gap));
-      line-height: var(--docifly-line-height-headings);
+      --docside-anchor-icon-size: 0.8275em;
+      --docside-anchor-icon-gap: 0.25em;
+      --docside-anchor-icon-space: calc(var(--docside-anchor-icon-size) + var(--docside-anchor-icon-gap));
+      line-height: var(--docside-line-height-headings);
     }
     .sl-heading-wrapper:has(> :first-child:is(.sr-only, [hidden])) {
       display: contents;
@@ -658,32 +658,32 @@
       margin-top: 1.5em;
     }
     .level-h1 {
-      font-size: var(--docifly-text-h1);
+      font-size: var(--docside-text-h1);
     }
     .level-h2 {
-      font-size: var(--docifly-text-h2);
+      font-size: var(--docside-text-h2);
     }
     .level-h3 {
-      font-size: var(--docifly-text-h3);
+      font-size: var(--docside-text-h3);
     }
     .level-h4 {
-      font-size: var(--docifly-text-h4);
+      font-size: var(--docside-text-h4);
     }
     .level-h5 {
-      font-size: var(--docifly-text-h5);
+      font-size: var(--docside-text-h5);
     }
     .level-h6 {
-      font-size: var(--docifly-text-h6);
+      font-size: var(--docside-text-h6);
     }
     /* Reserve inline space so the anchor cannot wrap away from the final word. */
     .sl-heading-wrapper > :first-child:not([hidden]) {
       display: inline;
-      padding-inline-end: var(--docifly-anchor-icon-space);
+      padding-inline-end: var(--docside-anchor-icon-space);
     }
     .sl-anchor-link {
       position: relative;
       display: inline-flex;
-      margin-inline-start: calc(-1 * var(--docifly-anchor-icon-size));
+      margin-inline-start: calc(-1 * var(--docside-anchor-icon-size));
       -webkit-user-select: none;
       user-select: none;
     }
@@ -701,9 +701,9 @@
     }
     .sl-anchor-icon > svg {
       display: inline;
-      width: var(--docifly-anchor-icon-size);
+      width: var(--docside-anchor-icon-size);
       vertical-align: top;
-      transform: translateY(calc((var(--docifly-line-height-headings) * 1em - var(--docifly-anchor-icon-size)) / 2));
+      transform: translateY(calc((var(--docside-line-height-headings) * 1em - var(--docside-anchor-icon-size)) / 2));
     }
     @media (hover: hover) {
       .sl-anchor-link {
@@ -716,16 +716,16 @@
     }
   }
 }
-@layer docifly {
+@layer docside {
   #article pre {
     max-width: 100%;
     overflow: auto;
     padding: 0.75rem 3rem 0.75rem calc(0.90625rem + 1px);
-    border: 1px solid var(--docifly-code-border);
+    border: 1px solid var(--docside-code-border);
     border-radius: var(--radius-lg);
-    font: var(--docifly-text-code)/var(--docifly-line-height) var(--font-mono);
-    color: var(--docifly-code-text);
-    background: var(--docifly-code-bg);
+    font: var(--docside-text-code)/var(--docside-line-height) var(--font-mono);
+    color: var(--docside-code-text);
+    background: var(--docside-code-bg);
     tab-size: 2;
     direction: ltr;
     text-align: left;
@@ -737,22 +737,22 @@
     white-space: pre;
   }
   #article pre :is(.c, .ch, .cm, .c1, .cs, .cp, .cpf) {
-    color: var(--docifly-code-comment);
+    color: var(--docside-code-comment);
   }
   #article pre :is(.k, .kc, .kd, .kn, .kp, .kr, .kt, .o, .ow) {
-    color: var(--docifly-code-keyword);
+    color: var(--docside-code-keyword);
   }
   #article pre :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss) {
-    color: var(--docifly-code-string);
+    color: var(--docside-code-string);
   }
   #article pre :is(.m, .mb, .mf, .mh, .mi, .il, .mo) {
-    color: var(--docifly-code-number);
+    color: var(--docside-code-number);
   }
   #article pre :is(.n, .na, .nb, .bp, .nc, .no, .nd, .ne, .nf, .fm, .nl, .nn, .nx) {
-    color: var(--docifly-code-name);
+    color: var(--docside-code-name);
   }
   #article pre :is(.nt, .nv, .vc, .vg, .vi, .vm) {
-    color: var(--docifly-code-property);
+    color: var(--docside-code-property);
   }
   #article pre:has(.code-line) {
     padding-inline: 0;
@@ -792,44 +792,44 @@
     width: var(--line-number-width);
     margin-inline-end: 0.75rem;
     padding-inline-end: 0.75rem;
-    border-inline-end: 1px solid var(--docifly-code-border);
-    color: var(--docifly-code-muted);
-    background-color: var(--docifly-code-bg);
+    border-inline-end: 1px solid var(--docside-code-border);
+    color: var(--docside-code-muted);
+    background-color: var(--docside-code-bg);
     font-variant-numeric: tabular-nums;
     text-align: end;
     user-select: none;
     content: attr(data-line-number)/"";
   }
   #article :is(.code-line, mark).is-marked {
-    background-color: var(--docifly-marker-neutral-bg);
+    background-color: var(--docside-marker-neutral-bg);
   }
   #article :is(.code-line, mark).is-inserted {
-    background-color: var(--docifly-marker-insert-bg);
-    background-image: repeating-linear-gradient(135deg, transparent 0 6px, var(--docifly-marker-pattern) 6px 8px);
+    background-color: var(--docside-marker-insert-bg);
+    background-image: repeating-linear-gradient(135deg, transparent 0 6px, var(--docside-marker-pattern) 6px 8px);
   }
   #article :is(.code-line, mark).is-deleted {
-    background-color: var(--docifly-marker-delete-bg);
-    background-image: repeating-linear-gradient(45deg, transparent 0 6px, var(--docifly-marker-pattern) 6px 8px);
+    background-color: var(--docside-marker-delete-bg);
+    background-image: repeating-linear-gradient(45deg, transparent 0 6px, var(--docside-marker-pattern) 6px 8px);
   }
   #article .code-line.is-marked::before {
-    background-color: var(--docifly-marker-neutral-gutter);
+    background-color: var(--docside-marker-neutral-gutter);
   }
   #article .code-line.is-inserted::before {
-    background-color: var(--docifly-marker-insert-gutter);
-    background-image: repeating-linear-gradient(135deg, transparent 0 6px, var(--docifly-marker-pattern) 6px 8px);
+    background-color: var(--docside-marker-insert-gutter);
+    background-image: repeating-linear-gradient(135deg, transparent 0 6px, var(--docside-marker-pattern) 6px 8px);
   }
   #article .code-line.is-deleted::before {
-    background-color: var(--docifly-marker-delete-gutter);
-    background-image: repeating-linear-gradient(45deg, transparent 0 6px, var(--docifly-marker-pattern) 6px 8px);
+    background-color: var(--docside-marker-delete-gutter);
+    background-image: repeating-linear-gradient(45deg, transparent 0 6px, var(--docside-marker-pattern) 6px 8px);
   }
   #article .code-line.is-marked {
-    border-inline-start-color: var(--docifly-marker-neutral-edge);
+    border-inline-start-color: var(--docside-marker-neutral-edge);
   }
   #article .code-line.is-inserted {
-    border-inline-start-color: var(--docifly-marker-insert-edge);
+    border-inline-start-color: var(--docside-marker-insert-edge);
   }
   #article .code-line.is-deleted {
-    border-inline-start-color: var(--docifly-marker-delete-edge);
+    border-inline-start-color: var(--docside-marker-delete-edge);
   }
   #article mark:is(.is-marked, .is-inserted, .is-deleted) {
     padding: 0;
@@ -842,7 +842,7 @@
     direction: ltr;
     --copy-size: 1.5rem;
     --copy-offset: calc(0.75rem + 1px);
-    margin-block: var(--docifly-content-gap-y);
+    margin-block: var(--docside-content-gap-y);
   }
   #article .code-frame > pre {
     margin: 0;
@@ -851,7 +851,7 @@
     position: relative;
     display: block;
     min-width: 0;
-    margin: var(--docifly-content-gap-y) 0;
+    margin: var(--docside-content-gap-y) 0;
     background: var(--background);
     border-radius: var(--radius-lg);
   }
@@ -861,7 +861,7 @@
   #article figure.highlight[data-code-frame] > .code-title {
     min-width: 0;
     overflow: hidden;
-    color: var(--docifly-code-muted);
+    color: var(--docside-code-muted);
     font: 0.9rem/1.65 var(--font-sans);
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -873,8 +873,8 @@
     width: fit-content;
     max-width: 100%;
     padding: calc(0.25rem + 1px) 1rem;
-    background: var(--docifly-code-bg);
-    border: 1px solid var(--docifly-code-border);
+    background: var(--docside-code-bg);
+    border: 1px solid var(--docside-code-border);
     border-block-start-color: var(--primary);
     border-block-end: 0;
   }
@@ -893,7 +893,7 @@
     height: 2.0475rem;
     content: "";
     background: var(--background);
-    border: 1px solid var(--docifly-code-border);
+    border: 1px solid var(--docside-code-border);
     border-block-end: 0;
   }
   #article figure.highlight[data-code-frame=terminal]::after {
@@ -952,18 +952,18 @@
     }
   }
   #article :is(pre, .copy-button):focus-visible {
-    outline: 2px solid var(--docifly-code-focus);
+    outline: 2px solid var(--docside-code-focus);
     outline-offset: 2px;
   }
   #article .copy-feedback {
-    --feedback-bg: var(--docifly-status-green-surface);
+    --feedback-bg: var(--docside-status-green-surface);
     position: absolute;
     inset-inline-end: calc(0.5rem + 1px);
     bottom: calc(100% + 0.375rem);
     max-width: calc(100% - 1rem);
     padding: 0.125rem 0.75rem;
     font: 0.9rem/1.65 var(--font-sans);
-    color: var(--docifly-status-green-text);
+    color: var(--docside-status-green-text);
     background: var(--feedback-bg);
     border: 1px solid currentColor;
     border-radius: var(--radius-md);
@@ -980,14 +980,14 @@
     border-block-start-color: var(--feedback-bg);
   }
   #article .copy-feedback[data-error] {
-    --feedback-bg: var(--docifly-status-red-surface);
-    color: var(--docifly-status-red-text);
+    --feedback-bg: var(--docside-status-red-surface);
+    color: var(--docside-status-red-text);
   }
   #article .copy-feedback:empty {
     display: none;
   }
 }
-@layer docifly {
+@layer docside {
   #mode-picker {
     flex: none;
   }
@@ -1016,12 +1016,12 @@
     min-height: 44px;
   }
 }
-@layer docifly {
+@layer docside {
   #global-controls {
     display: contents;
   }
 }
-@layer docifly {
+@layer docside {
   #version-picker {
     position: relative;
     flex: none;
@@ -1042,7 +1042,7 @@
   }
   .version-current {
     overflow: hidden;
-    font-size: var(--docifly-text-sm);
+    font-size: var(--docside-text-sm);
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -1106,12 +1106,12 @@
   }
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) #version-picker > summary {
-      font-size: var(--docifly-text-sm);
+      font-size: var(--docside-text-sm);
     }
   }
 }
 /*! Language selector geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   #language-picker {
     position: relative;
     flex: none;
@@ -1132,7 +1132,7 @@
   }
   .language-current {
     overflow: hidden;
-    font-size: var(--docifly-text-sm);
+    font-size: var(--docside-text-sm);
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -1191,8 +1191,8 @@
   #site-nav #language-picker > ul {
     inset-inline-start: 0;
     inset-inline-end: auto;
-    min-width: min(12rem, 100vw - 2 * var(--docifly-sidebar-pad-x) - 1rem);
-    max-width: min(22rem, 100vw - 2 * var(--docifly-sidebar-pad-x) - 1rem);
+    min-width: min(12rem, 100vw - 2 * var(--docside-sidebar-pad-x) - 1rem);
+    max-width: min(22rem, 100vw - 2 * var(--docside-sidebar-pad-x) - 1rem);
     position: static;
     margin-top: 0.25rem;
   }
@@ -1205,9 +1205,9 @@
     }
     .site-header #language-picker > ul {
       inset-block-start: calc(100% + 0.25rem);
-      inset-inline-end: var(--docifly-nav-pad-x);
-      min-width: min(12rem, 100% - 2 * var(--docifly-nav-pad-x));
-      max-width: min(22rem, 100% - 2 * var(--docifly-nav-pad-x));
+      inset-inline-end: var(--docside-nav-pad-x);
+      min-width: min(12rem, 100% - 2 * var(--docside-nav-pad-x));
+      max-width: min(22rem, 100% - 2 * var(--docside-nav-pad-x));
     }
     .site-header .language-picker-control {
       grid-template-columns: 0.875rem 1.25rem;
@@ -1219,11 +1219,11 @@
   }
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) #language-picker > summary {
-      font-size: var(--docifly-text-sm);
+      font-size: var(--docside-text-sm);
     }
   }
 }
-@layer docifly {
+@layer docside {
   #site-search {
     min-width: 0;
     flex: 1 1 18rem;
@@ -1256,7 +1256,7 @@
     background: var(--muted);
     color: var(--muted-foreground);
     font-family: var(--font-sans);
-    font-size: var(--docifly-text-2xs);
+    font-size: var(--docside-text-2xs);
   }
   #search-dialog > .search-dialog-frame {
     width: calc(100% - 2rem);
@@ -1366,13 +1366,13 @@
   }
 }
 /*! Hero geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   .splash-frame {
     min-height: 100vh;
-    padding-top: var(--docifly-nav-height);
+    padding-top: var(--docside-nav-height);
   }
   .splash-pane .content-container {
-    max-width: var(--docifly-content-width);
+    max-width: var(--docside-content-width);
     margin-inline: auto;
   }
   .splash-pane .content-container:has(> .hero) {
@@ -1405,9 +1405,9 @@
   }
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .hero-image[data-hero-depth].is-depth-ready {
-      transform: perspective(1000px) rotateX(var(--docifly-hero-depth-x, -2deg)) rotateY(var(--docifly-hero-depth-y, -4deg)) scale(0.97);
+      transform: perspective(1000px) rotateX(var(--docside-hero-depth-x, -2deg)) rotateY(var(--docside-hero-depth-y, -4deg)) scale(0.97);
       transform-origin: 50% 50%;
-      filter: drop-shadow(0.6rem 1rem 1.25rem var(--docifly-hero-depth-shadow-color));
+      filter: drop-shadow(0.6rem 1rem 1.25rem var(--docside-hero-depth-shadow-color));
       transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hero-image[data-hero-depth].is-depth-tracking {
@@ -1421,11 +1421,11 @@
     @keyframes hero-depth-enter {
       from {
         transform: perspective(1000px) translateY(0.6rem) rotateX(3deg) rotateY(-7deg) scale(0.94);
-        filter: drop-shadow(0.2rem 0.3rem 0.4rem var(--docifly-hero-depth-shadow-color-enter));
+        filter: drop-shadow(0.2rem 0.3rem 0.4rem var(--docside-hero-depth-shadow-color-enter));
       }
       to {
-        transform: perspective(1000px) rotateX(var(--docifly-hero-depth-x, -2deg)) rotateY(var(--docifly-hero-depth-y, -4deg)) scale(0.97);
-        filter: drop-shadow(0.6rem 1rem 1.25rem var(--docifly-hero-depth-shadow-color));
+        transform: perspective(1000px) rotateX(var(--docside-hero-depth-x, -2deg)) rotateY(var(--docside-hero-depth-y, -4deg)) scale(0.97);
+        filter: drop-shadow(0.6rem 1rem 1.25rem var(--docside-hero-depth-shadow-color));
       }
     }
   }
@@ -1447,10 +1447,10 @@
   }
   .hero h1 {
     margin: 0;
-    font-size: clamp(var(--docifly-text-3xl), 0.25rem + 5vw, var(--docifly-text-6xl));
+    font-size: clamp(var(--docside-text-3xl), 0.25rem + 5vw, var(--docside-text-6xl));
   }
   .hero-tagline {
-    font-size: clamp(var(--docifly-text-base), 0.0625rem + 2vw, var(--docifly-text-xl));
+    font-size: clamp(var(--docside-text-base), 0.0625rem + 2vw, var(--docside-text-xl));
     color: var(--muted-foreground);
   }
   .hero-actions {
@@ -1497,7 +1497,7 @@
   }
 }
 /*! Content component geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   .sl-icon {
     display: inline-block;
     flex: none;
@@ -1522,19 +1522,19 @@
     color: var(--primary);
   }
   .sl-icon.color-blue {
-    color: var(--docifly-status-blue-text);
+    color: var(--docside-status-blue-text);
   }
   .sl-icon.color-green {
-    color: var(--docifly-status-green-text);
+    color: var(--docside-status-green-text);
   }
   .sl-icon.color-orange {
-    color: var(--docifly-status-orange-text);
+    color: var(--docside-status-orange-text);
   }
   .sl-icon.color-purple {
-    color: var(--docifly-status-purple-text);
+    color: var(--docside-status-purple-text);
   }
   .sl-icon.color-red {
-    color: var(--docifly-status-red-text);
+    color: var(--docside-status-red-text);
   }
   .sl-icon.color-gray {
     color: var(--muted-foreground);
@@ -1583,33 +1583,33 @@
   /* Vega owns geometry; documentation statuses add only semantic color pairs. */
   .badge[data-status=note],
   .alert[data-status=note] {
-    color: var(--docifly-status-blue-text);
-    background-color: var(--docifly-status-blue-surface);
-    border-color: var(--docifly-status-blue);
+    color: var(--docside-status-blue-text);
+    background-color: var(--docside-status-blue-surface);
+    border-color: var(--docside-status-blue);
   }
   .badge[data-status=tip],
   .alert[data-status=tip] {
-    color: var(--docifly-status-purple-text);
-    background-color: var(--docifly-status-purple-surface);
-    border-color: var(--docifly-status-purple);
+    color: var(--docside-status-purple-text);
+    background-color: var(--docside-status-purple-surface);
+    border-color: var(--docside-status-purple);
   }
   .badge[data-status=caution],
   .alert[data-status=caution] {
-    color: var(--docifly-status-orange-text);
-    background-color: var(--docifly-status-orange-surface);
-    border-color: var(--docifly-status-orange);
+    color: var(--docside-status-orange-text);
+    background-color: var(--docside-status-orange-surface);
+    border-color: var(--docside-status-orange);
   }
   .badge[data-status=danger],
   .alert[data-status=danger] {
-    color: var(--docifly-status-red-text);
-    background-color: var(--docifly-status-red-surface);
-    border-color: var(--docifly-status-red);
+    color: var(--docside-status-red-text);
+    background-color: var(--docside-status-red-surface);
+    border-color: var(--docside-status-red);
   }
   .badge[data-status=success],
   .alert[data-status=success] {
-    color: var(--docifly-status-green-text);
-    background-color: var(--docifly-status-green-surface);
-    border-color: var(--docifly-status-green);
+    color: var(--docside-status-green-text);
+    background-color: var(--docside-status-green-surface);
+    border-color: var(--docside-status-green);
   }
   .badge {
     max-width: 100%;
@@ -1652,15 +1652,15 @@
     padding-inline-end: 0.25em;
   }
   .sl-markdown-content .sl-heading-wrapper > .badge {
-    margin-inline-end: var(--docifly-anchor-icon-space);
+    margin-inline-end: var(--docside-anchor-icon-space);
     vertical-align: middle;
   }
   .sl-steps {
-    --bullet-size: calc(var(--docifly-line-height) * 1rem);
+    --bullet-size: calc(var(--docside-line-height) * 1rem);
     --bullet-margin: 0.375rem;
     padding-inline-start: 0;
     list-style: none;
-    counter-reset: steps-counter var(--docifly-steps-start, 0);
+    counter-reset: steps-counter var(--docside-steps-start, 0);
   }
   .sl-steps > li {
     position: relative;
@@ -1679,7 +1679,7 @@
     width: var(--bullet-size);
     height: var(--bullet-size);
     color: var(--foreground);
-    font-size: var(--docifly-text-xs);
+    font-size: var(--docside-text-xs);
     font-weight: 600;
     line-height: var(--bullet-size);
     text-align: center;
@@ -1699,13 +1699,13 @@
     background-color: var(--border);
   }
   .sl-steps > li > :first-child {
-    --lh: calc(1em * var(--docifly-line-height));
+    --lh: calc(1em * var(--docside-line-height));
     --shift-y: calc(0.5 * (var(--bullet-size) - var(--lh)));
     margin-bottom: var(--shift-y);
     transform: translateY(var(--shift-y));
   }
   .sl-steps > li > :first-child:where(h1, h2, h3, h4, h5, h6) {
-    --lh: calc(1em * var(--docifly-line-height-headings));
+    --lh: calc(1em * var(--docside-line-height-headings));
   }
   @supports (--prop: 1lh) {
     .sl-steps > li > :first-child {
@@ -1720,7 +1720,7 @@
     padding: 1rem;
     overflow-x: auto;
     font-family: var(--font-mono);
-    font-size: var(--docifly-text-xs);
+    font-size: var(--docside-text-xs);
     background-color: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
@@ -1837,7 +1837,7 @@
     min-width: 0;
     overflow-wrap: anywhere;
   }
-  .docifly-card-title {
+  .docside-card-title {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -1847,40 +1847,40 @@
   .alert > section {
     min-width: 0;
   }
-  .docifly-link-card {
+  .docside-link-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     padding-inline: 1.5rem;
     text-decoration: none;
   }
-  .docifly-link-card-content {
+  .docside-link-card-content {
     display: flex;
     min-width: 0;
     flex-direction: column;
     gap: 0.5rem;
   }
-  .docifly-link-card-title {
+  .docside-link-card-title {
     font-size: 1rem;
     font-weight: 500;
   }
-  .docifly-link-card-description,
-  .docifly-link-card > svg {
+  .docside-link-card-description,
+  .docside-link-card > svg {
     color: var(--muted-foreground);
   }
-  .docifly-link-card:hover {
+  .docside-link-card:hover {
     background: var(--accent);
     color: var(--accent-foreground);
   }
-  .docifly-link-card:focus-visible {
+  .docside-link-card:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 3px;
   }
-  .docifly-tabs {
+  .docside-tabs {
     min-width: 0;
-    margin-block: var(--docifly-content-gap-y);
+    margin-block: var(--docside-content-gap-y);
   }
-  .docifly-tabs > .tab-item + .tab-item {
+  .docside-tabs > .tab-item + .tab-item {
     margin-top: 1.5rem;
   }
   .tab-item-label {
@@ -1889,22 +1889,22 @@
     gap: 0.5rem;
     margin-bottom: 0.5rem;
     color: var(--foreground);
-    font-size: var(--docifly-text-lg);
+    font-size: var(--docside-text-lg);
   }
   /* Vega owns the tab treatment; only long-label overflow is local. */
-  .docifly-tabs > [role=tablist] {
+  .docside-tabs > [role=tablist] {
     max-width: 100%;
     overflow-x: auto;
     justify-content: start;
   }
-  .docifly-tabs > [role=tablist] > [role=tab] {
+  .docside-tabs > [role=tablist] > [role=tab] {
     flex: 0 0 auto;
   }
   .tab-panel > :first-child {
     margin-top: 0;
   }
   /* Long authored action labels must wrap without changing Vega's controls. */
-  .docifly-action {
+  .docside-action {
     max-width: 100%;
     height: auto;
     min-height: 2.25rem;
@@ -1913,10 +1913,10 @@
     text-align: start;
     overflow-wrap: anywhere;
   }
-  .docifly-action > span {
+  .docside-action > span {
     min-width: 0;
   }
-  .sl-markdown-content > .docifly-action {
+  .sl-markdown-content > .docside-action {
     margin-block: 0.5rem;
     margin-inline-end: 0.5rem;
   }
@@ -1925,7 +1925,7 @@
     overflow-wrap: anywhere;
   }
   .sl-markdown-content > :is(.alert, .card, .card-grid, .file-tree) {
-    margin-block: var(--docifly-content-gap-y);
+    margin-block: var(--docside-content-gap-y);
   }
   .alert > [data-title] {
     min-width: 0;
@@ -1996,7 +1996,7 @@
   #toc-slot,
   .copy-button,
   .copy-feedback,
-  .docifly-tabs > [role=tablist],
+  .docside-tabs > [role=tablist],
   .sl-anchor-link {
     display: none !important;
   }
@@ -2082,7 +2082,7 @@
   }
   #article pre,
   #article pre * {
-    color: var(--docifly-code-print-text) !important;
+    color: var(--docside-code-print-text) !important;
   }
   #article pre {
     max-width: 100%;
@@ -2139,15 +2139,15 @@
     opacity: 1;
     transition: none;
   }
-  @layer docifly {
-    .docifly-tabs {
+  @layer docside {
+    .docside-tabs {
       display: block;
     }
   }
   /* Basecoat's base-layer hidden rule is important; override in that layer. */
   @layer base {
-    .docifly-tabs .tab-item-label[hidden],
-    .docifly-tabs .tab-panel[hidden] {
+    .docside-tabs .tab-item-label[hidden],
+    .docside-tabs .tab-panel[hidden] {
       display: block !important;
     }
   }
@@ -2160,15 +2160,15 @@
   #article summary::-webkit-details-marker {
     display: none;
   }
-  .docifly-tabs > .tab-item + .tab-item,
-  .docifly-tabs > .tab-panel + .tab-item-label {
+  .docside-tabs > .tab-item + .tab-item,
+  .docside-tabs > .tab-panel + .tab-item-label {
     margin-top: 5mm;
   }
   .file-tree,
   .alert,
   .card,
   .badge,
-  .docifly-action[data-variant=primary] {
+  .docside-action[data-variant=primary] {
     color: var(--foreground);
     background: transparent;
   }
@@ -2195,27 +2195,27 @@
   }
 }
 /*! Shell geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors.
- * See assets/starlight-LICENSE. Consumers use the compiled assets/docifly.css. */
-@layer properties, theme, base, components, utilities, docifly;
-@layer docifly {
+ * See assets/starlight-LICENSE. Consumers use the compiled assets/docside.css. */
+@layer properties, theme, base, components, utilities, docside;
+@layer docside {
   [hidden] {
     display: none !important;
   }
   :root {
-    --docifly-content-inline-start: 0rem;
+    --docside-content-inline-start: 0rem;
   }
   html {
     scrollbar-gutter: stable;
-    scroll-padding-top: calc(1.5rem + var(--docifly-nav-height) + var(--docifly-mobile-toc-height));
+    scroll-padding-top: calc(1.5rem + var(--docside-nav-height) + var(--docside-mobile-toc-height));
     accent-color: var(--primary);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
   html:not([data-has-toc]) {
-    --docifly-mobile-toc-height: 0rem;
+    --docside-mobile-toc-height: 0rem;
   }
   body {
-    line-height: var(--docifly-line-height);
+    line-height: var(--docside-line-height);
   }
   :is(p, h1, h2, h3, h4, h5, h6, code) {
     overflow-wrap: break-word;
@@ -2260,9 +2260,9 @@
     position: fixed;
     z-index: 10;
     inset: 0 0 auto;
-    height: var(--docifly-nav-height);
-    padding: var(--docifly-nav-pad-y) var(--docifly-nav-pad-x);
-    padding-inline-end: calc(var(--docifly-nav-pad-x) + var(--menu-space, 0rem));
+    height: var(--docside-nav-height);
+    padding: var(--docside-nav-pad-y) var(--docside-nav-pad-x);
+    padding-inline-end: calc(var(--docside-nav-pad-x) + var(--menu-space, 0rem));
     border-bottom: 1px solid var(--border);
     background: var(--background);
     display: flex;
@@ -2273,7 +2273,7 @@
   .site-title {
     min-width: 0;
     font-family: var(--font-sans);
-    font-size: var(--docifly-text-h4);
+    font-size: var(--docside-text-h4);
     font-weight: 800;
     letter-spacing: -0.02em;
     text-decoration: none;
@@ -2281,16 +2281,16 @@
     overflow: hidden;
   }
   .page-frame {
-    padding-top: calc(var(--docifly-nav-height) + var(--docifly-mobile-toc-height));
-    padding-inline-start: var(--docifly-content-inline-start);
+    padding-top: calc(var(--docside-nav-height) + var(--docside-mobile-toc-height));
+    padding-inline-start: var(--docside-content-inline-start);
     min-height: 100vh;
   }
   .main-pane {
     min-width: 0;
-    padding: var(--docifly-main-pad);
+    padding: var(--docside-main-pad);
   }
   .content-panel {
-    padding: 1.5rem var(--docifly-content-pad-x);
+    padding: 1.5rem var(--docside-content-pad-x);
   }
   .content-panel + .content-panel {
     border-top: 1px solid var(--border);
@@ -2299,7 +2299,7 @@
     padding-bottom: 7.5rem;
   }
   .content-container {
-    max-width: var(--docifly-content-width);
+    max-width: var(--docside-content-width);
   }
   :is(#page-title, .hero h1, #toc h2) {
     font-weight: 700;
@@ -2307,8 +2307,8 @@
   }
   #page-title {
     margin-top: 1rem;
-    font-size: var(--docifly-text-h1);
-    line-height: var(--docifly-line-height-headings);
+    font-size: var(--docside-text-h1);
+    line-height: var(--docside-line-height-headings);
     color: var(--foreground);
   }
   #toc-slot:empty {
@@ -2316,7 +2316,7 @@
   }
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) {
-      --docifly-content-inline-start: var(--docifly-sidebar-width);
+      --docside-content-inline-start: var(--docside-sidebar-width);
     }
   }
   @media (min-width: 72rem) {
@@ -2327,7 +2327,7 @@
       width: 100%;
     }
     :root[data-has-toc]:not([data-compact-toc]) .main-pane {
-      width: min(100% - var(--docifly-sidebar-width), var(--docifly-content-width) + (100% - var(--docifly-content-width) - var(--docifly-sidebar-width)) / 2);
+      width: min(100% - var(--docside-sidebar-width), var(--docside-content-width) + (100% - var(--docside-content-width) - var(--docside-sidebar-width)) / 2);
     }
     :root:not([data-compact-toc]) .content-container {
       margin-inline: auto;
@@ -2338,7 +2338,7 @@
     :root:not([data-compact-toc]) #toc-slot {
       order: 2;
       flex: 1;
-      min-width: var(--docifly-sidebar-width);
+      min-width: var(--docside-sidebar-width);
     }
   }
 }

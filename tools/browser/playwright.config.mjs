@@ -25,7 +25,7 @@ export default defineConfig({
   },
   webServer: {
     url: 'http://127.0.0.1:4444/',
-    command: `python -m http.server 4444 --bind 127.0.0.1 --directory ${JSON.stringify(join(tmpdir(), 'docifly-browser-acceptance', 'site-output'))}`,
+    command: `python -m http.server 4444 --bind 127.0.0.1 --directory ${JSON.stringify(join(tmpdir(), 'docside-browser-acceptance', 'site-output'))}`,
     timeout: 30_000,
   },
   projects: [

@@ -1,13 +1,13 @@
 /*! Adapted from stock Starlight sidebar and mobile menu; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   #site-nav {
     position: fixed;
-    inset: var(--docifly-nav-height) 0 0;
+    inset: var(--docside-nav-height) 0 0;
     margin: 0;
     border: 0;
     width: 100%;
     height: auto;
-    padding: 1rem var(--docifly-sidebar-pad-x);
+    padding: 1rem var(--docside-sidebar-pad-x);
     color: var(--sidebar-foreground);
     background: var(--sidebar);
     overflow-y: auto;
@@ -54,7 +54,7 @@
   }
   #site-nav > ul > li > a,
   #site-nav summary > span {
-    font-size: var(--docifly-text-lg);
+    font-size: var(--docside-text-lg);
   }
   #site-nav summary::marker,
   #site-nav summary::-webkit-details-marker {
@@ -82,8 +82,8 @@
   #menu-toggle {
     position: fixed;
     z-index: 10;
-    top: calc((var(--docifly-nav-height) - 2.25rem) / 2);
-    inset-inline-end: var(--docifly-nav-pad-x);
+    top: calc((var(--docside-nav-height) - 2.25rem) / 2);
+    inset-inline-end: var(--docside-nav-pad-x);
   }
   #menu-toggle::after {
     content: '';
@@ -117,7 +117,7 @@
     }
     :root:not([data-compact-sidebar]) #site-nav {
       display: block;
-      width: var(--docifly-sidebar-width);
+      width: var(--docside-sidebar-width);
       inset-inline-end: auto;
       border-inline-end: 1px solid var(--sidebar-border);
       background: var(--sidebar);
@@ -126,11 +126,11 @@
       margin-top: 0.5rem;
     }
     :root:not([data-compact-sidebar]) #site-nav a {
-      font-size: var(--docifly-text-sm);
+      font-size: var(--docside-text-sm);
     }
     :root:not([data-compact-sidebar]) #site-nav > ul > li > a,
     :root:not([data-compact-sidebar]) #site-nav summary > span {
-      font-size: var(--docifly-text-base);
+      font-size: var(--docside-text-base);
     }
     :root:not([data-compact-sidebar]) body:has(#site-nav:popover-open) {
       overflow: auto;

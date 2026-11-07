@@ -1,5 +1,5 @@
 ---
-name: Docifly
+name: Docside
 description: A restrained Basecoat Vega documentation system with bounded prose and persistent wayfinding.
 colors:
   background: "var(--background)"
@@ -40,11 +40,11 @@ spacing:
   panel: "1.5rem"
 ---
 
-# Design System: Docifly
+# Design System: Docside
 
 ## Authority and intent
 
-Docifly is a **Read-mode** documentation surface. The shared visual authority is the pinned, unmodified **Basecoat 1.1.0 default Vega** distribution, not the old Starlight skin. Vega supplies the reset, semantic Light/Dark tokens, component geometry, radii, control states, focus treatment, and font stacks. Docifly retains its folded-D identity artwork, documentation topology, prose hierarchy, and supported author APIs.
+Docside is a **Read-mode** documentation surface. The shared visual authority is the pinned, unmodified **Basecoat 1.1.0 default Vega** distribution, not the old Starlight skin. Vega supplies the reset, semantic Light/Dark tokens, component geometry, radii, control states, focus treatment, and font stacks. Docside retains its folded-D identity artwork, documentation topology, prose hierarchy, and supported author APIs.
 
 Readability and predictable wayfinding take priority over decoration. Do not recreate the former blue/pill/Urbanist styling through overrides. The intentional changes include neutral stock themes, system-fallback typography, Vega cards/alerts/badges/buttons, and the default filled/raised Vega tab selection rather than an underline skin. Punk and Ice retain their own colors on these same components.
 
@@ -52,17 +52,17 @@ This record reflects actual local headless inspection of documentation, long gui
 
 ## Delivery and cascade
 
-All layouts load `assets/vendor/basecoat/basecoat.cdn.min.css` before `assets/docifly.css`, with prefix-safe escaped asset URLs. The synchronous color-mode bootstrap runs before both. The vendor asset is local and immutable; `tools/styles/basecoat.py` imports/checks the pinned archive separately from the offline documentation Sass build.
+All layouts load `assets/vendor/basecoat/basecoat.cdn.min.css` before `assets/docside.css`, with prefix-safe escaped asset URLs. The synchronous color-mode bootstrap runs before both. The vendor asset is local and immutable; `tools/styles/basecoat.py` imports/checks the pinned archive separately from the offline documentation Sass build.
 
-Basecoat's layers are `properties`, `theme`, `base`, `components`, and `utilities`; Docifly adaptations follow in `docifly`. Vendor semantic `:root`/`.dark` values are unlayered. Custom palette rules are screen-only, more specific `html:root` rules; the unlayered light print baseline wins independently. No second reset, old token adapter, Basecoat JavaScript, compatibility pack, Tailwind runtime, or consumer frontend build is shipped.
+Basecoat's layers are `properties`, `theme`, `base`, `components`, and `utilities`; Docside adaptations follow in `docside`. Vendor semantic `:root`/`.dark` values are unlayered. Custom palette rules are screen-only, more specific `html:root` rules; the unlayered light print baseline wins independently. No second reset, old token adapter, Basecoat JavaScript, compatibility pack, Tailwind runtime, or consumer frontend build is shipped.
 
 ## Color and themes
 
 Use shared semantic pairs directly: `background`/`foreground`, `card`/`card-foreground`, `popover`/`popover-foreground`, `primary`/`primary-foreground`, `secondary`/`secondary-foreground`, `muted`/`muted-foreground`, `accent`/`accent-foreground`, and corresponding sidebar roles. Borders, inputs, and rings use their named roles. `accent` is an interaction surface, not a universal colored-text token.
 
-Stock Light and Dark use vendor defaults without palette JSON. Punk and Ice, and registered custom choices, define exactly the 26 six-digit semantic colors documented in `docs/color-modes.md`. Dark schemes also set `html.dark`; Auto resolves only to stock Light/Dark and follows live system changes. One Docifly controller owns selection, cached restoration, fresh registry/palette authority, stale-response protection, and optional preference storage. Returning to stock clears custom overrides.
+Stock Light and Dark use vendor defaults without palette JSON. Punk and Ice, and registered custom choices, define exactly the 26 six-digit semantic colors documented in `docs/color-modes.md`. Dark schemes also set `html.dark`; Auto resolves only to stock Light/Dark and follows live system changes. One Docside controller owns selection, cached restoration, fresh registry/palette authority, stale-response protection, and optional preference storage. Returning to stock clears custom overrides.
 
-Only documentation-specific properties use `--docifly-*`: reading geometry/type, syntax/markers, semantic statuses, and the optional hero-depth effect. Notes, tips, cautions, dangers, and success labels retain distinct semantic color pairs. Their colors extend Vega, not replace its geometry. Check foregrounds against actual composited surfaces, including both code-marker stripe phases. Syntax text retains a 4.5:1 target on the shipped examples; arbitrary author palettes require their own contrast review.
+Only documentation-specific properties use `--docside-*`: reading geometry/type, syntax/markers, semantic statuses, and the optional hero-depth effect. Notes, tips, cautions, dangers, and success labels retain distinct semantic color pairs. Their colors extend Vega, not replace its geometry. Check foregrounds against actual composited surfaces, including both code-marker stripe phases. Syntax text retains a 4.5:1 target on the shipped examples; arbitrary author palettes require their own contrast review.
 
 The purple folded-D logo is identity artwork, not the stock interaction accent. Theme changes do not recolor content images.
 
@@ -87,12 +87,12 @@ Wide source, tables, file trees, and long tab labels scroll locally rather than 
 - **Actions:** public primary/secondary/minimal variants map to Vega default/outline/ghost buttons. Keep validated destinations, icon position, escaping, focus, and new-window safety. Documentation adaptations provide wrapping and touch geometry, not a pill skin.
 - **Cards:** Vega header/content structure with scoped nested Markdown. Ordinary cards are not clickable; link cards expose one semantic whole-card link without nested interactive controls.
 - **Badges and callouts:** Vega geometry with narrow status/size extensions. Static callouts are labeled asides, not unsolicited live alerts.
-- **Tabs:** one Docifly controller enhances source sections into Vega's direct-child tablist/panels. Keep deterministic IDs, RTL arrows, Home/End, exact-label sync, optional persistence, local overflow, focus, and scroll stability. Nested groups remain unsupported. All panels remain readable without JavaScript and in print.
+- **Tabs:** one Docside controller enhances source sections into Vega's direct-child tablist/panels. Keep deterministic IDs, RTL arrows, Home/End, exact-label sync, optional persistence, local overflow, focus, and scroll stability. Nested groups remain unsupported. All panels remain readable without JavaScript and in print.
 - **Navigation:** native disclosures and popover with recursive links, current-page semantics, optional storage, keyboard focus trapping, and Escape restoration. Language/version pickers remain native disclosures with ordinary links.
 - **Search:** native modal dialog and Vega controls. Real MiniSearch 7.2.0 loads from the documented SRI-pinned production CDN, unlike locally shipped Basecoat. Keep disabled-library, corpus-error/Retry, empty, and no-result states distinct. Results and their padding have one destination; Escape returns focus to the opener.
 - **Code:** server-highlighted source and frame metadata are authoritative. Vega copy buttons report actual browser copy success/denial, preferring the Clipboard API with a legacy copy-command fallback when the API is absent. Copy excludes captions, marker decoration, and gutters and retains the source newline. Normal selection remains available without the API.
 
-Basecoat's standalone utility subset is not all of Tailwind. Copied upstream demos may need missing utilities or interaction controllers; they are not automatically supported Docifly includes. Do not add a second controller to make a pasted demo work.
+Basecoat's standalone utility subset is not all of Tailwind. Copied upstream demos may need missing utilities or interaction controllers; they are not automatically supported Docside includes. Do not add a second controller to make a pasted demo work.
 
 ## Motion, fallback, and paper
 

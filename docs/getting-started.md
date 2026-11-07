@@ -3,22 +3,22 @@ title: Getting started
 permalink: /getting-started/
 ---
 
-Install Docifly, configure your site, and write Markdown pages.
+Install Docside, configure your site, and write Markdown pages.
 
-## Install Docifly in your site
+## Install Docside in your site
 
 Install [Jigyll](https://jigyll.r2ware.app/docs/installation/#mise-macos--linux--windows) 1.15.0 or later.
 
 Create a new site in a new directory:
 
 ```sh
-jigyll new my-docs --theme reidransom/docifly@latest
+jigyll new my-docs --theme reidransom/docside@v0.1.0
 cd my-docs
 ```
 
-Jigyll installs the theme into `_theme/docifly/` and sets `theme: docifly` in `_config.yml`.
+Jigyll installs the theme into `_theme/docside/` and sets `theme: docside` in `_config.yml`.
 
-`@latest` selects the latest published GitHub release. Until Docifly publishes a release, replace `latest` with a full 40-character commit SHA. You can also select an exact release tag.
+`v0.1.0` selects the first release tag. You can also select another exact tag or a full 40-character commit SHA. This repository publishes Git tags, not GitHub Release pages, so `@latest` is not used.
 
 ## Configure your site
 
@@ -26,7 +26,7 @@ Edit `_config.yml`. A minimal configuration is:
 
 ```yaml
 title: My documentation
-theme: docifly
+theme: docside
 url: ""
 baseurl: ""
 navigation:
@@ -92,7 +92,7 @@ Open <http://127.0.0.1:4322/>. The site output is `_site/`; the installed theme 
 
 ## Override deliberately
 
-A consumer can supply its own layouts, includes, or assets with the same names to override the installed theme. Ordinary documentation should not need those overrides. In particular, this documentation site supplies none: its real layout, styles, and browser enhancements come from Docifly, linked locally for development or installed for consumer verification.
+A consumer can supply its own layouts, includes, or assets with the same names to override the installed theme. Ordinary documentation should not need those overrides. In particular, this documentation site supplies none: its real layout, styles, and browser enhancements come from Docside, linked locally for development or installed for consumer verification.
 
 Read [Theme internals](../internals/) before changing shared presentation. Do not turn an example that needs only Markdown into a consumer-specific theme fork.
 

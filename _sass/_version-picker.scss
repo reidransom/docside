@@ -1,4 +1,4 @@
-@layer docifly {
+@layer docside {
   #version-picker {
     position: relative;
     flex: none;
@@ -19,7 +19,7 @@
   }
   .version-current {
     overflow: hidden;
-    font-size: var(--docifly-text-sm);
+    font-size: var(--docside-text-sm);
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -83,7 +83,7 @@
   }
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) #version-picker > summary {
-      font-size: var(--docifly-text-sm);
+      font-size: var(--docside-text-sm);
     }
   }
 }

@@ -13,7 +13,7 @@
     'sidebar-accent', 'sidebar-accent-foreground', 'sidebar-border', 'sidebar-ring',
   ];
   const cacheVersion = 2;
-  const cacheKey = `docifly-palette:${registryUrl.href}`;
+  const cacheKey = `docside-palette:${registryUrl.href}`;
   const validColors = (colors) =>
     colors && typeof colors === 'object' && !Array.isArray(colors) &&
     Object.keys(colors).length === colorNames.length &&

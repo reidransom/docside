@@ -1,7 +1,7 @@
 ---
 title: Icons
 permalink: /icons/
-icon_label: "Docifly <mark>safe</mark> & literal"
+icon_label: "Docside <mark>safe</mark> & literal"
 icon_names:
   - "add-document"
   - "alpine"
@@ -135,7 +135,7 @@ icon_names:
   - "zulip"
 ---
 
-Docifly ships the 130 names from stock Starlight commit `39d4e71f23b3fb6fde0e77eb983fcd38629b70b9`. This alphabetical inventory and its rendered fixture are generated from `tools/icons/icons.json`; run `python tools/icons/generate.py --check` after registry changes.
+Docside ships the 130 names from stock Starlight commit `39d4e71f23b3fb6fde0e77eb983fcd38629b70b9`. This alphabetical inventory and its rendered fixture are generated from `tools/icons/icons.json`; run `python tools/icons/generate.py --check` after registry changes.
 
 ## Authoring contract
 

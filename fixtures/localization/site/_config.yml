@@ -1,7 +1,7 @@
-title: Localized Docifly
+title: Localized Docside
 url: https://example.test
 baseurl: ""
-theme: docifly
+theme: docside
 navigation:
   - label_key: nav.guides
     items:

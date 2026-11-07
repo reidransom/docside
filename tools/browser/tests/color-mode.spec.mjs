@@ -207,7 +207,7 @@ for (const [name, payload] of [
     expect(await colors(page)).toEqual(light);
     await expect(page.locator('#color-mode')).toHaveValue('ice');
     expect(await page.evaluate(() => localStorage.getItem('starlight-theme'))).toBe('ice');
-    expect(await page.evaluate(() => localStorage.getItem(`docifly-palette:${new URL('assets/themes/index.json', location.origin).href}`))).toBeNull();
+    expect(await page.evaluate(() => localStorage.getItem(`docside-palette:${new URL('assets/themes/index.json', location.origin).href}`))).toBeNull();
     expect(errors.some((error) => error.includes('Unable to load the ice palette'))).toBe(true);
   });
 }
@@ -220,7 +220,7 @@ for (const [name, payload] of [
   test(`invalid registry (${name}) discards restored custom colors and hides the selector`, async ({ page }) => {
     await page.addInitScript((palette) => {
       localStorage.setItem('starlight-theme', 'punk');
-      localStorage.setItem(`docifly-palette:${location.origin}/assets/themes/index.json`, JSON.stringify({
+      localStorage.setItem(`docside-palette:${location.origin}/assets/themes/index.json`, JSON.stringify({
         version: 2, id: 'punk', scheme: 'dark', colors: palette,
       }));
     }, punk);
@@ -245,7 +245,7 @@ for (const [name, snapshot] of [
   test(`${name} cache cannot color the first paint`, async ({ page }) => {
     await page.addInitScript((snapshot) => {
       localStorage.setItem('starlight-theme', 'punk');
-      localStorage.setItem(`docifly-palette:${location.origin}/assets/themes/index.json`, JSON.stringify(snapshot));
+      localStorage.setItem(`docside-palette:${location.origin}/assets/themes/index.json`, JSON.stringify(snapshot));
     }, snapshot);
     const pending = gate();
     await page.route('**/assets/themes/index.json', async (route) => {

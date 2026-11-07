@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const build = resolve(dirname(fileURLToPath(import.meta.url)), 'build.mjs');
-const temporary = resolve(tmpdir(), `docifly-versioning-check-${process.pid}-${Date.now()}`);
+const temporary = resolve(tmpdir(), `docside-versioning-check-${process.pid}-${Date.now()}`);
 const source = join(temporary, 'consumer');
 const stage = join(temporary, 'stage');
 const report = join(temporary, 'report.json');
@@ -34,8 +34,8 @@ const commit = (name, label, only) => {
 
 try {
   mkdirSync(join(source, '_theme'), { recursive: true });
-  symlinkSync(root, join(source, '_theme', 'docifly'), 'dir');
-  writeFileSync(join(source, '_config.yml'), 'title: Matrix fixture\ntheme: docifly\nnavigation:\n  - label: Home\n    link: /\ndefaults:\n  - scope: {path: ""}\n    values: {layout: default}\n');
+  symlinkSync(root, join(source, '_theme', 'docside'), 'dir');
+  writeFileSync(join(source, '_config.yml'), 'title: Matrix fixture\ntheme: docside\nnavigation:\n  - label: Home\n    link: /\ndefaults:\n  - scope: {path: ""}\n    values: {layout: default}\n');
   command('git', ['init'], { cwd: source });
   command('git', ['config', 'user.email', 'matrix@example.test'], { cwd: source });
   command('git', ['config', 'user.name', 'Matrix fixture'], { cwd: source });
@@ -110,7 +110,7 @@ try {
   require(JSON.parse(readFileSync(report, 'utf8')).failure.phase === 'build', 'failed Jigyll build lacks phase');
   require(existsSync(join(stage, 'previous-stage.txt')), 'failed Jigyll build replaced the previous stage');
 
-  writeFileSync(join(source, '_config.yml'), 'title: Matrix fixture\ntheme: docifly\nnavigation:\n  - label: Home\n    link: /\ndefaults:\n  - scope: {path: ""}\n    values: {layout: default}\n');
+  writeFileSync(join(source, '_config.yml'), 'title: Matrix fixture\ntheme: docside\nnavigation:\n  - label: Home\n    link: /\ndefaults:\n  - scope: {path: ""}\n    values: {layout: default}\n');
   mkdirSync(join(source, 'v2'), { recursive: true });
   writeFileSync(join(source, 'v2/index.md'), '---\ntitle: Collision\npermalink: /v2/\n---\n\nCollision.\n');
   command('git', ['add', '.'], { cwd: source });

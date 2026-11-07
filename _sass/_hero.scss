@@ -1,12 +1,12 @@
 /*! Hero geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   .splash-frame {
     min-height: 100vh;
-    padding-top: var(--docifly-nav-height);
+    padding-top: var(--docside-nav-height);
   }
 
   .splash-pane .content-container {
-    max-width: var(--docifly-content-width);
+    max-width: var(--docside-content-width);
     margin-inline: auto;
   }
 
@@ -49,10 +49,10 @@
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
 
     .hero-image[data-hero-depth].is-depth-ready {
-      transform: perspective(1000px) rotateX(var(--docifly-hero-depth-x, -2deg))
-        rotateY(var(--docifly-hero-depth-y, -4deg)) scale(0.97);
+      transform: perspective(1000px) rotateX(var(--docside-hero-depth-x, -2deg))
+        rotateY(var(--docside-hero-depth-y, -4deg)) scale(0.97);
       transform-origin: 50% 50%;
-      filter: drop-shadow(0.6rem 1rem 1.25rem var(--docifly-hero-depth-shadow-color));
+      filter: drop-shadow(0.6rem 1rem 1.25rem var(--docside-hero-depth-shadow-color));
       transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -70,13 +70,13 @@
       from {
         transform: perspective(1000px) translateY(0.6rem) rotateX(3deg)
           rotateY(-7deg) scale(0.94);
-        filter: drop-shadow(0.2rem 0.3rem 0.4rem var(--docifly-hero-depth-shadow-color-enter));
+        filter: drop-shadow(0.2rem 0.3rem 0.4rem var(--docside-hero-depth-shadow-color-enter));
       }
 
       to {
-        transform: perspective(1000px) rotateX(var(--docifly-hero-depth-x, -2deg))
-          rotateY(var(--docifly-hero-depth-y, -4deg)) scale(0.97);
-        filter: drop-shadow(0.6rem 1rem 1.25rem var(--docifly-hero-depth-shadow-color));
+        transform: perspective(1000px) rotateX(var(--docside-hero-depth-x, -2deg))
+          rotateY(var(--docside-hero-depth-y, -4deg)) scale(0.97);
+        filter: drop-shadow(0.6rem 1rem 1.25rem var(--docside-hero-depth-shadow-color));
       }
     }
   }
@@ -103,11 +103,11 @@
 
   .hero h1 {
     margin: 0;
-    font-size: clamp(var(--docifly-text-3xl), calc(0.25rem + 5vw), var(--docifly-text-6xl));
+    font-size: clamp(var(--docside-text-3xl), calc(0.25rem + 5vw), var(--docside-text-6xl));
   }
 
   .hero-tagline {
-    font-size: clamp(var(--docifly-text-base), calc(0.0625rem + 2vw), var(--docifly-text-xl));
+    font-size: clamp(var(--docside-text-base), calc(0.0625rem + 2vw), var(--docside-text-xl));
     color: var(--muted-foreground);
   }
 

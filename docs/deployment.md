@@ -14,7 +14,7 @@ url: https://docs.example.com
 baseurl: ""
 ```
 
-`docs.example.com` is an illustrative deployment origin, not a Docifly service. From the `my-docs` directory created in [Getting started](../getting-started/), build your site:
+`docs.example.com` is an illustrative deployment origin, not a Docside service. From the `my-docs` directory created in [Getting started](../getting-started/), build your site:
 
 ```sh
 jigyll build
@@ -65,7 +65,7 @@ The overview uses `./getting-started/` because its route is `/`. Images use the 
 
 ## Publish a custom 404 page
 
-Docifly supplies the `not-found` layout, but a theme cannot create a consumer route or configure a hosting provider. Add a root `404.md` to the consumer:
+Docside supplies the `not-found` layout, but a theme cannot create a consumer route or configure a hosting provider. Add a root `404.md` to the consumer:
 
 ```yaml
 ---
@@ -102,7 +102,7 @@ GitHub Pages setup is concrete host behavior, not a portable static-host guarant
 
 ## Maintainer verification from this repository
 
-These examples are for theme maintainers in a Docifly checkout, not for a site created as `my-docs`. First create the installed documentation consumer using [Developing Docifly](../development/#preview-an-installed-consumer). Then, from the Docifly repository root, build its root-hosted output:
+These examples are for theme maintainers in a Docside checkout, not for a site created as `my-docs`. First create the installed documentation consumer using [Developing Docside](../development/#preview-an-installed-consumer). Then, from the Docside repository root, build its root-hosted output:
 
 ```sh
 jigyll build --source .poc/living-docs

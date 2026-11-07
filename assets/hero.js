@@ -11,8 +11,8 @@
     state.frame = 0;
     state.bounds = null;
     state.image.classList.remove('is-depth-tracking');
-    state.image.style.removeProperty('--docifly-hero-depth-x');
-    state.image.style.removeProperty('--docifly-hero-depth-y');
+    state.image.style.removeProperty('--docside-hero-depth-x');
+    state.image.style.removeProperty('--docside-hero-depth-y');
   };
 
   const sync = (state) => {
@@ -65,8 +65,8 @@
         x *= 8 / angle;
         y *= 8 / angle;
       }
-      image.style.setProperty('--docifly-hero-depth-x', `${x.toFixed(2)}deg`);
-      image.style.setProperty('--docifly-hero-depth-y', `${y.toFixed(2)}deg`);
+      image.style.setProperty('--docside-hero-depth-x', `${x.toFixed(2)}deg`);
+      image.style.setProperty('--docside-hero-depth-y', `${y.toFixed(2)}deg`);
     };
     const move = (event) => {
       if (!state.enabled || event.pointerType === 'touch') return;

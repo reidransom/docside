@@ -3,13 +3,13 @@ title: Theme internals
 permalink: /internals/
 ---
 
-Docifly is a Git-installable Jigyll theme. Its implementation is a server-rendered shell, shipped CSS, and small browser enhancements. The documentation consumer supplies only configuration, Markdown, and content artwork; it does not copy the implementation into its own source.
+Docside is a Git-installable Jigyll theme. Its implementation is a server-rendered shell, shipped CSS, and small browser enhancements. The documentation consumer supplies only configuration, Markdown, and content artwork; it does not copy the implementation into its own source.
 
 ## Installation and ownership
 
 Jigyll resolves the selected theme from the consumer's `_theme/` directory. Theme layouts, includes, Sass, and assets participate in the normal build; consumer files with the same names take precedence. Theme configuration and data are not merged into the site.
 
-That makes the ordinary installed site the useful manual exercise surface. A direct build from the theme development tree could hide an installation or override problem. [Developing Docifly](../development/) explains how to install and refresh this documentation's consumer without a custom harness.
+That makes the ordinary installed site the useful manual exercise surface. A direct build from the theme development tree could hide an installation or override problem. [Developing Docside](../development/) explains how to install and refresh this documentation's consumer without a custom harness.
 
 ## Layout and includes
 
@@ -33,9 +33,9 @@ Text labels and titles are escaped. A navigation badge contributes to its link n
 
 ## Styles and shipped output
 
-All three page layouts load the local shared stylesheet **before** `assets/docifly.css`, using escaped `relative_url` asset paths. The synchronous color-mode bootstrap precedes both. Shared styles supply the reset, semantic tokens, component rules, and font stacks; there is no second reset or compatibility token graph.
+All three page layouts load the local shared stylesheet **before** `assets/docside.css`, using escaped `relative_url` asset paths. The synchronous color-mode bootstrap precedes both. Shared styles supply the reset, semantic tokens, component rules, and font stacks; there is no second reset or compatibility token graph.
 
-`_sass/docifly.scss` is the documentation stylesheet entry point. It loads documentation-only properties, theme extensions, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, content components, and print, then defines shell geometry. Adaptations use the `docifly` layer after the shared `properties`, `theme`, `base`, `components`, and `utilities` layers. Prose styles exclude component surfaces instead of overriding their typography and controls.
+`_sass/docside.scss` is the documentation stylesheet entry point. It loads documentation-only properties, theme extensions, navigation, TOC, Markdown, heading anchors, code, color modes, search, hero/page presentation, content components, and print, then defines shell geometry. Adaptations use the `docside` layer after the shared `properties`, `theme`, `base`, `components`, and `utilities` layers. Prose styles exclude component surfaces instead of overriding their typography and controls.
 
 Consumers load the two shipped stylesheets without a frontend build. Maintainers changing Sass rebuild the documentation artifact with Python 3 and Dart Sass 1.79.0 or later available as `sass`:
 
@@ -43,19 +43,19 @@ Consumers load the two shipped stylesheets without a frontend build. Maintainers
 python tools/styles/build.py
 ```
 
-Run this from the theme repository root, not the documentation consumer. The builder compiles `_sass/docifly.scss` into `assets/docifly.css` without fetching or modifying dependencies. Shell, prose, code, and component rules consume semantic tokens directly, including paired sidebar colors. `_sass/_props.scss` retains documentation layout/type values under `--docifly-*`; `_sass/_theme.scss` owns only documentation-specific status, syntax, code-marker, hero-depth, and print extensions. Stock Light/Dark remain defined in the shared stylesheet. Punk, Ice, and additional custom themes use complete semantic JSON palettes; see [Color modes](../color-modes/) for the exact required schema. Publishing JSON changes needs no Sass compilation. Commit rebuilt CSS with Sass changes.
+Run this from the theme repository root, not the documentation consumer. The builder compiles `_sass/docside.scss` into `assets/docside.css` without fetching or modifying dependencies. Shell, prose, code, and component rules consume semantic tokens directly, including paired sidebar colors. `_sass/_props.scss` retains documentation layout/type values under `--docside-*`; `_sass/_theme.scss` owns only documentation-specific status, syntax, code-marker, hero-depth, and print extensions. Stock Light/Dark remain defined in the shared stylesheet. Punk, Ice, and additional custom themes use complete semantic JSON palettes; see [Color modes](../color-modes/) for the exact required schema. Publishing JSON changes needs no Sass compilation. Commit rebuilt CSS with Sass changes.
 
 A standalone Dart Sass executable supplies the compiler without Node.js. Merely editing Markdown does not require compilation, and consumers loading the shipped CSS need neither Python nor Sass. `jigyll build` consumes the compiled asset; it does not run this maintainer build step.
 
 
-When changing code-marker styles, check whole-line and inline marks in Light, Dark, Punk, and Ice, including both stripe phases and numbered gutters. Composite translucent marker backgrounds over the actual code surface before calculating WCAG relative luminance. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source. Narrow `--docifly-code-muted` and `--docifly-code-focus` extensions keep captions/gutters and code focus readable; dark insertion/deletion fills use less opacity rather than changing the shared palette.
+When changing code-marker styles, check whole-line and inline marks in Light, Dark, Punk, and Ice, including both stripe phases and numbered gutters. Composite translucent marker backgrounds over the actual code surface before calculating WCAG relative luminance. Keep syntax-text contrast at least 4.5:1 without changing marker semantics or copied source. Narrow `--docside-code-muted` and `--docside-code-focus` extensions keep captions/gutters and code focus readable; dark insertion/deletion fills use less opacity rather than changing the shared palette.
 
 Typography uses Geist/Geist Sans with system sans-serif fallbacks, and Geist Mono with system monospace fallbacks. These are preferences for locally installed fonts, not downloads or bundled font assets. Article headings retain a documentation-specific scale, weight 700, restrained tracking, and a bounded reading column; site-title and hero geometry remain documentation adaptations. Component typography remains independent of article heading styles.
 
 The principal responsive transitions are 50rem for sidebar/menu placement and 72rem for the TOC rail/disclosure. At the default 16px browser font setting these are 800 and 1152 CSS pixels. They are font-relative layout decisions, not promises about named devices.
 
 Header buttons, the theme's native `select`, and the native search `dialog`
-use the shared `btn`, `select`, `input`, and `dialog` contracts. Docifly adds only
+use the shared `btn`, `select`, `input`, and `dialog` contracts. Docside adds only
 shell placement, compact/touch geometry, wrapping, and search-result layout.
 Language/version pickers remain native `details` disclosures with ordinary
 links and paired popover/selection colors. Heroes and not-found actions share
@@ -76,7 +76,7 @@ All layouts load `assets/color-mode.js` synchronously in the head before CSS. Th
 
 Every application synchronously updates `html.dark`, `data-theme`, `data-color-scheme`, and the screen-only palette as one resolved state. The stylesheet is replaced, never accumulated: custom→stock and error→Light transitions clear every preceding custom override. Registry errors restore Light and hide the selector; palette errors restore Light while retaining the requested selector value. Both retain the saved preference and log the failure. Revision checks prevent delayed palette successes or failures from overriding newer selections; custom requests are reused within a page, while stock schemes make no palette request.
 
-Successful applications save `{version: 2, id, scheme, colors}` under `docifly-palette:<absolute registry URL>` when storage permits. Stock Light/Dark restore synchronously from the preference or Auto's system setting even without a snapshot. A matching, complete version-2 custom snapshot restores before paint; incompatible old objects and invalid/nonmatching snapshots are ignored. Without a matching custom snapshot, the initial page remains Light until fresh loading finishes. Every page still fetches a fresh registry and the selected custom palette; fresh results replace the restored snapshot, and failures clear it. Storage denial leaves current-page switching and Auto functional. Print uses the independent light semantic baseline and cannot see the screen-only custom stylesheet; returning to screen restores the selection without modifying preferences.
+Successful applications save `{version: 2, id, scheme, colors}` under `docside-palette:<absolute registry URL>` when storage permits. Stock Light/Dark restore synchronously from the preference or Auto's system setting even without a snapshot. A matching, complete version-2 custom snapshot restores before paint; incompatible old objects and invalid/nonmatching snapshots are ignored. Without a matching custom snapshot, the initial page remains Light until fresh loading finishes. Every page still fetches a fresh registry and the selected custom palette; fresh results replace the restored snapshot, and failures clear it. Storage denial leaves current-page switching and Auto functional. Print uses the independent light semantic baseline and cannot see the screen-only custom stylesheet; returning to screen restores the selection without modifying preferences.
 
 ### Navigation
 
@@ -106,7 +106,7 @@ Heading permalinks use the filled `link-alt` glyph from `tools/icons/icons.json`
 
 ### Table of contents
 
-`_includes/toc.html` renders an Overview entry and eligible H2/H3 entries from Jigyll 1.12.0's `page.headings` metadata. The engine collects that flat, article-ordered `{level, id, text}` list from rendered article HTML before layouts; it includes `.no_toc`, nested-Markdown, repeated, and explicit IDs unchanged. Docifly skips entries without IDs or labels and does not derive replacement slugs.
+`_includes/toc.html` renders an Overview entry and eligible H2/H3 entries from Jigyll 1.12.0's `page.headings` metadata. The engine collects that flat, article-ordered `{level, id, text}` list from rendered article HTML before layouts; it includes `.no_toc`, nested-Markdown, repeated, and explicit IDs unchanged. Docside skips entries without IDs or labels and does not derive replacement slugs.
 
 `assets/toc.js` enhances the existing links. It switches between a rail and a disclosure, maintains current-section feedback from the article headings, and focuses the emitted target after link selection. It does not create, remove, or label TOC entries.
 
@@ -233,7 +233,7 @@ repository root with an absolute executable path:
 
 The development theme symlink points back into this repository. The current
 localization checker's recursive theme copy must not follow that link: park
-`docs/_theme/docifly` outside `docs/` temporarily and restore it in a `finally`
+`docs/_theme/docside` outside `docs/` temporarily and restore it in a `finally`
 step when running the checker from the development checkout. Do not replace
 the symlink with copied internals or mistake the copied checker fixture for
 the real Git-installer test.

@@ -109,7 +109,7 @@ const walk = (root) => {
   return paths;
 };
 const publicData = (activeId) => ({
-  docifly_versioning: {
+  docside_versioning: {
     entries: entries.map(({ id, label, baseUrl }) => ({ id, label, base_url: baseUrl })),
     active_id: activeId,
   },
@@ -127,7 +127,7 @@ try {
     throw new MatrixFailure('resolve', unresolved.map(({ entry, error }) => `${entry.id} (${entry.ref}): ${error || 'not found'}`).join('\n'));
   }
 
-  const workspace = resolve(tmpdir(), `docifly-version-matrix-${process.pid}-${Date.now()}`);
+  const workspace = resolve(tmpdir(), `docside-version-matrix-${process.pid}-${Date.now()}`);
   mkdirSync(workspace, { recursive: true });
   try {
     for (const { entry, commit } of resolutions) {
@@ -136,7 +136,7 @@ try {
       try {
         commandOutput('git', ['clone', '--no-checkout', source, checkout], {}, 'checkout', entry.id);
         commandOutput('git', ['checkout', '--detach', commit], { cwd: checkout }, 'checkout', entry.id);
-        const generatedConfig = join(checkout, '.docifly-versioning.yml');
+        const generatedConfig = join(checkout, '.docside-versioning.yml');
         writeFileSync(generatedConfig, `${JSON.stringify(publicData(entry.id), null, 2)}\n`);
         commandOutput(
           jigyll,
@@ -147,7 +147,7 @@ try {
         );
         if (!existsSync(join(output, 'index.html'))) throw new MatrixFailure('build', `${entry.id}: build did not produce index.html`, entry.id);
         let theme = 'unavailable';
-        const themeDirectory = join(checkout, '_theme', 'docifly');
+        const themeDirectory = join(checkout, '_theme', 'docside');
         if (existsSync(themeDirectory)) {
           const identity = run('git', ['rev-parse', 'HEAD'], { cwd: themeDirectory });
           if (identity.status === 0) theme = (identity.stdout ?? '').trim();

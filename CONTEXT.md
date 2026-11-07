@@ -1,4 +1,4 @@
-# Docifly
+# Docside
 
 A documentation theme for Jigyll whose visual and responsive reference is stock Starlight.
 
@@ -9,9 +9,9 @@ Starlight's default documentation experience, without a community theme or the S
 _Avoid_: Starlight website, Starlight skin
 
 **Visual parity**:
-Agreement between Docifly's rendered appearance and the frozen stock Starlight reference across the agreed pages, display conditions, and interaction states. The supported scope and acceptable differences must be explicitly defined.
+Agreement between Docside's rendered appearance and the frozen stock Starlight reference across the agreed pages, display conditions, and interaction states. The supported scope and acceptable differences must be explicitly defined.
 _Avoid_: Astro compatibility
 
 **Interaction parity**:
-Agreement between the observable behavior of supported controls in Docifly and the reference. Similar appearance alone does not establish interaction parity.
+Agreement between the observable behavior of supported controls in Docside and the reference. Similar appearance alone does not establish interaction parity.
 _Avoid_: Pixel parity

@@ -11,14 +11,14 @@ const greeting = "Hello, reader";
 function greet(name) {
   return `Hello, ${name}!`;
 }
-console.log(greet("Docifly"));
+console.log(greet("Docside"));
 ```
 
 ## JSON
 
 ```json
 {
-  "title": "Docifly Docs",
+  "title": "Docside Docs",
   "enabled": true,
   "navigation": ["Overview", "Long guide", "Code examples"]
 }

@@ -105,7 +105,7 @@ for (const prefix of ['', '/docs']) {
 
 for (const stored of [null, 'not a known label', 'yarn', '{"label":"Yarn"}']) {
   test(`missing or invalid persisted label ${JSON.stringify(stored)} falls back visibly`, async ({ page }) => {
-    if (stored !== null) await page.addInitScript((value) => localStorage.setItem('docifly-tabs:v1:package-manager', value), stored);
+    if (stored !== null) await page.addInitScript((value) => localStorage.setItem('docside-tabs:v1:package-manager', value), stored);
     await page.goto('/tabs/');
     await selected(groupAt(page, 1), 'npm');
     await selected(groupAt(page, 2), stored === null ? 'npm' : 'Yarn');
@@ -163,7 +163,7 @@ test('RTL arrows reverse and wrap while Home and End retain source-order meaning
   await expect(first).toBeFocused();
   await page.keyboard.press('End');
   await expect(last).toBeFocused();
-  await selected(group, 'Docifly API');
+  await selected(group, 'Docside API');
   // Three choices distinguish reversed direction from ordinary two-tab wrapping.
   await page.goto('/tabs/');
   await page.evaluate(() => { document.documentElement.dir = 'rtl'; });

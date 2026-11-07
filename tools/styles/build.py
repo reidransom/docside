@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 if __name__ == "__main__":
     subprocess.run(
-        ["sass", "--no-source-map", str(ROOT / "_sass/docifly.scss"),
-         str(ROOT / "assets/docifly.css")],
+        ["sass", "--no-source-map", str(ROOT / "_sass/docside.scss"),
+         str(ROOT / "assets/docside.css")],
         check=True,
     )

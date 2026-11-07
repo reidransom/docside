@@ -3,7 +3,7 @@ title: Cards and grids
 permalink: /cards/
 ---
 
-Docifly provides separate includes for rich-content cards, responsive card grids, and single-target link cards. Their inputs are trusted consumer content; they are not Astro components or an HTML-sanitization boundary.
+Docside provides separate includes for rich-content cards, responsive card grids, and single-target link cards. Their inputs are trusted consumer content; they are not Astro components or an HTML-sanitization boundary.
 
 ## Rich cards
 
@@ -69,7 +69,7 @@ Set the literal Boolean `stagger=true` to offset alternating cards at the 50rem 
 A link card is one anchor covering one card. Its title and optional description are escaped plain text; rich or interactive children are intentionally unsupported.
 
 {% capture link_cards %}
-{% include components/link-card.html title="Install Docifly" href="/getting-started/" description="Follow the consumer installation path." %}
+{% include components/link-card.html title="Install Docside" href="/getting-started/" description="Follow the consumer installation path." %}
 {% include components/link-card.html title="Read the deployment guide with a deliberately long title" href="/deployment/" %}
 {% include components/link-card.html title="Email the documentation team" href="mailto:docs@example.com" description="Mail and telephone destinations remain unchanged." %}
 {% include components/link-card.html title="Frozen Starlight source" href="https://github.com/withastro/starlight" description="Absolute HTTP(S) destinations remain external." %}

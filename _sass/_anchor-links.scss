@@ -1,12 +1,12 @@
 /*! Anchor geometry adapted from stock Starlight; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   /* Nested Markdown opts back in, but component titles and controls do not. */
-  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, .docifly-tabs, .code-frame, figure.highlight, [role='tab']) {
+  @scope (.sl-markdown-content) to (.not-content, .card, .alert, .btn, .badge, .sl-icon, .docside-tabs, .code-frame, figure.highlight, [role='tab']) {
     .sl-heading-wrapper {
-      --docifly-anchor-icon-size: 0.8275em;
-      --docifly-anchor-icon-gap: 0.25em;
-      --docifly-anchor-icon-space: calc(var(--docifly-anchor-icon-size) + var(--docifly-anchor-icon-gap));
-      line-height: var(--docifly-line-height-headings);
+      --docside-anchor-icon-size: 0.8275em;
+      --docside-anchor-icon-gap: 0.25em;
+      --docside-anchor-icon-space: calc(var(--docside-anchor-icon-size) + var(--docside-anchor-icon-gap));
+      line-height: var(--docside-line-height-headings);
     }
 
     .sl-heading-wrapper:has(> :first-child:is(.sr-only, [hidden])) {
@@ -17,23 +17,23 @@
       margin-top: 1.5em;
     }
 
-    .level-h1 { font-size: var(--docifly-text-h1); }
-    .level-h2 { font-size: var(--docifly-text-h2); }
-    .level-h3 { font-size: var(--docifly-text-h3); }
-    .level-h4 { font-size: var(--docifly-text-h4); }
-    .level-h5 { font-size: var(--docifly-text-h5); }
-    .level-h6 { font-size: var(--docifly-text-h6); }
+    .level-h1 { font-size: var(--docside-text-h1); }
+    .level-h2 { font-size: var(--docside-text-h2); }
+    .level-h3 { font-size: var(--docside-text-h3); }
+    .level-h4 { font-size: var(--docside-text-h4); }
+    .level-h5 { font-size: var(--docside-text-h5); }
+    .level-h6 { font-size: var(--docside-text-h6); }
 
     /* Reserve inline space so the anchor cannot wrap away from the final word. */
     .sl-heading-wrapper > :first-child:not([hidden]) {
       display: inline;
-      padding-inline-end: var(--docifly-anchor-icon-space);
+      padding-inline-end: var(--docside-anchor-icon-space);
     }
 
     .sl-anchor-link {
       position: relative;
       display: inline-flex;
-      margin-inline-start: calc(-1 * var(--docifly-anchor-icon-size));
+      margin-inline-start: calc(-1 * var(--docside-anchor-icon-size));
       -webkit-user-select: none;
       user-select: none;
     }
@@ -55,9 +55,9 @@
 
     .sl-anchor-icon > svg {
       display: inline;
-      width: var(--docifly-anchor-icon-size);
+      width: var(--docside-anchor-icon-size);
       vertical-align: top;
-      transform: translateY(calc((var(--docifly-line-height-headings) * 1em - var(--docifly-anchor-icon-size)) / 2));
+      transform: translateY(calc((var(--docside-line-height-headings) * 1em - var(--docside-anchor-icon-size)) / 2));
     }
 
     @media (hover: hover) {

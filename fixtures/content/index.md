@@ -10,7 +10,7 @@ print_tree:
       - name: complete-output.txt
         type: file
 ---
-Welcome to **Docifly Docs**, a documentation site built from ordinary Markdown. Read the [long guide](./guides/long-guide/) or explore the [code examples](./reference/code-examples/).
+Welcome to **Docside Docs**, a documentation site built from ordinary Markdown. Read the [long guide](./guides/long-guide/) or explore the [code examples](./reference/code-examples/).
 
 ## Getting started
 

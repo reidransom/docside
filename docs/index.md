@@ -1,5 +1,5 @@
 ---
-title: Docifly
+title: Docside
 layout: splash
 permalink: /
 hero:
@@ -18,11 +18,11 @@ hero:
       variant: minimal
 ---
 
-This documentation site runs Docifly. Open [Getting started](./getting-started/) to try its sidebar, heading links, table of contents, code blocks, and color selector on a documentation-layout page.
+This documentation site runs Docside. Open [Getting started](./getting-started/) to try its sidebar, heading links, table of contents, code blocks, and color selector on a documentation-layout page.
 
 ## Start with a working site
 
-Read [Getting started](./getting-started/) to install Docifly and configure your site. You don't need to install Node.js, Astro, or Sass to use the shipped theme.
+Read [Getting started](./getting-started/) to install Docside and configure your site. You don't need to install Node.js, Astro, or Sass to use the shipped theme.
 
 Then organize your [navigation](./navigation/), write [headings](./headings/), and choose a [deployment location](./deployment/).
 
@@ -35,12 +35,12 @@ Then organize your [navigation](./navigation/), write [headings](./headings/), a
 
 ## Understand the implementation
 
-[Theme internals](./internals/) explains what the layouts, includes, Sass, and browser enhancements do. These docs are plain Markdown in a separate site with Docifly installed. They need no browser test runner or documentation preprocessing.
+[Theme internals](./internals/) explains what the layouts, includes, Sass, and browser enhancements do. These docs are plain Markdown in a separate site with Docside installed. They need no browser test runner or documentation preprocessing.
 
 ## Scope and limitations
 
-Docifly has documentation and splash layouts with optional heroes. It supports recursive navigation, heading navigation, Markdown and code formatting, color modes, and local full-text search. Each feature's docs describe the supported components and output.
+Docside has documentation and splash layouts with optional heroes. It supports recursive navigation, heading navigation, Markdown and code formatting, color modes, and local full-text search. Each feature's docs describe the supported components and output.
 
-Docifly supplies the documentation shell and supported authoring features. Local browser checks and manual inspection do not establish accessibility certification, real Safari support, or complete parity with another documentation framework.
+Docside supplies the documentation shell and supported authoring features. Local browser checks and manual inspection do not establish accessibility certification, real Safari support, or complete parity with another documentation framework.
 
 Historical proof-of-concept captures and result files remain in the theme repository's `evidence/poc/`, outside this published documentation site. The tools that captured those results have been retired, so they are not a current measurement of this site.

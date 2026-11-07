@@ -38,7 +38,7 @@
       el.getAttribute('href'),
     ]),
   );
-  const storageKey = 'docifly-sidebar:' + nav.dataset.base;
+  const storageKey = 'docside-sidebar:' + nav.dataset.base;
   try {
     const saved = JSON.parse(sessionStorage.getItem(storageKey) || 'null');
     if (saved?.signature === signature && Array.isArray(saved.open)) {

@@ -1,6 +1,6 @@
-title: Docifly
+title: Docside
 lang: en
-theme: docifly
+theme: docside
 url: ""
 baseurl: ""
 favicon_dir: /assets/favicons
@@ -51,7 +51,7 @@ navigation:
             link: /color-modes/
   - label: Maintainers
     items:
-      - label: Developing Docifly
+      - label: Developing Docside
         link: /development/
       - label: Theme internals
         link: /internals/

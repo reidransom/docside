@@ -12,21 +12,21 @@ Primary users are developers authoring and maintaining technical documentation s
 
 ## Product Purpose
 
-Docifly is a standalone documentation theme for Jigyll. It provides a usable documentation experience while letting authors work in ordinary Markdown and site configuration.
+Docside is a standalone documentation theme for Jigyll. It provides a usable documentation experience while letting authors work in ordinary Markdown and site configuration.
 
-This repository also contains Docifly's documentation website. That site consumes the theme and serves as a working demonstration of its supported features.
+This repository also contains Docside's documentation website. That site consumes the theme and serves as a working demonstration of its supported features.
 
 Success means developers can install the theme, configure a documentation site, and publish useful documentation; readers can navigate and comprehend that documentation.
 
 ## Positioning
 
-Basecoat 1.1.0's default Vega distribution is Docifly's shared visual authority: its local standalone CSS owns the reset, stock Light/Dark colors, component geometry, focus/state treatment, and font stacks. Docifly owns the documentation shell, prose, semantic status/code extensions, and existing browser behavior. This is a clean foundation replacement, not an optional skin or a claim of Astro compatibility.
+Basecoat 1.1.0's default Vega distribution is Docside's shared visual authority: its local standalone CSS owns the reset, stock Light/Dark colors, component geometry, focus/state treatment, and font stacks. Docside owns the documentation shell, prose, semantic status/code extensions, and existing browser behavior. This is a clean foundation replacement, not an optional skin or a claim of Astro compatibility.
 
 Consumers use shipped assets with Git and Jigyll; they need no Node.js, npm, Python, Sass, or Tailwind build. MiniSearch remains a separate SRI-pinned production CDN dependency for search, with no runtime local fallback.
 
 ## Operating Context
 
-- Consumers install Docifly through Jigyll's theme installer, configure `_config.yml`, and author Markdown pages.
+- Consumers install Docside through Jigyll's theme installer, configure `_config.yml`, and author Markdown pages.
 - The documented installation requires Git and Jigyll 1.13.0 or later.
 - `docs/` is the maintained documentation site. Its local theme symlink points to this repository for development previews.
 - Preview the site with servd from `docs/`; `docs/.servd.toml` runs Jigyll's watched server.
@@ -42,12 +42,12 @@ Keep scope precise: the current local acceptance surface is the maintained docum
 
 ## Brand Commitments
 
-Preserve the Docifly name and existing purple folded-D logo assets. Existing product copy is direct and technical; it distinguishes demonstrated behavior from unsupported claims.
+Preserve the Docside name and existing purple folded-D logo assets. Existing product copy is direct and technical; it distinguishes demonstrated behavior from unsupported claims.
 
 ## Evidence on Hand
 
 - `docs/`: installation, configuration, feature guides, implementation details, and manual inspection instructions; the site itself demonstrates the theme.
-- `docs/media/` and `__docs/`: existing Docifly identity artwork.
+- `docs/media/` and `__docs/`: existing Docside identity artwork.
 - `fixtures/`: feature-specific content and scenarios.
 - `evidence/` and `docs/poc.md`: retained inspection and historical proof-of-concept material, not current proof of the Basecoat cutover or parity.
 - `docs/internals.md`: maintainer browser acceptance guidance. Failure-diagnostic screenshots are not visual-parity baselines.

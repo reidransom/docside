@@ -33,7 +33,7 @@
   #toc-slot,
   .copy-button,
   .copy-feedback,
-  .docifly-tabs > [role='tablist'],
+  .docside-tabs > [role='tablist'],
   .sl-anchor-link {
     display: none !important;
   }
@@ -133,7 +133,7 @@
 
   #article pre,
   #article pre * {
-    color: var(--docifly-code-print-text) !important;
+    color: var(--docside-code-print-text) !important;
   }
 
   #article pre {
@@ -202,16 +202,16 @@
     transition: none;
   }
 
-  @layer docifly {
-    .docifly-tabs {
+  @layer docside {
+    .docside-tabs {
       display: block;
     }
   }
 
   /* Basecoat's base-layer hidden rule is important; override in that layer. */
   @layer base {
-    .docifly-tabs .tab-item-label[hidden],
-    .docifly-tabs .tab-panel[hidden] {
+    .docside-tabs .tab-item-label[hidden],
+    .docside-tabs .tab-panel[hidden] {
       display: block !important;
     }
   }
@@ -227,8 +227,8 @@
     display: none;
   }
 
-  .docifly-tabs > .tab-item + .tab-item,
-  .docifly-tabs > .tab-panel + .tab-item-label {
+  .docside-tabs > .tab-item + .tab-item,
+  .docside-tabs > .tab-panel + .tab-item-label {
     margin-top: 5mm;
   }
 
@@ -236,7 +236,7 @@
   .alert,
   .card,
   .badge,
-  .docifly-action[data-variant='primary'] {
+  .docside-action[data-variant='primary'] {
     color: var(--foreground);
     background: transparent;
   }

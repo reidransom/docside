@@ -1,5 +1,5 @@
 /*! Language selector geometry adapted from stock Starlight 39d4e71; MIT, Astro contributors. */
-@layer docifly {
+@layer docside {
   #language-picker {
     position: relative;
     flex: none;
@@ -25,7 +25,7 @@
 
   .language-current {
     overflow: hidden;
-    font-size: var(--docifly-text-sm);
+    font-size: var(--docside-text-sm);
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -95,8 +95,8 @@
   #site-nav #language-picker > ul {
     inset-inline-start: 0;
     inset-inline-end: auto;
-    min-width: min(12rem, calc(100vw - 2 * var(--docifly-sidebar-pad-x) - 1rem));
-    max-width: min(22rem, calc(100vw - 2 * var(--docifly-sidebar-pad-x) - 1rem));
+    min-width: min(12rem, calc(100vw - 2 * var(--docside-sidebar-pad-x) - 1rem));
+    max-width: min(22rem, calc(100vw - 2 * var(--docside-sidebar-pad-x) - 1rem));
     position: static;
     margin-top: 0.25rem;
   }
@@ -112,9 +112,9 @@
 
     .site-header #language-picker > ul {
       inset-block-start: calc(100% + 0.25rem);
-      inset-inline-end: var(--docifly-nav-pad-x);
-      min-width: min(12rem, calc(100% - 2 * var(--docifly-nav-pad-x)));
-      max-width: min(22rem, calc(100% - 2 * var(--docifly-nav-pad-x)));
+      inset-inline-end: var(--docside-nav-pad-x);
+      min-width: min(12rem, calc(100% - 2 * var(--docside-nav-pad-x)));
+      max-width: min(22rem, calc(100% - 2 * var(--docside-nav-pad-x)));
     }
 
     .site-header .language-picker-control {
@@ -129,7 +129,7 @@
 
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) #language-picker > summary {
-      font-size: var(--docifly-text-sm);
+      font-size: var(--docside-text-sm);
     }
   }
 }

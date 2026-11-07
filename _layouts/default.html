@@ -13,7 +13,7 @@
     {% include private/favicon-head.html %}
     <script src="{{ '/assets/color-mode.js' | relative_url | escape }}"></script>
     <link rel="stylesheet" href="{{ '/assets/vendor/basecoat/basecoat.cdn.min.css' | relative_url | escape }}">
-    <link rel="stylesheet" href="{{ '/assets/docifly.css' | relative_url | escape }}">
+    <link rel="stylesheet" href="{{ '/assets/docside.css' | relative_url | escape }}">
     <script src="{{ '/assets/navigation.js' | relative_url | escape }}" defer></script>
     <script src="{{ '/assets/global-controls.js' | relative_url | escape }}" defer></script>
     {% if page.hero.image.depth == true %}<script src="{{ '/assets/hero.js' | relative_url | escape }}" defer></script>{% endif %}
@@ -25,12 +25,12 @@
     <script src="{{ '/assets/search.js' | relative_url | escape }}" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">{% include private/ui-message.html key='docifly.skip_to_content' default='Skip to content' %}</a>
+    <a class="skip-link" href="#main-content">{% include private/ui-message.html key='docside.skip_to_content' default='Skip to content' %}</a>
     <header class="site-header">{% include header.html %}</header>
-    <button class="btn" data-variant="outline" data-size="icon" id="menu-toggle" popovertarget="site-nav" aria-label="{% include private/ui-message.html key='docifly.menu' default='Menu' %}" aria-controls="site-nav">
+    <button class="btn" data-variant="outline" data-size="icon" id="menu-toggle" popovertarget="site-nav" aria-label="{% include private/ui-message.html key='docside.menu' default='Menu' %}" aria-controls="site-nav">
       <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path class="open-icon" fill="currentColor" d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/><path class="close-icon" fill="currentColor" d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg>
     </button>
-    <nav id="site-nav" aria-label="{% include private/ui-message.html key='docifly.menu' default='Menu' %}" popover="auto" data-base="{{ navigation_base | escape }}">
+    <nav id="site-nav" aria-label="{% include private/ui-message.html key='docside.menu' default='Menu' %}" popover="auto" data-base="{{ navigation_base | escape }}">
       {% include navigation.html items=site.navigation %}
     </nav>
     <div class="page-frame">

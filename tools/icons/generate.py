@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Docifly's frozen public icon include and documentation fixture."""
+"""Generate Docside's frozen public icon include and documentation fixture."""
 
 from __future__ import annotations
 
@@ -47,12 +47,12 @@ def render_docs(icons: dict[str, str]) -> str:
     return f'''---
 title: Icons
 permalink: /icons/
-icon_label: "Docifly <mark>safe</mark> & literal"
+icon_label: "Docside <mark>safe</mark> & literal"
 icon_names:
 {names}
 ---
 
-Docifly ships the 130 names from stock Starlight commit `{EXPECTED_COMMIT}`. This alphabetical inventory and its rendered fixture are generated from `tools/icons/icons.json`; run `python tools/icons/generate.py --check` after registry changes.
+Docside ships the 130 names from stock Starlight commit `{EXPECTED_COMMIT}`. This alphabetical inventory and its rendered fixture are generated from `tools/icons/icons.json`; run `python tools/icons/generate.py --check` after registry changes.
 
 ## Authoring contract
 

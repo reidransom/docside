@@ -18,11 +18,11 @@ Keep one ordered JSON matrix in the consumer repository. Every entry has a stabl
 }
 ```
 
-`baseUrl` is a complete public homepage path, not a permalink. It must stay on the same origin, start at `/`, use only normalized path segments, and end in `/`. The matrix is consumer-owned release policy; Docifly does not infer versions from branches or tags.
+`baseUrl` is a complete public homepage path, not a permalink. It must stay on the same origin, start at `/`, use only normalized path segments, and end in `/`. The matrix is consumer-owned release policy; Docside does not infer versions from branches or tags.
 
 ## Stage every release
 
-Run the matrix command from the Docifly checkout used by your publication automation:
+Run the matrix command from the Docside checkout used by your publication automation:
 
 ```sh
 node tools/versioning/build.mjs \
@@ -34,7 +34,7 @@ node tools/versioning/build.mjs \
 
 The command resolves every ref before building, clones and checks out every resolved commit in isolation, runs ordinary Jigyll once per entry with its own `baseurl`, and injects only the ordered public picker data plus that build's active identifier. Generated pages never receive Git refs or resolved commits. Each picker identifies its active version, keeps it as current text, and points every other version at its configured default-language homepage. It does not inherit an article route, query string, fragment, locale route, or the active build's hosting prefix.
 
-Each checked-out consumer selects its own Docifly revision. Historical sources must therefore already refer to a theme revision that understands the generated picker data. Rebuild every entry when the matrix changes: adding, removing, relabeling, or reordering an entry changes every generated picker.
+Each checked-out consumer selects its own Docside revision. Historical sources must therefore already refer to a theme revision that understands the generated picker data. Rebuild every entry when the matrix changes: adding, removing, relabeling, or reordering an entry changes every generated picker.
 
 ## Promote a successful stage
 

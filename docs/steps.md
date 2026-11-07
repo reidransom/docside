@@ -3,7 +3,7 @@ title: Steps
 permalink: /steps/
 ---
 
-Docifly decorates one captured Markdown ordered list as instructional steps. The server output remains an ordinary ordered list, and the circles and guides are CSS decoration rather than copied or accessible text.
+Docside decorates one captured Markdown ordered list as instructional steps. The server output remains an ordinary ordered list, and the circles and guides are CSS decoration rather than copied or accessible text.
 
 ## Rich instructional steps
 

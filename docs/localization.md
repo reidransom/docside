@@ -3,7 +3,7 @@ title: Localization
 permalink: /localization/
 ---
 
-Docifly uses Jigyll's native localization interfaces. The theme does not define
+Docside uses Jigyll's native localization interfaces. The theme does not define
 locale configuration or own message catalogs. A localized consumer provides its
 locales, content editions, and `_data/locales/<locale>/messages.yml` files.
 Sites without a `localization` block keep the existing English interface and do
@@ -34,15 +34,15 @@ permalink: /demarrage/
 ---
 ```
 
-Docifly reads `page.language` for the document `lang` and `dir` attributes and
+Docside reads `page.language` for the document `lang` and `dir` attributes and
 uses `page.alternates` for canonical, language-alternate, and `x-default`
-metadata. Jigyll omits unavailable editions; Docifly does not publish default
+metadata. Jigyll omits unavailable editions; Docside does not publish default
 content under a missing locale route. Use Jigyll's `required_translations`
 option when selected locales must contain every default-language edition.
 
 ## Switch between published editions
 
-When a page has at least two editions, Docifly renders a language disclosure
+When a page has at least two editions, Docside renders a language disclosure
 from Jigyll's `page.all_translations` collection. Its order follows the locale
 order in `_config.yml`. The current edition is identified rather than linked,
 and locales without an edition are absent.
@@ -60,7 +60,7 @@ same picker moves into Menu at the compact-shell transition.
 ## Author right-to-left content
 
 Locales with `direction: rtl` mirror the shell while retaining source and focus
-order. Docifly keeps fenced code, inline code, file names, and search input
+order. Docside keeps fenced code, inline code, file names, and search input
 isolated in their natural direction. Wide code and tables scroll within their
 own containers; images, brand marks, search, external-link, and copy icons are
 not mirrored. Only left/right arrow and caret icons reverse.
@@ -87,17 +87,17 @@ navigation:
 ```
 
 A navigation entry must not set both label fields. Root-relative links are
-canonical content routes: Docifly passes them through Jigyll's `localized_url`
+canonical content routes: Docside passes them through Jigyll's `localized_url`
 filter for the active edition and then applies the hosting `baseurl`. Unknown
 or unavailable routes fail the build instead of receiving a guessed prefix.
 
-## Provide the Docifly message namespace
+## Provide the Docside message namespace
 
 Every localized catalog must define these keys. Values are plain text; search
 result messages use `{count}`, and `anchor_label` uses `{title}`.
 
 ```yaml
-docifly:
+docside:
   skip_to_content: "Skip to content"
   menu: "Menu"
   table_of_contents: "Table of contents"

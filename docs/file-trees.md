@@ -101,11 +101,11 @@ invalid_tree:
     name: missing-children
 ---
 
-File trees render explicit structured front matter as native directory disclosures and static file rows. File-tree text is illustrative UI and is excluded from Docifly's article search corpus.
+File trees render explicit structured front matter as native directory disclosures and static file rows. File-tree text is illustrative UI and is excluded from Docside's article search corpus.
 
 ## Project structure
 
-This illustrative tree is not Docifly's directory layout. Empty folders, unknown extensions, omission rows, and the long name and comment exercise display edge cases. The `.xyz` entry checks that tree labels stay out of the article search corpus; it is not a file to create.
+This illustrative tree is not Docside's directory layout. Empty folders, unknown extensions, omission rows, and the long name and comment exercise display edge cases. The `.xyz` entry checks that tree labels stay out of the article search corpus; it is not a file to create.
 
 {% include components/file-tree.html items=page.project_tree %}
 

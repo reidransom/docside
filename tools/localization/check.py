@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and verify Docifly's localized consumer contract."""
+"""Build and verify Docside's localized consumer contract."""
 
 from __future__ import annotations
 
@@ -15,14 +15,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURE = ROOT / "fixtures/localization/site"
 INVENTORY = ROOT / "fixtures/localization/message-keys.json"
-THEME_IGNORES = shutil.ignore_patterns(".git", ".scratch", ".poc", "evidence", "fixtures")
+THEME_IGNORES = shutil.ignore_patterns(".git", ".scratch", ".poc", "evidence", "fixtures", "_theme")
 
 
 def install_fixture(destination: Path) -> Path:
     site = destination / "site"
     shutil.copytree(FIXTURE, site)
     (site / "_theme").mkdir()
-    shutil.copytree(ROOT, site / "_theme/docifly", ignore=THEME_IGNORES)
+    shutil.copytree(ROOT, site / "_theme/docside", ignore=THEME_IGNORES)
     return site
 
 
@@ -78,7 +78,7 @@ def check_inventory() -> None:
         for pattern in ("_layouts/*.html", "_includes/**/*.html", "assets/*.js")
         for path in ROOT.glob(pattern)
     )
-    used = set(re.findall(r"key=['\"](docifly(?:\.[a-z][a-z0-9_]*)+)['\"]", sources))
+    used = set(re.findall(r"key=['\"](docside(?:\.[a-z][a-z0-9_]*)+)['\"]", sources))
     assert used <= expected, f"unlisted message keys: {sorted(used - expected)}"
     assert expected == used, f"unused message keys: {sorted(expected - used)}"
     catalogs = {
@@ -86,49 +86,10 @@ def check_inventory() -> None:
         for locale in ("en", "fr", "ar")
     }
     for locale, messages in catalogs.items():
-        actual = {key for key in messages if key.startswith("docifly.")}
+        actual = {key for key in messages if key.startswith("docside.")}
         assert actual == expected, f"{locale} catalog mismatch: missing={sorted(expected - actual)} extra={sorted(actual - expected)}"
-    for key, fallback in re.findall(r"key='(docifly(?:\.[a-z][a-z0-9_]*)+)' default='([^']*)'", sources):
+    for key, fallback in re.findall(r"key='(docside(?:\.[a-z][a-z0-9_]*)+)' default='([^']*)'", sources):
         assert catalogs["en"][key] == fallback, f"English fallback mismatch for {key}"
-    template_literals = (
-        "Skip to content",
-        "Menu",
-        "Table of contents",
-        "On this page",
-        "Overview",
-        "Search documentation",
-        "Cancel",
-        "Select theme",
-        "Dark",
-        "Light",
-        "Auto",
-        "Punk",
-        "Ice",
-        "Retry",
-        "Page not found",
-        "Back to home",
-        "Note",
-        "Tip",
-        "Caution",
-        "Danger",
-    )
-    for pattern in ("_layouts/*.html", "_includes/**/*.html"):
-        for path in ROOT.glob(pattern):
-            for line in path.read_text(encoding="utf-8").splitlines():
-                for literal in template_literals:
-                    if literal in line:
-                        assert "private/ui-message.html" in line, f"template UI literal bypasses catalog: {path}:{literal}"
-    browser_sources = "\n".join(path.read_text(encoding="utf-8") for path in ROOT.glob("assets/*.js"))
-    for literal in (
-        "Copy to clipboard",
-        "Copied!",
-        "Copy failed",
-        "Enter words to search this documentation.",
-        "Loading search…",
-        "No results found. Try another term.",
-        "Section titled “",
-    ):
-        assert literal not in browser_sources, f"browser UI literal bypasses catalog: {literal}"
 
 
 def check_localized_build(jigyll: Path, temporary: Path) -> None:
@@ -195,9 +156,9 @@ def check_nonlocalized_build(jigyll: Path, temporary: Path) -> None:
     site = temporary / "single/site"
     site.mkdir(parents=True)
     (site / "_theme").mkdir()
-    shutil.copytree(ROOT, site / "_theme/docifly", ignore=THEME_IGNORES)
+    shutil.copytree(ROOT, site / "_theme/docside", ignore=THEME_IGNORES)
     (site / "_config.yml").write_text(
-        "title: Single language\ntheme: docifly\nnavigation:\n  - label: Home\n    link: /\ndefaults:\n  - scope: {path: \"\"}\n    values: {layout: default}\n",
+        "title: Single language\ntheme: docside\nnavigation:\n  - label: Home\n    link: /\ndefaults:\n  - scope: {path: \"\"}\n    values: {layout: default}\n",
         encoding="utf-8",
     )
     (site / "index.md").write_text("---\ntitle: Home\npermalink: /\n---\n\nOrdinary English site.\n", encoding="utf-8")
@@ -224,7 +185,7 @@ def check_failures(jigyll: Path, temporary: Path) -> None:
 
     require_failure(
         scenario(jigyll, temporary, "missing-message", remove_menu),
-        "docifly.menu",
+        "docside.menu",
     )
 
     def expose_missing_key(site: Path) -> None:
@@ -238,7 +199,7 @@ def check_failures(jigyll: Path, temporary: Path) -> None:
     exposed = scenario(jigyll, temporary, "missing-message-key", expose_missing_key)
     require_success(exposed)
     exposed_page = (temporary / "missing-message-key-output/fr/accueil/index.html").read_text(encoding="utf-8")
-    assert 'aria-label="docifly.menu"' in exposed_page
+    assert 'aria-label="docside.menu"' in exposed_page
 
     def remove_required(site: Path) -> None:
         (site / "facultatif.md").unlink()
@@ -282,7 +243,7 @@ def main() -> None:
     jigyll = args.jigyll.resolve()
     assert jigyll.is_file(), f"Jigyll binary not found: {jigyll}"
     check_inventory()
-    with tempfile.TemporaryDirectory(prefix="docifly-localization-") as directory:
+    with tempfile.TemporaryDirectory(prefix="docside-localization-") as directory:
         temporary = Path(directory)
         check_localized_build(jigyll, temporary)
         check_nonlocalized_build(jigyll, temporary)

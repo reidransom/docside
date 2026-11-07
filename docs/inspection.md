@@ -7,7 +7,7 @@ Use this site as a real reader would. These suggestions help you find useful exa
 
 ## Start with the installed consumer
 
-Follow [Developing Docifly](../development/) to create the documentation consumer through Jigyll's theme installer, copy the maintained documentation content, and serve it. Edit source pages under `docs/`, not the disposable consumer.
+Follow [Developing Docside](../development/) to create the documentation consumer through Jigyll's theme installer, copy the maintained documentation content, and serve it. Edit source pages under `docs/`, not the disposable consumer.
 
 The installed theme is a committed snapshot. Update its Git checkout after committing theme changes, then restart the preview. This avoids making a direct source build look like proof that consumer installation works.
 

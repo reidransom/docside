@@ -1,54 +1,54 @@
 /*! Shell values adapted from Starlight 39d4e71; MIT, Astro contributors. See assets/starlight-LICENSE. */
-@layer docifly {
+@layer docside {
   :root {
-    --docifly-text-2xs: 0.75rem;
-    --docifly-text-xs: 0.8125rem;
-    --docifly-text-sm: 0.875rem;
-    --docifly-text-base: 1rem;
-    --docifly-text-lg: 1.125rem;
-    --docifly-text-xl: 1.25rem;
-    --docifly-text-2xl: 1.5rem;
-    --docifly-text-3xl: 1.8125rem;
-    --docifly-text-4xl: 2.1875rem;
-    --docifly-text-5xl: 2.625rem;
-    --docifly-text-6xl: 4rem;
-    --docifly-text-body: var(--docifly-text-base);
-    --docifly-text-code: var(--docifly-text-sm);
-    --docifly-text-code-sm: var(--docifly-text-xs);
-    --docifly-text-h1: var(--docifly-text-4xl);
-    --docifly-text-h2: var(--docifly-text-3xl);
-    --docifly-text-h3: var(--docifly-text-2xl);
-    --docifly-text-h4: var(--docifly-text-xl);
-    --docifly-text-h5: var(--docifly-text-lg);
-    --docifly-text-h6: var(--docifly-text-base);
-    --docifly-line-height: 1.75;
-    --docifly-line-height-headings: 1.2;
-    --docifly-nav-height: 3.5rem;
-    --docifly-nav-pad-x: 1rem;
-    --docifly-nav-pad-y: 0.75rem;
-    --docifly-mobile-toc-height: 3rem;
-    --docifly-sidebar-width: 18.75rem;
-    --docifly-sidebar-pad-x: 1rem;
-    --docifly-content-width: 45rem;
-    --docifly-content-pad-x: 1rem;
-    --docifly-content-gap-y: 1rem;
-    --docifly-main-pad: 0 0 3vh 0;
-    --docifly-outline-offset-inside: -0.1875rem;
+    --docside-text-2xs: 0.75rem;
+    --docside-text-xs: 0.8125rem;
+    --docside-text-sm: 0.875rem;
+    --docside-text-base: 1rem;
+    --docside-text-lg: 1.125rem;
+    --docside-text-xl: 1.25rem;
+    --docside-text-2xl: 1.5rem;
+    --docside-text-3xl: 1.8125rem;
+    --docside-text-4xl: 2.1875rem;
+    --docside-text-5xl: 2.625rem;
+    --docside-text-6xl: 4rem;
+    --docside-text-body: var(--docside-text-base);
+    --docside-text-code: var(--docside-text-sm);
+    --docside-text-code-sm: var(--docside-text-xs);
+    --docside-text-h1: var(--docside-text-4xl);
+    --docside-text-h2: var(--docside-text-3xl);
+    --docside-text-h3: var(--docside-text-2xl);
+    --docside-text-h4: var(--docside-text-xl);
+    --docside-text-h5: var(--docside-text-lg);
+    --docside-text-h6: var(--docside-text-base);
+    --docside-line-height: 1.75;
+    --docside-line-height-headings: 1.2;
+    --docside-nav-height: 3.5rem;
+    --docside-nav-pad-x: 1rem;
+    --docside-nav-pad-y: 0.75rem;
+    --docside-mobile-toc-height: 3rem;
+    --docside-sidebar-width: 18.75rem;
+    --docside-sidebar-pad-x: 1rem;
+    --docside-content-width: 45rem;
+    --docside-content-pad-x: 1rem;
+    --docside-content-gap-y: 1rem;
+    --docside-main-pad: 0 0 3vh 0;
+    --docside-outline-offset-inside: -0.1875rem;
   }
   @media (min-width: 50rem) {
     :root:not([data-compact-sidebar]) {
-      --docifly-nav-height: 4rem;
-      --docifly-nav-pad-x: 1.5rem;
-      --docifly-text-h1: var(--docifly-text-5xl);
-      --docifly-text-h2: var(--docifly-text-4xl);
-      --docifly-text-h3: var(--docifly-text-3xl);
-      --docifly-text-h4: var(--docifly-text-2xl);
+      --docside-nav-height: 4rem;
+      --docside-nav-pad-x: 1.5rem;
+      --docside-text-h1: var(--docside-text-5xl);
+      --docside-text-h2: var(--docside-text-4xl);
+      --docside-text-h3: var(--docside-text-3xl);
+      --docside-text-h4: var(--docside-text-2xl);
     }
   }
   @media (min-width: 72rem) {
     :root:not([data-compact-toc]) {
-      --docifly-content-pad-x: 1.5rem;
-      --docifly-mobile-toc-height: 0rem;
+      --docside-content-pad-x: 1.5rem;
+      --docside-mobile-toc-height: 0rem;
     }
   }
 }

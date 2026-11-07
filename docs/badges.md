@@ -48,7 +48,7 @@ navigation:
       size: large
 ```
 
-Without `aria_label`, visible badge text participates in the link's accessible name. If an explicit `aria_label` already includes equivalent context, Docifly uses that name and hides the redundant badge text from assistive technology:
+Without `aria_label`, visible badge text participates in the link's accessible name. If an explicit `aria_label` already includes equivalent context, Docside uses that name and hides the redundant badge text from assistive technology:
 
 ```yaml
 - label: Tabs

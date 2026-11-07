@@ -1,5 +1,5 @@
 {
-  "name": "docifly-browser-acceptance",
+  "name": "docside-browser-acceptance",
   "private": true,
   "type": "module",
   "scripts": {

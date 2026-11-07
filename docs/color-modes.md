@@ -5,11 +5,11 @@ permalink: /color-modes/
 
 Use **Select theme** to choose Dark, Light, Punk, Ice, or Auto. The control sits in the header on wide screens and moves into Menu on narrow screens. Both locations use the same saved preference.
 
-Light and Dark use the default palettes. They do not load a palette JSON file: their registry entries have `palette: null`, and the locally shipped stylesheet owns their shared colors and font stacks. The stacks prefer Geist and Geist Mono, then fall back to installed system fonts; Docifly downloads no fonts.
+Light and Dark use the default palettes. They do not load a palette JSON file: their registry entries have `palette: null`, and the locally shipped stylesheet owns their shared colors and font stacks. The stacks prefer Geist and Geist Mono, then fall back to installed system fonts; Docside downloads no fonts.
 
 Punk and Ice are complete custom semantic palettes over the same components. Punk keeps neon green actions, pink-tinted secondary surfaces, violet text, and black backgrounds. Ice uses near-black navy surfaces, sky-blue actions, cyan-tinted secondary surfaces, and cool slate text, inspired by [ZeroClaw](https://www.zeroclaw.com/).
 
-The custom-palette format uses semantic names **without** the leading `--`. This replaces the former base-color/derived-variant format: convert every custom file to the complete schema below. There is no legacy-schema fallback. Shared foreground/background pairs, borders, inputs, focus rings, and sidebar colors are explicit; Docifly's syntax, code-marker, and semantic-notice extensions remain CSS-owned.
+The custom-palette format uses semantic names **without** the leading `--`. This replaces the former base-color/derived-variant format: convert every custom file to the complete schema below. There is no legacy-schema fallback. Shared foreground/background pairs, borders, inputs, focus rings, and sidebar colors are explicit; Docside's syntax, code-marker, and semantic-notice extensions remain CSS-owned.
 
 The intentional appearance change is broader than recoloring: stock themes
 now use shared controls, cards, alerts, and tabs, with neutral Light/Dark
@@ -17,7 +17,7 @@ defaults rather than the former shared skin. Public Liquid arguments remain
 the same. Do not reproduce the old appearance with token aliases or add a
 second theme controller.
 
-Publish JSON color changes with the site. They do not need Sass compilation. After changing Sass, run `python tools/styles/build.py` to rebuild `assets/docifly.css`. See [Theme internals](../internals/#styles-and-shipped-output) for build dependencies.
+Publish JSON color changes with the site. They do not need Sass compilation. After changing Sass, run `python tools/styles/build.py` to rebuild `assets/docside.css`. See [Theme internals](../internals/#styles-and-shipped-output) for build dependencies.
 
 
 ## Add a theme
@@ -122,7 +122,7 @@ To check this fallback manually, disable JavaScript in browser settings and relo
 
 `assets/color-mode.js` is the single theme controller and runs in the document head before both local stylesheets and page content. It updates `data-theme`, `data-color-scheme`, `html.dark`, and the screen-only custom palette together. Switching to stock Light or Dark, or falling back to Light after an error, removes every previous custom override.
 
-Stock Light/Dark restore synchronously from the saved preference or Auto's current system appearance, without needing a cached palette or waiting for JSON. Custom palettes restore before paint only from a valid version-2 snapshot matching the saved theme ID. The cache key is `docifly-palette:<absolute registry URL>`, so different deployment prefixes do not share snapshots. Old, incomplete, malformed, and nonmatching snapshots are ignored; a custom choice without a matching snapshot initially renders Light.
+Stock Light/Dark restore synchronously from the saved preference or Auto's current system appearance, without needing a cached palette or waiting for JSON. Custom palettes restore before paint only from a valid version-2 snapshot matching the saved theme ID. The cache key is `docside-palette:<absolute registry URL>`, so different deployment prefixes do not share snapshots. Old, incomplete, malformed, and nonmatching snapshots are ignored; a custom choice without a matching snapshot initially renders Light.
 
 The loader still fetches `assets/themes/index.json` on every page, then fetches the selected custom palette to pick up published changes. Fresh responses are authoritative over snapshots. Palette requests are reused for later switches on that page; stock Light/Dark never fetch a palette. If a palette request fails or contains invalid colors, the loader clears the snapshot and all custom overrides, uses Light, and logs the error. The selector and saved preference keep the requested choice. If you switch themes while a request is pending, a delayed success or failure cannot override the latest selection.
 
