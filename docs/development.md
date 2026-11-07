@@ -15,6 +15,8 @@ jigyll serve --source docs --host 127.0.0.1 --port 4322
 
 Or run `jigyll serve` inside `docs/`. The checked-in `docs/_theme/docside` symlink points to the repository root, so the preview uses local theme files without a Ruby bundle or a separate installation. Open <http://127.0.0.1:4322/>; restart the server after editing theme files.
 
+Source archives exclude the development-only `docs/_theme` symlink so Jigyll's archive installer can safely extract release tags. Use a Git checkout for this local documentation preview.
+
 The existing `docs/.servd.toml` runs the watched Jigyll preview. If this
 directory is registered with servd, use `servd up --wait` from `docs/` and
 `servd status` for its actual port/URL. This uses the existing registration;
