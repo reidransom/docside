@@ -3,20 +3,22 @@ title: Getting started
 permalink: /getting-started/
 ---
 
-Install Docifly as a Git theme, then write ordinary Markdown in your own Jigyll site. The theme supplies the presentation; your site owns its configuration and content.
+Install Docifly, configure your site, and write Markdown pages.
 
 ## Install Docifly in your site
 
-Install [Git](https://git-scm.com/install/) and [Jigyll](https://jigyll.r2ware.app/docs/installation/#mise-macos--linux--windows) 1.13.0 or later first. You do not need Node.js, Astro, a Jigyll plugin, or a Sass compiler to use the shipped theme.
+Install [Jigyll](https://jigyll.r2ware.app/docs/installation/#mise-macos--linux--windows) 1.15.0 or later.
 
-Create a new site from any working directory. The target directory `my-docs` must not already exist:
+Create a new site in a new directory:
 
 ```sh
-jigyll new my-docs --theme https://github.com/reidransom/docifly.git
+jigyll new my-docs --theme reidransom/docifly@latest
 cd my-docs
 ```
 
-Jigyll clones Docifly into `_theme/docifly/` and sets `theme: docifly` in your site's configuration. Theme maintainers working from a local checkout should follow [Developing Docifly](../development/) instead.
+Jigyll installs the theme into `_theme/docifly/` and sets `theme: docifly` in `_config.yml`.
+
+`@latest` selects the latest published GitHub release. Until Docifly publishes a release, replace `latest` with a full 40-character commit SHA. You can also select an exact release tag.
 
 ## Configure your site
 
@@ -39,13 +41,13 @@ defaults:
       layout: default
 ```
 
-Jigyll does **not** merge the theme's `_config.yml` or `_data` into your site. Titles, navigation, and layout defaults must be supplied by the consumer.
+Set your site's title, navigation, and layout defaults in `_config.yml`.
 
 The [navigation guide](../navigation/) explains nested groups. The [deployment guide](../deployment/) explains `url`, `baseurl`, and portable links.
 
 ## Write pages
 
-Replace your consumer's `index.md` with an overview:
+Replace `index.md` with an overview:
 
 ```markdown
 ---
@@ -60,7 +62,7 @@ Welcome to the documentation.
 Read the [installation guide](./installation/).
 ```
 
-Then create `installation.md` in the consumer:
+Create `installation.md`:
 
 ```markdown
 ---
@@ -79,7 +81,7 @@ The layout renders the front-matter title as the page H1. Start article sections
 
 ## Build and preview
 
-From the consumer directory, build and serve the site:
+From your site directory:
 
 ```sh
 jigyll build

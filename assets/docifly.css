@@ -1380,6 +1380,9 @@
     height: auto;
     margin-inline: auto;
   }
+  .hero-image[src$="/paper-dragon-docs.webp"] {
+    width: min(100%, 30rem);
+  }
   .hero-image-light {
     display: none;
   }
@@ -1462,6 +1465,13 @@
       order: 2;
       width: min(100%, 25rem);
       margin-inline: 0;
+    }
+    .hero:has(> .hero-image[src$="/paper-dragon-docs.webp"]) {
+      grid-template-columns: minmax(0, 34rem) minmax(0, 34rem);
+      gap: 2rem;
+    }
+    .hero-image[src$="/paper-dragon-docs.webp"] {
+      width: 100%;
     }
     .hero-stack {
       text-align: start;
@@ -1712,6 +1722,7 @@
     border: 0;
   }
   .file-tree .directory > details > summary {
+    display: list-item;
     max-width: 100%;
     padding: var(--y-pad) 0.625rem;
     margin-inline-start: calc(-1 * var(--x-space));
@@ -1801,11 +1812,6 @@
   .file-tree .entry-name {
     direction: ltr;
     unicode-bidi: isolate;
-  }
-  @media (min-width: 30em) {
-    .file-tree .tree-entry {
-      flex-wrap: nowrap;
-    }
   }
   .card-grid {
     display: grid;

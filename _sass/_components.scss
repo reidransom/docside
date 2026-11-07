@@ -260,6 +260,7 @@
   }
 
   .file-tree .directory > details > summary {
+    display: list-item;
     max-width: 100%;
     padding: var(--y-pad) 0.625rem;
     margin-inline-start: calc(-1 * var(--x-space));
@@ -367,12 +368,6 @@
   .file-tree .entry-name {
     direction: ltr;
     unicode-bidi: isolate;
-  }
-
-  @media (min-width: 30em) {
-    .file-tree .tree-entry {
-      flex-wrap: nowrap;
-    }
   }
 
   .card-grid {

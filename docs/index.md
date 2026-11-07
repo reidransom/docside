@@ -5,10 +5,10 @@ permalink: /
 hero:
   tagline: A standalone Jigyll theme for clear, readable documentation.
   image:
-    src: /media/docifly-icon.svg
-    alt: Docifly purple folded D logo
-    width: 505
-    height: 509
+    src: /media/paper-dragon-docs.webp
+    alt: A paper dragon wearing glasses and reading a book
+    width: 1024
+    height: 683
   actions:
     - text: Get started
       link: /getting-started/

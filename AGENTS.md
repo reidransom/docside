@@ -18,6 +18,8 @@ sample-project/.scratch/
     └── spec.md
 ```
 
+- Create tickets when specifically asked to write a plan or spec.
+- Do not create tickets for every single change request.
 - Use a descriptive ticket directory name for each feature or bug.
 - Write the technical design document in `spec.md`.
 - Add an optional `map.md` to define scope when needed.
